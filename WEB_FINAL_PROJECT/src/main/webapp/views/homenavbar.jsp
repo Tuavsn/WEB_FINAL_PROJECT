@@ -30,15 +30,15 @@
 				class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
 				data-toggle="collapse" href="#navbar-vertical"
 				style="height: 65px; margin-top: -1px; padding: 0 30px;">
-				<h6 class="m-0">Categories</h6> <i
+				<h6 class="m-0">Danh mục sản phẩm</h6> <i
 				class="fa fa-angle-down text-dark"></i>
 			</a>
 			<nav
 				class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
 				id="navbar-vertical">
-				<div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+				<div class="navbar-nav w-100 overflow-hidden">
 					<c:forEach items="${allcategory}" var="category">
-						<a href="${category.categoryID}" class="nav-item nav-link">${category.categoryName}</a>
+						<a href="shop?cid=${category.categoryID}" class="nav-item nav-link">${category.icon} ${category.categoryName}</a>
 					</c:forEach>
 				</div>
 			</nav>
@@ -58,46 +58,35 @@
 				<div class="collapse navbar-collapse justify-content-between"
 					id="navbarCollapse">
 					<div class="navbar-nav mr-auto py-0">
-						<a href="home" class="nav-item nav-link active">Home</a> <a
-							href="shop" class="nav-item nav-link">Shop</a> <a
-							href="detail" class="nav-item nav-link">Shop Detail</a>
-						<div class="nav-item dropdown">
-							<a href="#" class="nav-link dropdown-toggle"
-								data-toggle="dropdown">Pages</a>
-							<div class="dropdown-menu rounded-0 m-0">
-								<a href="cart" class="dropdown-item">Shopping Cart</a> <a
-									href="checkout" class="dropdown-item">Checkout</a>
-							</div>
-						</div>
-						<a href="contact" class="nav-item nav-link">Contact</a>
+						<a href="home" class="nav-item nav-link active">Trang chủ</a> 
+						<a href="shop" class="nav-item nav-link">Sản phẩm</a>
+						<a href="cart" class="nav-item nav-link">Giỏ hàng</a> 
+						<a href="checkout" class="nav-item nav-link">Thanh toán</a>
+						<a href="contact" class="nav-item nav-link">Thông tin liên hệ</a>
 					</div>
 				</div>
 			</nav>
 			<div id="header-carousel" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active" style="height: 410px;">
-						<img class="img-fluid" src="img/carousel-1.jpg" alt="Image">
+						<img class="img-fluid" src="https://vanchuyensieutoc.com/Uploads/images/tin%20tuc/my-pham-este-lauer.jpg" alt="Image">
 						<div
 							class="carousel-caption d-flex flex-column align-items-center justify-content-center">
 							<div class="p-3" style="max-width: 700px;">
-								<h4 class="text-light text-uppercase font-weight-medium mb-3">10%
-									Off Your First Order</h4>
-								<h3 class="display-4 text-white font-weight-semi-bold mb-4">Fashionable
-									Dress</h3>
-								<a href="" class="btn btn-light py-2 px-3">Shop Now</a>
+								<h4 class="text-light text-uppercase font-weight-medium mb-3">Giảm ngay 10% cho đơn hàng đầu tiên</h4>
+								<h3 class="display-4 text-white font-weight-semi-bold mb-4">Mỹ phẩm hàng hiệu</h3>
+								<a href="" class="btn btn-light py-2 px-3">Mua sắm ngay</a>
 							</div>
 						</div>
 					</div>
 					<div class="carousel-item" style="height: 410px;">
-						<img class="img-fluid" src="img/carousel-2.jpg" alt="Image">
+						<img class="img-fluid" src="https://xanhlo.com/media/wysiwyg/tintuc/deal-my-pham-giam-gia-sephora.jpg" alt="Image">
 						<div
 							class="carousel-caption d-flex flex-column align-items-center justify-content-center">
 							<div class="p-3" style="max-width: 700px;">
-								<h4 class="text-light text-uppercase font-weight-medium mb-3">10%
-									Off Your First Order</h4>
-								<h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable
-									Price</h3>
-								<a href="" class="btn btn-light py-2 px-3">Shop Now</a>
+								<h4 class="text-light text-uppercase font-weight-medium mb-3">Giảm ngay 10% cho đơn hàng đầu tiên</h4>
+								<h3 class="display-4 text-white font-weight-semi-bold mb-4">Giá cả cạnh tranh</h3>
+								<a href="" class="btn btn-light py-2 px-3">Mua sắm ngay</a>
 							</div>
 						</div>
 					</div>

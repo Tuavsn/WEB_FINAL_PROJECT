@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `category`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category` (
   `CategoryID` int NOT NULL,
-  `CategroyName` varchar(50) DEFAULT NULL,
+  `CategoryName` varchar(50) DEFAULT NULL,
   `Icon` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`CategoryID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -33,6 +33,7 @@ CREATE TABLE `category` (
 --
 -- Dumping data for table `category`
 --
+
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
 INSERT INTO `category` VALUES (1,'Chăm sóc da mặt',NULL),(2,'Chăm sóc cơ thể',NULL),(3,'Trang điểm',NULL),(4,'Thực phẩm chức năng',NULL),(5,'Dược mỹ phẩm',NULL),(6,'Phụ kiện',NULL);
@@ -48,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-26 13:12:50
+-- Dump completed on 2023-09-26 18:35:38

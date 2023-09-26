@@ -32,8 +32,8 @@
 		<div class="col-lg-6 text-center text-lg-right">
 			<div class="d-inline-flex align-items-center">
 				<a class="text-dark px-2" href=""> <a href="login"
-					class="mx-2 text-body">Login</a> <a href="regist"
-					class="mx-2 text-body">Register</a>
+					class="mx-2 text-body">Đăng nhập</a> <a href="regist"
+					class="mx-2 text-body">Đăng ký</a>
 				</a>
 			</div>
 		</div>

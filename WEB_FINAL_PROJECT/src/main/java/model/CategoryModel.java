@@ -3,6 +3,16 @@ package model;
 public class CategoryModel {
 	private int CategoryID;
 	private String CategoryName;
+	private String ImageLink;
+
+	public String getImageLink() {
+		return ImageLink;
+	}
+
+	public void setImageLink(String imageLink) {
+		ImageLink = imageLink;
+	}
+
 	private String Icon;
 
 	public int getCategoryID() {
@@ -32,11 +42,12 @@ public class CategoryModel {
 	public CategoryModel() {
 		super();
 	}
-
-	public CategoryModel(int categoryID, String categoryName, String icon) {
+	
+	public CategoryModel(int categoryID, String categoryName, String imageLink, String icon) {
 		super();
 		CategoryID = categoryID;
 		CategoryName = categoryName;
+		ImageLink = imageLink;
 		Icon = icon;
 	}
 }
