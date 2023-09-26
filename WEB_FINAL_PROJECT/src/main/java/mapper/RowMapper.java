@@ -1,4 +1,4 @@
-package Mapper;
+package mapper;
 
 import java.sql.ResultSet;
 

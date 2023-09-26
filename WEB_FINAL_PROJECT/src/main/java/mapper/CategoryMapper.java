@@ -1,10 +1,9 @@
-package Mapper;
+package mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.laptrinhjavaweb.model.CategoryModel;
-import com.laptrinhjavaweb.model.NewModel;
+import model.CategoryModel;
 
 public class CategoryMapper implements RowMapper<CategoryModel>{
 
@@ -12,9 +11,9 @@ public class CategoryMapper implements RowMapper<CategoryModel>{
 	public CategoryModel mapRow(ResultSet resultSet) {
 		try {
 			CategoryModel category = new CategoryModel();
-			category.setId(resultSet.getLong("id"));
-			category.setCode(resultSet.getString("code"));
-			category.setName(resultSet.getString("name"));
+			category.setCategoryID(resultSet.getInt("CategoryID"));
+			category.setCategoryName(resultSet.getString("CategoryName"));
+			category.setIcon(resultSet.getString("Icon"));
 			return category;
 		}
 		catch (SQLException e) {

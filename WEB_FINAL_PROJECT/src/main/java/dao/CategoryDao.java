@@ -6,5 +6,6 @@ import model.CategoryModel;
 
 public interface CategoryDao {
 	List<CategoryModel> findAll();
+
 	CategoryModel getOne(String CategoryID);
 }

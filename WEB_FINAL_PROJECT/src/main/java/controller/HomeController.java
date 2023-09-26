@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.vienmv.service.ProductService;
-import com.vienmv.service.impl.ProductServiceImpl;
-
 import model.CategoryModel;
 import service.CategoryService;
 import serviceImpl.CategoryServiceImpl;
