@@ -24,7 +24,7 @@ public class HomeController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		List<CategoryModel> allCategory = categoryservice.findAll();
-		System.out.println(allCategory);
+		req.setAttribute("allcategory", allCategory);
 		
 		RequestDispatcher rq = req.getRequestDispatcher("views/home.jsp");
 		rq.forward(req, resp);

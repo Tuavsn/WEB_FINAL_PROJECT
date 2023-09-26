@@ -1,6 +1,7 @@
 package daoImpl;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import dao.GenericDAO;
 import mapper.RowMapper;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
+
 	public Connection conn = null;
 	public PreparedStatement ps = null;
 	public ResultSet rs = null;
