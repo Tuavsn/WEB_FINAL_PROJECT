@@ -1,7 +1,6 @@
 package daoImpl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,52 +8,40 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import connection.DBConnect;
 import dao.GenericDAO;
 import mapper.RowMapper;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
-	public DB
-	public Connection getConnection() // Load mysql
-	{
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/newservlet2023";
-			String user = "root";
-			String password = "huy852347";
-			return DriverManager.getConnection(url, user, password);
-		} catch (ClassNotFoundException | SQLException e) {
-			return null;
-		}
-	}
+	public Connection conn = null;
+	public PreparedStatement ps = null;
+	public ResultSet rs = null;
 
 	@Override
 	public <T> List<T> query(String sql, RowMapper<T> RowMapper, Object... parameters) {
 		List<T> results = new ArrayList<>();
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
 		try {
-			connection = getConnection();
-			statement = connection.prepareStatement(sql);
+			conn = new DBConnect().getConnection();
+			ps = conn.prepareStatement(sql);
 			// set parameter()
-			setParameter(statement, parameters);
-			resultSet = statement.executeQuery(); // thực thi câu sql
-			while (resultSet.next()) {
-				results.add(RowMapper.mapRow(resultSet));
+			setParameter(ps, parameters);
+			rs = ps.executeQuery(); // thực thi câu sql
+			while (rs.next()) {
+				results.add(RowMapper.mapRow(rs));
 			}
 			return results;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			return null;
 		} finally {
 			try {
-				if (connection != null) {
-					connection.close();
+				if (conn != null) {
+					conn.close();
 				}
-				if (statement != null) {
-					statement.close();
+				if (ps != null) {
+					ps.close();
 				}
-				if (resultSet != null) {
-					resultSet.close();
+				if (rs != null) {
+					rs.close();
 				}
 			} catch (SQLException e) {
 				return null;
@@ -84,19 +71,17 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
 	@Override
 	public void update(String sql, Object... patameters) { // sửa và xóa
-		Connection connection = null;
-		PreparedStatement statement = null;
 		try {
-			connection = getConnection();
-			connection.setAutoCommit(false);
-			statement = connection.prepareStatement(sql);
-			setParameter(statement, patameters);
-			statement.executeUpdate();// thực hiện thao tác trên dữ liệu(thêm,xóa,sửa)
-			connection.commit();
-		} catch (SQLException e) {
-			if (connection != null) {
+			conn = new DBConnect().getConnection();
+			conn.setAutoCommit(false);
+			ps = conn.prepareStatement(sql);
+			setParameter(ps, patameters);
+			ps.executeUpdate();// thực hiện thao tác trên dữ liệu(thêm,xóa,sửa)
+			conn.commit();
+		} catch (Exception e) {
+			if (conn != null) {
 				try {
-					connection.rollback(); // thất bại thì rollback
+					conn.rollback(); // thất bại thì rollback
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -104,13 +89,13 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 			}
 		} finally {
 			try {
-				if (connection != null) {
-					connection.close();
+				if (conn != null) {
+					conn.close();
 				}
-				if (statement != null) {
-					statement.close();
+				if (ps != null) {
+					ps.close();
 				}
-			} catch (SQLException e2) {
+			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
@@ -118,26 +103,23 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
 	@Override
 	public Long insert(String sql, Object... patameters) { // thêm
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
 		Long id = null;
 		try {
-			connection = getConnection();
-			connection.setAutoCommit(false);
-			statement = connection.prepareStatement(sql, statement.RETURN_GENERATED_KEYS);
-			setParameter(statement, patameters);
-			statement.executeUpdate();// thực hiện thao tác trên dữ liệu(thêm,xóa,sửa)
-			resultSet = statement.getGeneratedKeys();
-			if (resultSet.next()) {
-				id = resultSet.getLong(1); // lấy ra khóa mới nhất vừa được thêm
+			conn = new DBConnect().getConnection();
+			conn.setAutoCommit(false);
+			ps = conn.prepareStatement(sql, ps.RETURN_GENERATED_KEYS);
+			setParameter(ps, patameters);
+			ps.executeUpdate();// thực hiện thao tác trên dữ liệu(thêm,xóa,sửa)
+			rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				id = rs.getLong(1); // lấy ra khóa mới nhất vừa được thêm
 			}
-			connection.commit();
+			conn.commit();
 			return id;
-		} catch (SQLException e) {
-			if (connection != null) {
+		} catch (Exception e) {
+			if (conn != null) {
 				try {
-					connection.rollback(); // thất bại thì rollback
+					conn.rollback(); // thất bại thì rollback
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -145,16 +127,16 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 			}
 		} finally {
 			try {
-				if (connection != null) {
-					connection.close();
+				if (conn != null) {
+					conn.close();
 				}
-				if (statement != null) {
-					statement.close();
+				if (ps != null) {
+					ps.close();
 				}
-				if (resultSet != null) {
-					resultSet.close();
+				if (rs != null) {
+					rs.close();
 				}
-			} catch (SQLException e2) {
+			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
@@ -163,34 +145,31 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
 	@Override
 	public int count(String sql, Object... patameters) {
-		Connection connection = null;
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
 		try {
 			int count = 0;
-			connection = getConnection();
-			statement = connection.prepareStatement(sql);
+			conn = new DBConnect().getConnection();
+			ps = conn.prepareStatement(sql);
 			// set parameter()
-			setParameter(statement, patameters);
-			resultSet = statement.executeQuery(); // thực thi câu sql
-			while (resultSet.next()) {
-				count = resultSet.getInt(1); // 1 là vi tri dau tien
+			setParameter(ps, patameters);
+			rs = ps.executeQuery(); // thực thi câu sql
+			while (rs.next()) {
+				count = rs.getInt(1); // 1 là vi tri dau tien
 			}
 			return count;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			return 0;
 		} finally {
 			try {
-				if (connection != null) {
-					connection.close();
+				if (conn != null) {
+					conn.close();
 				}
-				if (statement != null) {
-					statement.close();
+				if (ps != null) {
+					ps.close();
 				}
-				if (resultSet != null) {
-					resultSet.close();
+				if (rs != null) {
+					rs.close();
 				}
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				return 0;
 			}
 		}
