@@ -33,7 +33,6 @@ CREATE TABLE `category` (
 --
 -- Dumping data for table `category`
 --
-
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
 INSERT INTO `category` VALUES (1,'Chăm sóc da mặt',NULL),(2,'Chăm sóc cơ thể',NULL),(3,'Trang điểm',NULL),(4,'Thực phẩm chức năng',NULL),(5,'Dược mỹ phẩm',NULL),(6,'Phụ kiện',NULL);

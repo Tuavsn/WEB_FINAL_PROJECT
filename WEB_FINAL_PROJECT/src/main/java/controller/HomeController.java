@@ -16,6 +16,8 @@ import serviceImpl.CategoryServiceImpl;
 
 @WebServlet(urlPatterns = {"/home"})
 public class HomeController extends HttpServlet{
+	private static final long serialVersionUID = 8306445746662697977L;
+	
 	CategoryService categoryservice = new CategoryServiceImpl();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
