@@ -36,10 +36,11 @@
 			<nav
 				class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
 				id="navbar-vertical">
-				<div class="navbar-nav w-100 overflow-hidden">
+				<div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
 					<c:forEach items="${allcategory}" var="category">
 						<a href="shop?cid=${category.categoryID}" class="nav-item nav-link">${category.icon} ${category.categoryName}</a>
 					</c:forEach>
+					<img alt="" src="https://d2jx2rerrg6sh3.cloudfront.net/images/Article_Images/ImageForArticle_22033_16430370682719147.jpg">
 				</div>
 			</nav>
 		</div>
