@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,21 +10,67 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/login" })
+import model.UserModel;
+import service.IUserService;
+import serviceImpl.UserService;
+import utils.FormUtil;
+import utils.SessionUtil;
+
+@WebServlet(urlPatterns = { "/dang-nhap","/thoat"})
 public class LoginController extends HttpServlet {
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html");
-		resp.setCharacterEncoding("UTF-8");
-		req.setCharacterEncoding("UTF-8");
+	ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
+	private static final long serialVersionUID = -1591444818940832891L;
+	private IUserService userService = new UserService();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		RequestDispatcher rq = req.getRequestDispatcher("views/login.jsp");
-		rq.forward(req, resp);
+		String action = request.getParameter("action");
+		if(action != null && action.equals("login")) 
+		{
+			String message = request.getParameter("message");
+			String alert = request.getParameter("alert");
+			if(message != null && alert != null) //bat buoc phai co
+			{
+				request.setAttribute("message", resourceBundle.getString(message));
+				request.setAttribute("alert", alert);
+			}
+			RequestDispatcher rd = request.getRequestDispatcher("/views/login.jsp");
+			rd.forward(request, response);
+		}
+		else if(action != null && action.equals("loguot"))	//the a khi click vao tu dong vao mothod get
+		{
+			
+			SessionUtil.getInstance().removeValue(request, "USERMODEL");
+			response.sendRedirect(request.getContextPath()+"/home");
+		}
+		else 
+		{
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/views/home.jsp");
+			rd.forward(request, response);	
+		}
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter("action");
+		if(action != null && action.equals("login")) 
+		{
+			UserModel model = FormUtil.toModel(UserModel.class, request); //da get duoc userName va passWord
+			model = userService.findByUserNameAndPasswordAndStatus(model.getUserName(), model.getPassword(), 1);
+			if(model != null) {
+				SessionUtil.getInstance().putValue(request, "USERMODEL", model); //da luu data
+				if(model.getRole().getCode().equals("USER")) 
+				{
+					response.sendRedirect(request.getContextPath()+"/home");
+				}
+				else if(model.getRole().getCode().equals("ADMIN")) {
+					response.sendRedirect(request.getContextPath()+"/admin-home");
+				}
+			}
+			else 
+			{
+				response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=username_password_invalid&alert=danger");
+			}
+		}
 	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
-	}
 }

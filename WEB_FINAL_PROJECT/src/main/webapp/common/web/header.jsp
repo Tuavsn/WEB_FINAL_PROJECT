@@ -1,4 +1,5 @@
   <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/common/taglib.jsp"%>
 
 <div class="container-fluid">
 	<div class="row bg-secondary py-2 px-xl-5">
@@ -8,10 +9,25 @@
 		</div>
 		<div class="col-lg-6 text-center text-lg-right">
 			<div class="d-inline-flex align-items-center">
-				<a class="text-dark px-2" href=""> <a href="login"
-					class="mx-2 text-body">Đăng nhập</a> <a href="regist"
+				
+			<c:if test = "${not empty USERMODEL }">
+          	<a class="text-dark px-2" href=""> 
+				<a href="#"
+					class="mx-2 text-body">Wellcome, ${USERMODEL.fullName}</a>
+					 <a href="<c:url value = 'thoat?action=loguot'/>"
+					class="mx-2 text-body">Thoát</a>
+				</a>
+          </c:if>
+           <c:if test = "${ empty USERMODEL }">
+          	<li class="nav-item">
+            	<a class="text-dark px-2" href=""> 
+				<a href="<c:url value = 'dang-nhap?action=login'/>"
+					class="mx-2 text-body">Đăng nhập</a>
+					 <a href="regist"
 					class="mx-2 text-body">Đăng ký</a>
 				</a>
+          	</li>
+          </c:if>
 			</div>
 		</div>
 	</div>

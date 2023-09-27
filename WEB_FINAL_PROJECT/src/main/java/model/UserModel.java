@@ -1,42 +1,58 @@
-package model;
+	package model;
 
-public class UserModel {
-	private int UserID;
-	private String UserName;
-	private String UserPassword;
-	private boolean IsAdmin;
-	public int getUserID() {
-		return UserID;
+public class UserModel extends AbstractModel<UserModel> {
+	
+	private String userName;
+	private String fullName;
+	private String password;
+	private int status;
+	private long roleId;
+	private String sdt;
+	private RoleModel role = new RoleModel();
+	
+	
+	public String getPassword() {
+		return password;
 	}
-	public void setUserID(int userID) {
-		UserID = userID;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public long getRoleid() {
+		return roleId;
+	}
+	public void setRoleid(long roleid) {
+		this.roleId = roleid;
 	}
 	public String getUserName() {
-		return UserName;
+		return userName;
 	}
 	public void setUserName(String userName) {
-		UserName = userName;
+		this.userName = userName;
 	}
-	public String getUserPassword() {
-		return UserPassword;
+	public String getFullName() {
+		return fullName;
 	}
-	public void setUserPassword(String userPassword) {
-		UserPassword = userPassword;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
-	public boolean isIsAdmin() {
-		return IsAdmin;
+	public long getRoleId() {
+		return roleId;
 	}
-	public void setIsAdmin(boolean isAdmin) {
-		IsAdmin = isAdmin;
+	public void setRoleId(long roleId) {
+		this.roleId = roleId;
 	}
-	public UserModel() {
-		super();
+	public RoleModel getRole() {
+		return role;
 	}
-	public UserModel(int userID, String userName, String userPassword, boolean isAdmin) {
-		super();
-		UserID = userID;
-		UserName = userName;
-		UserPassword = userPassword;
-		IsAdmin = isAdmin;
+	public void setRole(RoleModel role) {
+		this.role = role;
 	}
+	
+	
 }
