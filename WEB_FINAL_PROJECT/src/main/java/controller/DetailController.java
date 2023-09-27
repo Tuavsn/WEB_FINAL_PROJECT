@@ -31,7 +31,6 @@ public class DetailController extends HttpServlet {
 		req.setAttribute("allcategory", allCategory);
 		//Get PID
 		int pid = Integer.parseInt(req.getParameter("pid"));
-		System.out.println(pid);
 		//Get product by PID
 		List<ProductModel> product = productservice.getProductByPID(pid);
 		req.setAttribute("product", product);

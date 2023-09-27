@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +62,10 @@
 						</div>
 						<small class="pt-1">(50 Reviews)</small>
 					</div>
-					<h3 class="font-weight-semi-bold mb-4">${product.price}</h3>
+					<h3 class="font-weight-semi-bold mb-4">
+						<fmt:setLocale value="vi_VN" />
+						<fmt:formatNumber value="${product.price}" type="currency" />
+					</h3>
 					<p class="mb-4">${product.description}</p>
 					<div class="d-flex align-items-center mb-4 pt-2">
 						<div class="input-group quantity mr-3 align-items-center" style="width: 130px;">

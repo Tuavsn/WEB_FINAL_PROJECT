@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -207,7 +208,10 @@
 										class="card-body border-left border-right text-center p-0 pt-4 pb-3">
 										<h6 class="text-truncate mb-3">${product.productName}</h6>
 										<div class="d-flex justify-content-center">
-											<h6>${product.price}</h6>
+											<h6>
+												<fmt:setLocale value="vi_VN" />
+												<fmt:formatNumber value="${product.price}" type="currency" />
+											</h6>
 										</div>
 									</div>
 									<div
