@@ -12,7 +12,7 @@
 			</a>
 			<nav
 				class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
-				id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+				id="navbar-vertical" style="width: calc(100% - 30px); z-index: 2;">
 				<div class="navbar-nav w-100 overflow-hidden">
 					<c:forEach items="${allcategory}" var="category">
 						<a href="shop?cid=${category.categoryID}" class="nav-item nav-link">${category.icon} ${category.categoryName}</a>

@@ -47,18 +47,18 @@
 			<div id="header-carousel" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active" style="height: 410px;">
-						<img class="img-fluid" src="https://vanchuyensieutoc.com/Uploads/images/tin%20tuc/my-pham-este-lauer.jpg" alt="Image">
+						<img class="img-fluid" src="https://vanchuyensieutoc.com/Uploads/images/tin%20tuc/my-pham-este-lauer.jpg" alt="Image" style="opacity: 0.8">
 						<div
 							class="carousel-caption d-flex flex-column align-items-center justify-content-center">
 							<div class="p-3" style="max-width: 700px;">
-								<h4 class="text-light text-uppercase font-weight-medium mb-3">Giảm ngay 10% cho đơn hàng đầu tiên</h4>
+								<h4 class="text-white text-uppercase font-weight-medium mb-3">Giảm ngay 10% cho đơn hàng đầu tiên</h4>
 								<h3 class="display-4 text-white font-weight-semi-bold mb-4">Mỹ phẩm hàng hiệu</h3>
 								<a href="" class="btn btn-light py-2 px-3">Mua sắm ngay</a>
 							</div>
 						</div>
 					</div>
 					<div class="carousel-item" style="height: 410px;">
-						<img class="img-fluid" src="https://xanhlo.com/media/wysiwyg/tintuc/deal-my-pham-giam-gia-sephora.jpg" alt="Image">
+						<img class="img-fluid" src="https://xanhlo.com/media/wysiwyg/tintuc/deal-my-pham-giam-gia-sephora.jpg" alt="Image" style="opacity: 0.8">
 						<div
 							class="carousel-caption d-flex flex-column align-items-center justify-content-center">
 							<div class="p-3" style="max-width: 700px;">

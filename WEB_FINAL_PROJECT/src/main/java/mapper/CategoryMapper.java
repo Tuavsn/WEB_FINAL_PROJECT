@@ -5,19 +5,18 @@ import java.sql.SQLException;
 
 import model.CategoryModel;
 
-public class CategoryMapper implements RowMapper<CategoryModel>{
+public class CategoryMapper implements RowMapper<CategoryModel> {
 
 	@Override
-	public CategoryModel mapRow(ResultSet resultSet) {
+	public CategoryModel mapRow(ResultSet rs) {
 		try {
 			CategoryModel category = new CategoryModel();
-			category.setCategoryID(resultSet.getInt("CategoryID"));
-			category.setCategoryName(resultSet.getString("CategoryName"));
-			category.setImageLink(resultSet.getString("ImageLink"));
-			category.setIcon(resultSet.getString("Icon"));
+			category.setCategoryID(rs.getInt("CategoryID"));
+			category.setCategoryName(rs.getString("CategoryName"));
+			category.setImageLink(rs.getString("ImageLink"));
+			category.setIcon(rs.getString("Icon"));
 			return category;
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			return null;
 		}
 	}
