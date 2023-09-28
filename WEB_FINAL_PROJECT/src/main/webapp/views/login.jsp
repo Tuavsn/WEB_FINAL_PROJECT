@@ -25,13 +25,13 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="userName" id="userName" class="form-control input_user" value="" placeholder="Tên đăng nhập">
+							<input type="text" name="userName" id="userName" class="form-control input_user" value="" placeholder="Tên đăng nhập" style="border-bottom-right-radius: 5px;border-top-right-radius: 5px">
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="password" id="password" class="form-control input_pass" value="" placeholder="Mật khẩu">
+							<input type="password" name="password" id="password" class="form-control input_pass" value="" placeholder="Mật khẩu" style="border-bottom-right-radius: 5px;border-top-right-radius: 5px">
 						</div>
 						<c:if test="${not empty message}">
 							<div class="alert alert-${alert} text-center" role="alert" >
