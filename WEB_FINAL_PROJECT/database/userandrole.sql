@@ -1,9 +1,9 @@
+use webfinalproject
 CREATE TABLE role (
   id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
   code VARCHAR(255) NOT NULL
 );
-use webfinalproject
 CREATE TABLE user (
   id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(150) NOT NULL,
