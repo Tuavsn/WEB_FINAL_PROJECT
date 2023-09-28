@@ -102,7 +102,7 @@
 	        $('#sdtError').text("Phải nhập số");
 	        check=true;
 	    }
-		if(/^[a-zA-Z\s]+$/.test(fullName) == false){
+		if(/^[a-zA-Z\sàáảãạăắằẳẵặâấầẩẫậèéẻẽẹêềếểễệđìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ]+$/u.test(fullName) == false){
 			$('#fullNameError').text("Chỉ được nhập chữ cái và khoảng trắng");
 			check=true;
 		}
