@@ -23,7 +23,7 @@
             	<a class="text-dark px-2" href=""> 
 				<a href="<c:url value = 'dang-nhap?action=login'/>"
 					class="mx-2 text-body">Đăng nhập</a>
-					 <a href="regist"
+					 <a href="<c:url value = 'dang-ky'/>"
 					class="mx-2 text-body">Đăng ký</a>
 				</a>
           	</li>

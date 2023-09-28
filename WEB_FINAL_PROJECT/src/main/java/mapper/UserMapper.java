@@ -19,6 +19,7 @@ public class UserMapper implements RowMapper<UserModel>{
 			users.setFullName(resultSet.getString("fullname"));
 			users.setPassword(resultSet.getString("password"));
 			users.setStatus(resultSet.getInt("status"));
+			users.setSdt(resultSet.getString("sdt"));
 			try { //truong hop sql k ket bang
 				RoleModel role = new RoleModel();
 				role.setCode(resultSet.getString("code"));

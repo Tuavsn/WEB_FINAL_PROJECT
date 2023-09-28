@@ -46,10 +46,10 @@
 				</div>
 					<div class="mt-4">
 					<div class="d-flex justify-content-center links" style="color: black!important;">
-						Don't have an account? <a href="#" class="ml-2" style="color: #4e7bff!important;">Sign Up</a>
+						Don't have an account? <a href="#" class="ml-2" >Sign Up</a>
 					</div>
 					<div class="d-flex justify-content-center links">
-						<a href="#" style="color: #4e7bff!important;">Forgot your password?</a>
+						<a href="#" >Forgot your password?</a>
 					</div>
 				</div>
 			</div>

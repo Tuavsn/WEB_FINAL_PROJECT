@@ -9,7 +9,7 @@ public class UserModel extends AbstractModel<UserModel> {
 	private long roleId;
 	private String sdt;
 	private RoleModel role = new RoleModel();
-	
+	private String repeatPassword;
 	
 	public String getPassword() {
 		return password;
@@ -52,6 +52,18 @@ public class UserModel extends AbstractModel<UserModel> {
 	}
 	public void setRole(RoleModel role) {
 		this.role = role;
+	}
+	public String getSdt() {
+		return sdt;
+	}
+	public void setSdt(String sdt) {
+		this.sdt = sdt;
+	}
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
 	}
 	
 	
