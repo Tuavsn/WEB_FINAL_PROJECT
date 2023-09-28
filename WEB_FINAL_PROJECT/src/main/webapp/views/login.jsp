@@ -19,12 +19,7 @@
 						<img src="https://cdn.freebiesupply.com/logos/large/2x/pinterest-circle-logo-png-transparent.png" class="brand_logo" alt="Logo">
 					</div>
 				</div>
-				<c:if test="${not empty message}">
-					<div class="alert alert-${alert} text-center" role="alert" style="margin-top: 50px!important;">
-						  ${message}
-					</div>
-				</c:if>
-				<div class="d-flex justify-content-center">
+				<div class="d-flex justify-content-center " style="margin-top: 80px!important;" >
 					<form  action="<c:url value='/dang-nhap'/>" id="formLogin" method="post">
 						<div class="input-group mb-3">
 							<div class="input-group-append">
@@ -38,19 +33,25 @@
 							</div>
 							<input type="password" name="password" id="password" class="form-control input_pass" value="" placeholder="Mật khẩu">
 						</div>
-						<div class="form-group">
-							<div class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input" id="customControlInline">
-								<label class="custom-control-label" for="customControlInline">Remember me</label>
+						<c:if test="${not empty message}">
+							<div class="alert alert-${alert} text-center" role="alert" >
+								  ${message}
 							</div>
-						</div>
+						</c:if>		
 							<div class="d-flex justify-content-center mt-3 login_container">
 							<input type="hidden" value ="login" name="action">
 				 			<button type="submit" class="btn login_btn">Đăng nhâp</button>
 				   </div>
 					</form>
 				</div>
-		
+					<div class="mt-4">
+					<div class="d-flex justify-content-center links">
+						Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+					</div>
+					<div class="d-flex justify-content-center links">
+						<a href="#">Forgot your password?</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
