@@ -11,7 +11,7 @@
 </style>
 </head>
 <body>
-	<div class="container h-100">
+	<div class="container h-100" >
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
@@ -40,16 +40,16 @@
 						</c:if>		
 							<div class="d-flex justify-content-center mt-3 login_container">
 							<input type="hidden" value ="login" name="action">
-				 			<button type="submit" class="btn login_btn">Đăng nhâp</button>
+				 			<button type="submit" class="btn login_btn" style="border-radius: 6px;margin-top: 10px">Đăng nhâp</button>
 				   </div>
 					</form>
 				</div>
 					<div class="mt-4">
-					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+					<div class="d-flex justify-content-center links" style="color: black!important;">
+						Don't have an account? <a href="#" class="ml-2" style="color: #4e7bff!important;">Sign Up</a>
 					</div>
 					<div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
+						<a href="#" style="color: #4e7bff!important;">Forgot your password?</a>
 					</div>
 				</div>
 			</div>

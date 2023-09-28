@@ -2,7 +2,7 @@
 <%@include file="/common/taglib.jsp"%>
 
 <div class="container-fluid">
-	<div class="row bg-secondary py-2 px-xl-5">
+	<div class="row bg-secondary py-2 px-xl-5" >
 		<div class="col-lg-6 d-none d-inline-flex align-items-center">
 			<i class="fab fa-facebook-f mx-2"></i> <i class="fab fa-youtube mx-2"></i>
 			<i class="fab fa-instagram mx-2"></i>
@@ -31,7 +31,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row align-items-center py-3 px-xl-5">
+	<div class="row align-items-center py-3 px-xl-5" style="background-color: white">
 		<div class="col-lg-3 d-none d-lg-block">
 			<a href="home" class="text-decoration-none">
 				<h1 class="m-0 display-5 font-weight-semi-bold">

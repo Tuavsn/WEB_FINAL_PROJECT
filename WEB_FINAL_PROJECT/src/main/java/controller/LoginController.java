@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
@@ -10,8 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.CategoryModel;
 import model.UserModel;
+import service.CategoryService;
 import service.IUserService;
+import serviceImpl.CategoryServiceImpl;
 import serviceImpl.UserService;
 import utils.FormUtil;
 import utils.SessionUtil;
@@ -21,11 +25,14 @@ public class LoginController extends HttpServlet {
 	ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
 	private static final long serialVersionUID = -1591444818940832891L;
 	private IUserService userService = new UserService();
+	CategoryService categoryservice = new CategoryServiceImpl();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String action = request.getParameter("action");
 		if(action != null && action.equals("login")) 
 		{
+			List<CategoryModel> allCategory = categoryservice.findAll();
+			request.setAttribute("allcategory", allCategory);
 			String message = request.getParameter("message");
 			String alert = request.getParameter("alert");
 			if(message != null && alert != null) //bat buoc phai co

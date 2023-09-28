@@ -1,7 +1,7 @@
   <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="container-fluid">
-	<div class="row border-top px-xl-5">
+	<div class="row border-top px-xl-5" style="background-color: white;padding-bottom: 20px">
 		<div class="col-lg-3 d-none d-lg-block">
 			<a
 				class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
