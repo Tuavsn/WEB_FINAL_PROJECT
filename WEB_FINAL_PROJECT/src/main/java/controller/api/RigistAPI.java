@@ -11,12 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.UserModel;
+import service.IUserService;
+import serviceImpl.UserService;
 import utils.HttpUtil;
 
-@WebServlet(urlPatterns = {"/api-web-gist"})
+@WebServlet(urlPatterns = {"/api-web-rigist"})
 
 public class RigistAPI extends HttpServlet{
-
+	IUserService userService = new UserService();
 	private static final long serialVersionUID = 1868108636896511252L;
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,6 +27,8 @@ public class RigistAPI extends HttpServlet{
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		UserModel userModel = HttpUtil.of(request.getReader()).toModel(UserModel.class);
+		userModel = userService.insertUser(userModel);
+		mapper.writeValue(response.getOutputStream(), userModel);
 	}
 	
 	@Override

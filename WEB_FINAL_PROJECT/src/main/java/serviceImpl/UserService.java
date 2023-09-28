@@ -19,6 +19,12 @@ public class UserService implements IUserService{
 	public UserModel findOne(Long id) {
 		return userDAO.findOne(id);
 	}
+
+	@Override
+	public UserModel insertUser(UserModel userModel) {
+		Long newId = userDAO.insertUser(userModel);
+		return userDAO.findOne(newId);
+	}
 	
 
 }
