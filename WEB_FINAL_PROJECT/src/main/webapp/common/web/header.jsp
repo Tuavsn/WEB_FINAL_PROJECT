@@ -13,7 +13,7 @@
 			<c:if test = "${not empty USERMODEL }">
           	<a class="text-dark px-2" href=""> 
 				<a href="#"
-					class="mx-2 text-body">Wellcome, ${USERMODEL.fullName}</a>
+					class="mx-2 text-body">${USERMODEL.fullName}</a>
 					 <a href="<c:url value = 'thoat?action=loguot'/>"
 					class="mx-2 text-body">Thoát</a>
 				</a>
