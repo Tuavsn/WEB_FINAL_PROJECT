@@ -32,8 +32,12 @@ public class RigistAPI extends HttpServlet{
 	}
 	
 	@Override
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPut(req, resp);
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		UserModel userModel = HttpUtil.of(request.getReader()).toModel(UserModel.class);
+		userModel = userService.changePassword(userModel);
+		mapper.writeValue(response.getOutputStream(), userModel);
 	}
 }

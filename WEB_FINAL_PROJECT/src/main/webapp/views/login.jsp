@@ -49,7 +49,7 @@
 						Bạn chưa có tài khoản? <a href="<c:url value='/dang-ky'/>" class="ml-2" >Đăng ký</a>
 					</div>
 					<div class="d-flex justify-content-center links">
-						<a href="#" >Quên mật khẩu?</a>
+						<a href="<c:url value='/change-password'/>" >Quên mật khẩu?</a>
 					</div>
 				</div>
 			</div>

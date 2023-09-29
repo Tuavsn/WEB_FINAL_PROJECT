@@ -41,4 +41,11 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 		return query(sql, new UserMapper());
 	}
 
+	@Override
+	public void chagePassword(UserModel userModel) {
+		String sql = "UPDATE user SET password = ? where id = ?";
+		update(sql, userModel.getPassword(),userModel.getId());
+		
+	}
+
 }

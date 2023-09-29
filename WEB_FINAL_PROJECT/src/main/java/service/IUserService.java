@@ -9,4 +9,5 @@ public interface IUserService {
 	UserModel findOne(Long id);
 	UserModel insertUser(UserModel userModel);
 	List<UserModel> findAll();
+	UserModel changePassword(UserModel userModel);
 }

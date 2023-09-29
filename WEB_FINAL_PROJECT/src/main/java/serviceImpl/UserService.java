@@ -33,6 +33,12 @@ public class UserService implements IUserService{
 	{
 		return userDAO.findAll();
 	}
+
+	@Override
+	public UserModel changePassword(UserModel userModel) {
+		userDAO.chagePassword(userModel);
+		return userDAO.findOne(userModel.getId());
+	}
 	
 
 }

@@ -9,4 +9,5 @@ public interface IUserDao extends GenericDAO<UserModel> {
 	Long insertUser(UserModel userModel);
 	UserModel findOne(Long id);
 	List<UserModel> findAll();
+	void chagePassword(UserModel userModel);
 }

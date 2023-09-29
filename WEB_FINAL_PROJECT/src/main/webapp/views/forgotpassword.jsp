@@ -19,43 +19,37 @@
           <div class="card" style="border-radius: 15px;" >
             <div class="card-body p-5 ">
             	<div id="success" class="text-success text-center" style="font-size: 14px;font-weight: bold;"></div>
-              <h2 class="text-uppercase text-center mb-3">Đăng ký tài khoản</h2>
+              <h2 class="text-uppercase text-center mb-3">Quên mật khẩu</h2>
 
               <form id="formSubmit">
 
-                <div class="form-outline mb-3">
+                <div class="form-outline mb-4">
                	 <label class="form-label" for="form3Example1cg">Tài khoản</label>
                   <input type="text" id="userName" name="userName" class="form-control form-control-lg " />
                   <div id="userNameError" class="text-danger" style="font-size: 14px;font-weight: bold;" ></div>
                 </div>
 
-                <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example3cg">Số điện thoại</label>
+                <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example3cg">Số điện thoại đăng ký</label>
                   <input type="text" id="sdt" name="sdt" class="form-control form-control-lg" />
                   <div id="sdtError" class="text-danger" style="font-size: 14px;font-weight: bold;" ></div>
-                  
+                  <div id="sdtdangky" class="text-danger" style="font-size: 14px;font-weight: bold;" ></div>
                 </div>
                 
-                <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example3cg">Họ tên</label>
-                  <input type="text" id="fullName" name="fullName" class="form-control form-control-lg" />
-                  <div id="fullNameError" class="text-danger" style="font-size: 14px;font-weight: bold;"></div>
-                </div>
-
-                <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example4cg">Mật khẩu</label>
+                <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example4cg">Mật khẩu mới</label>
                   <input type="password" id="password" name="password" class="form-control form-control-lg" />
                   
                 </div>
 				 
-                <div class="form-outline mb-3">
-                	<label class="form-label" for="form3Example4cdg">Nhập lại mật khẩu</label>
+                <div class="form-outline mb-4">
+                	<label class="form-label" for="form3Example4cdg">Nhập lại mật khẩu mới</label>
                   <input type="password" id="repeatPassword" name="repeatPassword" class="form-control form-control-lg" />
                    <div id="passwordError" class="text-danger" style="font-size: 14px;font-weight: bold;"></div>
                 </div>
                 <div class="d-flex justify-content-center">
                   <button type="button"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" id="btnAdd">Đăng ký
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" id="btnAdd">Xác nhận
                     </button>
                 </div>
 				<div id="empty" class="text-danger" style="font-size: 14px;font-weight: bold;"></div>
@@ -64,7 +58,8 @@
                    
               </form>
 				<c:forEach var="user" items="${users}">
-				    <input type="hidden" id="${user.id}" name ="name" value="${user.userName}">
+				    <input type="hidden"  name ="name" value="${user.userName}">
+				    <input type="hidden" id="${user.id}" name ="Sdt" value="${user.sdt}">
 				</c:forEach>
             </div>
           </div>
@@ -79,42 +74,59 @@
 	{
 		e.preventDefault();
 		
-
-		
-		
-		
 		var data = {};	
 		var formData = $('#formSubmit').serializeArray();
 		var userName = $('#userName').val();
 		var password = $('#password').val();
 		var repeatPassword = $('#repeatPassword').val();
-		var fullName = $('#fullName').val();
 		var sdt = $('#sdt').val();
 		var check = false;
 		$('#passwordError').text("");
 	    $('#sdtError').text("");
-	    $('#fullNameError').text("");
 	    $('#empty').text("");
 	    $('#userNameError').text("");
+	    $('#sdtdangky').text("");
+	    var inputs = $('input[name="name"]');
+	    
 	    $.each(formData,function(i,v){
 			data[""+v.name+""] = v.value;
 			if(v.value == ""){
 				 $('#empty').text("Hãy nhập đầy đủ thông tin");
-				 check=true;
+				 check = true;
 			}
 		});
-	    if(check == true){
+	   	if(check == true){
 	   		return;
 	   	}
-	    var inputs = $('input[name="name"]');
         inputs.each(function() {
             var userNameOld = $(this).val();
-            if(userNameOld==userName)
+            if(userNameOld!=userName)
             {
-            	$('#userNameError').text("Tài khoản đã tồn tại");
+            	$('#userNameError').text("Tài khoản không tồn tại");
             	check = true;
             }
+            else{
+            	check = false;
+            	return false;
+            }
         });
+    	var id;
+        var inputsdt = $('input[name="Sdt"]');
+        inputsdt.each(function() {
+        	var sdtdk = $(this).val();
+        	if(sdtdk!=sdt){
+        		$('#sdtdangky').text("Số điện thoại không khớp khi đăng ký");
+            	check = true;
+        	}
+        	else{
+        		id = this.id;
+        		data["id"] = id;
+        		return false;
+        	}
+        	
+        });
+        console.log(id);	
+        
 		if(password != repeatPassword){
 			 $('#passwordError').text("Mật khẩu nhập lại chưa đúng");
 			 check=true;
@@ -124,23 +136,20 @@
 	        $('#sdtError').text("Phải nhập số");
 	        check=true;
 	    }
-		if(/^[a-zA-Z\sàáảãạăắằẳẵặâấầẩẫậèéẻẽẹêềếểễệđìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵ]+$/u.test(fullName) == false){
-			$('#fullNameError').text("Chỉ được nhập chữ cái và khoảng trắng");
-			check=true;
-		}
+		
 		if(check == false){
-			addUser(data);
+			changePassword(data);
 		}
 	})
-	 function addUser(data){
+	function changePassword(data){
 		$.ajax({
             url: '${APIurl}',
-            type: 'POST',
+            type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) { //result la ket qua tra ve vd : newModel,...
-            	$('#success').text("Đăng ký thành công");
+            	$('#success').text("Đổi mật khẩu thành công");
             	 console.log(result);
             },
             error: function (error) {
