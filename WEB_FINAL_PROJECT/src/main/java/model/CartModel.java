@@ -1,16 +1,16 @@
 package model;
 
 public class CartModel {
-	private int UserID;
+	private int id;
 	private int ProductID;
 	private int Amount;
 
 	public int getUserID() {
-		return UserID;
+		return id;
 	}
 
 	public void setUserID(int userID) {
-		UserID = userID;
+		id = userID;
 	}
 
 	public int getProductID() {
@@ -35,7 +35,7 @@ public class CartModel {
 
 	public CartModel(int userID, int productID, int amount) {
 		super();
-		UserID = userID;
+		id = userID;
 		ProductID = productID;
 		Amount = amount;
 	}

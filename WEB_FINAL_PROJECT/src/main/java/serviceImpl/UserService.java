@@ -1,5 +1,7 @@
 package serviceImpl;
 
+import java.util.List;
+
 import dao.IUserDao;
 import daoImpl.UserDAO;
 import model.UserModel;
@@ -24,6 +26,12 @@ public class UserService implements IUserService{
 	public UserModel insertUser(UserModel userModel) {
 		Long newId = userDAO.insertUser(userModel);
 		return userDAO.findOne(newId);
+	}
+
+	@Override
+	public List<UserModel> findAll() 
+	{
+		return userDAO.findAll();
 	}
 	
 

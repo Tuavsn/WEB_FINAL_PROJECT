@@ -26,7 +26,7 @@
                 <div class="form-outline mb-3">
                	 <label class="form-label" for="form3Example1cg">Tài khoản</label>
                   <input type="text" id="userName" name="userName" class="form-control form-control-lg " />
-                  
+                  <div id="userNameError" class="text-danger" style="font-size: 14px;font-weight: bold;" ></div>
                 </div>
 
                 <div class="form-outline mb-3">
@@ -63,7 +63,9 @@
                     class="fw-bold text-body"><u>Đăng nhập ngay</u></a></p>
                    
               </form>
-
+				<c:forEach var="user" items="${users}">
+				    <input type="hidden" id="${user.id}" name ="name" value="${user.userName}">
+				</c:forEach>
             </div>
           </div>
         </div>
@@ -72,8 +74,15 @@
   </div>
 </section>
 <script>
+
 	$('#btnAdd').click(function (e) 
 	{
+		e.preventDefault();
+		
+
+		
+		
+		
 		var data = {};	
 		var formData = $('#formSubmit').serializeArray();
 		var userName = $('#userName').val();
@@ -86,6 +95,16 @@
 	    $('#sdtError').text("");
 	    $('#fullNameError').text("");
 	    $('#empty').text("");
+	    $('#userNameError').text("");
+	    var inputs = $('input[name="name"]');
+        inputs.each(function() {
+            var userNameOld = $(this).val();
+            if(userNameOld==userName)
+            {
+            	$('#userNameError').text("Tài khoản đã tồn tại");
+            	check = true;
+            }
+        });
 		$.each(formData,function(i,v){
 			data[""+v.name+""] = v.value;
 			if(v.value == ""){
@@ -107,7 +126,6 @@
 			check=true;
 		}
 		if(check == false){
-			$('#success').text("Đăng ký thành công");
 			addUser(data);
 		}
 	})
@@ -119,6 +137,7 @@
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) { //result la ket qua tra ve vd : newModel,...
+            	$('#success').text("Đăng ký thành công");
             	 console.log(result);
             },
             error: function (error) {
