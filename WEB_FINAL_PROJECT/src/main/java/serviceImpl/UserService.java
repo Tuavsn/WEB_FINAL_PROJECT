@@ -5,6 +5,7 @@ import java.util.List;
 import dao.IUserDao;
 import daoImpl.UserDAO;
 import model.UserModel;
+import paging.Pageble;
 import service.IUserService;
 
 public class UserService implements IUserService{
@@ -38,6 +39,16 @@ public class UserService implements IUserService{
 	public UserModel changePassword(UserModel userModel) {
 		userDAO.chagePassword(userModel);
 		return userDAO.findOne(userModel.getId());
+	}
+
+	@Override
+	public int getTotalItem() {
+		return userDAO.getTotalItem();
+	}
+
+	@Override
+	public List<UserModel> findAll(Pageble pageble) {
+		return userDAO.findAll(pageble);
 	}
 	
 

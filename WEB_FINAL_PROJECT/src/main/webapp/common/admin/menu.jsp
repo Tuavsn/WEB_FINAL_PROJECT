@@ -34,7 +34,7 @@
         </div>
     </div>
     <ul class="nav nav-list">
-        <li >
+        <li>
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
                 <span class="menu-text"></span>
@@ -44,9 +44,9 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li>
-                    <a href='#'>
+                    <a href='<c:url value='/admin-user-list?page=1&maxPageItem=4'/>'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        DS bài viết
+                        Danh sách người dùng
                     </a>
                     <b class="arrow"></b>
                 </li>

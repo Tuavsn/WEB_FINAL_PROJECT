@@ -7,6 +7,7 @@ import java.util.List;
 import dao.IUserDao;
 import mapper.UserMapper;
 import model.UserModel;
+import paging.Pageble;
 
 
 
@@ -46,6 +47,22 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 		String sql = "UPDATE user SET password = ? where id = ?";
 		update(sql, userModel.getPassword(),userModel.getId());
 		
+	}
+
+	@Override
+	public List<UserModel> findAll(Pageble pageble) {
+		//String sql = "SELECT * FROM news LIMIT ?,?";
+		StringBuilder sql = new StringBuilder("SELECT * FROM user inner join role on user.roleid = role.id");
+		if(pageble.getOffset() !=null && pageble.getLimit() !=null) {
+			sql.append(" LIMIT "+pageble.getOffset()+","+pageble.getLimit()+"");
+		}
+		return query(sql.toString(), new UserMapper());
+	}
+
+	@Override
+	public int getTotalItem() {
+		String sql = "SELECT count(*) from user";
+		return count(sql);
 	}
 
 }
