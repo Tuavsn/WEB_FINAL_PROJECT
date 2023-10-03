@@ -127,7 +127,11 @@
         	
         });
         console.log(id);	
-        
+        $('#passwordError').text("");
+	    $('#sdtError').text("");
+	    $('#empty').text("");
+	    $('#userNameError').text("");
+	    $('#sdtdangky').text("");
 		if(password != repeatPassword){
 			 $('#passwordError').text("Mật khẩu nhập lại chưa đúng");
 			 check=true;
