@@ -106,6 +106,7 @@
             	check = true;
             }
             else{
+            	$('#userNameError').text("");
             	check = false;
             	return false;
             }
@@ -122,16 +123,12 @@
         		id = this.id;
         		data["id"] = id;
         		check = false;
+        		$('#sdtdangky').text("");
         		return false;
         	}
         	
         });
         console.log(id);	
-        $('#passwordError').text("");
-	    $('#sdtError').text("");
-	    $('#empty').text("");
-	    $('#userNameError').text("");
-	    $('#sdtdangky').text("");
 		if(password != repeatPassword){
 			 $('#passwordError').text("Mật khẩu nhập lại chưa đúng");
 			 check=true;
@@ -141,7 +138,7 @@
 	        $('#sdtError').text("Phải nhập số");
 	        check=true;
 	    }
-		
+		$('#success').text("");
 		if(check == false){
 			changePassword(data);
 		}
@@ -158,6 +155,7 @@
             	 console.log(result);
             },
             error: function (error) {
+            
             	 console.log(error);
             }
         });

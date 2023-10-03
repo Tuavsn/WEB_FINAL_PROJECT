@@ -128,6 +128,7 @@
 			$('#fullNameError').text("Chỉ được nhập chữ cái và khoảng trắng");
 			check=true;
 		}
+		$('#success').text("");
 		if(check == false){
 			addUser(data);
 		}
