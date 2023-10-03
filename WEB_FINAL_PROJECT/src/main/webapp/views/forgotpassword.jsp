@@ -121,6 +121,7 @@
         	else{
         		id = this.id;
         		data["id"] = id;
+        		check = false;
         		return false;
         	}
         	
