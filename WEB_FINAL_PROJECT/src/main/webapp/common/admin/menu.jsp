@@ -43,13 +43,28 @@
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
-                <li>
-                    <a href='<c:url value='/admin-user-list?page=1&maxPageItem=4'/>'>
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Danh sách người dùng
-                    </a>
-                    <b class="arrow"></b>
-                </li>
+                <li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="ace-icon fa fa-user"></i>
+							<span class="menu-text"> Quản lý đăng nhập </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li>
+	                   				<a href='<c:url value='/admin-user-list?page=1&maxPageItem=4'/>'>
+			                        <i class="menu-icon fa fa-caret-right"></i>
+			                        Danh sách người dùng
+			                    </a>
+			                    <b class="arrow"></b>
+		                	</li>
+
+							
+						</ul>
+					</li>
             </ul>
         </li>
     </ul>
