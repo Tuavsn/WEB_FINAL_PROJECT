@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `category` (
-  `CategoryID` int NOT NULL,
+  `CategoryID` bigint NOT NULL AUTO_INCREMENT,
   `CategoryName` varchar(50) DEFAULT NULL,
   `ImageLink` varchar(300) DEFAULT NULL,
   `Icon` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`CategoryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-03 14:44:20
+-- Dump completed on 2023-10-05 21:05:19

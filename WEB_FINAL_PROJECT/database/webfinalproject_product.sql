@@ -23,17 +23,17 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product` (
-  `ProductID` int NOT NULL,
+  `ProductID` bigint NOT NULL AUTO_INCREMENT,
   `ProductName` varchar(500) DEFAULT NULL,
   `Description` varchar(2000) DEFAULT NULL,
   `Price` double DEFAULT NULL,
   `ImageLink` varchar(500) DEFAULT NULL,
-  `CategoryID` int DEFAULT NULL,
+  `CategoryID` bigint DEFAULT NULL,
   `Amount` int DEFAULT NULL,
   PRIMARY KEY (`ProductID`),
   KEY `CategoryID_idx` (`CategoryID`),
   CONSTRAINT `CategoryID` FOREIGN KEY (`CategoryID`) REFERENCES `category` (`CategoryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-03 14:44:20
+-- Dump completed on 2023-10-05 21:05:19
