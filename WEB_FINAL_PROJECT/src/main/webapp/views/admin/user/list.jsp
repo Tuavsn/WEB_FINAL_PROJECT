@@ -20,6 +20,10 @@
 	                    <i class="ace-icon fa fa-home home-icon"></i>
 	                    <a href="<c:url value = '/admin-home'/>">Trang chủ</a>
 	                </li>
+	                <li class="active">Quản lý đăng nhập</li>
+	                <li class="active">
+	                	<a href="<c:url value = '/admin-user-list?page=1&maxPageItem=4'/>">Danh sách người dùng</a>
+	                </li>
 	            </ul><!-- /.breadcrumb -->
 	        </div>
 	        <div class="page-content">
@@ -36,13 +40,13 @@
 											<div class="dt-buttons btn-overlap btn-group">
 												<a flag="info"
 												   class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
-												   title='Thêm bài viết' href='#'>
+												   title='Thêm user' href='<c:url value = '/admin-user-add'/>'>
 															<span>
 																<i class="fa fa-plus-circle bigger-110 purple"></i>
 															</span>
 												</a>
 												<button id="btnDelete" type="button"
-														class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" data-toggle="tooltip" title='Xóa bài viết'>
+														class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" data-toggle="tooltip" title='Xóa user'>
 																<span>
 																	<i class="fa fa-trash-o bigger-110 pink"></i>
 																</span>
@@ -79,7 +83,7 @@
 										        <td>${item.status}</td>
 										        <td>
 													<a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-													   title="Cập nhật bài viết" href='#'>
+													   title="Cập nhật thông tin user" href='#'>
 													   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 													</a>
 												</td>
