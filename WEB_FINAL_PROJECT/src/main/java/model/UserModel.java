@@ -6,7 +6,7 @@ public class UserModel extends AbstractModel<UserModel> {
 	private String fullName;
 	private String password;
 	private int status;
-	private long roleId;
+	private Long roleId;
 	private String sdt;
 	private RoleModel role = new RoleModel();
 	private String repeatPassword;
@@ -23,12 +23,7 @@ public class UserModel extends AbstractModel<UserModel> {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public long getRoleid() {
-		return roleId;
-	}
-	public void setRoleid(long roleid) {
-		this.roleId = roleid;
-	}
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -41,12 +36,7 @@ public class UserModel extends AbstractModel<UserModel> {
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
-	public long getRoleId() {
-		return roleId;
-	}
-	public void setRoleId(long roleId) {
-		this.roleId = roleId;
-	}
+	
 	public RoleModel getRole() {
 		return role;
 	}
@@ -65,6 +55,13 @@ public class UserModel extends AbstractModel<UserModel> {
 	public void setRepeatPassword(String repeatPassword) {
 		this.repeatPassword = repeatPassword;
 	}
+	public Long getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+	
 	
 	
 }

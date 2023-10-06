@@ -24,32 +24,32 @@
               <form id="formSubmit">
 
                 <div class="form-outline mb-3">
-               	 <label class="form-label" for="form3Example1cg">Tài khoản</label>
+               	 <label class="form-label" for="userName">Tài khoản</label>
                   <input type="text" id="userName" name="userName" class="form-control form-control-lg " />
                   <div id="userNameError" class="text-danger" style="font-size: 14px;font-weight: bold;" ></div>
                 </div>
 
                 <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example3cg">Số điện thoại</label>
+                <label class="form-label" for="sdt">Số điện thoại</label>
                   <input type="text" id="sdt" name="sdt" class="form-control form-control-lg" />
                   <div id="sdtError" class="text-danger" style="font-size: 14px;font-weight: bold;" ></div>
                   
                 </div>
                 
                 <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example3cg">Họ tên</label>
+                <label class="form-label" for="fullName">Họ tên</label>
                   <input type="text" id="fullName" name="fullName" class="form-control form-control-lg" />
                   <div id="fullNameError" class="text-danger" style="font-size: 14px;font-weight: bold;"></div>
                 </div>
 
                 <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example4cg">Mật khẩu</label>
+                <label class="form-label" for="password">Mật khẩu</label>
                   <input type="password" id="password" name="password" class="form-control form-control-lg" />
                   
                 </div>
 				 
                 <div class="form-outline mb-3">
-                	<label class="form-label" for="form3Example4cdg">Nhập lại mật khẩu</label>
+                	<label class="form-label" for="repeatPassword">Nhập lại mật khẩu</label>
                   <input type="password" id="repeatPassword" name="repeatPassword" class="form-control form-control-lg" />
                    <div id="passwordError" class="text-danger" style="font-size: 14px;font-weight: bold;"></div>
                 </div>
@@ -78,10 +78,6 @@
 	$('#btnAdd').click(function (e) 
 	{
 		e.preventDefault();
-		
-
-		
-		
 		
 		var data = {};	
 		var formData = $('#formSubmit').serializeArray();

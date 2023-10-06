@@ -20,7 +20,7 @@ public class UserMapper implements RowMapper<UserModel>{
 			users.setPassword(resultSet.getString("password"));
 			users.setStatus(resultSet.getInt("status"));
 			users.setSdt(resultSet.getString("sdt"));
-			users.setRoleid(resultSet.getLong("roleid"));
+			users.setRoleId(resultSet.getLong("roleid"));
 			try { //truong hop sql k ket bang
 				RoleModel role = new RoleModel();
 				role.setCode(resultSet.getString("code"));
