@@ -28,11 +28,7 @@
         <div class="page-content">
         	<div class="page-header">
 				<h1>
-					Form Elements
-					<small>
-						<i class="ace-icon fa fa-angle-double-right"></i>
-						Common form elements and layouts
-					</small>
+					Nhập thông tin đăng ký
 				</h1>
 			</div><!-- /.page-header -->
             <div class="row" >
@@ -44,7 +40,7 @@
 
 								<div class="col-sm-9">
 									<select class="form-control col-xs-10 col-sm-2" id="roleId" name="roleId">
-										<option value="#">Phân quyền</option>
+										<option value="#">Phân quyền cho tài khoản</option>
 										<c:forEach var="item" items="${roles}">
 											<option value="${item.id}">${item.name}</option>
 										</c:forEach>
@@ -120,7 +116,7 @@
 									</button>
 
 									&nbsp; &nbsp; &nbsp;
-									<button class="btn" type="reset">
+									<button class="btn" type="reset" id="btnCancel">
 										<i class="ace-icon fa fa-undo bigger-110"></i>
 										Hủy
 									</button>
@@ -206,7 +202,7 @@
             dataType: 'json',
             success: function (result) { //result la ket qua tra ve vd : newModel,...
             	$('#success').text("Đăng ký thành công");
-            	 console.log(result);
+            	console.log(result);
             },
             error: function (error) {
             	$('#Error').text("Lỗi rồi");

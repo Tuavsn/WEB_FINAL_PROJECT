@@ -13,9 +13,9 @@ public class UserService implements IUserService{
 	IUserDao userDAO = new UserDAO();
 
 	@Override
-	public UserModel findByUserNameAndPasswordAndStatus(String userName, String password, Integer status) 
+	public UserModel findByUserNameAndPasswordAndStatus(String userName, String password) 
 	{
-			return userDAO.findByUserNameAndPasswordAndStatus(userName, password, status);
+			return userDAO.findByUserNameAndPasswordAndStatus(userName, password);
 	}
 
 	@Override
@@ -49,6 +49,13 @@ public class UserService implements IUserService{
 	@Override
 	public List<UserModel> findAll(Pageble pageble) {
 		return userDAO.findAll(pageble);
+	}
+
+	@Override
+	public void deleteUser(long[] ids) {
+		for(long id: ids) {
+			userDAO.deleteUser(id);
+		}
 	}
 	
 

@@ -40,4 +40,14 @@ public class RigistAPI extends HttpServlet{
 		userModel = userService.changePassword(userModel);
 		mapper.writeValue(response.getOutputStream(), userModel);
 	}
+	
+	@Override
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		request.setCharacterEncoding("UTF-8"); // định form tiếng việt
+		response.setContentType("application/json");
+		UserModel userModel = HttpUtil.of(request.getReader()).toModel(UserModel.class);
+		userService.deleteUser(userModel.getIds());
+		mapper.writeValue(response.getOutputStream(), "{}");
+	}
 }

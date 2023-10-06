@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
-<c:url var="APIurl" value="/api-admin-new"/>
-<c:url var ="NewURL" value="/admin-new"/>
+<c:url var="APIurl" value="/api-web-rigist"/>
+
 
 <!DOCTYPE html>
 <html>
@@ -74,9 +74,14 @@
 									    <tbody>
 									    <c:forEach var ="item" items="${model.listResult}">
 										      <tr>
-										      	<td><input type="checkbox" value="" id=""/></td>
+										      	<c:if test="${item.status==0}">
+										      		<td><input type="checkbox" value="${item.id}" id="checkbox_${item.id}" disabled /></td>
+										      	</c:if>
+										      	<c:if test="${item.status==1}">
+										      		<td><input type="checkbox" value="${item.id}" id="checkbox_${item.id}" /></td>
+										      	</c:if>
 										        <td>${item.userName}</td>
-										        <td>${item.password}</td>
+										        <td>${item.password}</td> 	
 										        <td>${item.fullName}</td>
 										        <td>${item.sdt}</td>
 										        <td>${item.role.name}</td>
@@ -124,6 +129,30 @@
 	        }
 	    });
 	});
+	
+	$("#btnDelete").click(function() {
+		var data = {};
+		var ids = $('tbody input[type=checkbox]:checked').map(function () {
+            return $(this).val();
+        }).get();
+		data['ids'] = ids;
+		deleteNew(data);
+	});
+	
+	function deleteNew(data) {
+        $.ajax({
+            url: '${APIurl}',
+            type: 'DELETE',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (result) {
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-user-list?page=1&maxPageItem=4"
+            },
+            error: function (error) {
+            	console.log(error);
+            }
+        });
+	}
 </script>
 
 </body>

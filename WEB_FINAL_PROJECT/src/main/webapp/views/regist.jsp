@@ -19,6 +19,7 @@
           <div class="card" style="border-radius: 15px;" >
             <div class="card-body p-5 ">
             	<div id="success" class="text-success text-center" style="font-size: 14px;font-weight: bold;"></div>
+            	<div id="Error" class="text-danger" style="font-size: 14px;font-weight: bold;"></div>
               <h2 class="text-uppercase text-center mb-3">Đăng ký tài khoản</h2>
 
               <form id="formSubmit">
@@ -141,6 +142,7 @@
             	 console.log(result);
             },
             error: function (error) {
+            	$('#Error').text("Lỗi rồi");
             	 console.log(error);
             }
         });

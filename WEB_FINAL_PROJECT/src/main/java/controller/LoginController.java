@@ -64,8 +64,8 @@ public class LoginController extends HttpServlet {
 			UserModel model = FormUtil.toModel(UserModel.class, request); //da get duoc userName va passWord
 			String user = model.getUserName();
 			String passWord = model.getPassword();
-			model = userService.findByUserNameAndPasswordAndStatus(model.getUserName(), model.getPassword(), 1);
-			if(model != null) {
+			model = userService.findByUserNameAndPasswordAndStatus(model.getUserName(), model.getPassword());
+			if(model != null && model.getStatus()==1) {
 				SessionUtil.getInstance().putValue(request, "USERMODEL", model); //da luu data
 				if(model.getRole().getCode().equals("USER")) 
 				{
@@ -81,6 +81,9 @@ public class LoginController extends HttpServlet {
 				{
 					response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=empty&alert=danger");
 
+				}
+				else if(model!=null && model.getStatus()==0) {
+					response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=statusnot&alert=danger");
 				}
 				else 
 				{

@@ -14,12 +14,12 @@ import paging.Pageble;
 public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 
 	@Override
-	public UserModel findByUserNameAndPasswordAndStatus(String userName, String password, Integer status) {
+	public UserModel findByUserNameAndPasswordAndStatus(String userName, String password) {
 	
 		StringBuilder sql = new StringBuilder("SELECT * FROM user AS u");
 		sql.append(" INNER JOIN role AS r ON r.id = u.roleid");
-		sql.append(" WHERE username = ? AND password = ? AND status = ?");
-		List<UserModel> users = query(sql.toString(), new UserMapper(), userName, password, status);
+		sql.append(" WHERE username = ? AND password = ? ");
+		List<UserModel> users = query(sql.toString(), new UserMapper(), userName, password);
 		return users.isEmpty() ? null : users.get(0);
 	}
 
@@ -59,7 +59,7 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 	@Override
 	public List<UserModel> findAll(Pageble pageble) {
 		//String sql = "SELECT * FROM news LIMIT ?,?";
-		StringBuilder sql = new StringBuilder("SELECT * FROM user inner join role on user.roleid = role.id");
+		StringBuilder sql = new StringBuilder("SELECT * FROM user inner join role on user.roleid = role.id ORDER BY status DESC");
 		if(pageble.getOffset() !=null && pageble.getLimit() !=null) {
 			sql.append(" LIMIT "+pageble.getOffset()+","+pageble.getLimit()+"");
 		}
@@ -70,6 +70,13 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 	public int getTotalItem() {
 		String sql = "SELECT count(*) from user";
 		return count(sql);
+	}
+
+	@Override
+	public void deleteUser(Long id) {
+		String sql = "UPDATE user SET status = 0 where id = ?";
+		update(sql,id);
+		
 	}
 
 }

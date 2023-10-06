@@ -33,15 +33,17 @@
 							</div>
 							<input type="password" name="password" id="password" class="form-control input_pass" value="" placeholder="Mật khẩu" style="border-bottom-right-radius: 5px;border-top-right-radius: 5px">
 						</div>
+						
 						<c:if test="${not empty message}">
-							<div class="alert alert-${alert} text-center" role="alert" >
+							<div class="alert alert-${alert} text-center" style="margin-bottom: 0px!important; max-width:270px; overflow: auto; font-size: 12px" role="alert"  >
 								  ${message}
 							</div>
 						</c:if>		
-							<div class="d-flex justify-content-center mt-3 login_container">
+				
+						<div class="d-flex justify-content-center  login_container">
 							<input type="hidden" value ="login" name="action">
 				 			<button type="submit" class="btn login_btn" style="border-radius: 6px;margin-top: 10px">Đăng nhâp</button>
-				   </div>
+			   			</div>
 					</form>
 				</div>
 					<div class="mt-4">
