@@ -14,7 +14,7 @@
 <body>
 
 	<!-- Page Header Start -->
-	<div class="container-fluid bg-secondary mb-1">
+	<div class="mb-1">
 		<div
 			class="d-flex flex-column align-items-center justify-content-center"
 			style="min-height: 50px">
