@@ -12,12 +12,14 @@
 </head>
 
 <body>
-	<div class="container-fluid bg-secondary mb-1">
+	<div class="mb-1">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 50px">
             <div class="d-inline-flex">
-                <p class="m-0"><a href="">Home</a></p>
-                <p class="m-0 px-2">-</p>
-                <p class="m-0">Product</p>
+                <p class="m-0"><a href="">Trang chủ</a></p>
+                <p class="m-0 px-1">/</p>
+                <p class="m-0">Sản phẩm</p>
+                <p class="m-0 px-1">/</p>
+                <p class="m-0">${cid ? "" :allcategory[cid-1].categoryName}</p>
             </div>
         </div>
     </div>

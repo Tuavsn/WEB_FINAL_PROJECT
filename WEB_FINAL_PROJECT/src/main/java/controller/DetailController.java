@@ -21,20 +21,21 @@ import serviceImpl.ProductServiceImpl;
 public class DetailController extends HttpServlet {
 	CategoryService categoryservice = new CategoryServiceImpl();
 	ProductService productservice = new ProductServiceImpl();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		//Get all category for navbar
+		// Get all category for navbar
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
-		//Get PID
+		// Get PID
 		int pid = Integer.parseInt(req.getParameter("pid"));
-		//Get product by PID
+		// Get product by PID
 		List<ProductModel> product = productservice.getProductByPID(pid);
 		req.setAttribute("product", product);
-		//Get 8 new product
+		// Get 8 new products
 		List<ProductModel> top8newproduct = productservice.get8NewProduct();
 		req.setAttribute("top8newproduct", top8newproduct);
 

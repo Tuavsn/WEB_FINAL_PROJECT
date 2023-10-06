@@ -17,27 +17,29 @@ import service.ProductService;
 import serviceImpl.CategoryServiceImpl;
 import serviceImpl.ProductServiceImpl;
 
-@WebServlet(urlPatterns = {"/home"})
-public class HomeController extends HttpServlet{
+@WebServlet(urlPatterns = { "/home" })
+public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 8306445746662697977L;
-	
+
 	CategoryService categoryservice = new CategoryServiceImpl();
 	ProductService productservice = new ProductServiceImpl();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		//Get all category for navbar
+		// Get all category for navbar
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
-		//Get 8 new product
+		// Get 8 new product
 		List<ProductModel> top8newproduct = productservice.get8NewProduct();
 		req.setAttribute("top8newproduct", top8newproduct);
-		
+
 		RequestDispatcher rq = req.getRequestDispatcher("views/home.jsp");
 		rq.forward(req, resp);
 	}
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub

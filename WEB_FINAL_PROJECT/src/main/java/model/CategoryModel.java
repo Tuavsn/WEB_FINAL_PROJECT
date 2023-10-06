@@ -1,25 +1,16 @@
 package model;
 
 public class CategoryModel {
-	private int CategoryID;
+	private long CategoryID;
 	private String CategoryName;
 	private String ImageLink;
-
-	public String getImageLink() {
-		return ImageLink;
-	}
-
-	public void setImageLink(String imageLink) {
-		ImageLink = imageLink;
-	}
-
 	private String Icon;
 
-	public int getCategoryID() {
+	public long getCategoryID() {
 		return CategoryID;
 	}
 
-	public void setCategoryID(int categoryID) {
+	public void setCategoryID(long categoryID) {
 		CategoryID = categoryID;
 	}
 
@@ -31,6 +22,14 @@ public class CategoryModel {
 		CategoryName = categoryName;
 	}
 
+	public String getImageLink() {
+		return ImageLink;
+	}
+
+	public void setImageLink(String imageLink) {
+		ImageLink = imageLink;
+	}
+
 	public String getIcon() {
 		return Icon;
 	}
@@ -39,15 +38,16 @@ public class CategoryModel {
 		Icon = icon;
 	}
 
-	public CategoryModel() {
-		super();
-	}
-	
-	public CategoryModel(int categoryID, String categoryName, String imageLink, String icon) {
+	public CategoryModel(long categoryID, String categoryName, String imageLink, String icon) {
 		super();
 		CategoryID = categoryID;
 		CategoryName = categoryName;
 		ImageLink = imageLink;
 		Icon = icon;
 	}
+
+	public CategoryModel() {
+		super();
+	}
+
 }

@@ -21,18 +21,26 @@ import serviceImpl.ProductServiceImpl;
 public class ShopController extends HttpServlet {
 	CategoryService categoryservice = new CategoryServiceImpl();
 	ProductService productservice = new ProductServiceImpl();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		//Get all category for navbar
+		// Get all category for navbar
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
-		//Get all product
-		List<ProductModel> allProduct = productservice.findAll();
+		// Get all product
+		String cid = req.getParameter("cid");
+		List<ProductModel> allProduct;
+		if(cid == null) {
+			allProduct = productservice.findAll();	
+		} else {
+			allProduct = productservice.getProductByCID(cid);
+		}
 		req.setAttribute("allproduct", allProduct);
-		
+		req.setAttribute("cid", cid);
+
 		RequestDispatcher rq = req.getRequestDispatcher("views/shop.jsp");
 		rq.forward(req, resp);
 	}
