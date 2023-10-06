@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
 <c:url var="APIurl" value="/api-web-rigist"/>
+<c:url var ="NewURL" value="/admin-user-edit"/>
 
 
 <!DOCTYPE html>
@@ -40,7 +41,7 @@
 											<div class="dt-buttons btn-overlap btn-group">
 												<a flag="info"
 												   class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
-												   title='Thêm user' href='<c:url value = '/admin-user-add'/>'>
+												   title='Thêm user' href='<c:url value = '/admin-user-edit'/>'>
 															<span>
 																<i class="fa fa-plus-circle bigger-110 purple"></i>
 															</span>
@@ -87,8 +88,11 @@
 										        <td>${item.role.name}</td>
 										        <td>${item.status}</td>
 										        <td>
+											        <c:url var="editURL" value="/admin-user-edit">
+														<c:param name="id" value="${item.id}"/>
+													</c:url>
 													<a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-													   title="Cập nhật thông tin user" href='#'>
+													   title="Cập nhật thông tin user" href='${editURL}'>
 													   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 													</a>
 												</td>

@@ -14,4 +14,5 @@ public interface IUserService {
 	int getTotalItem();
 	List<UserModel> findAll(Pageble pageble);
 	void deleteUser(long ids[]);
+	UserModel updateUser(UserModel userModel);
 }

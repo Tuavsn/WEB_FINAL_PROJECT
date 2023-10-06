@@ -14,4 +14,5 @@ public interface IUserDao extends GenericDAO<UserModel> {
 	List<UserModel> findAll(Pageble pageble);
 	int getTotalItem();
 	void deleteUser(Long id);
+	void updateUser(UserModel userModel);
 }
