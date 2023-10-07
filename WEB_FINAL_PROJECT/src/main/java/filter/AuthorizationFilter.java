@@ -1,6 +1,7 @@
 package filter;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -31,6 +32,9 @@ public class AuthorizationFilter implements Filter //su ly phan quyen dang nhap 
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
+		servletResponse.setContentType("text/html");
+		servletResponse.setCharacterEncoding("UTF-8");
+		servletRequest.setCharacterEncoding("UTF-8");
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		String url = request.getRequestURI(); //lay duoc url dang truy cap vao
@@ -44,12 +48,22 @@ public class AuthorizationFilter implements Filter //su ly phan quyen dang nhap 
 				}
 				else if(model.getRole().getCode().equals(SystemConstant.USER))
 				{
-					response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=not_permission&alert=danger");
+					PrintWriter out = response.getWriter();  
+					response.setContentType("text/html");  
+					out.println("<script type=\"text/javascript\">");  
+					out.println("alert('Bạn không có quyền truy cập vào đường dẫn này');");  
+					out.print("location='"+request.getContextPath()+"/home'");
+					out.println("</script>");
 				}
 			}
 			else//su ly chua dang nhap
 			{
-				response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=not_login&alert=danger");
+				PrintWriter out = response.getWriter();  
+				response.setContentType("text/html");  
+				out.println("<script type=\"text/javascript\">");  
+				out.println("alert('Bạn chưa thực hiện đăng nhập');");
+				out.print("location='"+request.getContextPath()+"/home'");
+				out.println("</script>");
 			}
 			
 		}else {

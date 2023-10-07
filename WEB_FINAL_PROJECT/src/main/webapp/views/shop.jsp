@@ -221,7 +221,7 @@
 										<a href="detail?pid=${product.productID}" class="btn btn-sm text-dark p-0"><i
 											class="fas fa-eye text-primary mr-1"></i>Chi tiết</a> <a href=""
 											class="btn btn-sm text-dark p-0"><i
-											class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</a>
+											class="fas fa-shopping-cart text-primary mr-1"></i>Thêm sản phẩm</a>
 									</div>
 								</div>
 							</a>
