@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
 <c:url var="APIurl" value="/api-web-rigist"/>
+<c:url var ="NewURL" value="/admin-user-edit"/>
 
 
 <!DOCTYPE html>
@@ -9,6 +10,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Danh sách bài viết</title>
+<style type="text/css">
+	.btn-edit.disabled {
+    pointer-events: none; /* Ngăn chặn sự kiện click */
+    opacity: 0.6; /* Làm mờ thẻ */
+    cursor: no-drop; /* Thay đổi con trỏ chuột thành dấu "không cho phép" */
+	}
+</style>
 </head>
 <body>
 <div class="main-content">
@@ -40,7 +48,7 @@
 											<div class="dt-buttons btn-overlap btn-group">
 												<a flag="info"
 												   class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
-												   title='Thêm user' href='<c:url value = '/admin-user-add'/>'>
+												   title='Thêm user' href='<c:url value = '/admin-user-edit'/>'>
 															<span>
 																<i class="fa fa-plus-circle bigger-110 purple"></i>
 															</span>
@@ -74,10 +82,10 @@
 									    <tbody>
 									    <c:forEach var ="item" items="${model.listResult}">
 										      <tr>
-										      	<c:if test="${item.status==0}">
+										      	<c:if test="${item.status==0 || item.userName==USERMODEL.userName || item.roleId=='1'}">
 										      		<td><input type="checkbox" value="${item.id}" id="checkbox_${item.id}" disabled /></td>
 										      	</c:if>
-										      	<c:if test="${item.status==1}">
+										      	<c:if test="${item.status==1 && item.userName!=USERMODEL.userName && item.roleId!='1'}">
 										      		<td><input type="checkbox" value="${item.id}" id="checkbox_${item.id}" /></td>
 										      	</c:if>
 										        <td>${item.userName}</td>
@@ -87,10 +95,22 @@
 										        <td>${item.role.name}</td>
 										        <td>${item.status}</td>
 										        <td>
-													<a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-													   title="Cập nhật thông tin user" href='#'>
+											        <c:url var="editURL" value="/admin-user-edit">
+														<c:param name="id" value="${item.id}"/>
+													</c:url>
+												<c:if test="${item.status==0 || item.roleId=='1'}">
+													<a class="btn btn-sm btn-primary btn-edit disabled " data-toggle="tooltip"
+													   title="Cập nhật thông tin user" href='${editURL}'  >
 													   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 													</a>
+												</c:if>
+												
+												<c:if test="${item.status==1 && item.roleId!='1'}">
+													<a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
+													   title="Cập nhật thông tin user" href='${editURL}'>
+													   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+													</a>
+												</c:if>
 												</td>
 										      </tr>
 									      </c:forEach>

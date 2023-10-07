@@ -18,10 +18,11 @@ import serviceImpl.UserService;
 
 @WebServlet(urlPatterns = { "/change-password" })
 
-public class ForgotPassword extends HttpServlet{
+public class ForgotPassword extends HttpServlet {
 	private static final long serialVersionUID = -7876039581512588764L;
 	CategoryService categoryservice = new CategoryServiceImpl();
 	IUserService userService = new UserService();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");

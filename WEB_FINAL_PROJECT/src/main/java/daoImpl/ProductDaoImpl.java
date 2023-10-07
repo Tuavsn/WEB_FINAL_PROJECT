@@ -21,7 +21,7 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 	}
 
 	@Override
-	public List<ProductModel> getProductByCID(int CategoryID) {
+	public List<ProductModel> getProductByCID(String CategoryID) {
 		String query = "select * from product where CategoryID = ?";
 		return query(query, new ProductMapper(), CategoryID);
 	}
@@ -30,6 +30,12 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 	public List<ProductModel> getProductByPID(int ProductID) {
 		String query = "select * from product where ProductID = ?";
 		return query(query, new ProductMapper(), ProductID);
+	}
+
+	@Override
+	public List<ProductModel> getProductByName(String ProductName) {
+		String query = "select * from product where ProductName like ?";
+		return query(query, new ProductMapper(), '%'+ProductName+'%');
 	}
 
 }

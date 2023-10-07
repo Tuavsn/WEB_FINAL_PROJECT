@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
@@ -50,7 +49,7 @@
                 </div>
                 <div class="d-flex justify-content-center">
                   <button type="button"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" id="btnAdd">Xác nhận
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" id="btnChangePassword">Xác nhận
                     </button>
                 </div>
 				<div id="empty" class="text-danger" style="font-size: 14px;font-weight: bold;"></div>
@@ -71,7 +70,7 @@
 </section>
 <script>
 
-	$('#btnAdd').click(function (e) 
+	$('#btnChangePassword').click(function (e) 
 	{
 		e.preventDefault();
 		

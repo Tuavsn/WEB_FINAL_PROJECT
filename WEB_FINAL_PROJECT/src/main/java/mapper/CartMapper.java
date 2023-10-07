@@ -11,8 +11,9 @@ public class CartMapper implements RowMapper<CartModel>{
 	public CartModel mapRow(ResultSet rs) {
 		try {
 			CartModel cart = new CartModel();
-			cart.setUserID(rs.getInt("UserID"));
-			cart.setProductID(rs.getInt("ProductID"));
+			cart.setCartID(rs.getLong("CartID"));
+			cart.setSellerID(rs.getLong("SellerID"));
+			cart.setProductID(rs.getLong("ProductID"));
 			cart.setAmount(rs.getInt("Amount"));
 			return cart;
 		} catch (SQLException e) {

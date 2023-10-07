@@ -79,4 +79,11 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 		
 	}
 
+	@Override
+	public void updateUser(UserModel userModel) {
+		String sql = "UPDATE user SET password = ?, fullname = ?, roleid = ?, sdt = ? where id = ?";
+		update(sql,userModel.getPassword(),userModel.getFullName(),userModel.getRoleId(),userModel.getSdt(),userModel.getId());
+		
+	}
+
 }

@@ -1,23 +1,32 @@
 package model;
 
 public class CartModel {
-	private int id;
-	private int ProductID;
+	private long CartID;
+	private long SellerID;
+	private long ProductID;
 	private int Amount;
 
-	public int getUserID() {
-		return id;
+	public long getCartID() {
+		return CartID;
 	}
 
-	public void setUserID(int userID) {
-		id = userID;
+	public void setCartID(long cartID) {
+		CartID = cartID;
 	}
 
-	public int getProductID() {
+	public long getSellerID() {
+		return SellerID;
+	}
+
+	public void setSellerID(long sellerID) {
+		SellerID = sellerID;
+	}
+
+	public long getProductID() {
 		return ProductID;
 	}
 
-	public void setProductID(int productID) {
+	public void setProductID(long productID) {
 		ProductID = productID;
 	}
 
@@ -29,15 +38,16 @@ public class CartModel {
 		Amount = amount;
 	}
 
-	public CartModel() {
+	public CartModel(long cartID, long sellerID, long productID, int amount) {
 		super();
-	}
-
-	public CartModel(int userID, int productID, int amount) {
-		super();
-		id = userID;
+		CartID = cartID;
+		SellerID = sellerID;
 		ProductID = productID;
 		Amount = amount;
+	}
+
+	public CartModel() {
+		super();
 	}
 
 }

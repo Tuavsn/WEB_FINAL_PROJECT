@@ -17,6 +17,7 @@ import serviceImpl.CategoryServiceImpl;
 @WebServlet(urlPatterns = { "/cart" })
 public class CartController extends HttpServlet {
 	CategoryService categoryservice = new CategoryServiceImpl();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
@@ -25,7 +26,7 @@ public class CartController extends HttpServlet {
 
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
-		
+
 		RequestDispatcher rq = req.getRequestDispatcher("views/cart.jsp");
 		rq.forward(req, resp);
 	}

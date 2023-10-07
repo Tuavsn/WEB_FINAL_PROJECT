@@ -17,12 +17,13 @@ import serviceImpl.CategoryServiceImpl;
 @WebServlet(urlPatterns = { "/checkout" })
 public class CheckoutController extends HttpServlet {
 	CategoryService categoryservice = new CategoryServiceImpl();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		
+
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
 

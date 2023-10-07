@@ -20,13 +20,18 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<ProductModel> getProductByCID(int CategoryID) {
+	public List<ProductModel> getProductByCID(String CategoryID) {
 		return productdao.getProductByCID(CategoryID);
 	}
 
 	@Override
 	public List<ProductModel> getProductByPID(int ProductID) {
 		return productdao.getProductByPID(ProductID);
+	}
+
+	@Override
+	public List<ProductModel> getProductByName(String ProductName) {
+		return productdao.getProductByName(ProductName);
 	}
 
 }

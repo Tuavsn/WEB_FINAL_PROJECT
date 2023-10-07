@@ -11,7 +11,7 @@ public class CategoryMapper implements RowMapper<CategoryModel> {
 	public CategoryModel mapRow(ResultSet rs) {
 		try {
 			CategoryModel category = new CategoryModel();
-			category.setCategoryID(rs.getInt("CategoryID"));
+			category.setCategoryID(rs.getLong("CategoryID"));
 			category.setCategoryName(rs.getString("CategoryName"));
 			category.setImageLink(rs.getString("ImageLink"));
 			category.setIcon(rs.getString("Icon"));
