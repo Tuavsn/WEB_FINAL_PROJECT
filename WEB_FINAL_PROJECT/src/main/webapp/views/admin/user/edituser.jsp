@@ -171,6 +171,7 @@
                 		<c:forEach var="user" items="${users}">
 						    <input type="hidden" id="${user.id}" name ="name" value="${user.userName}">
 						</c:forEach>
+						<input type="hidden" id="id" name ="name" value="${model.id}">
                 </div>
             </div>
         </div>
@@ -263,7 +264,12 @@
 				 check=true;
 			}
 		});
-		data["id"] = ${model.id};
+		if($('#id').val()!=null){
+			data["id"] =  $('#id').val();
+		}
+		
+		
+		
 		if(check == true){
 	   		return;
 	   	}
