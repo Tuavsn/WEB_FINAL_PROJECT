@@ -13,20 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import model.CategoryModel;
 import model.ProductModel;
 import service.CategoryService;
+import service.IUserService;
 import service.ProductService;
 import serviceImpl.CategoryServiceImpl;
 import serviceImpl.ProductServiceImpl;
+import serviceImpl.UserService;
 
 @WebServlet(urlPatterns = {"/search", "/tim-kiem"})
 public class ProductSearchByName extends HttpServlet{
 	CategoryService categoryservice = new CategoryServiceImpl();
 	ProductService productservice = new ProductServiceImpl();
+	IUserService userService = new UserService();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		
+		req.setAttribute("users", userService.findAll());
+
 		//Get All Category
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);

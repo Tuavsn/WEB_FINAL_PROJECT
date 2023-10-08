@@ -13,14 +13,17 @@ import javax.servlet.http.HttpServletResponse;
 import model.CategoryModel;
 import model.ProductModel;
 import service.CategoryService;
+import service.IUserService;
 import service.ProductService;
 import serviceImpl.CategoryServiceImpl;
 import serviceImpl.ProductServiceImpl;
+import serviceImpl.UserService;
 
 @WebServlet(urlPatterns = { "/detail" })
 public class DetailController extends HttpServlet {
 	CategoryService categoryservice = new CategoryServiceImpl();
 	ProductService productservice = new ProductServiceImpl();
+	IUserService userService = new UserService();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,6 +31,8 @@ public class DetailController extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
 		// Get all category for navbar
+		req.setAttribute("users", userService.findAll());
+
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
 		// Get PID
