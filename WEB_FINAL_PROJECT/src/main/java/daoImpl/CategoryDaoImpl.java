@@ -10,7 +10,7 @@ public class CategoryDaoImpl extends AbstractDAO<CategoryModel> implements Categ
 
 	@Override
 	public List<CategoryModel> findAll() {
-		String query = "select * from category";
+		String query = "select * from category where ParentID=0";
 		return query(query, new CategoryMapper());
 	}
 
