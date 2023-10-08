@@ -5,9 +5,9 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="card modal-content" style="border-radius: 15px;">
 			<div class="card-body p-5 ">
-				<div id="success" class="text-success text-center"
+				<div id="success2" class="text-success text-center"
 					style="font-size: 14px; font-weight: bold;"></div>
-				<div id="Error" class="text-danger"
+				<div id="Error2" class="text-danger"
 					style="font-size: 14px; font-weight: bold;"></div>
 				<h2 class="text-uppercase text-center mb-3">Đăng nhập</h2>
 
@@ -15,15 +15,15 @@
 
 					<div class="form-outline mb-3">
 						<label class="form-label" for="userName">Tài khoản</label> <input
-							type="text" id="userName" name="userName"
+							type="text" id="userName2" name="userName"
 							class="form-control form-control-lg " />
-						<div id="userNameError" class="text-danger"
+						<div id="userNameError2" class="text-danger"
 							style="font-size: 14px; font-weight: bold;"></div>
 					</div>
 
 					<div class="form-outline mb-3">
 						<label class="form-label" for="password">Mật khẩu</label> <input
-							type="password" id="password" name="password"
+							type="password" id="password2" name="password"
 							class="form-control form-control-lg" />
 
 					</div>
@@ -34,7 +34,7 @@
 							class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Đăng nhập</button>
 					</div>
 					
-					<div id="empty" class="text-danger"
+					<div id="empty2" class="text-danger"
 						style="font-size: 14px; font-weight: bold;">
 					</div>
 					<p class="text-center text-muted mt-4 mb-0">

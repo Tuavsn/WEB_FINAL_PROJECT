@@ -13,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import model.CategoryModel;
 import model.ProductModel;
 import service.CategoryService;
+import service.IUserService;
 import service.ProductService;
 import serviceImpl.CategoryServiceImpl;
 import serviceImpl.ProductServiceImpl;
+import serviceImpl.UserService;
 
 @WebServlet(urlPatterns = { "/home" })
 public class HomeController extends HttpServlet {
@@ -23,19 +25,20 @@ public class HomeController extends HttpServlet {
 
 	CategoryService categoryservice = new CategoryServiceImpl();
 	ProductService productservice = new ProductServiceImpl();
-
+	IUserService userService = new UserService();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
 		// Get all category for navbar
+		req.setAttribute("users", userService.findAll());
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
 		// Get 8 new product
 		List<ProductModel> top8newproduct = productservice.get8NewProduct();
 		req.setAttribute("top8newproduct", top8newproduct);
-
+		
 		RequestDispatcher rq = req.getRequestDispatcher("views/home.jsp");
 		rq.forward(req, resp);
 	}

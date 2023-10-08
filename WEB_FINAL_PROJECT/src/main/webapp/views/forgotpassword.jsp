@@ -8,44 +8,44 @@
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="card modal-content" style="border-radius: 15px;">
 				<div class="card-body p-5 ">
-					<div id="success" class="text-success text-center"
+					<div id="success1" class="text-success text-center"
 						style="font-size: 14px; font-weight: bold;"></div>
-					<div id="Error" class="text-danger"
+					<div id="Error1" class="text-danger"
 						style="font-size: 14px; font-weight: bold;"></div>
 					<h2 class="text-uppercase text-center mb-3">Quên mật khẩu</h2>
 	
-					<form id="formSubmit">
+					<form id="formSubmit1">
 	
 						<div class="form-outline mb-4">
 							<label class="form-label" for="form3Example1cg">Tài khoản</label>
-							<input type="text" id="userName" name="userName"
+							<input type="text" id="userName1" name="userName"
 								class="form-control form-control-lg " />
-							<div id="userNameError" class="text-danger"
+							<div id="userNameError1" class="text-danger"
 								style="font-size: 14px; font-weight: bold;"></div>
 						</div>
 	
 						<div class="form-outline mb-4">
 							<label class="form-label" for="form3Example3cg">Số điện
-								thoại đăng ký</label> <input type="text" id="sdt" name="sdt"
+								thoại đăng ký</label> <input type="text" id="sdt1" name="sdt"
 								class="form-control form-control-lg" />
-							<div id="sdtError" class="text-danger"
+							<div id="sdtError1" class="text-danger"
 								style="font-size: 14px; font-weight: bold;"></div>
-							<div id="sdtdangky" class="text-danger"
+							<div id="sdtdangky1" class="text-danger"
 								style="font-size: 14px; font-weight: bold;"></div>
 						</div>
 	
 						<div class="form-outline mb-4">
 							<label class="form-label" for="form3Example4cg">Mật khẩu
-								mới</label> <input type="password" id="password" name="password"
+								mới</label> <input type="password" id="password1" name="password"
 								class="form-control form-control-lg" />
 	
 						</div>
 	
 						<div class="form-outline mb-4">
 							<label class="form-label" for="form3Example4cdg">Nhập lại
-								mật khẩu mới</label> <input type="password" id="repeatPassword"
+								mật khẩu mới</label> <input type="password" id="repeatPassword1"
 								name="repeatPassword" class="form-control form-control-lg" />
-							<div id="passwordError" class="text-danger"
+							<div id="passwordError1" class="text-danger"
 								style="font-size: 14px; font-weight: bold;"></div>
 						</div>
 						<div class="d-flex justify-content-center">
@@ -53,7 +53,7 @@
 								class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
 								id="btnChangePassword">Xác nhận</button>
 						</div>
-						<div id="empty" class="text-danger"
+						<div id="empty1" class="text-danger"
 							style="font-size: 14px; font-weight: bold;"></div>
 						<p class="text-center text-muted mt-4 mb-0">
 							Bạn đã có tài khoản?
@@ -76,23 +76,23 @@
 		$('#btnChangePassword').click(function(e) {
 			e.preventDefault();
 			var data = {};
-			var formData = $('#formSubmit').serializeArray();
-			var userName = $('#userName').val();
-			var password = $('#password').val();
-			var repeatPassword = $('#repeatPassword').val();
-			var sdt = $('#sdt').val();
+			var formData = $('#formSubmit1').serializeArray();
+			var userName = $('#userName1').val();
+			var password = $('#password1').val();
+			var repeatPassword = $('#repeatPassword1').val();
+			var sdt = $('#sdt1').val();
 			var check = false;
-			$('#passwordError').text("");
-			$('#sdtError').text("");
-			$('#empty').text("");
-			$('#userNameError').text("");
-			$('#sdtdangky').text("");
+			$('#passwordError1').text("");	
+			$('#sdtError1').text("");
+			$('#empty1').text("");
+			$('#userNameError1').text("");
+			$('#sdtdangky1').text("");
 			var inputs = $('input[name="name"]');
 
 			$.each(formData, function(i, v) {
 				data["" + v.name + ""] = v.value;
 				if (v.value == "") {
-					$('#empty').text("Hãy nhập đầy đủ thông tin");
+					$('#empty1').text("Hãy nhập đầy đủ thông tin");
 					check = true;
 				}
 			});
@@ -102,10 +102,10 @@
 			inputs.each(function() {
 				var userNameOld = $(this).val();
 				if (userNameOld != userName) {
-					$('#userNameError').text("Tài khoản không tồn tại");
+					$('#userNameError1').text("Tài khoản không tồn tại");
 					check = true;
 				} else {
-					$('#userNameError').text("");
+					$('#userNameError1').text("");
 					check = false;
 					return false;
 				}
@@ -115,27 +115,27 @@
 			inputsdt.each(function() {
 				var sdtdk = $(this).val();
 				if (sdtdk != sdt) {
-					$('#sdtdangky').text("Số điện thoại không khớp khi đăng ký");
+					$('#sdtdangky1').text("Số điện thoại không khớp khi đăng ký");
 					check = true;
 				} else {
 					id = this.id;
 					data["id"] = id;
 					check = false;
-					$('#sdtdangky').text("");
+					$('#sdtdangky1').text("");
 					return false;
 				}
 
 			});
 			console.log(id);
 			if (password != repeatPassword) {
-				$('#passwordError').text("Mật khẩu nhập lại chưa đúng");
+				$('#passwordError1').text("Mật khẩu nhập lại chưa đúng");
 				check = true;
 			}
 			if (!/^\d+$/.test(sdt)) {
-				$('#sdtError').text("Phải nhập số");
+				$('#sdtError1').text("Phải nhập số");
 				check = true;
 			}
-			$('#success').text("");
+			$('#success1').text("");
 			if (check == false) {
 				changePassword(data);
 			}
@@ -148,11 +148,11 @@
 				data : JSON.stringify(data),
 				dataType : 'json',
 				success : function(result) { //result la ket qua tra ve vd : newModel,...
-					$('#success').text("Đổi mật khẩu thành công");
+					$('#success1').text("Đổi mật khẩu thành công");
 					console.log(result);
 				},
 				error : function(error) {
-					$('#Error').text("Lỗi rồi");
+					$('#Error1').text("Lỗi rồi");
 					console.log(error);
 				}
 			});

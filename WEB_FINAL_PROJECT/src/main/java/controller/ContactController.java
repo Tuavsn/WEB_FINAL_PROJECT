@@ -12,17 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.CategoryModel;
 import service.CategoryService;
+import service.IUserService;
 import serviceImpl.CategoryServiceImpl;
+import serviceImpl.UserService;
 
 @WebServlet(urlPatterns = { "/contact" })
 public class ContactController extends HttpServlet {
 	CategoryService categoryservice = new CategoryServiceImpl();
+	IUserService userService = new UserService();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
+		req.setAttribute("users", userService.findAll());
 
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
