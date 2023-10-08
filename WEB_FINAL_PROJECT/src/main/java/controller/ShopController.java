@@ -32,9 +32,16 @@ public class ShopController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		// Get all category for navbar
 		req.setAttribute("users", userService.findAll());
-
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
+		
+		for(CategoryModel i : allCategory) {
+			System.out.println(i.getCategoryName());
+			List<CategoryModel> child = i.getChildCategory();
+			for(CategoryModel j : child) {
+				System.out.println("+" + j.getCategoryName());
+			}
+		}
 		// Get all product
 		String cid = req.getParameter("cid");
 		List<ProductModel> allProduct;

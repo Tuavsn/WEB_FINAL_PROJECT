@@ -14,9 +14,18 @@
 				<nav
 					class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-bottom-0 bg-light"
 					id="navbar-vertical" style="width: calc(100% - 30px); z-index: 2;">
-					<div class="navbar-nav w-100 overflow-hidden">
+					<div class="navbar-nav w-100">
 						<c:forEach items="${allcategory}" var="category">
-							<a href="shop?cid=${category.categoryID}" class="nav-item nav-link">${category.icon} ${category.categoryName}</a>
+							<div class="nav-item btn-group dropright">
+							  <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    ${category.icon} ${category.categoryName}
+							  </a>
+							  <div class="dropdown-menu" style="position: absolute">
+							    <c:forEach items="${category.childCategory}" var="childcategory">
+								    <a class="dropdown-item" href="shop?cid=${childcategory.categoryID}">${childcategory.categoryName}</a>
+ 						 	  	</c:forEach>
+							  </div>
+							</div>
 						</c:forEach>
 					</div>
 				</nav>
