@@ -27,7 +27,6 @@ public class AuthorizationFilter implements Filter //su ly phan quyen dang nhap 
 	public void init(FilterConfig filterConfig) throws ServletException {	
 		this.context = filterConfig.getServletContext();
 	}
-
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
