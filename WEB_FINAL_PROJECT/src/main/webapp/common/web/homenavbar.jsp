@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="container-fluid mb-5">
-	<div class="border-top px-xl-5">
-		<div class="row" style="width: 80%; margin: 0 auto">
+	<div class="px-xl-5">
+		<div class="row" style="width: 85%; margin: 0 auto">
 			<div class="col-lg-3 d-none d-lg-block">
 				<a
 					class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"

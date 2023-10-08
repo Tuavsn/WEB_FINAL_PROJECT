@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -27,7 +28,6 @@ public class LoginController extends HttpServlet {
 	private IUserService userService = new UserService();
 	CategoryService categoryservice = new CategoryServiceImpl();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String action = request.getParameter("action");
 		if(action != null && action.equals("login")) 
 		{
@@ -58,6 +58,9 @@ public class LoginController extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		String action = request.getParameter("action");
 		if(action != null && action.equals("login")) 
 		{
@@ -79,18 +82,30 @@ public class LoginController extends HttpServlet {
 			{
 				if(user=="" || passWord == "")
 				{
-					response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=empty&alert=danger");
-
+					PrintWriter out = response.getWriter();  
+					response.setContentType("text/html");  
+					out.println("<script type=\"text/javascript\">");  
+					out.println("alert('Vui lòng nhập đầy đủ tài khoản và mật khẩu');");  
+					out.print("location='"+request.getContextPath()+"/home'");
+					out.println("</script>");
 				}
 				else if(model!=null && model.getStatus()==0) {
-					response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=statusnot&alert=danger");
+					PrintWriter out = response.getWriter();  
+					response.setContentType("text/html");  
+					out.println("<script type=\"text/javascript\">");  
+					out.println("alert('Đăng nhập thất bại');");  
+					out.print("location='"+request.getContextPath()+"/home'");
+					out.println("</script>");
 				}
 				else 
 				{
-					response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=username_password_invalid&alert=danger");
-
+					PrintWriter out = response.getWriter();  
+					response.setContentType("text/html");  
+					out.println("<script type=\"text/javascript\">");  
+					out.println("alert('Sai mật khẩu hoặc tên đăng nhập');");
+					out.print("location='"+request.getContextPath()+"/home'");
+					out.println("</script>");
 				}
-
 			}
 		}
 	}

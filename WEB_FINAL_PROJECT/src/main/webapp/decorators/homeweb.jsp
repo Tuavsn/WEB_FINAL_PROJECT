@@ -27,7 +27,7 @@
 <!-- Customized Bootstrap Stylesheet -->
 <link href="<c:url value="/template/css/style.css"/>" rel="stylesheet"
 	type="text/css">
-
+<link href="<c:url value='/template/regist/style.css' />" rel="stylesheet" type="text/css" media="all"/>
 </head>
 <body>
 	<!-- header -->
@@ -38,7 +38,7 @@
 	<%@ include file="/common/web/homenavbar.jsp"%>
 	<!-- Navbar End -->
 
-	<div style="width: 80%; margin: 0 auto">
+	<div style="width: 85%; margin: 0 auto">
 		<dec:body />
 	</div>
 
@@ -46,6 +46,11 @@
 	<!-- footer -->
 	<%@ include file="/common/web/footer.jsp"%>
 	<!-- footer -->
+	<!-- modal -->
+	<%@ include file="/views/regist.jsp" %>
+	<%@ include file="/views/login.jsp" %>
+	<%@ include file="/views/forgotpassword.jsp"%>
+	<!-- modal -->
 	<!-- Back to Top -->
 	<a href="#" class="btn btn-primary back-to-top"><i
 		class="fa fa-angle-double-up"></i></a>

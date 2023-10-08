@@ -2,7 +2,7 @@
 
 <div class="container-fluid bg-secondary text-dark  pt-5">
 	<div class="px-xl-5 pt-2">
-		<div class="row" style="width: 80%; margin: 0 auto">
+		<div class="row" style="width: 85%; margin: 0 auto">
 			<div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
 				<a href="" class="text-decoration-none">
 					<h1 class="mb-4 display-5 font-weight-semi-bold">

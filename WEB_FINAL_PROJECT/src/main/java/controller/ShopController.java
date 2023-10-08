@@ -40,7 +40,6 @@ public class ShopController extends HttpServlet {
 		}
 		req.setAttribute("allproduct", allProduct);
 		req.setAttribute("cid", cid);
-
 		RequestDispatcher rq = req.getRequestDispatcher("views/shop.jsp");
 		rq.forward(req, resp);
 	}
