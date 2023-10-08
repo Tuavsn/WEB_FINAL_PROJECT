@@ -21,20 +21,26 @@
 						</a>
 					</c:if>
 					<c:if test="${ empty USERMODEL }">
+						<li class="nav-item">
+							<button type="button" class="mx-2 text-body btn" data-toggle="modal" data-target="#loginModal">Đăng nhập</button>
+							<button type="button" class="mx-2 text-body btn" data-toggle="modal" data-target="#registModal">Đăng ký</button>
+						</li>
+					</c:if>
+<%-- 					<c:if test="${ empty USERMODEL }">
 						<li class="nav-item"><a class="text-dark px-2" href=""> <a
 								href="<c:url value = 'dang-nhap?action=login'/>"
 								class="mx-2 text-body">Đăng nhập</a> <a
 								href="<c:url value = 'dang-ky'/>" class="mx-2 text-body">Đăng
 									ký</a>
 						</a></li>
-					</c:if>
+					</c:if> --%>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="align-items-center py-3 px-xl-5"
 		style="background-color: white">
-		<div class="row" style="width: 80%; margin: 0 auto">
+		<div class="row" style="width: 85%; margin: 0 auto">
 			<div class="col-lg-3 d-none d-lg-block">
 				<a href="home" class="text-decoration-none">
 					<h1 class="m-0 display-5 font-weight-semi-bold">
