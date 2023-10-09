@@ -47,10 +47,6 @@
 						>Quên mật khẩu</button>
 					</div>
 				</form>
-				<c:forEach var="user" items="${users}">
-					<input type="hidden" id="${user.id}" name="name"
-						value="${user.userName}">
-				</c:forEach>
 			</div>
 		</div>
 	</div>

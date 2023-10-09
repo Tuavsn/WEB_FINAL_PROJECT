@@ -79,7 +79,6 @@
 	</div>
 </body>
 <script>
-	$(document).ready(function() {
 		$('#btnAdd').click(function(e) {
 			e.preventDefault();
 			var data = {};

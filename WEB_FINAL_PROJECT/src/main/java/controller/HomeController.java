@@ -32,6 +32,7 @@ public class HomeController extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
 		// Get all category for navbar
+		
 		req.setAttribute("users", userService.findAll());
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
