@@ -1,10 +1,13 @@
 package model;
 
+import java.util.List;
+
 public class CategoryModel {
 	private long CategoryID;
 	private String CategoryName;
 	private String ImageLink;
 	private String Icon;
+	private List<CategoryModel> ChildCategory;
 
 	public long getCategoryID() {
 		return CategoryID;
@@ -38,12 +41,22 @@ public class CategoryModel {
 		Icon = icon;
 	}
 
-	public CategoryModel(long categoryID, String categoryName, String imageLink, String icon) {
+	public List<CategoryModel> getChildCategory() {
+		return ChildCategory;
+	}
+
+	public void setChildCategory(List<CategoryModel> childCategory) {
+		ChildCategory = childCategory;
+	}
+
+	public CategoryModel(long categoryID, String categoryName, String imageLink, String icon,
+			List<CategoryModel> childCategory) {
 		super();
 		CategoryID = categoryID;
 		CategoryName = categoryName;
 		ImageLink = imageLink;
 		Icon = icon;
+		ChildCategory = childCategory;
 	}
 
 	public CategoryModel() {

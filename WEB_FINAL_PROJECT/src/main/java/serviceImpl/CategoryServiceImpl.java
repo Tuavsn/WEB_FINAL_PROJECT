@@ -7,7 +7,7 @@ import daoImpl.CategoryDaoImpl;
 import model.CategoryModel;
 import service.CategoryService;
 
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
 	CategoryDao categorydao = new CategoryDaoImpl();
 
 	@Override

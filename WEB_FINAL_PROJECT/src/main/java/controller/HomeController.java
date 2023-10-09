@@ -36,6 +36,7 @@ public class HomeController extends HttpServlet {
 		req.setAttribute("users", userService.findAll());
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
+		
 		// Get 8 new product
 		List<ProductModel> top8newproduct = productservice.get8NewProduct();
 		req.setAttribute("top8newproduct", top8newproduct);
