@@ -31,9 +31,6 @@ public class AuthorizationFilter implements Filter //su ly phan quyen dang nhap 
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
 			throws IOException, ServletException {
-		servletResponse.setContentType("text/html");
-		servletResponse.setCharacterEncoding("UTF-8");
-		servletRequest.setCharacterEncoding("UTF-8");
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		String url = request.getRequestURI(); //lay duoc url dang truy cap vao

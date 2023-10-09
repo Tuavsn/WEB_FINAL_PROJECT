@@ -32,14 +32,6 @@ public class ShopController extends HttpServlet {
 		// Get all category for navbar
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
-		
-		for(CategoryModel i : allCategory) {
-			System.out.println(i.getCategoryName());
-			List<CategoryModel> child = i.getChildCategory();
-			for(CategoryModel j : child) {
-				System.out.println("+" + j.getCategoryName());
-			}
-		}
 		// Get all product
 		String cid = req.getParameter("cid");
 		List<ProductModel> allProduct;
