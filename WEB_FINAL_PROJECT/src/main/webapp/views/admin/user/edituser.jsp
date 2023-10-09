@@ -305,10 +305,12 @@
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) { //result la ket qua tra ve vd : newModel,...
+            	$('#Error').text("");
             	$('#success').text("Cập nhập thành công");
             	 console.log(result);
             },
             error: function (error) {
+            	$('#success').text("");
             	$('#Error').text("Lỗi rồi");
             	 console.log(error);
             }
@@ -322,14 +324,20 @@
             contentType: 'application/json',
             data: JSON.stringify(data),
             dataType: 'json',
-            success: function (result) { //result la ket qua tra ve vd : newModel,...
-            	$('#success').text("Đăng ký thành công");
-            	console.log(result);
-            },
-            error: function (error) {
-            	$('#Error').text("Lỗi rồi");
-            	 console.log(error);
-            }
+            success : function(result) { //result la ket qua tra ve vd : newModel,...
+				$('#Error').text("");
+				$('#success').text("Đăng ký thành công");s
+			},
+			error: function(xhr) {
+				$('#success').text("");
+		        if (xhr.status === 400) {
+		            // Trường hợp lỗi 400 Bad Request
+		            $('#Error').text("Tên người dùng đã tồn tại");
+		        } else {
+		            $('#Error').text("Lỗi rồi");
+		            console.log(xhr);
+		        }
+		    }
         });
 	}
 	
