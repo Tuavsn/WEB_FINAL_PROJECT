@@ -15,4 +15,5 @@ public interface IUserDao extends GenericDAO<UserModel> {
 	int getTotalItem();
 	void deleteUser(Long id);
 	void updateUser(UserModel userModel);
+	UserModel findByUserNameAndSdt(String userName,String Sdt);
 }

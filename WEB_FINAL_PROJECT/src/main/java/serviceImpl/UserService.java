@@ -63,6 +63,11 @@ public class UserService implements IUserService{
 		userDAO.updateUser(userModel);
 		return userDAO.findOne(userModel.getId());
 	}
+
+	@Override
+	public UserModel findByUserNameAndSdt(String userName, String Sdt) {
+		return userDAO.findByUserNameAndSdt(userName, Sdt);
+	}
 	
 
 }

@@ -10,7 +10,7 @@
 				<div class="card-body p-5 ">
 					<div id="success1" class="text-success text-center"
 						style="font-size: 14px; font-weight: bold;"></div>
-					<div id="Error1" class="text-danger"
+					<div id="Error1" class="text-danger text-center"
 						style="font-size: 14px; font-weight: bold;"></div>
 					<h2 class="text-uppercase text-center mb-3">Quên mật khẩu</h2>
 	
@@ -62,10 +62,6 @@
 						</p>
 	
 					</form>
-					<c:forEach var="user" items="${users}">
-						<input type="hidden" name="name" value="${user.userName}">
-						<input type="hidden" id="${user.id}" name="Sdt" value="${user.sdt}">
-					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -99,34 +95,9 @@
 			if (check == true) {
 				return;
 			}
-			inputs.each(function() {
-				var userNameOld = $(this).val();
-				if (userNameOld != userName) {
-					$('#userNameError1').text("Tài khoản không tồn tại");
-					check = true;
-				} else {
-					$('#userNameError1').text("");
-					check = false;
-					return false;
-				}
-			});
-			var id;
-			var inputsdt = $('input[name="Sdt"]');
-			inputsdt.each(function() {
-				var sdtdk = $(this).val();
-				if (sdtdk != sdt) {
-					$('#sdtdangky1').text("Số điện thoại không khớp khi đăng ký");
-					check = true;
-				} else {
-					id = this.id;
-					data["id"] = id;
-					check = false;
-					$('#sdtdangky1').text("");
-					return false;
-				}
-
-			});
-			console.log(id);
+			
+		
+			
 			if (password != repeatPassword) {
 				$('#passwordError1').text("Mật khẩu nhập lại chưa đúng");
 				check = true;
@@ -148,13 +119,23 @@
 				data : JSON.stringify(data),
 				dataType : 'json',
 				success : function(result) { //result la ket qua tra ve vd : newModel,...
+					$('#Error1').text("");
 					$('#success1').text("Đổi mật khẩu thành công");
 					console.log(result);
 				},
-				error : function(error) {
-					$('#Error1').text("Lỗi rồi");
-					console.log(error);
-				}
+				error: function(xhr) {
+					$('#success1').text("");
+			        if (xhr.status === 400) {
+			            // Trường hợp lỗi 400 Bad Request
+			            $('#Error1').text("Tên người dùng không tồn tại");
+			        } else if(xhr.status === 409){
+			        	$('#Error1').text("Số điện thoại không hợp lệ");
+			        }
+			        else {
+			            $('#Error1').text("Lỗi rồi");
+			            console.log(xhr);
+			        }
+			    }
 			});
 		}
 	})

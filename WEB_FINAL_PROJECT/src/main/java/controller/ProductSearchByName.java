@@ -23,14 +23,12 @@ import serviceImpl.UserService;
 public class ProductSearchByName extends HttpServlet{
 	CategoryService categoryservice = new CategoryServiceImpl();
 	ProductService productservice = new ProductServiceImpl();
-	IUserService userService = new UserService();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		req.setAttribute("users", userService.findAll());
 
 		//Get All Category
 		List<CategoryModel> allCategory = categoryservice.findAll();

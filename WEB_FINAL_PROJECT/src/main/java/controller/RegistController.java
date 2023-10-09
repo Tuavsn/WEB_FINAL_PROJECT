@@ -20,14 +20,12 @@ import serviceImpl.UserService;
 public class RegistController extends HttpServlet {
 	private static final long serialVersionUID = -8607374566340550961L;
 	CategoryService categoryservice = new CategoryServiceImpl();
-	IUserService userService = new UserService();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		req.setAttribute("users", userService.findAll());
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
 		RequestDispatcher rq = req.getRequestDispatcher("views/regist.jsp");

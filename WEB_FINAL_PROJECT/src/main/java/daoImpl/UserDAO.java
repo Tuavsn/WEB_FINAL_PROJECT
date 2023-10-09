@@ -16,11 +16,20 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 	@Override
 	public UserModel findByUserNameAndPasswordAndStatus(String userName, String password) {
 	
-		StringBuilder sql = new StringBuilder("SELECT * FROM user AS u");
-		sql.append(" INNER JOIN role AS r ON r.id = u.roleid");
-		sql.append(" WHERE username = ? AND password = ? ");
-		List<UserModel> users = query(sql.toString(), new UserMapper(), userName, password);
-		return users.isEmpty() ? null : users.get(0);
+		if(password == null) {
+			StringBuilder sql = new StringBuilder("SELECT * FROM user AS u");
+			sql.append(" INNER JOIN role AS r ON r.id = u.roleid");
+			sql.append(" WHERE username = ? ");
+			List<UserModel> users = query(sql.toString(), new UserMapper(), userName);
+			return users.isEmpty() ? null : users.get(0);
+		}
+		else {
+			StringBuilder sql = new StringBuilder("SELECT * FROM user AS u");
+			sql.append(" INNER JOIN role AS r ON r.id = u.roleid");
+			sql.append(" WHERE username = ? AND password = ? ");
+			List<UserModel> users = query(sql.toString(), new UserMapper(), userName, password);
+			return users.isEmpty() ? null : users.get(0);
+		}
 	}
 
 	@Override
@@ -84,6 +93,15 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 		String sql = "UPDATE user SET password = ?, fullname = ?, roleid = ?, sdt = ? where id = ?";
 		update(sql,userModel.getPassword(),userModel.getFullName(),userModel.getRoleId(),userModel.getSdt(),userModel.getId());
 		
+	}
+
+	@Override
+	public UserModel findByUserNameAndSdt(String userName, String Sdt) {
+		StringBuilder sql = new StringBuilder("SELECT * FROM user AS u");
+		sql.append(" INNER JOIN role AS r ON r.id = u.roleid");
+		sql.append(" WHERE username = ? AND sdt = ?");
+		List<UserModel> users = query(sql.toString(), new UserMapper(), userName,Sdt);
+		return users.isEmpty() ? null : users.get(0);
 	}
 
 }

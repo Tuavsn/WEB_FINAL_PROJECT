@@ -10,7 +10,7 @@
 				<div class="card-body p-5 ">
 					<div id="success" class="text-success text-center"
 						style="font-size: 14px; font-weight: bold;"></div>
-					<div id="Error" class="text-danger"
+					<div id="Error" class="text-danger text-center"
 						style="font-size: 14px; font-weight: bold;"></div>
 					<h2 class="text-uppercase text-center mb-3">Đăng ký tài khoản</h2>
 	
@@ -69,10 +69,7 @@
 						</p>
 	
 					</form>
-					<c:forEach var="user" items="${users}">
-						<input type="hidden" id="${user.id}" name="name"
-							value="${user.userName}">
-					</c:forEach>
+					
 				</div>
 			</div>
 		</div>
@@ -104,15 +101,7 @@
 			if (check == true) {
 				return;
 			}
-			var inputs = $('input[name="name"]');
-			inputs.each(function() {
-				var userNameOld = $(this).val();
-				if (userNameOld == userName) {
-					$('#userNameError')
-							.text("Tài khoản đã tồn tại");
-					check = true;
-				}
-			});
+			
 			if (password != repeatPassword) {
 				$('#passwordError').text(
 						"Mật khẩu nhập lại chưa đúng");
@@ -133,6 +122,7 @@
 				addUser(data);
 			}
 		})
+		
 		function addUser(data) {
 			$.ajax({
 				url : '${APIurl}',
@@ -141,14 +131,20 @@
 				data : JSON.stringify(data),
 				dataType : 'json',
 				success : function(result) { //result la ket qua tra ve vd : newModel,...
-					$('#success').text("Đăng ký thành công");
-					console.log(result);
+					$('#Error').text("");
+					$('#success').text("Đăng ký thành công");s
 				},
-				error : function(error) {
-					$('#Error').text("Lỗi rồi");
-					console.log(error);
-				}
+				error: function(xhr) {
+					$('#success').text("");
+			        if (xhr.status === 400) {
+			            // Trường hợp lỗi 400 Bad Request
+			            $('#Error').text("Tên người dùng đã tồn tại");
+			        } else {
+			            $('#Error').text("Lỗi rồi");
+			            console.log(xhr);
+			        }
+			    }
 			});
 		}
-	})
+	
 </script>

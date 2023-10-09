@@ -15,4 +15,5 @@ public interface IUserService {
 	List<UserModel> findAll(Pageble pageble);
 	void deleteUser(long ids[]);
 	UserModel updateUser(UserModel userModel);
+	UserModel findByUserNameAndSdt(String userName,String Sdt);
 }
