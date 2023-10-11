@@ -61,7 +61,6 @@ public class AuthorizationFilter implements Filter //su ly phan quyen dang nhap 
 				out.print("location='"+request.getContextPath()+"/home'");
 				out.println("</script>");
 			}
-			
 		}else {
 			filterChain.doFilter(servletRequest, servletResponse);
 		}

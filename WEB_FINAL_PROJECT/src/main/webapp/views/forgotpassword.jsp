@@ -127,9 +127,9 @@
 					$('#success1').text("");
 			        if (xhr.status === 400) {
 			            // Trường hợp lỗi 400 Bad Request
-			            $('#Error1').text("Tên người dùng không tồn tại");
+			            $('#userNameError1').text("Tên người dùng không tồn tại");
 			        } else if(xhr.status === 409){
-			        	$('#Error1').text("Số điện thoại không hợp lệ");
+			        	$('#sdtError1').text("Số điện thoại không hợp lệ");
 			        }
 			        else {
 			            $('#Error1').text("Lỗi rồi");

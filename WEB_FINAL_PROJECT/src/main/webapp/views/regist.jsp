@@ -138,7 +138,7 @@
 					$('#success').text("");
 			        if (xhr.status === 400) {
 			            // Trường hợp lỗi 400 Bad Request
-			            $('#Error').text("Tên người dùng đã tồn tại");
+			            $('#userNameError').text("Tên người dùng đã tồn tại");
 			        } else {
 			            $('#Error').text("Lỗi rồi");
 			            console.log(xhr);
