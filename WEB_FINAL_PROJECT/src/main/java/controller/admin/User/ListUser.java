@@ -1,6 +1,8 @@
 package controller.admin.User;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,6 +35,14 @@ public class ListUser extends HttpServlet{
 		request.setCharacterEncoding("UTF-8");
 		UserModel model = FormUtil.toModel(UserModel.class, request);
 		Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem());
+		Map<String, String> dataMap = new HashMap<String, String>();
+		dataMap.put("username", "UserName");
+		dataMap.put("password", "Password");
+		dataMap.put("fullname", "Họ tên");
+		dataMap.put("sdt", "Số điện thoại");
+		dataMap.put("name", "Quyền");
+		dataMap.put("status", "Trạng thái");
+		request.setAttribute("dataMap", dataMap);
 		if(model.getKey() == null && model.getSearch()==null) {
 			model.setListResult(userService.findAll(pageble));
 			model.setTotalItem(userService.getTotalItem());

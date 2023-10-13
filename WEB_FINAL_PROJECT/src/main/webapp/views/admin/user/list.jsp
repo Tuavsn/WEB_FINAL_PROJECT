@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Hashtable"%>
 <%@include file="/common/taglib.jsp" %>
 <c:url var="APIurl" value="/api-web-rigist"/>
 <c:url var ="NewURL" value="/admin-user-edit"/>
@@ -36,17 +39,27 @@
 					<form class="form-search" action="<c:url value="/admin-user-list"/>" id="formSreach" method="get">
 						<input type="hidden" value="1" name="page">
 						<input type="hidden" value="4" name="maxPageItem">
-						<select id="roleId" name="key">
-							<option value="username">UserName</option>
-							<option value="password">Password</option>
-							<option value="fullname">Họ tên</option>
-							<option value="sdt">Số điện thoại</option>
-							<option value="name">Quyền</option>
-							<option value="status">Trạng thái</option>
+						<select id="roleId" name="key" title="Chọn nội dụng tìm kiếm">
+						<c:if test="${empty model.key }">
+							<c:forEach var="item" items="${dataMap}">
+								<option value="${item.key}">${item.value}</option>
+							</c:forEach>
+						</c:if>
+						<c:if test="${not empty model.key }">
+							<c:forEach var="item" items="${dataMap}">
+							<c:if test="${item.key==model.key }">
+								<option value="${item.key}" selected="selected">${item.value}</option>
+							</c:if>
+							<c:if test="${item.key!=model.key }">
+								<option value="${item.key}">${item.value}</option>
+							</c:if>
+								
+							</c:forEach>
+						</c:if>
 						</select>
 						<span class="input-icon">
-							<input type="text" placeholder="Search ..." value="${model.search}" name="search" class="nav-search-input" id="nav-search-input" autocomplete="off" style="padding-left: 12px!important;"/>
-							<button type="submit" id="btnSerach"><i class="ace-icon fa fa-search nav-search-icon"></i></button>
+							<input type="text" placeholder="Nhập gì đó ..." value="${model.search}" name="search" class="nav-search-input" id="nav-search-input" autocomplete="off" style="padding-left: 12px!important;"/>
+							<button type="submit" id="btnSerach" title="Tìm kiếm"><i class="ace-icon fa fa-search nav-search-icon"></i></button>
 						</span>
 					</form>
 				</div><!-- /.nav-search -->

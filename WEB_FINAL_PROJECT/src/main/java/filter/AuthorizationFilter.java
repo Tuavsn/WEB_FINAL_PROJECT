@@ -12,6 +12,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.WebFilter;
 
 import constant.SystemConstant;
 import model.UserModel;
@@ -64,7 +65,6 @@ public class AuthorizationFilter implements Filter //su ly phan quyen dang nhap 
 		}else {
 			filterChain.doFilter(servletRequest, servletResponse);
 		}
-		
 	}
 
 	@Override
