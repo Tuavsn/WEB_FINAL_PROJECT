@@ -33,9 +33,17 @@ public class ListUser extends HttpServlet{
 		request.setCharacterEncoding("UTF-8");
 		UserModel model = FormUtil.toModel(UserModel.class, request);
 		Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem());
-		model.setListResult(userService.findAll(pageble));
-		model.setTotalItem(userService.getTotalItem());
-		model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
+		if(model.getKey() == null && model.getSearch()==null) {
+			model.setListResult(userService.findAll(pageble));
+			model.setTotalItem(userService.getTotalItem());
+			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
+		}
+		else 
+		{
+			model.setListResult(userService.findAllSearch(pageble, model.getKey(), model.getSearch()));
+			model.setTotalItem(userService.getTotalItemSearch(model.getKey(), model.getSearch()));
+			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
+		}
 		request.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rq = request.getRequestDispatcher("views/admin/user/list.jsp");
 		rq.forward(request, resp);

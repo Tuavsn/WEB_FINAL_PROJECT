@@ -31,6 +31,7 @@
 	            	<li class="active">Cập nhập thông tin</li>
 	            </c:if>
             </ul><!-- /.breadcrumb -->
+            
         </div>
         <div class="page-content">
         	<div class="page-header">

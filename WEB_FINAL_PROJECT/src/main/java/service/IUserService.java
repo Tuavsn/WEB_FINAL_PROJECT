@@ -12,7 +12,9 @@ public interface IUserService {
 	List<UserModel> findAll();
 	UserModel changePassword(UserModel userModel);
 	int getTotalItem();
+	int getTotalItemSearch(String key,String search);
 	List<UserModel> findAll(Pageble pageble);
+	List<UserModel> findAllSearch(Pageble pageble,String key,String search);
 	void deleteUser(long ids[]);
 	UserModel updateUser(UserModel userModel);
 	UserModel findByUserNameAndSdt(String userName,String Sdt);

@@ -68,6 +68,16 @@ public class UserService implements IUserService{
 	public UserModel findByUserNameAndSdt(String userName, String Sdt) {
 		return userDAO.findByUserNameAndSdt(userName, Sdt);
 	}
+
+	@Override
+	public int getTotalItemSearch(String key, String search) {
+		return userDAO.getTotalItemSearch(key, search);
+	}
+
+	@Override
+	public List<UserModel> findAllSearch(Pageble pageble, String key, String search) {
+		return userDAO.findAllSearch(pageble, key, search);
+	}
 	
 
 }

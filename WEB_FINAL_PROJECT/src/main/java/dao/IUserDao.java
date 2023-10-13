@@ -12,7 +12,9 @@ public interface IUserDao extends GenericDAO<UserModel> {
 	List<UserModel> findAll();
 	void chagePassword(UserModel userModel);
 	List<UserModel> findAll(Pageble pageble);
+	List<UserModel> findAllSearch(Pageble pageble,String key,String search);
 	int getTotalItem();
+	int getTotalItemSearch(String key,String search);
 	void deleteUser(Long id);
 	void updateUser(UserModel userModel);
 	UserModel findByUserNameAndSdt(String userName,String Sdt);

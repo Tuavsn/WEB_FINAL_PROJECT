@@ -20,7 +20,6 @@
 </head>
 <body>
 <div class="main-content">
-	<form action="<c:url value="/admin-user-list"/>" id="formSubmit" method="get"> <!-- khi submit thi nhay vao url admin-new voi method get  -->
 	    <div class="main-content-inner">
 	        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
 	            <ul class="breadcrumb">
@@ -33,7 +32,26 @@
 	                	<a href="<c:url value = '/admin-user-list?page=1&maxPageItem=4'/>">Danh sách người dùng</a>
 	                </li>
 	            </ul><!-- /.breadcrumb -->
+	            <div class="nav-search" id="nav-search">
+					<form class="form-search" action="<c:url value="/admin-user-list"/>" id="formSreach" method="get">
+						<input type="hidden" value="1" name="page">
+						<input type="hidden" value="4" name="maxPageItem">
+						<select id="roleId" name="key">
+							<option value="username">UserName</option>
+							<option value="password">Password</option>
+							<option value="fullname">Họ tên</option>
+							<option value="sdt">Số điện thoại</option>
+							<option value="name">Quyền</option>
+							<option value="status">Trạng thái</option>
+						</select>
+						<span class="input-icon">
+							<input type="text" placeholder="Search ..." value="${model.search}" name="search" class="nav-search-input" id="nav-search-input" autocomplete="off" style="padding-left: 12px!important;"/>
+							<button type="submit" id="btnSerach"><i class="ace-icon fa fa-search nav-search-icon"></i></button>
+						</span>
+					</form>
+				</div><!-- /.nav-search -->
 	        </div>
+	  <form action="<c:url value="/admin-user-list"/>" id="formSubmit" method="get"> <!-- khi submit thi nhay vao url admin-new voi method get  -->
 	        <div class="page-content">
 	            <div class="row" >
 	                <div class="col-xs-12">
@@ -119,6 +137,10 @@
 									  <ul class="pagination" id="pagination" ></ul>
 									 <input type="hidden" value =" " id = "page" name="page">	<!-- name phai giong trong model -->
 									 <input type="hidden" value =" " id = "maxPageItem" name="maxPageItem">	<!-- khi bao name de mapping len url -->
+									 <c:if test="${not empty model.search}">
+									 	<input type="hidden" value ="${model.key}" name="key">
+									 	<input type="hidden" value ="${model.search }" name="search">
+									 </c:if>
 								</div>
 							</div>
 						</div>

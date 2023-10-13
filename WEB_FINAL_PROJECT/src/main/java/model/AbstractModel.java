@@ -14,6 +14,8 @@ public class AbstractModel<T> {
 	private String sortName;
 	private String sortBy;
 	private String type;
+	private String key;
+	private String search;
 	public String getSortName() {
 		return sortName;
 	}
@@ -77,6 +79,19 @@ public class AbstractModel<T> {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 
 	
 }

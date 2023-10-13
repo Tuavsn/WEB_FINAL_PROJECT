@@ -68,9 +68,9 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 	@Override
 	public List<UserModel> findAll(Pageble pageble) {
 		//String sql = "SELECT * FROM news LIMIT ?,?";
-		StringBuilder sql = new StringBuilder("SELECT * FROM user inner join role on user.roleid = role.id ORDER BY status DESC");
+		StringBuilder sql = new StringBuilder("SELECT * FROM user inner join role on user.roleid = role.id");
 		if(pageble.getOffset() !=null && pageble.getLimit() !=null) {
-			sql.append(" LIMIT "+pageble.getOffset()+","+pageble.getLimit()+"");
+			sql.append(" ORDER BY status DESC LIMIT "+pageble.getOffset()+","+pageble.getLimit()+"");
 		}
 		return query(sql.toString(), new UserMapper());
 	}
@@ -102,6 +102,26 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 		sql.append(" WHERE username = ? AND sdt = ?");
 		List<UserModel> users = query(sql.toString(), new UserMapper(), userName,Sdt);
 		return users.isEmpty() ? null : users.get(0);
+	}
+
+	@Override
+	public int getTotalItemSearch(String key,String search) {
+		String sql = "SELECT count(*) FROM user inner join role on user.roleid = role.id where "+key+" LIKE ? ";
+		search="%"+search+"%";
+		return count(sql,search);
+	}
+
+	@Override
+	public List<UserModel> findAllSearch(Pageble pageble, String key, String search) {
+		StringBuilder sql = new StringBuilder("SELECT * FROM user inner join role on user.roleid = role.id");
+		if(key !=null && search != null) {
+			sql.append(" WHERE "+key+" LIKE ? ");
+		}
+		if(pageble.getOffset() !=null && pageble.getLimit() !=null) {
+			sql.append(" ORDER BY status DESC LIMIT "+pageble.getOffset()+","+pageble.getLimit()+"");
+		}
+		search="%"+search+"%";
+		return query(sql.toString(), new UserMapper(),search);
 	}
 
 }
