@@ -21,7 +21,7 @@
                 </li>
                 <li class="active">Quản lý đăng nhập</li>
 	            <li class="">
-	            	<a href="<c:url value = '/admin-user-list?page=1&maxPageItem=4'/>">Danh sách người dùng</a>
+	            	<a href="<c:url value = '/admin-user-list?page=1&maxPageItem=7'/>">Danh sách người dùng</a>
 	            </li>
 	            <c:if test="${empty model.id }">
 	            	<li class="active">Thêm tài khoản</li>

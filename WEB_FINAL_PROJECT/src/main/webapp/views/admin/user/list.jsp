@@ -18,7 +18,21 @@
     pointer-events: none; /* Ngăn chặn sự kiện click */
     opacity: 0.6; /* Làm mờ thẻ */
     cursor: no-drop; /* Thay đổi con trỏ chuột thành dấu "không cho phép" */
+    }
+    .center{
+       position: absolute;
+       left: 50%;
+       transform: translateX(-50%);
+        
 	}
+	 html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            position: relative;
+        }
 </style>
 </head>
 <body>
@@ -32,13 +46,13 @@
 	                </li>
 	                <li class="active">Quản lý đăng nhập</li>
 	                <li class="active">
-	                	<a href="<c:url value = '/admin-user-list?page=1&maxPageItem=4'/>">Danh sách người dùng</a>
+	                	<a href="<c:url value = '/admin-user-list?page=1&maxPageItem=7'/>">Danh sách người dùng</a>
 	                </li>
 	            </ul><!-- /.breadcrumb -->
 	            <div class="nav-search" id="nav-search">
 					<form class="form-search" action="<c:url value="/admin-user-list"/>" id="formSreach" method="get">
 						<input type="hidden" value="1" name="page">
-						<input type="hidden" value="4" name="maxPageItem">
+						<input type="hidden" value="7" name="maxPageItem">
 						<select id="roleId" name="key" title="Chọn nội dụng tìm kiếm">
 						<c:if test="${empty model.key }">
 							<c:forEach var="item" items="${dataMap}">
@@ -147,7 +161,9 @@
 									      </c:forEach>
 									    </tbody>
 									  </table>	
-									  <ul class="pagination" id="pagination" ></ul>
+									  <div >
+									  	<ul class="pagination " id="pagination"></ul>
+									  </div>
 									 <input type="hidden" value =" " id = "page" name="page">	<!-- name phai giong trong model -->
 									 <input type="hidden" value =" " id = "maxPageItem" name="maxPageItem">	<!-- khi bao name de mapping len url -->
 									 <c:if test="${not empty model.search}">

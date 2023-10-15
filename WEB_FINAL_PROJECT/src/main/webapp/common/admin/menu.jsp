@@ -55,7 +55,7 @@
 
 						<ul class="submenu">
 							<li>
-	                   				<a href='<c:url value='/admin-user-list?page=1&maxPageItem=4'/>'>
+	                   				<a href='<c:url value='/admin-user-list?page=1&maxPageItem=7'/>'>
 			                        <i class="menu-icon fa fa-caret-right"></i>
 			                        Danh sách người dùng
 			                    </a>
