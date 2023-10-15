@@ -143,7 +143,14 @@
 										        <td>${item.fullName}</td>
 										        <td>${item.sdt}</td>
 										        <td>${item.role.name}</td>
-										        <td>${item.status}</td>
+										        <td>
+										        	<c:if test="${item.status==1}">
+										        		<span class="label label-sm label-success" style="border-radius: 5px;padding: 4px">Đang hoạt động</span>
+										        	</c:if>
+										        	<c:if test="${item.status!=1}">
+										        		<span class="label label-sm label-danger" style="border-radius: 5px;padding: 4px">Hết hiệu lực</span>
+										        	</c:if>
+										        </td>
 										        <td>
 											        <c:url var="editURL" value="/admin-user-edit">
 														<c:param name="id" value="${item.id}"/>
