@@ -34,7 +34,15 @@
         </div>
     </div>
     <ul class="nav nav-list">
-        <li>
+    <li class="">
+		<a href="<c:url value = '/admin-home'/>">
+			<i class="menu-icon fa fa-tachometer"></i>
+			<span class="menu-text"> Dashboard </span>
+		</a>
+	
+		<b class="arrow"></b>
+	</li>
+        <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
                 <span class="menu-text"></span>
@@ -44,23 +52,23 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="ace-icon fa fa-user"></i>
-							<span class="menu-text"> Quản lý đăng nhập </span>
+					<a href="#" class="dropdown-toggle">
+						<i class="ace-icon fa fa-user"></i>
+						<span class="menu-text"> Quản lý đăng nhập </span>
 
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
 
-						<b class="arrow"></b>
+					<b class="arrow"></b>
 
-						<ul class="submenu">
-							<li>
-	                   				<a href='<c:url value='/admin-user-list?page=1&maxPageItem=7'/>'>
-			                        <i class="menu-icon fa fa-caret-right"></i>
-			                        Danh sách người dùng
-			                    </a>
-			                    <b class="arrow"></b>
-		                	</li>
+					<ul class="submenu">
+						<li>
+                   				<a href='<c:url value='/admin-user-list?page=1&maxPageItem=7'/>'>
+		                        <i class="menu-icon fa fa-caret-right"></i>
+		                        Danh sách người dùng
+		                    </a>
+		                    <b class="arrow"></b>
+	                	</li>
 
 							
 						</ul>
