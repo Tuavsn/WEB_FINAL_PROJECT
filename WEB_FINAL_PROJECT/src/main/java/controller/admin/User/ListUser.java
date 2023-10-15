@@ -3,6 +3,7 @@ package controller.admin.User;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,6 +29,8 @@ public class ListUser extends HttpServlet{
 	
 	private static final long serialVersionUID = -982040941730206481L;
 	IUserService userService = new UserService();
+	ResourceBundle resourceBundle = ResourceBundle.getBundle("message");
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
@@ -43,6 +46,20 @@ public class ListUser extends HttpServlet{
 		dataMap.put("name", "Quyền");
 		dataMap.put("status", "Trạng thái");
 		request.setAttribute("dataMap", dataMap);
+		if(request.getParameter("message") != null) {
+			String message = request.getParameter("message");
+			if(message.equals("error_system")) 
+			{
+				request.setAttribute("alert","danger");
+				request.setAttribute("message",resourceBundle.getString(message) );
+			}
+			else 
+			{
+				request.setAttribute("alert","success");
+				request.setAttribute("message",resourceBundle.getString(message) );
+			}
+			
+		}
 		if(model.getKey() == null && model.getSearch()==null) {
 			model.setListResult(userService.findAll(pageble));
 			model.setTotalItem(userService.getTotalItem());

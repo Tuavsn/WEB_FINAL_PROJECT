@@ -82,11 +82,16 @@
 	        <div class="page-content">
 	            <div class="row" >
 	                <div class="col-xs-12">
-	                 <c:if test="${not empty message }">
-	                	<div class="alert alert-${alert}" role="alert">
-							  	${messageResponse}
+					<c:if test="${not empty alert }">
+						<div class="alert alert-block alert-${alert}">
+							<button type="button" class="close" data-dismiss="alert">
+								<i class="ace-icon fa fa-times"></i>
+							</button>
+							<i class="ace-icon fa fa-check green"></i>
+							${message}
 						</div>
-	                </c:if>
+					</c:if>
+	                 
 	                <div class="widget-box table-filter">
 									<div class="table-btn-controls">
 										<div class="pull-right tableTools-container">
@@ -207,7 +212,13 @@
             return $(this).val();
         }).get();
 		data['ids'] = ids;
-		deleteNew(data);
+		if (ids.length === 0) {
+		    alert("Vui lòng chọn ít nhất một user cần xóa.");
+		    // Hoặc thực hiện các hành động cần thiết khi có lỗi.
+		} else {
+		    data['ids'] = ids;
+		    deleteNew(data);
+		}
 	});
 	
 	function deleteNew(data) {
@@ -217,9 +228,10 @@
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function (result) {
-            	window.location.href = "/WEB_FINAL_PROJECT/admin-user-list?page=1&maxPageItem=4"
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-user-list?page=1&maxPageItem=7&message=delete_success"
             },
             error: function (error) {
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-user-list?page=1&maxPageItem=7&message=error_system"
             	console.log(error);
             }
         });
