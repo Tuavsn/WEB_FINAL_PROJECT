@@ -34,14 +34,13 @@
         </div>
     </div>
     <ul class="nav nav-list">
-    <li class="">
-		<a href="<c:url value = '/admin-home'/>">
-			<i class="menu-icon fa fa-tachometer"></i>
-			<span class="menu-text"> Dashboard </span>
-		</a>
-	
-		<b class="arrow"></b>
-	</li>
+	    <li class="">
+			<a href="<c:url value = '/admin-home'/>">
+				<i class="menu-icon fa fa-tachometer"></i>
+				<span class="menu-text"> Dashboard </span>
+			</a>
+			<b class="arrow"></b>
+		</li>
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
@@ -58,21 +57,17 @@
 
 						<b class="arrow fa fa-angle-down"></b>
 					</a>
-
 					<b class="arrow"></b>
-
 					<ul class="submenu">
-						<li>
+						<li class="">
                    				<a href='<c:url value='/admin-user-list?page=1&maxPageItem=7'/>'>
 		                        <i class="menu-icon fa fa-caret-right"></i>
 		                        Danh sách người dùng
 		                    </a>
 		                    <b class="arrow"></b>
 	                	</li>
-
-							
-						</ul>
-					</li>
+					</ul>
+				</li>
             </ul>
         </li>
     </ul>
