@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <c:url var="APIurl" value="/api-web-rigist" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
 	<div class="modal fade" id="forgotPasswordModal">
 		<div class="modal-dialog modal-dialog-centered">
@@ -17,7 +15,7 @@
 					<form id="formSubmit1">
 	
 						<div class="form-outline mb-4">
-							<label class="form-label" for="form3Example1cg">Tài khoản</label>
+							<label class="form-label" for="userName1">Tài khoản</label>
 							<input type="text" id="userName1" name="userName"
 								class="form-control form-control-lg " />
 							<div id="userNameError1" class="text-danger"
@@ -25,33 +23,27 @@
 						</div>
 	
 						<div class="form-outline mb-4">
-							<label class="form-label" for="form3Example3cg">Số điện
-								thoại đăng ký</label> <input type="text" id="sdt1" name="sdt"
-								class="form-control form-control-lg" />
-							<div id="sdtError1" class="text-danger"
-								style="font-size: 14px; font-weight: bold;"></div>
-							<div id="sdtdangky1" class="text-danger"
-								style="font-size: 14px; font-weight: bold;"></div>
+							<label class="form-label" for="sdt1">Số điện thoại đăng ký</label> 
+							<input type="text" id="sdt1" name="sdt" class="form-control form-control-lg" />
+							<div id="sdtError1" class="text-danger" style="font-size: 14px; font-weight: bold;"></div>
+							<div id="sdtdangky1" class="text-danger" style="font-size: 14px; font-weight: bold;"></div>
 						</div>
 	
 						<div class="form-outline mb-4">
-							<label class="form-label" for="form3Example4cg">Mật khẩu
-								mới</label> <input type="password" id="password1" name="password"
-								class="form-control form-control-lg" />
+							<label class="form-label" for="password1">Mật khẩu mới</label> 
+							<input type="password" id="password1" name="password" class="form-control form-control-lg" />
 	
 						</div>
 	
 						<div class="form-outline mb-4">
-							<label class="form-label" for="form3Example4cdg">Nhập lại
-								mật khẩu mới</label> <input type="password" id="repeatPassword1"
-								name="repeatPassword" class="form-control form-control-lg" />
-							<div id="passwordError1" class="text-danger"
-								style="font-size: 14px; font-weight: bold;"></div>
+							<label class="form-label" for="repeatPassword1">Nhập lại mật khẩu mới</label> 
+							<input type="password" id="repeatPassword1" name="repeatPassword" class="form-control form-control-lg" />
+							<div id="passwordError1" class="text-danger" style="font-size: 14px; font-weight: bold;"></div>
 						</div>
 						<div class="d-flex justify-content-center">
-							<button type="button"
-								class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-								id="btnChangePassword">Xác nhận</button>
+							<button type="button"class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" id="btnChangePassword">
+								Xác nhận
+							</button>
 						</div>
 						<div id="empty1" class="text-danger"
 							style="font-size: 14px; font-weight: bold;"></div>

@@ -5,6 +5,7 @@ import java.util.List;
 import dao.ProductDao;
 import daoImpl.ProductDaoImpl;
 import model.ProductModel;
+import paging.Pageble;
 import service.ProductService;
 
 public class ProductServiceImpl implements ProductService {
@@ -32,6 +33,26 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductModel> getProductByName(String ProductName) {
 		return productdao.getProductByName(ProductName);
+	}
+
+	@Override
+	public List<ProductModel> findAll(Pageble pageble) {
+		return productdao.findAll(pageble);
+	}
+
+	@Override
+	public List<ProductModel> findAllSearch(Pageble pageble, String key, String search) {
+		return productdao.findAllSearch(pageble, key, search);
+	}
+
+	@Override
+	public int getTotalItem() {
+		return productdao.getTotalItem();
+	}
+
+	@Override
+	public int getTotalItemSearch(String key, String search) {
+		return productdao.getTotalItemSearch(key, search);
 	}
 
 }

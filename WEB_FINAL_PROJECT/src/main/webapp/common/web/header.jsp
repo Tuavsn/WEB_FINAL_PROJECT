@@ -1,11 +1,9 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
-
 <div>
 	<div class="bg-secondary py-2 px-xl-5">
-		<div class="row" style="width: 80%; margin: 0 auto">
+		<div class="row" style="width: 85%; margin: 0 auto">
 			<div class="col-lg-6 d-none d-inline-flex align-items-center">
 				<i class="fab fa-facebook-f mx-2"></i> <i class="fab fa-youtube mx-2"></i>
 				<i class="fab fa-instagram mx-2"></i>
@@ -21,19 +19,11 @@
 						</a>
 					</c:if>
 					<c:if test="${ empty USERMODEL }">
-						<li class="nav-item">
-							<button type="button" class="mx-2 text-body btn" data-toggle="modal" data-target="#loginModal">Đăng nhập</button>
-							<button type="button" class="mx-2 text-body btn" data-toggle="modal" data-target="#registModal">Đăng ký</button>
+						<li class="nav-item" style="list-style:none">
+							<button type="button" class="text-body btn" data-toggle="modal" data-target="#loginModal">Đăng nhập</button>
+							<button type="button" class="text-body btn" data-toggle="modal" data-target="#registModal">Đăng ký</button>
 						</li>
 					</c:if>
-<%-- 					<c:if test="${ empty USERMODEL }">
-						<li class="nav-item"><a class="text-dark px-2" href=""> <a
-								href="<c:url value = 'dang-nhap?action=login'/>"
-								class="mx-2 text-body">Đăng nhập</a> <a
-								href="<c:url value = 'dang-ky'/>" class="mx-2 text-body">Đăng
-									ký</a>
-						</a></li>
-					</c:if> --%>
 				</div>
 			</div>
 		</div>
@@ -49,7 +39,7 @@
 				</a>
 			</div>
 			<div class="col-lg-6 col-6 text-left">
-				<form action="search">
+				<form action="search" id="search">
 					<div class="input-group">
 						<input type="text" name="keyword" class="form-control"
 							placeholder="Tìm kiếm sản phẩm">

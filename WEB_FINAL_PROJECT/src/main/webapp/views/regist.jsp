@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <c:url var="APIurl" value="/api-web-rigist" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
 	<div class="modal fade" id="registModal">
 		<div class="modal-dialog modal-dialog-centered">
@@ -17,55 +15,47 @@
 					<form id="formSubmit">
 	
 						<div class="form-outline mb-3">
-							<label class="form-label" for="userName">Tài khoản</label> <input
-								type="text" id="userName" name="userName"
-								class="form-control form-control-lg " />
-							<div id="userNameError" class="text-danger"
-								style="font-size: 14px; font-weight: bold;"></div>
+							<label class="form-label" for="userName">Tài khoản</label> 
+							<input type="text" id="userName" name="userName" class="form-control form-control-lg " />
+							<div id="userNameError" class="text-danger" style="font-size: 14px; font-weight: bold;"></div>
 						</div>
 	
 						<div class="form-outline mb-3">
-							<label class="form-label" for="sdt">Số điện thoại</label> <input
-								type="text" id="sdt" name="sdt"
-								class="form-control form-control-lg" />
-							<div id="sdtError" class="text-danger"
-								style="font-size: 14px; font-weight: bold;"></div>
+							<label class="form-label" for="sdt">Số điện thoại</label> 
+							<input type="text" id="sdt" name="sdt" class="form-control form-control-lg" />
+							<div id="sdtError" class="text-danger" style="font-size: 14px; font-weight: bold;"></div>
 	
 						</div>
 	
 						<div class="form-outline mb-3">
-							<label class="form-label" for="fullName">Họ tên</label> <input
-								type="text" id="fullName" name="fullName"
-								class="form-control form-control-lg" />
-							<div id="fullNameError" class="text-danger"
-								style="font-size: 14px; font-weight: bold;"></div>
+							<label class="form-label" for="fullName">Họ tên</label> 
+							<input type="text" id="fullName" name="fullName" class="form-control form-control-lg" />
+							<div id="fullNameError" class="text-danger" style="font-size: 14px; font-weight: bold;"></div>
 						</div>
 	
 						<div class="form-outline mb-3">
-							<label class="form-label" for="password">Mật khẩu</label> <input
-								type="password" id="password" name="password"
-								class="form-control form-control-lg" />
+							<label class="form-label" for="password">Mật khẩu</label> 
+							<input type="password" id="password" name="password" class="form-control form-control-lg" />
 	
 						</div>
 	
 						<div class="form-outline mb-3">
-							<label class="form-label" for="repeatPassword">Nhập lại
-								mật khẩu</label> <input type="password" id="repeatPassword"
-								name="repeatPassword" class="form-control form-control-lg" />
-							<div id="passwordError" class="text-danger"
-								style="font-size: 14px; font-weight: bold;"></div>
+							<label class="form-label" for="repeatPassword">Nhập lại mật khẩu</label> 
+							<input type="password" id="repeatPassword" name="repeatPassword" class="form-control form-control-lg" />
+							<div id="passwordError" class="text-danger" style="font-size: 14px; font-weight: bold;"></div>
 						</div>
 						<div class="d-flex justify-content-center">
-							<button type="button"
-								class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-								id="btnAdd">Đăng ký</button>
+							<button type="button" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" id="btnAdd">
+							Đăng ký
+							</button>
 						</div>
 						<div id="empty" class="text-danger"
 							style="font-size: 14px; font-weight: bold;"></div>
 						<p class="text-center text-muted mt-4 mb-0">
 							Bạn đã có tài khoản?
-							<button type="button" class="mx-2 text-body btn" data-toggle="modal" data-target="#loginModal" data-dismiss="modal"
-							>Đăng nhập ngay</button>
+							<button type="button" class="mx-2 text-body btn" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">
+							Đăng nhập ngay
+							</button>
 						</p>
 	
 					</form>

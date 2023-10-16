@@ -1,5 +1,4 @@
-  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="container-fluid bg-secondary text-dark  pt-5">
 	<div class="px-xl-5 pt-2">
 		<div class="row" style="width: 85%; margin: 0 auto">

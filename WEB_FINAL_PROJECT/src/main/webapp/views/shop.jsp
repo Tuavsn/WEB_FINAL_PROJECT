@@ -1,16 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="utf-8">
-<title>EShopper - Bootstrap Shop Template</title>
-
-</head>
-
 <body>
 	<div class="mb-1">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 50px">
@@ -170,19 +160,7 @@
 			<div class="col-lg-9 col-md-12">
 				<div class="row pb-3">
 					<div class="col-12 pb-1">
-						<div
-							class="d-flex align-items-center justify-content-between mb-4">
-							<form action="">
-								<div class="input-group">
-									<input type="text" class="form-control"
-										placeholder="Search by name">
-									<div class="input-group-append">
-										<span class="input-group-text bg-transparent text-primary">
-											<i class="fa fa-search"></i>
-										</span>
-									</div>
-								</div>
-							</form>
+						<div class="d-flex align-items-center justify-content-end mb-4">
 							<div class="dropdown ml-4">
 								<button class="btn border dropdown-toggle" type="button"
 									id="triggerId" data-toggle="dropdown" aria-haspopup="true"
@@ -197,7 +175,7 @@
 						</div>
 					</div>
 					<!-- Product List start -->
-					<c:forEach items="${allproduct}" var="product">
+					<c:forEach items="${model.listResult}" var="product">
 						<div class="col-lg-4 col-md-6 col-sm-12 pb-1">
 							<a href="detail?pid=${product.productID}">
 								<div class="card product-item border-0 mb-4">
@@ -230,19 +208,15 @@
 					<!-- Product List end -->
 					<div class="col-12 pb-1">
 						<nav aria-label="Page navigation">
-							<ul class="pagination justify-content-center mb-3">
-								<li class="page-item disabled"><a class="page-link"
-									href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-										<span class="sr-only">Previous</span>
-								</a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#"
-									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										<span class="sr-only">Next</span>
-								</a></li>
-							</ul>
+							<form action="<c:url value='shop' />" id="formSubmit2" method="get">
+								<ul id="pagination" class="pagination justify-content-center mb-3"></ul>
+								<input type="hidden" value =" " id = "page" name="page">	<!-- name phai giong trong model -->
+								<input type="hidden" value =" " id = "maxPageItem" name="maxPageItem">	<!-- khi bao name de mapping len url -->
+								<c:if test="${not empty model.search}">
+									<input type="hidden" value ="${model.key}" name="key">
+									<input type="hidden" value ="${model.search }" name="search">
+								</c:if>
+							</form>
 						</nav>
 					</div>
 				</div>
@@ -253,12 +227,26 @@
 	<!-- Shop End -->
 
 
-
-
-
-
-
-
+<script>
+	var currentPage = ${model.page};
+	var totalPages = ${model.totalPage};
+	var limit = ${model.maxPageItem};
+	$(function () {
+	    window.pagObj = $('#pagination').twbsPagination({
+	        totalPages: totalPages,
+	        startPage: currentPage,
+	        visiblePages: 4,
+	        onPageClick: function (event, page) {
+	            //console.info(page + ' (from options)');
+	            if(currentPage != page)//new khong su ly cho nay page se load lien tuc
+	            {
+	            	$("#page").val(page);
+	 	            $("#maxPageItem").val(limit);//dung de put data
+	 	            $("#formSubmit2").submit(); /* su kien jquery khi submit action form qua trang */
+	            }
+	        }
+	    });
+	});
+</script>
 </body>
 
-</html>

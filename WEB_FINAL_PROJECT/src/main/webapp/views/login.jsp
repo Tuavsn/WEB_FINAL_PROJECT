@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <div class="modal fade" id="loginModal">
 	<div class="modal-dialog modal-dialog-centered">
@@ -14,17 +13,15 @@
 				<form action="<c:url value="/dang-nhap"/>" id="formLogin" method="post">
 
 					<div class="form-outline mb-3">
-						<label class="form-label" for="userName">Tài khoản</label> <input
-							type="text" id="userName2" name="userName"
-							class="form-control form-control-lg " />
+						<label class="form-label" for="userName2">Tài khoản</label> 
+						<input type="text" id="userName2" name="userName" class="form-control form-control-lg " />
 						<div id="userNameError2" class="text-danger"
 							style="font-size: 14px; font-weight: bold;"></div>
 					</div>
 
 					<div class="form-outline mb-3">
-						<label class="form-label" for="password">Mật khẩu</label> <input
-							type="password" id="password2" name="password"
-							class="form-control form-control-lg" />
+						<label class="form-label" for="password2">Mật khẩu</label> 
+						<input type="password" id="password2" name="password" class="form-control form-control-lg" />
 
 					</div>
 

@@ -1,5 +1,4 @@
-  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="container-fluid">
 	<div class="px-xl-5" style="background-color: white;padding-bottom: 20px">
 		<div class="row" style="width: 85%; margin: 0 auto">
@@ -17,7 +16,7 @@
 					<div class="navbar-nav w-100">
 						<c:forEach items="${allcategory}" var="category">
 							<div class="nav-item btn-group dropright">
-							  <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							  <a type="button" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							    ${category.icon} ${category.categoryName}
 							  </a>
 							  <div class="dropdown-menu" style="position: absolute">

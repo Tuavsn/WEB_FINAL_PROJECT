@@ -16,12 +16,12 @@
 					<div class="navbar-nav w-100 style="height: 410px"">
 						<c:forEach items="${allcategory}" var="category">
 							<div class="nav-item btn-group dropright">
-							  <a type="button" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							  <a type="button" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							    ${category.icon} ${category.categoryName}
 							  </a>
 							  <div class="dropdown-menu" style="position: absolute">
 							    <c:forEach items="${category.childCategory}" var="childcategory">
-								    <a class="dropdown-item" href="shop?cid=${childcategory.categoryID}">${childcategory.categoryName}</a>
+								    <a class="dropdown-item" href="shop?page=1&maxPageItem=4&key=cid&search=${childcategory.categoryID}">${childcategory.categoryName}</a>
  						 	  	</c:forEach>
 							  </div>
 							</div>
@@ -47,7 +47,7 @@
 						id="navbarCollapse">
 						<div class="navbar-nav mr-auto py-0">
 							<a href="home" class="nav-item nav-link active">Trang chủ</a> 
-							<a href="shop" class="nav-item nav-link">Sản phẩm</a>
+							<a href="shop?page=1&maxPageItem=6" class="nav-item nav-link">Sản phẩm</a>
 							<a href="contact" class="nav-item nav-link">Thông tin liên hệ</a>
 						</div>
 					</div>

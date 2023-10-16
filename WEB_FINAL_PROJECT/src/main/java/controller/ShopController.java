@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.CategoryModel;
 import model.ProductModel;
+import paging.PageRequest;
+import paging.Pageble;
 import service.CategoryService;
-import service.IUserService;
 import service.ProductService;
 import serviceImpl.CategoryServiceImpl;
 import serviceImpl.ProductServiceImpl;
-import serviceImpl.UserService;
+import utils.FormUtil;
 
 @WebServlet(urlPatterns = { "/shop" })
 public class ShopController extends HttpServlet {
@@ -33,15 +34,21 @@ public class ShopController extends HttpServlet {
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
 		// Get all product
-		String cid = req.getParameter("cid");
-		List<ProductModel> allProduct;
-		if(cid == null) {
-			allProduct = productservice.findAll();	
-		} else {
-			allProduct = productservice.getProductByCID(cid);
+		ProductModel model = FormUtil.toModel(ProductModel.class, req);
+		Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem());
+		if(model.getKey() == null && model.getSearch()==null) {
+			model.setListResult(productservice.findAll(pageble));
+			model.setTotalItem(productservice.getTotalItem());
+			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
 		}
-		req.setAttribute("allproduct", allProduct);
-		req.setAttribute("cid", cid);
+		else 
+		{
+			model.setListResult(productservice.findAllSearch(pageble, model.getKey(), model.getSearch()));
+			model.setTotalItem(productservice.getTotalItemSearch(model.getKey(), model.getSearch()));
+			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
+		}
+		req.setAttribute("model", model);
+		req.setAttribute("cid", model.getSearch());
 		RequestDispatcher rq = req.getRequestDispatcher("views/shop.jsp");
 		rq.forward(req, resp);
 	}
