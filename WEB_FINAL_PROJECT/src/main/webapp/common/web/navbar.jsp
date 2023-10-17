@@ -21,7 +21,7 @@
 							  </a>
 							  <div class="dropdown-menu" style="position: absolute">
 							    <c:forEach items="${category.childCategory}" var="childcategory">
-								    <a class="dropdown-item" href="shop?cid=${childcategory.categoryID}">${childcategory.categoryName}</a>
+								    <a class="dropdown-item" href="shop?page=1&maxPageItem=6&key=cid&search=${childcategory.categoryID}">${childcategory.categoryName}</a>
  						 	  	</c:forEach>
 							  </div>
 							</div>
@@ -45,7 +45,7 @@
 						id="navbarCollapse">
 						<div class="navbar-nav mr-auto py-0">
 							<a href="home" class="nav-item nav-link active">Trang chủ</a> 
-							<a href="shop" class="nav-item nav-link">Sản phẩm</a>
+							<a href="shop?page=1&maxPageItem=6" class="nav-item nav-link">Sản phẩm</a>
 							<a href="contact" class="nav-item nav-link">Thông tin liên hệ</a>
 						</div>
 					</div>

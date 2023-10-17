@@ -24,15 +24,16 @@ DROP TABLE IF EXISTS `cart`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cart` (
   `CartID` bigint NOT NULL AUTO_INCREMENT,
-  `SellerID` bigint DEFAULT NULL,
-  `ProductID` bigint DEFAULT NULL,
-  `Amount` int DEFAULT NULL,
+  `BillID` bigint NOT NULL,
+  `ProductID` bigint NOT NULL,
+  `Quantity` int NOT NULL,
+  `StatusCart` int NOT NULL,
   PRIMARY KEY (`CartID`),
-  KEY `UserID_idx` (`SellerID`),
+  KEY `UserID_idx` (`BillID`),
   KEY `ProductID_idx` (`ProductID`),
   CONSTRAINT `ProductID` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`),
-  CONSTRAINT `SellerID` FOREIGN KEY (`SellerID`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `SellerID` FOREIGN KEY (`BillID`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +42,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (1,1,1,1,1),(2,2,2,1,1);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-07  0:00:10
+-- Dump completed on 2023-10-17 17:44:39
