@@ -35,19 +35,40 @@
 		<c:forEach items="${product}" var="product">
 			<div class="row px-xl-5">
 				<div class="col-lg-5 pb-5">
-					<div id="product-carousel" class="carousel slide"
-						data-ride="carousel">
+					<div id="product-carousel" class="carousel slide" data-ride="carousel">
 						<div class="carousel-inner border">
-							<div class="carousel-item active">
-								<img class="w-100 h-100" src="${product.imageLink}" alt="Image">
+						
+							<%-- <div class="carousel-item active">
+								<img class="w-100 h-100" src="${product.image[0].imageLink}" alt="Image">
 							</div>
+							
+							<div class="carousel-item">
+								<img class="w-100 h-100" src="${product.image[1].imageLink}" alt="Image">
+							</div>
+							
+							<div class="carousel-item">
+								<img class="w-100 h-100" src="${product.image[2].imageLink}" alt="Image">
+							</div> --%>
+							
+							<div class="carousel-item active">
+								<img class="w-100 h-100" src="${product.image[0].imageLink}" alt="Image">
+							</div>
+							<c:forEach items="${product.image}" var="image" varStatus="state">
+							
+								<c:if test="${not state.first}">
+									<div class="carousel-item">
+										<img class="w-100 h-100" src="${image.imageLink}" alt="Image">
+									</div>
+								</c:if>
+								
+							</c:forEach>
+							
 						</div>
-						<a class="carousel-control-prev" href="#product-carousel"
-							data-slide="prev"> <i
-							class="fa fa-2x fa-angle-left text-dark"></i>
-						</a> <a class="carousel-control-next" href="#product-carousel"
-							data-slide="next"> <i
-							class="fa fa-2x fa-angle-right text-dark"></i>
+						<a class="carousel-control-prev" href="#product-carousel" role="button" data-slide="prev"> 
+							<i class="fa fa-2x fa-angle-left text-dark"></i>
+						</a> 
+						<a class="carousel-control-next" href="#product-carousel" role="button" data-slide="next"> 
+							<i class="fa fa-2x fa-angle-right text-dark"></i>
 						</a>
 					</div>
 				</div>

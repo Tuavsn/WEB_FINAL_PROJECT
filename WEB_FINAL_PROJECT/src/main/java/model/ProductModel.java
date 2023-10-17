@@ -1,11 +1,13 @@
 package model;
 
+import java.util.List;
+
 public class ProductModel extends AbstractModel<ProductModel> {
 	private long ProductID;
 	private String ProductName;
 	private String Description;
 	private double Price;
-	private String ImageLink;
+	List<ImageModel> image;
 	private long CategoryID;
 	private int Amount;
 
@@ -41,12 +43,12 @@ public class ProductModel extends AbstractModel<ProductModel> {
 		Price = price;
 	}
 
-	public String getImageLink() {
-		return ImageLink;
+	public List<ImageModel> getImage() {
+		return image;
 	}
 
-	public void setImageLink(String imageLink) {
-		ImageLink = imageLink;
+	public void setImage(List<ImageModel> image) {
+		this.image = image;
 	}
 
 	public long getCategoryID() {
@@ -65,14 +67,14 @@ public class ProductModel extends AbstractModel<ProductModel> {
 		Amount = amount;
 	}
 
-	public ProductModel(long productID, String productName, String description, double price, String imageLink,
+	public ProductModel(long productID, String productName, String description, double price, List<ImageModel> image,
 			long categoryID, int amount) {
 		super();
 		ProductID = productID;
 		ProductName = productName;
 		Description = description;
 		Price = price;
-		ImageLink = imageLink;
+		this.image = image;
 		CategoryID = categoryID;
 		Amount = amount;
 	}

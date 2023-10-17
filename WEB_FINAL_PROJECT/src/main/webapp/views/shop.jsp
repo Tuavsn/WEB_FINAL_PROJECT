@@ -182,7 +182,7 @@
 									<div
 										class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
 										<img class="img-fluid w-100"
-											src="${product.imageLink}" alt="">
+											src="${product.image[0].imageLink}" alt="">
 									</div>
 									<div
 										class="card-body border-left border-right text-center p-0 pt-4 pb-3">
