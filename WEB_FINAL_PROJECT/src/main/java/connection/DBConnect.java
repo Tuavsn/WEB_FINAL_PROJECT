@@ -7,7 +7,7 @@ public class DBConnect {
 	private final String DB_URL = "jdbc:mysql://localhost:3306/";
 	private final String SCHEMA = "webfinalproject";
 	private final String USER = "root";
-	private final String PASSWORD = "1234567890";
+	private final String PASSWORD = "huy852347";
 	//getConnection method
 	public Connection getConnection() throws Exception {
 		String url = DB_URL + SCHEMA;

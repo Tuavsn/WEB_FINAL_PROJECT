@@ -235,7 +235,7 @@
 	    window.pagObj = $('#pagination').twbsPagination({
 	        totalPages: totalPages,
 	        startPage: currentPage,
-	        visiblePages: 4,
+	        visiblePages: 10,
 	        onPageClick: function (event, page) {
 	            //console.info(page + ' (from options)');
 	            if(currentPage != page)//new khong su ly cho nay page se load lien tuc
