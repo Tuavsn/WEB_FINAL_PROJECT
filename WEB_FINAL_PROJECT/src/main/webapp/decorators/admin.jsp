@@ -30,6 +30,14 @@
 <script src="<c:url value='/template/paging/jquery.twbsPagination.js' />"></script>
 
 <script src="<c:url value='/ckeditor/ckeditor.js' />"></script>
+
+<style type="text/css">
+	.center112
+	{
+      	text-align: center!important;
+    	vertical-align: middle!important;
+	}
+</style>
 </head>
 <body class="no-skin">
 	

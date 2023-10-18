@@ -36,24 +36,24 @@
     <ul class="nav nav-list">
 	    <li class="">
 			<a href="<c:url value = '/admin-home'/>">
-				<i class="menu-icon fa fa-tachometer"></i>
+				<i class="menu-icon fa fa-tachometer pink"></i>
 				<span class="menu-text"> Dashboard </span>
 			</a>
 			<b class="arrow"></b>
 		</li>
         <li class="">
             <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-list"></i>
+                <i class="menu-icon fa fa-list blue"></i>
                 <span class="menu-text"></span>
-                Quản lý phầm mềm
+                Quản lý người dùng
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="">
 					<a href="#" class="dropdown-toggle">
-						<i class="ace-icon fa fa-user"></i>
-						<span class="menu-text"> Quản lý đăng nhập </span>
+						<i class="ace-icon fa fa-user blue"></i>
+						<span class="menu-text"> Quản lý tài khoản </span>
 
 						<b class="arrow fa fa-angle-down"></b>
 					</a>
@@ -62,12 +62,44 @@
 						<li class="">
                    				<a href='<c:url value='/admin-user-list?page=1&maxPageItem=7'/>'>
 		                        <i class="menu-icon fa fa-caret-right"></i>
-		                        Danh sách người dùng
+		                        Danh sách tài khoản
 		                    </a>
 		                    <b class="arrow"></b>
 	                	</li>
 					</ul>
 				</li>
+				
+            </ul>
+        </li>
+        
+        <li class="">
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-list-alt green"></i>
+                <span class="menu-text"></span>
+                Quản lý sản phẩm
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li class="">
+					<a href="#" class="dropdown-toggle">
+						<!-- <i class="ace-icon fa fa-user"></i> -->
+						<span class="menu-text"> Quản lý thể loại </span>
+
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
+					<b class="arrow"></b>
+					<ul class="submenu">
+						<li class="">
+                   				<a href='<c:url value='/admin-category-list'/>'>
+		                        <i class="menu-icon fa fa-caret-right"></i>
+		                        Danh sách thể loại
+		                    </a>
+		                    <b class="arrow"></b>
+	                	</li>
+					</ul>
+				</li>
+				
             </ul>
         </li>
     </ul>

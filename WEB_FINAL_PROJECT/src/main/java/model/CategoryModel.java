@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class CategoryModel {
+public class CategoryModel extends AbstractModel<CategoryModel>{
 	private long CategoryID;
 	private String CategoryName;
 	private String ImageLink;

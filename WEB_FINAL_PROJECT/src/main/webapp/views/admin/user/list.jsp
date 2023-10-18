@@ -44,9 +44,9 @@
 	                    <i class="ace-icon fa fa-home home-icon"></i>
 	                    <a href="<c:url value = '/admin-home'/>">Trang chủ</a>
 	                </li>
-	                <li class="active">Quản lý đăng nhập</li>
+	                <li class="active">Quản lý người dùng</li>
 	                <li class="active">
-	                	<a href="<c:url value = '/admin-user-list?page=1&maxPageItem=7'/>">Danh sách người dùng</a>
+	                	<a href="<c:url value = '/admin-user-list?page=1&maxPageItem=7'/>">Danh sách tài khoản</a>
 	                </li>
 	            </ul><!-- /.breadcrumb -->
 	            <div class="nav-search" id="nav-search">
