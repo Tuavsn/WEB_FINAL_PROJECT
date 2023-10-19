@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="main-content">
-	<form action="<c:url value="/admin-new"/>" id="formSubmit" method="get"> <!-- khi submit thi nhay vao url admin-new voi method get  -->
+	<form action="<c:url value="/admin-category-list"/>" id="formSubmitCategory" method="get"> <!-- khi submit thi nhay vao url admin-new voi method get  -->
 	    <div class="main-content-inner">
 	        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
 	            <ul class="breadcrumb">
@@ -21,7 +21,7 @@
 	                </li>
 	                <li class="active">Quản lý sản phẩm</li>
 	                <li class="active">
-	                	<a href="<c:url value = '/admin-category-list'/>">Danh sách thể loại</a>
+	                	<a href="<c:url value = '/admin-category-list?page=1&maxPageItem=3'/>">Danh sách thể loại</a>
 	                </li>
 	            </ul><!-- /.breadcrumb -->
 	        </div>
@@ -67,7 +67,7 @@
 									      <c:forEach var="item" items="${allcategory}">
 									      <tr>
 										      	<td class="center112"><input type="checkbox" value="#" id="#"/></td>
-										        <td class="center112" style="font-size: 30px">${item.icon}</td>
+										        <td class="center112" 	 style="font-size: 30px">${item.icon}</td>
 										        <td class="center112">${item.categoryName}</td>
 										        <td class="center112" width="200px"><img src="${item.imageLink}" alt="${item.categoryName}" width="200px"></td>
 										        <td>
@@ -90,6 +90,8 @@
 									    </tbody>
 									  </table>
 									  <ul class="pagination " id="pagination"></ul>
+									  <input type="hidden" value =" " id = "page" name="page">	<!-- name phai giong trong model -->
+									 <input type="hidden" value =" " id = "maxPageItem" name="maxPageItem">	<!-- khi bao name de mapping len url -->
 								</div>
 							</div>
 						</div>
@@ -100,15 +102,24 @@
 	</form>
 </div><!-- /.main-content -->
 <script >
+var currentPage = ${model.page};
+var totalPages = ${model.totalPage};
+//var visiblePages = ${model.maxPageItem};
+var limit = ${model.maxPageItem};
 $(function () {
     window.pagObj = $('#pagination').twbsPagination({
-        totalPages: 35,
+        totalPages: totalPages,
+        startPage: currentPage,
         visiblePages: 10,
         onPageClick: function (event, page) {
-            console.info(page + ' (from options)');
+            //console.info(page + ' (from options)');
+            if(currentPage != page)//new khong su ly cho nay page se load lien tuc
+            {
+            	$("#page").val(page);
+ 	            $("#maxPageItem").val(limit);//dung de put data
+ 	            $("#formSubmitCategory").submit(); /* su kien jquery khi submit action form qua trang */
+            }
         }
-    }).on('page', function (event, page) {
-        console.info(page + ' (from event listening)');
     });
 });
 </script>

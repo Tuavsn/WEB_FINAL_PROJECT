@@ -91,7 +91,7 @@
 					<b class="arrow"></b>
 					<ul class="submenu">
 						<li class="">
-                   				<a href='<c:url value='/admin-category-list'/>'>
+                   				<a href='<c:url value='/admin-category-list?page=1&maxPageItem=3'/>'>
 		                        <i class="menu-icon fa fa-caret-right"></i>
 		                        Danh sách thể loại
 		                    </a>

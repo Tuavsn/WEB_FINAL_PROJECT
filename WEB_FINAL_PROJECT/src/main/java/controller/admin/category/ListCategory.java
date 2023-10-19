@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import constant.SystemConstant;
 import model.CategoryModel;
+import paging.PageRequest;
+import paging.Pageble;
 import service.CategoryService;
 import serviceImpl.CategoryServiceImpl;
+import utils.FormUtil;
 
 @WebServlet(urlPatterns = { "/admin-category-list" })
 
@@ -28,10 +32,13 @@ public class ListCategory extends HttpServlet{
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-
-		List<CategoryModel> allCategory = categoryservice.findAll();
+		CategoryModel model = FormUtil.toModel(CategoryModel.class, request);
+		Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem());
+		List<CategoryModel> allCategory = categoryservice.findAllPaging(pageble);
+		model.setTotalItem(categoryservice.getTotalItem());
+		model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
 		request.setAttribute("allcategory", allCategory);
-		
+		request.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rq = request.getRequestDispatcher("views/admin/category/listcategory.jsp");
 		rq.forward(request, resp);
 	}
