@@ -3,17 +3,17 @@ package model;
 import java.util.List;
 
 public class CategoryModel extends AbstractModel<CategoryModel>{
-	private long CategoryID;
+	private Long CategoryID;
 	private String CategoryName;
 	private String ImageLink;
 	private String Icon;
 	private List<CategoryModel> ChildCategory;
 
-	public long getCategoryID() {
+	public Long getCategoryID() {
 		return CategoryID;
 	}
 
-	public void setCategoryID(long categoryID) {
+	public void setCategoryID(Long categoryID) {
 		CategoryID = categoryID;
 	}
 

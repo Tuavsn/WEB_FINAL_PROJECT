@@ -16,11 +16,7 @@ public class CategoryServiceImpl implements CategoryService {
 		return categorydao.findAll();
 	}
 
-	@Override
-	public CategoryModel getOne() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public List<CategoryModel> findAllPaging(Pageble pageble) {
@@ -31,5 +27,15 @@ public class CategoryServiceImpl implements CategoryService {
 	public int getTotalItem() {
 		return categorydao.getTotalItem();
 	}
+
+
+
+	@Override
+	public CategoryModel getOne(Long categoryID) {
+		return categorydao.getOne(categoryID);
+	}
+
+
+
 
 }

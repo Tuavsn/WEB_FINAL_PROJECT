@@ -34,7 +34,7 @@
 											<div class="dt-buttons btn-overlap btn-group">
 												<a flag="info"
 												   class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
-												   title='Thêm thể loại' href='#'>
+												   title='Thêm thể loại' href='<c:url value = '/admin-category-edit'/>'>
 															<span>
 																<i class="fa fa-plus-circle bigger-110 purple"></i>
 															</span>
@@ -56,7 +56,6 @@
 									    <thead>
 									      <tr>
 									      	<th class="center112"><input type="checkbox" value="" id="checkAll"/></th>
-									        <th>Icon</th>
 									        <th>Tên thể loại</th>
 									        <th>Hình ảnh </th>
 									        <th>Tên thể loại con </th>
@@ -67,7 +66,6 @@
 									      <c:forEach var="item" items="${allcategory}">
 									      <tr>
 										      	<td class="center112"><input type="checkbox" value="#" id="#"/></td>
-										        <td class="center112" 	 style="font-size: 30px">${item.icon}</td>
 										        <td class="center112">${item.categoryName}</td>
 										        <td class="center112" width="200px"><img src="${item.imageLink}" alt="${item.categoryName}" width="200px"></td>
 										        <td>
@@ -80,8 +78,11 @@
 										        	
 										        </td>
 										        <td class="center112">
+										         	<c:url var="editURL" value="/admin-category-edit">
+														<c:param name="categoryID" value="${item.categoryID}"/>
+													</c:url>
 													<a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-													   title="Cập nhật thể loại" href='#'>
+													   title="Cập nhật thể loại" href='${editURL}'>
 													   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 													</a>
 												</td>

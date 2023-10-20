@@ -20,11 +20,6 @@ public class CategoryDaoImpl extends AbstractDAO<CategoryModel> implements Categ
 		return category;
 	}
 
-	@Override
-	public CategoryModel getOne(String CategoryID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<CategoryModel> findAllPaging(Pageble pageble) {
@@ -44,6 +39,18 @@ public class CategoryDaoImpl extends AbstractDAO<CategoryModel> implements Categ
 	public int getTotalItem() {
 		String sql = "SELECT count(*) from category where ParentID = 0";
 		return count(sql);
+	}
+
+
+	@Override
+	public CategoryModel getOne(Long CategoryID) {
+		String query = "select * from category where categoryID = ? ";
+		List<CategoryModel> category = query(query, new CategoryMapper(),CategoryID);
+		for(CategoryModel i : category) {
+			String subquery = "select * from category where ParentID = ? ";
+			i.setChildCategory(query(subquery, new CategoryMapper(), i.getCategoryID()));
+		}
+		return category.isEmpty() ? null : category.get(0);
 	}
 
 }

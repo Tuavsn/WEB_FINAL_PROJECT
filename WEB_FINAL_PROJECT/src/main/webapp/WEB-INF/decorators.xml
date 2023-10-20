@@ -22,6 +22,11 @@
 		<pattern>/dang-nhap</pattern>
 	</decorator>
 	
+	<decorator name="test" page="test.jsp">
+		<pattern>/admin-category-edit</pattern>
+	</decorator>
+	
+	
 	
 	
 	

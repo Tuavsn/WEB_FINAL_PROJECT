@@ -23,6 +23,8 @@
 <!-- Customized Bootstrap Stylesheet -->
 <link href="<c:url value="/template/css/style.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value='/template/regist/style.css' />" rel="stylesheet" type="text/css" media="all"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 	<!-- header -->

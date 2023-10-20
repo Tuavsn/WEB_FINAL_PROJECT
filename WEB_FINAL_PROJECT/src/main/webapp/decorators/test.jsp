@@ -72,5 +72,40 @@
 	<script src="<c:url value='/template/admin/assets/js/ace.min.js' />"></script>
 	<script src="<c:url value='/template/admin/assets/js/jquery.inputlimiter.1.3.1.min.js' />"></script>
 	<script src="<c:url value='/template/admin/assets/js/bootstrap-tag.min.js'/>"></script>
+	<script>
+	var tag_input = $('#form-field-tags');
+	var data = [];
+	var ids = $('#valuechild input').map(function () {
+        return $(this).val();
+    }).get();
+	data = ids;
+	console.log(data);
+	try{
+		tag_input.tag(
+		  {
+			placeholder:tag_input.attr('placeholder'),
+			//enable typeahead by specifying the source array
+			source: ace.vars['US_STATES'],//defined in ace.js >> ace.enable_search_ahead
+			/**
+			or fetch data from database, fetch those that match "query"
+			source: function(query, process) {
+			  $.ajax({url: 'remote_source.php?q='+encodeURIComponent(query)})
+			  .done(function(result_items){
+				process(result_items);
+			  });
+			}
+			*/
+		  }
+		)
+		//programmatically add a new
+		var $tag_obj = $('#form-field-tags').data('tag');
+		data.map((item)=> $tag_obj.add(item));
+	}
+	catch(e) {
+		//display a textarea for old IE, because it doesn't support this plugin or another one I tried!
+		tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
+		//$('#form-field-tags').autosize({append: "\n"});
+	}
+	</script>
 </body>
 </html>

@@ -9,5 +9,5 @@ public interface CategoryDao {
 	List<CategoryModel> findAll();
 	List<CategoryModel> findAllPaging(Pageble pageble);
 	int getTotalItem();
-	CategoryModel getOne(String CategoryID);
+	CategoryModel getOne(Long CategoryID);
 }
