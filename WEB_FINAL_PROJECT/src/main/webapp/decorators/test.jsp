@@ -106,6 +106,8 @@
 		tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
 		//$('#form-field-tags').autosize({append: "\n"});
 	}
+	var tags = document.querySelector('#test .tags');
+	tags.style.width="400px";
 	</script>
 </body>
 </html>

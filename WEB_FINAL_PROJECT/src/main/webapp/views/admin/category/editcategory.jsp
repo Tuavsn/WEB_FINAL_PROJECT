@@ -58,7 +58,7 @@
 								<label class="col-sm-3 control-label no-padding-right" for="userName"> Hình ảnh </label>
 								<c:if test="${not empty model.categoryID}">
 									<div class="col-sm-9">
-										<img alt="" src="<c:url value = '${categoryEdit.imageLink}'/>" width="300px">
+										<img alt="" src="<c:url value = '${categoryEdit.imageLink}'/>" width="400px">
 									</div>
 								</c:if>
 								<c:if test="${empty model.categoryID}">
