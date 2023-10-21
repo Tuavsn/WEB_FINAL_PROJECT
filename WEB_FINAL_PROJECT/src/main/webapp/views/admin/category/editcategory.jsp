@@ -54,20 +54,48 @@
 										<input type="text" id="categoryName" name="categoryName"  placeholder="Nhập thể loại" class="col-xs-10 col-sm-4" value="${categoryEdit.categoryName}" />
 									</div>					    
 							</div>
+							<c:if test="${empty model.categoryID}">
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="image" id="imageTitle"></label>
+									<div class="col-sm-9">
+										<img alt="" src="" width="300px" id="image">
+									</div>					    
+								</div>
+							</c:if>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="userName"> Hình ảnh </label>
+								<label class="col-sm-3 control-label no-padding-right" for="imageLink">  Hình ảnh cũ </label>
 								<c:if test="${not empty model.categoryID}">
 									<div class="col-sm-9">
-										<img alt="" src="<c:url value = '${categoryEdit.imageLink}'/>" width="400px">
+										<img alt="" src="<c:url value = '${categoryEdit.imageLink}'/>" width="300px">
 									</div>
 								</c:if>
 								<c:if test="${empty model.categoryID}">
 									<div class="col-sm-9">
-										<input type="text" id="imageLink" name="imageLink"  placeholder="Nhập link hình ảnh" class="col-xs-10 col-sm-4" value="" />
+										<input type="text" id="imageLink" name="imageLink"  placeholder="Nhập link hình ảnh" class="col-xs-10 col-sm-5" value="" />
 									</div>	
+									<div class="col-sm-9 col-sm-offset-3">
+							       		 <div id="LinkError" class="text-danger" style="font-size: 14px;font-weight: bold;" ></div>
+							    	</div>
 								</c:if>
-														    
 							</div>
+							<c:if test="${not empty model.categoryID}">
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="image" id="imageTitle"></label>
+									<div class="col-sm-9">
+										<img alt="" src="" width="300px" id="image">
+									</div>					    
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="imageLink"> Link hình ảnh</label>
+									<div class="col-sm-9">
+										<input type="text" id="imageLink" name="imageLink"  placeholder="Nhập link hình ảnh mới" class="col-xs-10 col-sm-5" value="" />
+									</div>	
+									<div class="col-sm-9 col-sm-offset-3">
+							       		 <div id="LinkError" class="text-danger" style="font-size: 14px;font-weight: bold;" ></div>
+							    	</div>
+								</div>
+							</c:if>
 							<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Thể loại con</label>
 

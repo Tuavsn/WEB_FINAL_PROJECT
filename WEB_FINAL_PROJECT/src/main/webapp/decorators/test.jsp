@@ -109,5 +109,26 @@
 	var tags = document.querySelector('#test .tags');
 	tags.style.width="400px";
 	</script>
+	
+	<script>
+	    $('#imageLink').change(function(){
+	    	var newSrc = $(this).val();
+            $('#image').attr('src', newSrc);
+            $('#image').attr('alt', "Link hình ảnh không hợp lệ");
+	        $('#imageTitle').text("Hình ảnh");
+	        $('#LinkError').text("");
+	        i
+	    })
+	    
+	    // Hàm kiểm tra giá trị src có hợp lệ
+	    function isValidSrc(src) {
+	        // Thực hiện kiểm tra src ở đây, ví dụ:
+	        // Kiểm tra xem src bắt đầu bằng "http://" hoặc "https://"
+	        // hoặc một cách phức tạp hơn theo nhu cầu của bạn.
+	        // Dưới đây là một ví dụ đơn giản:
+	
+	        return src.startsWith("http://") || src.startsWith("https://");
+	    }
+	</script>
 </body>
 </html>
