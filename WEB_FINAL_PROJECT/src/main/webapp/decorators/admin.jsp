@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- favicon -->
+<link href="<c:url value='/template/img/admin.ico' />" rel="icon">
+
 <title><dec:title default="Trang chủ" /></title>
 
 <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/bootstrap.min.css' />" />
