@@ -53,4 +53,16 @@ public class CategoryDaoImpl extends AbstractDAO<CategoryModel> implements Categ
 		return category.isEmpty() ? null : category.get(0);
 	}
 
+
+	@Override
+	public Long insertCategory(CategoryModel categoryModel) {
+		String sql = "INSERT INTO category (CategoryName, ImageLink, Icon,ParentID) VALUES(?,?,?,0)";
+		Long id = insert(sql, categoryModel.getCategoryName(),categoryModel.getImageLink(),categoryModel.getIcon());
+		for(String name : categoryModel.getNameChildCategorys()) {
+			String sqlchild = "INSERT INTO category (CategoryName,ParentID) VALUES(?,"+id+")";
+			insert(sqlchild, name);
+		}
+		return id;
+	}
+
 }

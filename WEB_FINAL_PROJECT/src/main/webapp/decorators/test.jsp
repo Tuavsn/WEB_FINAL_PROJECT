@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
+<c:url var="APIurl" value="/api-category"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,6 @@
 
 <script src="<c:url value='/template/paging/jquery.twbsPagination.js' />"></script>
 
-<script src="<c:url value='/ckeditor/ckeditor.js' />"></script>
 
 <style type="text/css">
 	.center112
@@ -79,11 +79,10 @@
         return $(this).val();
     }).get();
 	data = ids;
-	console.log(data);
 	try{
 		tag_input.tag(
 		  {
-			placeholder:tag_input.attr('placeholder'),
+			placeholder:tag_input.attr('placeholder'),	
 			//enable typeahead by specifying the source array
 			source: ace.vars['US_STATES'],//defined in ace.js >> ace.enable_search_ahead
 			/**
@@ -114,10 +113,16 @@
 	    $('#imageLink').change(function(){
 	    	var newSrc = $(this).val();
             $('#image').attr('src', newSrc);
-            $('#image').attr('alt', "Link hình ảnh không hợp lệ");
-	        $('#imageTitle').text("Hình ảnh");
-	        $('#LinkError').text("");
-	        i
+           
+	        $('#imageTitle').text("Hình ảnh hiện thị");
+	        $('#image').on('error', function () {
+	        	$('#image').attr('alt', "Link hình ảnh không hợp lệ");
+	        });
+	        
+	        $('#image').on('load', function () {
+	        	$('#image').attr('alt', "");
+	        	$('#LinkError').text("");
+	        });
 	    })
 	    
 	    // Hàm kiểm tra giá trị src có hợp lệ
@@ -129,6 +134,51 @@
 	
 	        return src.startsWith("http://") || src.startsWith("https://");
 	    }
+	    
+	    $('#btnAdd').click(function (e) {
+	    	var datas = {};
+	    	var data = [];
+			$('.tag').map(function() {
+				var tagValue = $(this).text().slice(0, -1);; // Lấy nội dung (text) của mỗi thẻ
+				data.push(tagValue); // Thêm giá trị vào mảng tagValues
+			});
+	    	var categoryName = $('#categoryName').val();
+	    	var imageLink = $('#image').attr('src');
+	    	var icon = $('#icon').val();
+	    	datas["nameChildCategorys"]=data;
+	    	datas["categoryName"]=categoryName;
+	    	datas["imageLink"]=imageLink;
+	    	datas["icon"]=icon;
+	    	console.log(datas);
+	    	if($('#image').attr('alt') == ""){
+	    		addCategory(datas);
+	    		console.log('ok');
+	    	}
+	    	else{
+	    		$('#LinkError').text("Link hình ảnh không hợp lệ");
+	    	}
+	    	
+	    })
+	    
+	    function addCategory(datas){
+		$.ajax({
+            url: '${APIurl}',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(datas),
+            dataType: 'json',	
+            success : function(result) 
+            { //result la ket qua tra ve vd : newModel,...
+            	$('#Error').text("");
+            	$('#success').text("Thêm thành công");
+			},
+			error: function(error) 
+			{
+				$('#success').text("");
+            	$('#Error').text("Lỗi rồi");
+		    }
+        });
+	}
 	</script>
 </body>
 </html>

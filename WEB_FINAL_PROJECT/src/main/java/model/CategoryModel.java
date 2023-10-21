@@ -8,6 +8,7 @@ public class CategoryModel extends AbstractModel<CategoryModel>{
 	private String ImageLink;
 	private String Icon;
 	private List<CategoryModel> ChildCategory;
+	private List<String> nameChildCategorys;
 
 	public Long getCategoryID() {
 		return CategoryID;
@@ -62,5 +63,15 @@ public class CategoryModel extends AbstractModel<CategoryModel>{
 	public CategoryModel() {
 		super();
 	}
+
+	public List<String> getNameChildCategorys() {
+		return nameChildCategorys;
+	}
+
+	public void setNameChildCategorys(List<String> nameChildCategorys) {
+		this.nameChildCategorys = nameChildCategorys;
+	}
+
+	
 
 }

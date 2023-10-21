@@ -10,4 +10,5 @@ public interface CategoryDao {
 	List<CategoryModel> findAllPaging(Pageble pageble);
 	int getTotalItem();
 	CategoryModel getOne(Long CategoryID);
+	Long insertCategory(CategoryModel categoryModel);
 }

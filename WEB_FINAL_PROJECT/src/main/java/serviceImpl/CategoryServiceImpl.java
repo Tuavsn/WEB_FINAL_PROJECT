@@ -37,5 +37,13 @@ public class CategoryServiceImpl implements CategoryService {
 
 
 
+	@Override
+	public CategoryModel insertCategory(CategoryModel categoryModel) {
+		Long categoryID = categorydao.insertCategory(categoryModel);
+		return categorydao.getOne(categoryID);
+	}
+
+
+
 
 }

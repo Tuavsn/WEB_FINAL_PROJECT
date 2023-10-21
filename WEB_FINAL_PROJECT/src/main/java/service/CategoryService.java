@@ -10,4 +10,5 @@ public interface CategoryService {
 	List<CategoryModel> findAllPaging(Pageble pageble);
 	int getTotalItem();
 	CategoryModel getOne(Long categoryID);
+	CategoryModel insertCategory(CategoryModel categoryModel);
 }

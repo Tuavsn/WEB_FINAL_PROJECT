@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="/common/taglib.jsp" %>
-
 <html>
 <head>
 <meta charset="UTF-8">
@@ -49,12 +48,18 @@
                 <div class="col-xs-12">
                 		<form id="formSubmit" class="form-horizontal">					
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="userName"> Tên thể loại </label>
+								<label class="col-sm-3 control-label no-padding-right" for="categoryName"> Tên thể loại </label>
 									<div class="col-sm-9">
 										<input type="text" id="categoryName" name="categoryName"  placeholder="Nhập thể loại" class="col-xs-10 col-sm-4" value="${categoryEdit.categoryName}" />
 									</div>					    
 							</div>
 							<c:if test="${empty model.categoryID}">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="icon"> Icon </label>
+									<div class="col-sm-9">
+										<input type="text" id="icon" name="icon"  placeholder="Nhập thẻ icon trên fontawesome" class="col-xs-10 col-sm-4" value="" />
+									</div>					    
+							</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="image" id="imageTitle"></label>
 									<div class="col-sm-9">
@@ -63,13 +68,14 @@
 								</div>
 							</c:if>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="imageLink">  Hình ảnh cũ </label>
 								<c:if test="${not empty model.categoryID}">
+								<label class="col-sm-3 control-label no-padding-right" for="imageLink">  Hình ảnh cũ </label>
 									<div class="col-sm-9">
-										<img alt="" src="<c:url value = '${categoryEdit.imageLink}'/>" width="300px">
+										<img alt="" src="<c:url value = '${categoryEdit.imageLink}'/>" width="300px" id="imageOld">
 									</div>
 								</c:if>
 								<c:if test="${empty model.categoryID}">
+								<label class="col-sm-3 control-label no-padding-right" for="imageLink">  Hình ảnh </label>
 									<div class="col-sm-9">
 										<input type="text" id="imageLink" name="imageLink"  placeholder="Nhập link hình ảnh" class="col-xs-10 col-sm-5" value="" />
 									</div>	
@@ -97,14 +103,20 @@
 								</div>
 							</c:if>
 							<div class="form-group">
-										<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Thể loại con</label>
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-tags">Thể loại con</label>
 
-										<div class="col-sm-9">
-											<div class="inline" id="test">
-												<input type="text" name="tags" id="form-field-tags" value="" placeholder="Enter tags ..." />
-											</div>
-										</div>
+								<div class="col-sm-9">
+									<div class="inline" id="test">
+										<input type="text" name="tags" id="form-field-tags" value="" placeholder="Enter tags ..." />
 									</div>
+								</div>
+										
+								<div class="col-sm-9 col-sm-offset-3">
+							         <div id="Error" class="text-danger" style="font-size: 14px;font-weight: bold;"></div>
+							         <div id="success" class="text-success" style="font-size: 14px;font-weight: bold;"></div>
+							    </div>
+							</div>
+							
 							<div class="clearfix form-actions">
 								<div class="col-md-offset-3 col-md-9">
 									<c:if test="${empty model.categoryID }">
@@ -122,7 +134,7 @@
 									</c:if>
 
 									&nbsp; &nbsp; &nbsp;
-									<button class="btn" type="reset" id="btnCancel">
+									<button class="btn" type="reset" id="btnCancel">	
 										<i class="ace-icon fa fa-undo bigger-110"></i>
 										Hủy
 									</button>
