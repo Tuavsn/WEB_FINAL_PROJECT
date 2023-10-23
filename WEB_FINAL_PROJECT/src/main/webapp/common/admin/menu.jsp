@@ -49,27 +49,17 @@
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
-            <ul class="submenu">
-                <li class="">
-					<a href="#" class="dropdown-toggle">
-						<i class="ace-icon fa fa-user blue"></i>
-						<span class="menu-text"> Quản lý tài khoản </span>
-
-						<b class="arrow fa fa-angle-down"></b>
-					</a>
-					<b class="arrow"></b>
-					<ul class="submenu">
-						<li class="">
-                   				<a href='<c:url value='/admin-user-list?page=1&maxPageItem=7'/>'>
-		                        <i class="menu-icon fa fa-caret-right"></i>
-		                        Danh sách tài khoản
-		                    </a>
-		                    <b class="arrow"></b>
-	                	</li>
-					</ul>
-				</li>
-				
-            </ul>
+            
+			<ul class="submenu">
+				<li class="">
+	                				<a href='<c:url value='/admin-user-list?page=1&maxPageItem=7'/>'>
+	                       <i class="menu-icon fa fa-caret-right"></i>
+	                       Danh sách tài khoản
+	                   </a>
+	                   <b class="arrow"></b>
+	              	</li>
+			</ul>
+			
         </li>
         
         <li class="">
@@ -80,47 +70,26 @@
                 <b class="arrow fa fa-angle-down"></b>
             </a>
             <b class="arrow"></b>
-            <ul class="submenu">
-                <li class="">
-					<a href="#" class="dropdown-toggle">
-						<!-- <i class="ace-icon fa fa-user"></i> -->
-						<span class="menu-text"> Thông tin thể loại </span>
-
-						<b class="arrow fa fa-angle-down"></b>
-					</a>
-					<b class="arrow"></b>
-					<ul class="submenu">
-						<li class="">
-                   				<a href='<c:url value='/admin-category-list?page=1&maxPageItem=3'/>'>
-		                        <i class="menu-icon fa fa-caret-right"></i>
-		                        Danh sách thể loại
-		                    </a>
-		                    <b class="arrow"></b>
-	                	</li>
-					</ul>
-				</li>
-            </ul>
-             <ul class="submenu">
-                <li class="">
-					<a href="#" class="dropdown-toggle">
-						<!-- <i class="ace-icon fa fa-user"></i> -->
-						<span class="menu-text"> Thông tin sản phẩm </span>
-
-						<b class="arrow fa fa-angle-down"></b>
-					</a>
-					<b class="arrow"></b>
-					<ul class="submenu">
-						<li class="">
-                   			<a href='<c:url value='#'/>'>
-		                        <i class="menu-icon fa fa-caret-right"></i>
-		                        Danh sách sản phẩm
-		                    </a>
-		                    <b class="arrow"></b>
-	                	</li>
-					</ul>
-				</li>
+           
+				<ul class="submenu">
+					<li class="">
+	                 				<a href='<c:url value='/admin-category-list?page=1&maxPageItem=3'/>'>
+	                        <i class="menu-icon fa fa-caret-right"></i>
+	                        Danh sách thể loại
+	                    </a>
+	                    <b class="arrow"></b>
+	               	</li>
+	               	<li class="">
+	                 			<a href='<c:url value='/admin-product-list'/>'>
+	                        <i class="menu-icon fa fa-caret-right"></i>
+	                        Danh sách sản phẩm
+	                    </a>
+	                    <b class="arrow"></b>
+	               	</li>
+				</ul>
+		
 				
-            </ul>
+				
         </li>
     </ul>
     <div class="sidebar-toggle sidebar-collapse">
