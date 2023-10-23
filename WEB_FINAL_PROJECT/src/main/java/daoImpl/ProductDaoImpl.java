@@ -12,9 +12,10 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 
 	@Override
 	public List<ProductModel> findAll() {
-		String query = "select * from product";
+		String query = "select product.*,CategoryName from product INNER JOIN category on product.CategoryID = category.CategoryID";
 		List<ProductModel> allProduct = query(query, new ProductMapper());
-		for(ProductModel i : allProduct) {
+		for(ProductModel i : allProduct) 
+		{
 			String subquery = "select * from image where ProductID = ?";
 			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
 		}

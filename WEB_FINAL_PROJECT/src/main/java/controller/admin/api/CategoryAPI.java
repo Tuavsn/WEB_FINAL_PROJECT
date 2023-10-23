@@ -24,7 +24,8 @@ public class CategoryAPI extends HttpServlet{
 	private static final long serialVersionUID = -1983174333334291007L;
 	CategoryService categoryService = new CategoryServiceImpl();
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+		{
 		ObjectMapper mapper = new ObjectMapper();
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");

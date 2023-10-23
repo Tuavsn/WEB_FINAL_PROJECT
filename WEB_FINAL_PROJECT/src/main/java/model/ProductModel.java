@@ -8,6 +8,7 @@ public class ProductModel extends AbstractModel<ProductModel> {
 	private String Description;
 	private double Price;
 	List<ImageModel> image;
+	private CategoryModel categoryModel = new CategoryModel();
 	private long CategoryID;
 	private int Amount;
 
@@ -81,6 +82,14 @@ public class ProductModel extends AbstractModel<ProductModel> {
 
 	public ProductModel() {
 		super();
+	}
+
+	public CategoryModel getCategoryModel() {
+		return categoryModel;
+	}
+
+	public void setCategoryModel(CategoryModel categoryModel) {
+		this.categoryModel = categoryModel;
 	}
 
 }
