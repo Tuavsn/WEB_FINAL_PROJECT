@@ -33,7 +33,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   KEY `fk_user_role` (`roleid`),
   CONSTRAINT `fk_user_role` FOREIGN KEY (`roleid`) REFERENCES `role` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','123456','admin',1,1,'367386108'),(2,'nguyenvana','123456','Nguyễn Văn a',1,2,'1234123'),(3,'nguyenvanb','123456','Nguyễn Văn ba',1,2,'1234123'),(5,'hoctuan','123456','Học Tuấn',1,2,'0328199835');
+INSERT INTO `user` VALUES (1,'admin','123456','admin',1,1,'367386108'),(2,'nguyenvana','123456','Nguyễn Văn a',1,2,'1234123'),(3,'nguyenvanb','123456','Nguyễn Văn ba',1,2,'1234123'),(5,'hoctuan','123456','Học Tuấn',1,2,'0328199835'),(6,'sdad','123123','asda',0,2,'213123');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-17 17:44:39
+-- Dump completed on 2023-10-24  7:58:20

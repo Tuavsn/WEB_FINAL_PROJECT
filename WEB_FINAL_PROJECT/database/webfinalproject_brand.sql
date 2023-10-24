@@ -25,13 +25,10 @@ DROP TABLE IF EXISTS `brand`;
 CREATE TABLE `brand` (
   `BrandID` bigint NOT NULL AUTO_INCREMENT,
   `BrandName` varchar(500) NOT NULL,
-  `Decription` varchar(1000) DEFAULT NULL,
-  `ProductID` bigint NOT NULL,
-  `ImageLink` varchar(5000) DEFAULT NULL,
-  PRIMARY KEY (`BrandID`),
-  KEY `fk_brand_productid_idx` (`ProductID`),
-  CONSTRAINT `fk_brand_productid` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Description` varchar(2000) DEFAULT NULL,
+  `ImageLink` varchar(2500) DEFAULT NULL,
+  PRIMARY KEY (`BrandID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +37,7 @@ CREATE TABLE `brand` (
 
 LOCK TABLES `brand` WRITE;
 /*!40000 ALTER TABLE `brand` DISABLE KEYS */;
+INSERT INTO `brand` VALUES (1,'Annessa',NULL,'https://media.hcdn.vn//hsk/brandAnessa1320x250default1678267104_img_1320x250_c0e985_fit_center.jpg'),(2,'Acnes',NULL,'https://media.hcdn.vn/hsk/brand/acnes1320x2501659423076_img_1320x250_c0e985_fit_center.jpg'),(3,'Bioderma',NULL,'https://media.hcdn.vn//hsk/brandBioderma1320x2501911221668829047_img_1320x250_c0e985_fit_center.jpg'),(4,'Cerave',NULL,'https://media.hcdn.vn//hsk/brandCerave1320-x-250---861680493038_img_1320x250_c0e985_fit_center.jpg'),(5,'DHC',NULL,'https://media.hcdn.vn//hsk/brandDHC1320x250nopromo1678094996_img_1320x250_c0e985_fit_center.jpg'),(6,'L\'Oreal',NULL,'https://media.hcdn.vn//hsk/brandLoreal-CPD-1320x2501695882654_img_1320x250_c0e985_fit_center.jpg'),(7,'La Roche-Posay ',NULL,'https://media.hcdn.vn/hsk/brand/1320x250brand1696414412_img_1320x250_c0e985_fit_center.jpg');
 /*!40000 ALTER TABLE `brand` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-17 17:44:39
+-- Dump completed on 2023-10-24  7:58:20
