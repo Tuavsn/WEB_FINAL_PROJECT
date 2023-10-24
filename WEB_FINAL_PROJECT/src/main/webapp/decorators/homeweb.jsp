@@ -13,6 +13,8 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <!-- jqueryui -->
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 <!-- Favicon -->
 <link href="<c:url value='/template/img/favicon.ico' />" rel="icon">
 <!-- Google Web Fonts -->
@@ -23,7 +25,6 @@
 <!-- Customized Bootstrap Stylesheet -->
 <link href="<c:url value="/template/css/style.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value='/template/regist/style.css' />" rel="stylesheet" type="text/css" media="all"/>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -53,7 +54,6 @@
 		class="fa fa-angle-double-up"></i></a>
 
 	<!-- JavaScript Libraries -->
-	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 
 </body>
