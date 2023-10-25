@@ -70,9 +70,18 @@
 	<script src="<c:url value='/template/admin/assets/js/jquery.flot.min.js' />"></script>
 	<script src="<c:url value='/template/admin/assets/js/jquery.flot.pie.min.js' />"></script>
 	<script src="<c:url value='/template/admin/assets/js/jquery.flot.resize.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/ace-elements.min.js' />"></script>
-	<script src="<c:url value='/template/admin/assets/js/ace.min.js' />"></script>
+	
+	<script src="<c:url value='/template/admin/assets/js/fuelux.spinner.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/assets/js/chosen.jquery.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/assets/js/jquery.autosize.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/assets/js/jquery.maskedinput.min.js'/>"></script>
 	<script src="<c:url value='/template/admin/assets/js/jquery.inputlimiter.1.3.1.min.js' />"></script>
 	<script src="<c:url value='/template/admin/assets/js/bootstrap-tag.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/assets/js/ace-elements.min.js' />"></script>
+	<script src="<c:url value='/template/admin/assets/js/ace.min.js' />"></script>
+	
+	
+	
+	
 </body>
 </html>

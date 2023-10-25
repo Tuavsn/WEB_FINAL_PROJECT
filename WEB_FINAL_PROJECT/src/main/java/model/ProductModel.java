@@ -3,7 +3,7 @@ package model;
 import java.util.List;
 
 public class ProductModel extends AbstractModel<ProductModel> {
-	private long ProductID;
+	private Long ProductID;
 	private String ProductName;
 	private String Description;
 	private double Price;
@@ -12,13 +12,7 @@ public class ProductModel extends AbstractModel<ProductModel> {
 	private long CategoryID;
 	private int Amount;
 
-	public long getProductID() {
-		return ProductID;
-	}
-
-	public void setProductID(long productID) {
-		ProductID = productID;
-	}
+	
 
 	public String getProductName() {
 		return ProductName;
@@ -71,7 +65,7 @@ public class ProductModel extends AbstractModel<ProductModel> {
 	public ProductModel(long productID, String productName, String description, double price, List<ImageModel> image,
 			long categoryID, int amount) {
 		super();
-		ProductID = productID;
+		setProductID(productID);
 		ProductName = productName;
 		Description = description;
 		Price = price;
@@ -90,6 +84,14 @@ public class ProductModel extends AbstractModel<ProductModel> {
 
 	public void setCategoryModel(CategoryModel categoryModel) {
 		this.categoryModel = categoryModel;
+	}
+
+	public Long getProductID() {
+		return ProductID;
+	}
+
+	public void setProductID(Long productID) {
+		ProductID = productID;
 	}
 
 }

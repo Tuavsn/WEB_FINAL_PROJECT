@@ -117,6 +117,7 @@
 	        $('#imageTitle').text("Hình ảnh hiện thị");
 	        $('#image').on('error', function () {
 	        	$('#image').attr('alt', "Link hình ảnh không hợp lệ");
+	        	$('#success').text("");
 	        });
 	        
 	        $('#image').on('load', function () {

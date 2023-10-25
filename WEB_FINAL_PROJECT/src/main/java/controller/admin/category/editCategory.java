@@ -18,10 +18,7 @@ import utils.FormUtil;
 @WebServlet(urlPatterns = { "/admin-category-edit" })
 
 public class editCategory extends HttpServlet  {
-
-	/**
-	 * 
-	 */
+	
 	CategoryService categoryService = new CategoryServiceImpl();
 	private static final long serialVersionUID = 9209295877382686569L;
 	@Override

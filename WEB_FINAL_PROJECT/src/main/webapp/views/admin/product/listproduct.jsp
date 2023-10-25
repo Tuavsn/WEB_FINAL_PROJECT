@@ -32,7 +32,7 @@
 											<div class="dt-buttons btn-overlap btn-group">
 												<a flag="info"
 												   class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
-												   title='Thêm thể loại' href='<c:url value = '#'/>'>
+												   title='Thêm thể loại' href='<c:url value = '/admin-product-edit'/>'>
 															<span>
 																<i class="fa fa-plus-circle bigger-110 purple"></i>
 															</span>
@@ -81,8 +81,11 @@
 										      	<td class="center112">${itemProduct.amount}</td>
 										      	<td class="center112">${itemProduct.price}</td>
 										        <td class="center112">
+										        <c:url var="editURL" value="/admin-product-edit">
+														<c:param name="productID" value="${itemProduct.productID}"/>
+												</c:url>
 													<a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-													   title="Cập nhật thể loại" href='#'>
+													   title="Cập nhật thể loại" href='${editURL}'>
 													   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 													</a>
 												</td>

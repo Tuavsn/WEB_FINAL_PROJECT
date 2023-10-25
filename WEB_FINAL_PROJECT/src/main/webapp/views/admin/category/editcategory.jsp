@@ -16,7 +16,7 @@
                     <i class="ace-icon fa fa-home home-icon"></i>
                     <a href="<c:url value = '/admin-home'/>">Trang chủ</a>
                 </li>
-                <li class="active">Quản lý thể loại</li>
+                <li class="active">Quản lý sản phẩm</li>
 	            <li class="">
 	            	<a href="<c:url value = '/admin-category-list?page=1&maxPageItem=3'/>">Danh sách thể loại</a>
 	            </li>
