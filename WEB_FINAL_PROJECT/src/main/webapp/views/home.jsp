@@ -53,7 +53,7 @@
         	<c:forEach items="${allcategory}" var="category">
 	            <div class="col-lg-4 col-md-6 pb-1">
 	                <div class="cat-item d-flex flex-column border mb-4 h-100" style="padding: 30px;">
-	                    <a href="shop?cid=${category.categoryID}" class="cat-img position-relative overflow-hidden mb-3">
+	                    <a href="shop?page=1&maxPageItem=6" class="cat-img position-relative overflow-hidden mb-3">
 	                        <img class="img-fluid" src="${category.imageLink}" alt="">
 	                    </a>
 	                    <h5 class="font-weight-semi-bold m-0">${category.categoryName}</h5>

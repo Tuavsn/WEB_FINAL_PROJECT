@@ -39,9 +39,12 @@
 				</a>
 			</div>
 			<div class="col-lg-6 col-6 text-left">
-				<form action="search" id="search">
+				<form action="search" id="search" method="get">
 					<div class="input-group">
-						<input type="text" name="keyword" class="form-control"
+						<input type="hidden" value="1" name="page">
+						<input type="hidden" value="6" name="maxPageItem">
+						<input type="hidden" name="key" value="ProductName">
+						<input type="text" name="search" class="form-control"
 							placeholder="Tìm kiếm sản phẩm">
 						<div class="input-group-append">
 							<button type="submit"

@@ -21,7 +21,7 @@
 							  </a>
 							  <div class="dropdown-menu" style="position: absolute">
 							    <c:forEach items="${category.childCategory}" var="childcategory">
-								    <a class="dropdown-item" href="shop?page=1&maxPageItem=6&key=cid&search=${childcategory.categoryID}">${childcategory.categoryName}</a>
+								    <a class="dropdown-item" href="shop?page=1&maxPageItem=6&key=CategoryID&search=${childcategory.categoryID}">${childcategory.categoryName}</a>
  						 	  	</c:forEach>
 							  </div>
 							</div>

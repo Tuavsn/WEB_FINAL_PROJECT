@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -47,6 +48,7 @@ public class ShopController extends HttpServlet {
 			model.setTotalItem(productservice.getTotalItemSearch(model.getKey(), model.getSearch()));
 			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
 		}
+		
 		req.setAttribute("model", model);
 		req.setAttribute("cid", model.getSearch());
 		RequestDispatcher rq = req.getRequestDispatcher("views/shop.jsp");

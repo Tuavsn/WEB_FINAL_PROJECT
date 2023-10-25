@@ -74,11 +74,11 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 
 	@Override
 	public List<ProductModel> findAllSearch(Pageble pageble, String key, String search) {
-		StringBuilder query = new StringBuilder("select product.*,CategoryName from product INNER JOIN category on product.CategoryID = category.CategoryID");
+		StringBuilder query = new StringBuilder("select * from product");
 		if(key !=null && search != null) {
 			query.append(" where "+key+" like ? ");
 		}
-		if(pageble.getOffset() !=null && pageble.getLimit() !=null) {
+		if(pageble.getOffset() != null && pageble.getLimit() != null) {
 			query.append(" limit "+pageble.getOffset()+","+pageble.getLimit());
 		}
 		search="%"+search+"%";
