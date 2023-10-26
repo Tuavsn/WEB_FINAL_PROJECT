@@ -82,7 +82,12 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 			query.append(" limit "+pageble.getOffset()+","+pageble.getLimit());
 		}
 		search="%"+search+"%";
-		return query(query.toString(), new ProductMapper(),search);
+		List<ProductModel> allProduct = query(query.toString(), new ProductMapper(),search);
+		for(ProductModel i : allProduct) {
+			String subquery = "select * from image where ProductID = ?";
+			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
+		}
+		return allProduct;
 	}
 
 	@Override
