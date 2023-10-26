@@ -47,50 +47,80 @@
 			</div><!-- /.page-header -->
             <div class="row" >
                 <div class="col-xs-12">
-                		<form id="formSubmit" class="form-horizontal" enctype="multipart/form-data">					
+                <form method="post" action="<c:url value="/admin-product-edit"/>" enctype="multipart/form-data" id="formImg" class="form-horizontal">
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="productName"> Tên sản phẩm </label>
 									<div class="col-sm-9">
-										<input type="text" id="productName" name="productName"  placeholder="Nhập tên sản phẩm" class="col-xs-10 col-sm-4" value="" />
+										<input type="text" id="productName" name="productName"  placeholder="Nhập tên sản phẩm" class="col-xs-10 col-sm-4" value="${model.productName}" />
 									</div>					    
 							</div>
 							
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="file"> Chọn hình ảnh </label>
 									<div class="col-sm-9">
-										<input type="file" name="file" id="file" multiple="true">
+											<input type="file" name="file" id="file" multiple="true" accept="image/*">
+									
 									</div>					    
 							</div>
+							<c:if test="${not empty imgs }">
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="file"> Hình ảnh được chọn </label>
+										<div class="col-sm-9">
+											<div id="imageContainer">
+												<c:forEach var="item" items="${imgs}">
+														<img alt="" src="<c:url value="/uploads/${item}"/>" width="200px" >
+												</c:forEach>
+											</div>			
+										</div>					    
+								</div>
+							</c:if>
 							
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="description"> Mô tả </label>
 									<div class="col-sm-9">
-										<textarea class="form-control" rows="5" cols="10" id="description" name="description"></textarea> 
+										<textarea class="form-control" rows="5" cols="10" id="description" name="description">${model.description}</textarea> 
 									</div>					    
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="categoryID"> Thể loại </label>
 									<div class="col-sm-9">
 										<select class="form-control col-xs-10 col-sm-2" id="categoryID" name="categoryID">
+										<c:if test="${model.categoryID==0}">	
 									 		<option value="#">--Chọn thể loại</option>
 									 		<c:forEach var="category" items="${Allcategory}">
 									 			<c:forEach var="childCategory" items="${category.childCategory}">
 									 				<option value="${childCategory.categoryID}">${childCategory.categoryName}</option>
 									 			</c:forEach>
 									 		</c:forEach>
+									 	</c:if>
+									 	
+									 	<c:if test="${model.categoryID!=0}">	
+									 		<c:forEach var="category" items="${Allcategory}">
+									 			<c:forEach var="childCategory" items="${category.childCategory}">
+										 			<c:if test="${childCategory.categoryID==model.categoryID}">
+										 					<option value="${childCategory.categoryID}" selected="selected">${childCategory.categoryName}</option>
+										 			</c:if>
+										 			<c:if test="${childCategory.categoryID!=model.categoryID}">
+										 					<option value="${childCategory.categoryID}">${childCategory.categoryName}</option>
+										 			</c:if>
+									 			</c:forEach>
+									 		</c:forEach>
+									 		<option value="#">--Chọn thể loại</option>
+									 	</c:if>
 										</select> 
+										
 									</div>					    
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="amount"> Số lượng </label>
 									<div class="col-sm-9">
-										<input type="text" id="spinner3" />
+										<input type="text" id="spinner3" value="${model.amount}" name="amount"/>
 									</div>					    
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="price"> Giá sản phẩm </label>
 									<div class="col-sm-9">
-										<input type="text" id="price" name="price"  placeholder="Nhập giá" class="col-xs-10 col-sm-4" value="" />
+										<input type="text" id="price" name="price"  placeholder="Nhập giá" class="col-xs-10 col-sm-4" value="${model.price}" />
 									</div>					    
 							</div>
 							<div class="clearfix form-actions">
@@ -117,7 +147,6 @@
 								</div>
 							</div>
                 	</form>
-                	
                 </div>
             </div>
         </div>
@@ -128,6 +157,16 @@ jQuery(function($)
 {
 	$('#spinner3').ace_spinner({value:0,min:0,max:1000,step:10, on_sides: true, icon_up:'ace-icon fa fa-plus bigger-110', icon_down:'ace-icon fa fa-minus bigger-110', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
 })
+</script>
+<script type="text/javascript">
+	var btn = document.getElementById('file');
+    btn.addEventListener("change", () => {
+    	$("#formImg").submit();
+    })
+    
+    $('#btnAdd').click(function (e){
+    	console.log("ok");
+    })
 </script>
 </body>
 </html>

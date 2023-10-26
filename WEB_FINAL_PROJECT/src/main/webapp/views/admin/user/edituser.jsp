@@ -56,14 +56,14 @@
 
 								<div class="col-sm-9">
 									<select class="form-control col-xs-10 col-sm-2" id="roleId" name="roleId">
-									 <c:if test="${empty model.roleId }">	
+									 <c:if test="${empty model.roleId}">	
 										<option value="#">Phân quyền cho tài khoản</option>
 										<c:forEach var="item" items="${roles}">
 											<option value="${item.id}">${item.name}</option>
 										</c:forEach>
 									</c:if>
 									
-									<c:if test="${not empty model.roleId }">	
+									<c:if test="${not empty model.roleId}">	
 										<c:forEach var ="item" items="${roles}">
                                         	<c:if test="${item.id == model.roleId }">
                                         		<option value="${item.id }" selected="selected">${item.name }</option>
