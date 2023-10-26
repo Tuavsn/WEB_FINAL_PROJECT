@@ -114,6 +114,7 @@
 								<ul id="pagination" class="pagination justify-content-center mb-3"></ul>
 								<input type="hidden" value =" " id = "page" name="page">	<!-- name phai giong trong model -->
 								<input type="hidden" value =" " id = "maxPageItem" name="maxPageItem">	<!-- khi bao name de mapping len url -->
+								<input type="hidden" value ="${priceFilter}" id = "priceFilter" name="priceFilter">	<!-- khi bao name de mapping len url -->
 								<c:if test="${not empty model.search}">
 									<input type="hidden" value ="${model.key}" name="key">
 									<input type="hidden" value ="${model.search }" name="search">

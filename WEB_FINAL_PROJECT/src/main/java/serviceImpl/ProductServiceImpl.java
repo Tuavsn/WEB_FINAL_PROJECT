@@ -10,6 +10,7 @@ import service.ProductService;
 
 public class ProductServiceImpl implements ProductService {
 	ProductDao productdao = new ProductDaoImpl();
+
 	@Override
 	public List<ProductModel> findAll() {
 		return productdao.findAll();
@@ -19,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductModel> get8NewProduct() {
 		return productdao.get8NewProduct();
 	}
-	
+
 	@Override
 	public List<ProductModel> getProductByCID(String CategoryID) {
 		return productdao.getProductByCID(CategoryID);
@@ -53,6 +54,28 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public int getTotalItemSearch(String key, String search) {
 		return productdao.getTotalItemSearch(key, search);
+	}
+
+	@Override
+	public List<ProductModel> findAllPrice(Pageble pageble, Long Price) {
+
+		return productdao.findAllPrice(pageble, Price);
+	}
+
+	@Override
+	public List<ProductModel> findAllSearchPrice(Pageble pageble, String key, String search, Long Price) {
+		return productdao.findAllSearchPrice(pageble, key, search, Price);
+	}
+
+	@Override
+	public int getTotalItemPrice(Long Price) {
+
+		return productdao.getTotalItemPrice(Price);
+	}
+
+	@Override
+	public int getTotalItemSearchPrice(String key, String search, Long Price) {
+		return productdao.getTotalItemSearchPrice(key, search, Price);
 	}
 
 }

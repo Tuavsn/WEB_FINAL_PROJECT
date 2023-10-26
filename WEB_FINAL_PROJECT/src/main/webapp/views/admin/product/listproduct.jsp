@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +72,7 @@
 										      	<c:forEach var="img" items="${itemProduct.image}" varStatus="loop">
 										      		 <c:if test="${loop.index == 0}">
 												      	<td width="200px">
-												      		<img alt="" src="${img.imageLink}" width="200px">
+												      		<img alt="" src="<c:url value = "/uploads/"/>${img.imageLink}" width="200px">
 														</td>
 														<c:set var="loop.break" value="true" />
 													 </c:if>
@@ -79,7 +80,12 @@
 										      	<td class="center112">${itemProduct.description}</td>
 										      	<td class="center112">${itemProduct.categoryModel.categoryName}</td>
 										      	<td class="center112">${itemProduct.amount}</td>
-										      	<td class="center112">${itemProduct.price}</td>
+										      	<td class="center112">
+										      	
+											      	<fmt:setLocale value="vi_VN" />
+													<fmt:formatNumber value="${itemProduct.price}" type="currency" />
+										      	
+										      	</td>
 										        <td class="center112">
 										        <c:url var="editURL" value="/admin-product-edit">
 														<c:param name="productID" value="${itemProduct.productID}"/>

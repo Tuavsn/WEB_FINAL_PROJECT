@@ -36,19 +36,33 @@ public class ShopController extends HttpServlet {
 		req.setAttribute("allcategory", allCategory);
 		// Get all product
 		ProductModel model = FormUtil.toModel(ProductModel.class, req);
+		String priceFilter = req.getParameter("priceFilter");
 		Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem());
-		if(model.getKey() == null && model.getSearch()==null) {
-			model.setListResult(productservice.findAll(pageble));
-			model.setTotalItem(productservice.getTotalItem());
-			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
+		if (model.getKey() == null && model.getSearch() == null) {
+			if (priceFilter != null) {
+				long filter = Long.parseLong(priceFilter);
+				model.setListResult(productservice.findAllPrice(pageble, filter));
+				model.setTotalItem(productservice.getTotalItemPrice(filter));
+				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+			} else {
+				model.setListResult(productservice.findAll(pageble));
+				model.setTotalItem(productservice.getTotalItem());
+				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+			}
+		} else {
+			if (priceFilter != null) {
+				long filter = Long.parseLong(priceFilter);
+				model.setListResult(
+						productservice.findAllSearchPrice(pageble, model.getKey(), model.getSearch(), filter));
+				model.setTotalItem(productservice.getTotalItemSearchPrice(model.getKey(), model.getSearch(), filter));
+				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+			} else {
+				model.setListResult(productservice.findAllSearch(pageble, model.getKey(), model.getSearch()));
+				model.setTotalItem(productservice.getTotalItemSearch(model.getKey(), model.getSearch()));
+				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+			}
 		}
-		else 
-		{
-			model.setListResult(productservice.findAllSearch(pageble, model.getKey(), model.getSearch()));
-			model.setTotalItem(productservice.getTotalItemSearch(model.getKey(), model.getSearch()));
-			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
-		}
-		
+		req.setAttribute("priceFilter", priceFilter);
 		req.setAttribute("model", model);
 		req.setAttribute("cid", model.getSearch());
 		RequestDispatcher rq = req.getRequestDispatcher("views/shop.jsp");
