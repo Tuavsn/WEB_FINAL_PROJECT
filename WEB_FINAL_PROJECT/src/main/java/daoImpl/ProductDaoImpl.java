@@ -8,25 +8,24 @@ import mapper.ProductMapper;
 import model.ProductModel;
 import paging.Pageble;
 
-public class ProductDaoImpl extends AbstractDAO<ProductModel> implements ProductDao{
+public class ProductDaoImpl extends AbstractDAO<ProductModel> implements ProductDao {
 
 	@Override
 	public List<ProductModel> findAll() {
 		String query = "select product.*,CategoryName from product INNER JOIN category on product.CategoryID = category.CategoryID";
 		List<ProductModel> allProduct = query(query, new ProductMapper());
-		for(ProductModel i : allProduct) 
-		{
+		for (ProductModel i : allProduct) {
 			String subquery = "select * from image where ProductID = ?";
 			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
 		}
 		return allProduct;
 	}
-	
+
 	@Override
 	public List<ProductModel> get8NewProduct() {
 		String query = "select * from product order by ProductID ASC LIMIT 8";
 		List<ProductModel> NewProduct = query(query, new ProductMapper());
-		for(ProductModel i : NewProduct) {
+		for (ProductModel i : NewProduct) {
 			String subquery = "select * from image where ProductID = ?";
 			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
 		}
@@ -43,7 +42,7 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 	public List<ProductModel> getProductByPID(int ProductID) {
 		String query = "select * from product where ProductID = ?";
 		List<ProductModel> product = query(query, new ProductMapper(), ProductID);
-		for(ProductModel i : product) {
+		for (ProductModel i : product) {
 			String subquery = "select * from image where ProductID = ?";
 			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
 		}
@@ -53,19 +52,20 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 	@Override
 	public List<ProductModel> getProductByName(String ProductName) {
 		String query = "select * from product where ProductName like ?";
-		return query(query, new ProductMapper(), '%'+ProductName+'%');
+		return query(query, new ProductMapper(), '%' + ProductName + '%');
 	}
-	
-	//Paging
+
+	// Paging
 
 	@Override
 	public List<ProductModel> findAll(Pageble pageble) {
-		StringBuilder query = new StringBuilder("select product.*,CategoryName from product INNER JOIN category on product.CategoryID = category.CategoryID");
-		if(pageble.getOffset() != null && pageble.getLimit() != null) {
-			query.append(" limit "+pageble.getOffset()+","+pageble.getLimit());
+		StringBuilder query = new StringBuilder(
+				"select product.*,CategoryName from product INNER JOIN category on product.CategoryID = category.CategoryID");
+		if (pageble.getOffset() != null && pageble.getLimit() != null) {
+			query.append(" limit " + pageble.getOffset() + "," + pageble.getLimit());
 		}
 		List<ProductModel> allProduct = query(query.toString(), new ProductMapper());
-		for(ProductModel i : allProduct) {
+		for (ProductModel i : allProduct) {
 			String subquery = "select * from image where ProductID = ?";
 			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
 		}
@@ -75,15 +75,15 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 	@Override
 	public List<ProductModel> findAllSearch(Pageble pageble, String key, String search) {
 		StringBuilder query = new StringBuilder("select * from product");
-		if(key != null && search != null) {
-			query.append(" where "+key+" like ? ");
+		if (key != null && search != null) {
+			query.append(" where " + key + " like ? ");
 		}
-		if(pageble.getOffset() != null && pageble.getLimit() != null) {
-			query.append(" limit "+pageble.getOffset()+","+pageble.getLimit());
+		if (pageble.getOffset() != null && pageble.getLimit() != null) {
+			query.append(" limit " + pageble.getOffset() + "," + pageble.getLimit());
 		}
-		search="%"+search+"%";
-		List<ProductModel> allProduct = query(query.toString(), new ProductMapper(),search);
-		for(ProductModel i : allProduct) {
+		search = "%" + search + "%";
+		List<ProductModel> allProduct = query(query.toString(), new ProductMapper(), search);
+		for (ProductModel i : allProduct) {
 			String subquery = "select * from image where ProductID = ?";
 			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
 		}
@@ -99,22 +99,21 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 
 	@Override
 	public int getTotalItemSearch(String key, String search) {
-		String query = "select count(*) from product where "+key+" like ? ";
-		search="%"+search+"%";
-		return count(query,search);
+		String query = "select count(*) from product where " + key + " like ? ";
+		search = "%" + search + "%";
+		return count(query, search);
 	}
 
 	@Override
-	public List<ProductModel> findAllPrice(Pageble pageble, Long Price) {
-		StringBuilder query = new StringBuilder("select product.*,CategoryName from product INNER JOIN category on product.CategoryID = category.CategoryID");
-		if(Price != null) {
-			query.append(" where Price BETWEEN 0 AND ?");
+	public List<ProductModel> findAllPrice(Pageble pageble, Long startPrice, Long endPrice) {
+		StringBuilder query = new StringBuilder(
+				"select product.*,CategoryName from product INNER JOIN category on product.CategoryID = category.CategoryID");
+		query.append(" where Price BETWEEN ? AND ? order by Price");
+		if (pageble.getOffset() != null && pageble.getLimit() != null) {
+			query.append(" limit " + pageble.getOffset() + "," + pageble.getLimit());
 		}
-		if(pageble.getOffset() != null && pageble.getLimit() != null) {
-			query.append(" limit "+pageble.getOffset()+","+pageble.getLimit());
-		}
-		List<ProductModel> allProduct = query(query.toString(), new ProductMapper(),Price);
-		for(ProductModel i : allProduct) {
+		List<ProductModel> allProduct = query(query.toString(), new ProductMapper(), startPrice, endPrice);
+		for (ProductModel i : allProduct) {
 			String subquery = "select * from image where ProductID = ?";
 			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
 		}
@@ -122,20 +121,19 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 	}
 
 	@Override
-	public List<ProductModel> findAllSearchPrice(Pageble pageble, String key, String search, Long Price) {
+	public List<ProductModel> findAllSearchPrice(Pageble pageble, String key, String search, Long startPrice,
+			Long endPrice) {
 		StringBuilder query = new StringBuilder("select * from product");
-		if(key != null && search != null) {
-			query.append(" where "+key+" like ? ");
+		if (key != null && search != null) {
+			query.append(" where " + key + " like ? ");
 		}
-		if(Price != null) {
-			query.append(" AND Price BETWEEN 0 AND ?");
+		query.append(" AND Price BETWEEN ? AND ? order by Price");
+		if (pageble.getOffset() != null && pageble.getLimit() != null) {
+			query.append(" limit " + pageble.getOffset() + "," + pageble.getLimit());
 		}
-		if(pageble.getOffset() != null && pageble.getLimit() != null) {
-			query.append(" limit "+pageble.getOffset()+","+pageble.getLimit());
-		}
-		search="%"+search+"%";
-		List<ProductModel> allProduct = query(query.toString(), new ProductMapper(),search, Price);
-		for(ProductModel i : allProduct) {
+		search = "%" + search + "%";
+		List<ProductModel> allProduct = query(query.toString(), new ProductMapper(), search, startPrice, endPrice);
+		for (ProductModel i : allProduct) {
 			String subquery = "select * from image where ProductID = ?";
 			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
 		}
@@ -143,17 +141,16 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 	}
 
 	@Override
-	public int getTotalItemPrice(Long Price) 
-	{
-		String query = "select count(*) from product where Price BETWEEN 0 AND ?";
-		return count(query,Price);
+	public int getTotalItemPrice(Long startPrice, Long endPrice) {
+		String query = "select count(*) from product where Price BETWEEN ? AND ?";
+		return count(query, startPrice, endPrice);
 	}
 
 	@Override
-	public int getTotalItemSearchPrice(String key, String search, Long Price) {
-		String query = "select count(*) from product where "+key+" like ? AND Price BETWEEN 0 AND ?";
-		search="%"+search+"%";
-		return count(query,search, Price);
+	public int getTotalItemSearchPrice(String key, String search, Long startPrice, Long endPrice) {
+		String query = "select count(*) from product where " + key + " like ? AND Price BETWEEN ? AND ?";
+		search = "%" + search + "%";
+		return count(query, search, startPrice, endPrice);
 	}
 
 }

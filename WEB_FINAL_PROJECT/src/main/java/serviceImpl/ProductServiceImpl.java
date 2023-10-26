@@ -57,25 +57,23 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductModel> findAllPrice(Pageble pageble, Long Price) {
-
-		return productdao.findAllPrice(pageble, Price);
+	public List<ProductModel> findAllPrice(Pageble pageble, Long startPrice, Long endPrice) {
+		return productdao.findAllPrice(pageble, startPrice, endPrice);
 	}
 
 	@Override
-	public List<ProductModel> findAllSearchPrice(Pageble pageble, String key, String search, Long Price) {
-		return productdao.findAllSearchPrice(pageble, key, search, Price);
+	public List<ProductModel> findAllSearchPrice(Pageble pageble, String key, String search, Long startPrice, Long endPrice) {
+		return productdao.findAllSearchPrice(pageble, key, search, startPrice, endPrice);
 	}
 
 	@Override
-	public int getTotalItemPrice(Long Price) {
-
-		return productdao.getTotalItemPrice(Price);
+	public int getTotalItemPrice(Long startPrice, Long endPrice) {
+		return productdao.getTotalItemPrice(startPrice, endPrice);
 	}
 
 	@Override
-	public int getTotalItemSearchPrice(String key, String search, Long Price) {
-		return productdao.getTotalItemSearchPrice(key, search, Price);
+	public int getTotalItemSearchPrice(String key, String search, Long startPrice, Long endPrice) {
+		return productdao.getTotalItemSearchPrice(key, search, startPrice, endPrice);
 	}
 
 }

@@ -18,8 +18,8 @@ public interface ProductDao {
 	int getTotalItem();
 	int getTotalItemSearch(String key, String search);
 	
-	List<ProductModel> findAllPrice(Pageble pageble,Long Price);
-	List<ProductModel> findAllSearchPrice(Pageble pageble, String key, String search,Long Price);
-	int getTotalItemPrice(Long Price);
-	int getTotalItemSearchPrice(String key, String search,Long Price);
+	List<ProductModel> findAllPrice(Pageble pageble,Long startPrice, Long endPrice);
+	List<ProductModel> findAllSearchPrice(Pageble pageble, String key, String search,Long startPrice, Long endPrice);
+	int getTotalItemPrice(Long startPrice, Long endPrice);
+	int getTotalItemSearchPrice(String key, String search,Long startPrice, Long endPrice);
 }

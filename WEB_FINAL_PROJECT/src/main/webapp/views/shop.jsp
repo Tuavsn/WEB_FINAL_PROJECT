@@ -22,33 +22,43 @@
 				<div class="border-bottom mb-4 pb-4">
 					<h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
 					<form id="price-filter" action="http://localhost:8080/WEB_FINAL_PROJECT/shop" method="get">
-						<div
+					<div
 							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-1" value="100000">
-							<label class="custom-control-label" for="price-1">0 - 100.000 đ</label>
+							<input type="checkbox" class="custom-control-input" id="price-999" value="0-0">
+							<label class="custom-control-label" for="price-999">Tất cả sản phẩm</label>
 						</div>
 						<div
 							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-2" value="300000">
-							<label class="custom-control-label" for="price-2">100.000 đ - 300.000 đ</label>
+							<input type="checkbox" class="custom-control-input" id="price-0" value="0-100000">
+							<label class="custom-control-label" for="price-0">0 đ - 100.000 đ</label>
 						</div>
 						<div
 							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-3" value="500000">
-							<label class="custom-control-label" for="price-3">300.000 đ - 500.000 đ</label>
+							<input type="checkbox" class="custom-control-input" id="price-1" value="100000-300000">
+							<label class="custom-control-label" for="price-1">100.000 đ - 300.000 đ</label>
 						</div>
 						<div
 							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-4" value="700000">
-							<label class="custom-control-label" for="price-4">500.000 đ - 700.000 đ</label>
+							<input type="checkbox" class="custom-control-input" id="price-2" value="300000-500000">
+							<label class="custom-control-label" for="price-2">300.000 đ - 500.000 đ</label>
 						</div>
 						<div
 							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-5" value="1000000">
-							<label class="custom-control-label" for="price-5">700.000 đ - 1.000.000 đ</label>
+							<input type="checkbox" class="custom-control-input" id="price-3" value="500000-700000">
+							<label class="custom-control-label" for="price-3">500.000 đ - 700.000 đ</label>
+						</div>
+						<div
+							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+							<input type="checkbox" class="custom-control-input" id="price-4" value="700000-100000">
+							<label class="custom-control-label" for="price-4">700.000 đ - 1.000.000 đ</label>
+						</div>
+						<div
+							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+							<input type="checkbox" class="custom-control-input" id="price-5" value="1000000-2000000">
+							<label class="custom-control-label" for="price-5">1.000.000 đ - 2.000.000 đ</label>
 						</div>
 						<div>
-							<button type="submit">Lọc sản phẩm</button>
+							<button class="btn btn-primary btn-block border-0 py-2" type="submit">Lọc sản phẩm</button>
 						</div>
 					</form>
 				</div>
@@ -114,7 +124,10 @@
 								<ul id="pagination" class="pagination justify-content-center mb-3"></ul>
 								<input type="hidden" value =" " id = "page" name="page">	<!-- name phai giong trong model -->
 								<input type="hidden" value =" " id = "maxPageItem" name="maxPageItem">	<!-- khi bao name de mapping len url -->
-								<input type="hidden" value ="${priceFilter}" id = "priceFilter" name="priceFilter">	<!-- khi bao name de mapping len url -->
+								<c:if test="${not empty startPrice}">
+									<input type="hidden" value ="${startPrice}" id = "startPrice" name="startPrice">	<!-- khi bao name de mapping len url -->		
+									<input type="hidden" value ="${endPrice}" id = "endPrice" name="endPrice">	<!-- khi bao name de mapping len url -->								
+								</c:if>
 								<c:if test="${not empty model.search}">
 									<input type="hidden" value ="${model.key}" name="key">
 									<input type="hidden" value ="${model.search }" name="search">
@@ -155,25 +168,30 @@
 
 	    form.addEventListener('submit', function(event) {
 	        event.preventDefault();
-
-	        const selectedPrices = [];
-
+	        let selectedPrices = []
+	        let startPrice = 0;
+	        let endPrice = 0;
 	        // Lặp qua tất cả các hộp kiểm để kiểm tra xem hộp kiểm nào được chọn và lấy giá trị value của nó
 	        const checkboxes = form.querySelectorAll('input[type="checkbox"]');
 	        checkboxes.forEach(function(checkbox) {
 	            if (checkbox.checked) {
-	                selectedPrices.push(checkbox.value);
+	            	selectedPrices.push(checkbox.value);
 	            }
 	        });
-
+ 	        selectedPrices = selectedPrices.join("-");
+	        selectedPrices = selectedPrices.split("-");
+	        startPrice = Math.min.apply(Math, selectedPrices);
+        	endPrice = Math.max.apply(Math, selectedPrices);
 	        // Tạo URL mới dựa trên giá trị đã chọn
 	        const currentUrl = window.location.href;
 	        const newUrl = new URL(currentUrl);
 
-	        if (selectedPrices.length > 0) {
-	            newUrl.searchParams.set('priceFilter', selectedPrices.join(','));
+	        if (endPrice != 0) {
+	        	newUrl.searchParams.set('startPrice', startPrice);
+	            newUrl.searchParams.set('endPrice', endPrice);
 	        } else {
-	            newUrl.searchParams.delete('priceFilter');
+	            newUrl.searchParams.delete('startPrice');
+	            newUrl.searchParams.delete('endPrice');
 	        }
 
 	        // Sử dụng location.replace để cập nhật URL mà không làm thay đổi lịch sử duyệt
