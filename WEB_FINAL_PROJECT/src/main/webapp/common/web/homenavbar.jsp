@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="container-fluid mb-5">
 	<div class="px-xl-5">
-		<div class="row" style="width: 85%; margin: 0 auto">
-			<div class="col-lg-3 d-none d-lg-block">
+		<div class="row" style="width: 85%; margin: 0 auto; overflow: hidden">
+			<div class="col-lg-3 d-none d-lg-block" style="max-height: 475px">
 				<a
 					class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
 					data-toggle="collapse" href="#navbar-vertical"
@@ -13,7 +13,7 @@
 				<nav
 					class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
 					id="navbar-vertical">
-					<div class="navbar-nav w-100 style="height: 410px"">
+					<div class="navbar-nav w-100">
 						<c:forEach items="${allcategory}" var="category">
 							<div class="nav-item btn-group dropright">
 							  <a type="button" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

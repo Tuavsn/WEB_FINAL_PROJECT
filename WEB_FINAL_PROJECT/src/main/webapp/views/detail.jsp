@@ -2,15 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<title>EShopper - Bootstrap Shop Template</title>
-
-</head>
-
 <body>
 
 	<!-- Page Header Start -->
@@ -34,30 +25,20 @@
 	<div class="container-fluid py-5">
 		<c:forEach items="${product}" var="product">
 			<div class="row px-xl-5">
-				<div class="col-lg-5 pb-5">
+				<div class="col-lg-5 pb-5" style="max-width: 450px">
+				
+					<!-- Product's images -->
 					<div id="product-carousel" class="carousel slide" data-ride="carousel">
 						<div class="carousel-inner border">
-						
-							<%-- <div class="carousel-item active">
-								<img class="w-100 h-100" src="${product.image[0].imageLink}" alt="Image">
-							</div>
-							
-							<div class="carousel-item">
-								<img class="w-100 h-100" src="${product.image[1].imageLink}" alt="Image">
-							</div>
-							
-							<div class="carousel-item">
-								<img class="w-100 h-100" src="${product.image[2].imageLink}" alt="Image">
-							</div> --%>
-							
+			
 							<div class="carousel-item active">
-								<img class="w-100 h-100" src="${product.image[0].imageLink}" alt="Image">
+								<img class="w-100 h-100" src="<c:url value = "/uploads/"/>${product.image[0].imageLink}" alt="Image">
 							</div>
 							<c:forEach items="${product.image}" var="image" varStatus="state">
 							
 								<c:if test="${not state.first}">
 									<div class="carousel-item">
-										<img class="w-100 h-100" src="${image.imageLink}" alt="Image">
+										<img class="w-100 h-100" src="<c:url value = "/uploads/"/>${image.imageLink}" alt="Image">
 									</div>
 								</c:if>
 								
@@ -71,6 +52,16 @@
 							<i class="fa fa-2x fa-angle-right text-dark"></i>
 						</a>
 					</div>
+					
+					<!--  -->
+					<div style="margin-top: 10px; overflow: auto" class="row justify-content-center">
+						<c:forEach items="${product.image}" var="image" varStatus="state">
+							<div style="margin-right: 2px; max-width: 120px" class="col">
+								<img class="w-100 h-100" src="<c:url value = "/uploads/"/>${image.imageLink}" alt="Image">
+							</div>
+						</c:forEach>
+					</div>
+					
 				</div>
 
 				<div class="col-lg-7 pb-5">
@@ -231,5 +222,3 @@
 	<!-- Shop Detail End -->
 
 </body>
-
-</html>

@@ -102,7 +102,7 @@
 	                <a href="detail?pid=${product.productID}">
 	                	<div class="card product-item border-0 mb-4">
 		                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-		                        <img class="img-fluid w-100" src="${product.image[0].imageLink}" alt="">
+		                        <img class="img-fluid w-100" src="<c:url value = "/uploads/"/>${product.image[0].imageLink}" alt="">
 		                    </div>
 		                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
 		                        <h6 class="text-truncate mb-3">${product.productName}</h6>
