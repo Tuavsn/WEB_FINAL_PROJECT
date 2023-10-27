@@ -6,12 +6,14 @@ public class ProductModel extends AbstractModel<ProductModel> {
 	private Long ProductID;
 	private String ProductName;
 	private String Description;
-	private double Price;
+	private Double Price;
 	List<ImageModel> image;
 	private CategoryModel categoryModel = new CategoryModel();
+	private BrandModel brandModel = new BrandModel();
 	private long CategoryID;
-	private int Amount;
-
+	private Long brandID;
+	private Integer Amount;
+	private List<String> imageNames;
 	
 
 	public String getProductName() {
@@ -30,13 +32,6 @@ public class ProductModel extends AbstractModel<ProductModel> {
 		Description = description;
 	}
 
-	public double getPrice() {
-		return Price;
-	}
-
-	public void setPrice(double price) {
-		Price = price;
-	}
 
 	public List<ImageModel> getImage() {
 		return image;
@@ -54,24 +49,19 @@ public class ProductModel extends AbstractModel<ProductModel> {
 		CategoryID = categoryID;
 	}
 
-	public int getAmount() {
-		return Amount;
-	}
 
-	public void setAmount(int amount) {
-		Amount = amount;
-	}
 
-	public ProductModel(long productID, String productName, String description, double price, List<ImageModel> image,
-			long categoryID, int amount) {
+	public ProductModel(long productID, String productName, String description, Double price, List<ImageModel> image,
+			long categoryID, Integer amount,Long brandID) {
 		super();
 		setProductID(productID);
 		ProductName = productName;
 		Description = description;
-		Price = price;
+		setPrice(price);
 		this.image = image;
 		CategoryID = categoryID;
-		Amount = amount;
+		setAmount(amount);
+		this.brandID=brandID;
 	}
 
 	public ProductModel() {
@@ -93,5 +83,47 @@ public class ProductModel extends AbstractModel<ProductModel> {
 	public void setProductID(Long productID) {
 		ProductID = productID;
 	}
+
+	public List<String> getImageNames() {
+		return imageNames;
+	}
+
+	public void setImageNames(List<String> imageNames) {
+		this.imageNames = imageNames;
+	}
+
+	public BrandModel getBrandModel() {
+		return brandModel;
+	}
+
+	public void setBrandModel(BrandModel brandModel) {
+		this.brandModel = brandModel;
+	}
+
+	public Long getBrandID() {
+		return brandID;
+	}
+
+	public void setBrandID(Long brandID) {
+		this.brandID = brandID;
+	}
+
+	public Integer getAmount() {
+		return Amount;
+	}
+
+	public void setAmount(Integer amount) {
+		Amount = amount;
+	}
+
+	public Double getPrice() {
+		return Price;
+	}
+
+	public void setPrice(Double price) {
+		Price = price;
+	}
+
+	
 
 }

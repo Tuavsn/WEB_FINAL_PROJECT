@@ -76,4 +76,15 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.getTotalItemSearchPrice(key, search, startPrice, endPrice);
 	}
 
+	@Override
+	public ProductModel insertProduct(ProductModel productModel) {
+		Long productID = productdao.insertProduct(productModel);
+		return productdao.getOne(productID);
+	}
+
+	@Override
+	public ProductModel getOne(Long productID) {
+		return productdao.getOne(productID);
+	}
+
 }

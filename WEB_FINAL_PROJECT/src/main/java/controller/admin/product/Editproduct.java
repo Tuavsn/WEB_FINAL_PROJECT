@@ -18,6 +18,8 @@ import javax.servlet.http.Part;
 
 import model.ProductModel;
 import service.CategoryService;
+import service.IBrandService;
+import serviceImpl.BrandService;
 import serviceImpl.CategoryServiceImpl;
 import utils.FormUtil;
 
@@ -26,6 +28,7 @@ import utils.FormUtil;
 public class Editproduct extends HttpServlet{
 
 	CategoryService categoryService = new CategoryServiceImpl();
+	IBrandService brandService = new BrandService();
 	private static final long serialVersionUID = -3607301560301769691L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
@@ -35,6 +38,7 @@ public class Editproduct extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		ProductModel model = FormUtil.toModel(ProductModel.class, req);
+		req.setAttribute("Allbrand", brandService.findAll());
 		req.setAttribute("Allcategory", categoryService.findAll());
 		req.setAttribute("model",model);
 		RequestDispatcher rq = req.getRequestDispatcher("views/admin/product/editproduct.jsp");
@@ -73,6 +77,7 @@ public class Editproduct extends HttpServlet{
 			 System.out.println("Lỗi rồi");
 			 e.printStackTrace();
 		}
+		req.setAttribute("Allbrand", brandService.findAll());
 		req.setAttribute("Allcategory", categoryService.findAll());
 		req.setAttribute("model",model);
 		RequestDispatcher rq = req.getRequestDispatcher("views/admin/product/editproduct.jsp");

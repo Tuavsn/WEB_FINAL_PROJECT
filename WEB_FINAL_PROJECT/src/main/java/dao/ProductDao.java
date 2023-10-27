@@ -11,7 +11,7 @@ public interface ProductDao {
 	List<ProductModel> getProductByCID(String CategoryID);
 	List<ProductModel> getProductByPID(int ProductID);
 	List<ProductModel> getProductByName(String ProductName);
-	
+	ProductModel getOne(Long productID);
 	// new
 	List<ProductModel> findAll(Pageble pageble);
 	List<ProductModel> findAllSearch(Pageble pageble, String key, String search);
@@ -22,4 +22,6 @@ public interface ProductDao {
 	List<ProductModel> findAllSearchPrice(Pageble pageble, String key, String search,Long startPrice, Long endPrice);
 	int getTotalItemPrice(Long startPrice, Long endPrice);
 	int getTotalItemSearchPrice(String key, String search,Long startPrice, Long endPrice);
+	
+	Long insertProduct(ProductModel productModel);
 }

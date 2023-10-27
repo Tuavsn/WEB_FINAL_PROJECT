@@ -5,14 +5,16 @@ import java.util.List;
 import dao.ProductDao;
 import mapper.ImageMapper;
 import mapper.ProductMapper;
+import mapper.UserMapper;
 import model.ProductModel;
+import model.UserModel;
 import paging.Pageble;
 
 public class ProductDaoImpl extends AbstractDAO<ProductModel> implements ProductDao {
 
 	@Override
 	public List<ProductModel> findAll() {
-		String query = "select product.*,CategoryName from product INNER JOIN category on product.CategoryID = category.CategoryID";
+		String query = "select product.*,CategoryName,brand.BrandName from product INNER JOIN category on product.CategoryID = category.CategoryID left outer JOIN brand on product.BrandID=brand.BrandID	";
 		List<ProductModel> allProduct = query(query, new ProductMapper());
 		for (ProductModel i : allProduct) {
 			String subquery = "select * from image where ProductID = ?";
@@ -60,7 +62,7 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 	@Override
 	public List<ProductModel> findAll(Pageble pageble) {
 		StringBuilder query = new StringBuilder(
-				"select product.*,CategoryName from product INNER JOIN category on product.CategoryID = category.CategoryID");
+				"select product.*,CategoryName,brand.BrandName from product INNER JOIN category on product.CategoryID = category.CategoryID left outer JOIN brand on product.BrandID=brand.BrandID");
 		if (pageble.getOffset() != null && pageble.getLimit() != null) {
 			query.append(" limit " + pageble.getOffset() + "," + pageble.getLimit());
 		}
@@ -151,6 +153,25 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 		String query = "select count(*) from product where " + key + " like ? AND Price BETWEEN ? AND ?";
 		search = "%" + search + "%";
 		return count(query, search, startPrice, endPrice);
+	}
+
+	@Override
+	public Long insertProduct(ProductModel productModel) {
+		String sql = "INSERT INTO product (ProductName, Description, Price,CategoryID,Amount,BrandID) VALUES(?,?,?,?,?,?)";
+		System.out.println("asdadassaadthong6 báo" + productModel.getBrandID());
+		Long id = insert(sql, productModel.getProductName(),productModel.getDescription(),productModel.getPrice(),productModel.getCategoryID(),productModel.getAmount(),productModel.getBrandID());
+		for(String imageName : productModel.getImageNames()) {
+			String sqlImage = "INSERT INTO image (ProductID,ImageLink) VALUES("+id+",?)";
+			insert(sqlImage,imageName);
+		}
+		return id;
+	}
+
+	@Override
+	public ProductModel getOne(Long productID) {
+		String sql = "select * from product where ProductID = ? ";
+		List<ProductModel> products = query(sql, new ProductMapper(), productID);
+		return products.isEmpty() ? null : products.get(0);
 	}
 
 }

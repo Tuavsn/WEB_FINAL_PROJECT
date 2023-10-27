@@ -58,6 +58,7 @@
 									        <th>Tên sản phẩm</th>
 									        <th>Hình ảnh</th>
 									        <th>Mô tả </th>
+									        <th>Thương hiệu </th>
 									        <th>Thể loại </th>
 									        <th>Số lượng </th>
 									        <th>Giá </th>
@@ -78,6 +79,7 @@
 													 </c:if>
 												</c:forEach>
 										      	<td class="center112">${itemProduct.description}</td>
+										      	<td class="center112">${itemProduct.brandModel.brandName}</td>
 										      	<td class="center112">${itemProduct.categoryModel.categoryName}</td>
 										      	<td class="center112">${itemProduct.amount}</td>
 										      	<td class="center112">

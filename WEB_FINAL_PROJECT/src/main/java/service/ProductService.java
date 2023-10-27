@@ -11,7 +11,7 @@ public interface ProductService {
 	List<ProductModel> getProductByCID(String CategoryID);
 	List<ProductModel> getProductByPID(int ProductID);
 	List<ProductModel> getProductByName(String ProductName);
-	
+	ProductModel getOne(Long productID);
 	//Paging
 	
 	List<ProductModel> findAll(Pageble pageble);
@@ -23,4 +23,6 @@ public interface ProductService {
 	List<ProductModel> findAllSearchPrice(Pageble pageble, String key, String search,Long startPrice, Long endPrice);
 	int getTotalItemPrice(Long startPrice, Long endPrice);
 	int getTotalItemSearchPrice(String key, String search,Long startPrice, Long endPrice);
+	
+	ProductModel insertProduct(ProductModel productModel);
 }
