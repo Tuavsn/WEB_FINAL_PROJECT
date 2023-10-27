@@ -117,7 +117,7 @@
 								<label class="col-sm-3 control-label no-padding-right" for="brandID"> Thương hiệu </label>
 									<div class="col-sm-9">
 										<select class="form-control col-xs-10 col-sm-2" id="brandID" name="brandID">
-										<c:if test="${model.brandID==0}">	
+										<c:if test="${model.brandID==null}">	
 									 		<option value="#">--Chọn thương hiệu</option>
 									 		<c:forEach var="brand" items="${Allbrand}">
 									 			
@@ -126,7 +126,7 @@
 									 		</c:forEach>
 									 	</c:if>
 									 	
-									 	<c:if test="${model.brandID!=0}">	
+									 	<c:if test="${model.brandID!=null}">	
 									 		<c:forEach var="brand" items="${Allbrand}">
 									 			
 									 			<c:if test="${brand.brandID==model.brandID}">
