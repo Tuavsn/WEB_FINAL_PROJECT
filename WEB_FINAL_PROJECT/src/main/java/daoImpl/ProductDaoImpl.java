@@ -171,6 +171,10 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 	public ProductModel getOne(Long productID) {
 		String sql = "select * from product where ProductID = ? ";
 		List<ProductModel> products = query(sql, new ProductMapper(), productID);
+		for (ProductModel i : products) {
+			String subquery = "select * from image where ProductID = ?";
+			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
+		}
 		return products.isEmpty() ? null : products.get(0);
 	}
 

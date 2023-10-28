@@ -52,12 +52,29 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="productName"> Tên sản phẩm </label>
 									<div class="col-sm-9">
-										<input type="text" id="productName" name="productName"  placeholder="Nhập tên sản phẩm" class="col-xs-10 col-sm-4" value="${model.productName}" />
+										<input type="text" id="productName" name="productName"  placeholder="Nhập tên sản phẩm" class="col-xs-10 col-sm-12" value="${model.productName}" />
 									</div>					    
 							</div>
-							
+							<c:if test="${not empty model.productID}">
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right" for="imageHienTai"> Hình ảnh sản phẩm hiện tại </label>
+										<div class="col-sm-9">
+											<div id="imageHienTai">
+												<c:forEach var="item" items="${imgHienTai}">
+														<img alt="" src="<c:url value="/uploads/${item.imageLink}"/>" width="200px" name="${item.imageLink}">
+												</c:forEach>
+											</div>			
+										</div>					    
+								</div>
+							</c:if>	
+								
 							<div class="form-group">
+							<c:if test="${empty model.productID}">
 								<label class="col-sm-3 control-label no-padding-right" for="file"> Chọn hình ảnh </label>
+							</c:if>	
+							<c:if test="${not empty model.productID}">
+								<label class="col-sm-3 control-label no-padding-right" for="file"> Chọn hình ảnh mới </label>
+							</c:if>	
 									<div class="col-sm-9">
 											<input type="file" name="file" id="file" multiple="true" accept="image/*">
 									
@@ -117,7 +134,7 @@
 								<label class="col-sm-3 control-label no-padding-right" for="brandID"> Thương hiệu </label>
 									<div class="col-sm-9">
 										<select class="form-control col-xs-10 col-sm-2" id="brandID" name="brandID">
-										<c:if test="${model.brandID==null}">	
+										<c:if test="${model.brandID==null || model.brandID==0}">	
 									 		<option value="#">--Chọn thương hiệu</option>
 									 		<c:forEach var="brand" items="${Allbrand}">
 									 			
@@ -126,13 +143,13 @@
 									 		</c:forEach>
 									 	</c:if>
 									 	
-									 	<c:if test="${model.brandID!=null}">	
+									 	<c:if test="${model.brandID!=null || model.brandID!=0}">	
 									 		<c:forEach var="brand" items="${Allbrand}">
 									 			
 									 			<c:if test="${brand.brandID==model.brandID}">
 									 					<option value="${brand.brandID}" selected="selected">${brand.brandName}</option>
 									 			</c:if>
-									 			<c:if test="${brandID.brandID!=model.brandID}">
+									 			<c:if test="${brand.brandID!=model.brandID}">
 									 					<option value="${brand.brandID}">${brand.brandName}</option>
 									 			</c:if>
 									 			
@@ -183,6 +200,9 @@
 									</button>
 								</div>
 							</div>
+							<c:if test="${not empty model.productID}">
+								<input type="hidden" value="${model.productID}" name="productID">
+							</c:if>	
                 	</form>
                 </div>
             </div>

@@ -19,8 +19,10 @@ import javax.servlet.http.Part;
 import model.ProductModel;
 import service.CategoryService;
 import service.IBrandService;
+import service.ProductService;
 import serviceImpl.BrandService;
 import serviceImpl.CategoryServiceImpl;
+import serviceImpl.ProductServiceImpl;
 import utils.FormUtil;
 
 @WebServlet(urlPatterns = { "/admin-product-edit" })
@@ -29,6 +31,7 @@ public class Editproduct extends HttpServlet{
 
 	CategoryService categoryService = new CategoryServiceImpl();
 	IBrandService brandService = new BrandService();
+	ProductService productService = new ProductServiceImpl();
 	private static final long serialVersionUID = -3607301560301769691L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
@@ -38,6 +41,10 @@ public class Editproduct extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		ProductModel model = FormUtil.toModel(ProductModel.class, req);
+		if(model.getProductID()!=null) {
+			model=productService.getOne(model.getProductID());
+			req.setAttribute("imgHienTai",model.getImage());
+		}
 		req.setAttribute("Allbrand", brandService.findAll());
 		req.setAttribute("Allcategory", categoryService.findAll());
 		req.setAttribute("model",model);
@@ -76,6 +83,10 @@ public class Editproduct extends HttpServlet{
 		catch (Exception e) {
 			 System.out.println("Lỗi rồi");
 			 e.printStackTrace();
+		}
+		if(model.getProductID()!=null) {
+			model=productService.getOne(model.getProductID());
+			req.setAttribute("imgHienTai",model.getImage());
 		}
 		req.setAttribute("Allbrand", brandService.findAll());
 		req.setAttribute("Allcategory", categoryService.findAll());
