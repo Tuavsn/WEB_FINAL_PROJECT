@@ -71,7 +71,7 @@
 										        <td>
 										        	<c:forEach var="childCategory" items="${item.childCategory}">
 										        			<div style="display: flex;align-items: center;">
-													        	<i class="ace-icon glyphicon glyphicon-plus"></i>
+													        	<i class="ace-icon glyphicon glyphicon-plus green"></i>
 													        	<label style="margin: 0 0 0 12px">${childCategory.categoryName}</label>
 												        	</div>
 										        	</c:forEach>

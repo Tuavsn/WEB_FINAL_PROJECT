@@ -69,8 +69,8 @@
 									      <tr>
 										      	<td class=""><input type="checkbox"value="${item.brandID}" id="checkbox_${item.brandID}"/></td>
 										        <td>${item.brandName}</td>
-										        <td width="200px">
-										        	<img alt="" src="${item.imageLink}" width="200px">
+										        <td width="300px">
+										        	<img alt="" src="${item.imageLink}" width="300px">
 										        </td>
 										        <td>${item.description}</td>
 										        <td class="">
