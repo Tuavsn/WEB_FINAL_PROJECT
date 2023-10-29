@@ -137,7 +137,8 @@ $(function () {
     });
 });
 
-$("#btnDelete").click(function() {
+$("#btnDelete").click(function(e) {
+	e.preventDefault();
 	var data = {};
 	var ids = $('tbody input[type=checkbox]:checked').map(function () {
         return $(this).val();

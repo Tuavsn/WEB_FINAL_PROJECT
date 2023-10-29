@@ -236,6 +236,7 @@ function deleteImage(deleteButton) {
     })
     
     $('#btnAdd').click(function (e){
+    	e.preventDefault();
     	var data = {};
     	var imageNames = [];
     	 $('#imageContainer img').each(function() { 
@@ -260,6 +261,7 @@ function deleteImage(deleteButton) {
     })
     
      $('#btnUpdate').click(function (e){
+    	 e.preventDefault();
     	 var data = {};
      	var imageNames = [];
      	var idImageHienTai = [];

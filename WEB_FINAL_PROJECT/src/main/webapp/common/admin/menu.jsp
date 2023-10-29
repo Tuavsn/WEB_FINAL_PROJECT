@@ -87,7 +87,7 @@
 	                    <b class="arrow"></b>
 	               	</li>
 	               	<li class="">
-	                 			<a href='<c:url value = 'admin-brand-list'/>'>
+	                 			<a href='<c:url value = 'admin-brand-list?page=1&maxPageItem=6'/>'>
 	                        <i class="menu-icon fa fa-caret-right"></i>
 	                        Danh sách thương hiệu
 	                    </a>

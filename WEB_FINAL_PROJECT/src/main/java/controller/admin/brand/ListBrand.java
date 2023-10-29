@@ -1,6 +1,7 @@
 package controller.admin.brand;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,8 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import constant.SystemConstant;
+import model.BrandModel;
+import model.CategoryModel;
+import paging.PageRequest;
+import paging.Pageble;
 import service.IBrandService;
 import serviceImpl.BrandService;
+import utils.FormUtil;
 
 @WebServlet(urlPatterns = { "/admin-brand-list" })
 
@@ -26,8 +33,13 @@ public class ListBrand extends HttpServlet{
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		
-		req.setAttribute("Allbrand", brandService.findAll());
+		BrandModel model = FormUtil.toModel(BrandModel.class, req);
+		Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem());
+		List<BrandModel> allBrand =  brandService.findAll(pageble);
+		model.setTotalItem(brandService.getTotalItem());
+		model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
+		req.setAttribute("Allbrand", allBrand);
+		req.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rq = req.getRequestDispatcher("views/admin/brand/listbrand.jsp");
 		rq.forward(req, resp);
 	}

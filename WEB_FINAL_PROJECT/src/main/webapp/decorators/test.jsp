@@ -137,6 +137,7 @@
 	    }
 	    
 	    $('#btnAdd').click(function (e) {
+	    	e.preventDefault();
 	    	var datas = {};
 	    	var data = [];
 			$('.tag').map(function() {

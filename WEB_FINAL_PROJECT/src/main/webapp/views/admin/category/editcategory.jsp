@@ -46,7 +46,7 @@
 			</div><!-- /.page-header -->
             <div class="row" >
                 <div class="col-xs-12">
-                		<div class="form-horizontal">				
+                		<form class="form-horizontal">				
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="categoryName"> Tên thể loại </label>
 									<div class="col-sm-9">
@@ -140,7 +140,7 @@
 									</button>
 								</div>
 							</div>
-                	</div>
+                	</form>
                 	<div id="valuechild">
 	                	<c:forEach var="item" items="${categoryEdit.childCategory}">
 	                			<input type="hidden" id="${item.categoryID}" value="${item.categoryName}" />

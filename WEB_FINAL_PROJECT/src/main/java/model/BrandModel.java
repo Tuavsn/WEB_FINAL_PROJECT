@@ -1,6 +1,6 @@
 package model;
 
-public class BrandModel {
+public class BrandModel extends AbstractModel<BrandModel>{
 	private Long brandID;
 	private String brandName;
 	private String description;
