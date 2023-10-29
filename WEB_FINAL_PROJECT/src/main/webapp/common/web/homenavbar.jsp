@@ -21,7 +21,7 @@
 							  </a>
 							  <div class="dropdown-menu" style="position: absolute">
 							    <c:forEach items="${category.childCategory}" var="childcategory">
-								    <a class="dropdown-item" href="shop?page=1&maxPageItem=6&key=CategoryID&search=${childcategory.categoryID}">${childcategory.categoryName}</a>
+								    <a class="dropdown-item" href="shop?page=1&maxPageItem=9&key=CategoryID&search=${childcategory.categoryID}">${childcategory.categoryName}</a>
  						 	  	</c:forEach>
 							  </div>
 							</div>
@@ -46,9 +46,10 @@
 					<div class="collapse navbar-collapse justify-content-between"
 						id="navbarCollapse">
 						<div class="navbar-nav mr-auto py-0">
-							<a href="home" class="nav-item nav-link active">Trang chủ</a> 
-							<a href="shop?page=1&maxPageItem=6" class="nav-item nav-link">Sản phẩm</a>
-							<a href="contact" class="nav-item nav-link">Thông tin liên hệ</a>
+							<a href="home" class="nav-item nav-link ${page == 'home' ? "active" : ""}">Trang chủ</a> 
+							<a href="shop?page=1&maxPageItem=9" class="nav-item nav-link ${page == 'shop' ? "active" : ""}">Sản phẩm</a>
+							<a href="contact" class="nav-item nav-link ${page == 'contact' ? "active" : ""}">Thông tin liên hệ</a>
+							<a href="brand" class="nav-item nav-link">Thương hiệu</a>
 						</div>
 					</div>
 				</nav>
@@ -61,7 +62,7 @@
 								<div class="p-3" style="max-width: 700px;">
 									<h4 class="text-white text-uppercase font-weight-medium mb-3">Giảm ngay 10% cho đơn hàng đầu tiên</h4>
 									<h3 class="display-4 text-white font-weight-semi-bold mb-4">Mỹ phẩm hàng hiệu</h3>
-									<a href="shop?page=1&maxPageItem=6" class="btn btn-light py-2 px-3">Mua sắm ngay</a>
+									<a href="shop?page=1&maxPageItem=9" class="btn btn-light py-2 px-3">Mua sắm ngay</a>
 								</div>
 							</div>
 						</div>
@@ -72,7 +73,7 @@
 								<div class="p-3" style="max-width: 700px;">
 									<h4 class="text-light text-uppercase font-weight-medium mb-3">Giảm ngay 10% cho đơn hàng đầu tiên</h4>
 									<h3 class="display-4 text-white font-weight-semi-bold mb-4">Giá cả cạnh tranh</h3>
-									<a href="shop" class="btn btn-light py-2 px-3">Mua sắm ngay</a>
+									<a href="shop?page=1&maxPageItem=9" class="btn btn-light py-2 px-3">Mua sắm ngay</a>
 								</div>
 							</div>
 						</div>

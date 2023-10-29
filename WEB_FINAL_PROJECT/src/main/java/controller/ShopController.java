@@ -65,6 +65,10 @@ public class ShopController extends HttpServlet {
 				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
 			}
 		}
+		
+		// Current page
+		req.setAttribute("page", "shop");
+		
 		req.setAttribute("startPrice", startPrice);
 		req.setAttribute("endPrice", endPrice);
 		req.setAttribute("model", model);

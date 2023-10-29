@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-    <title>EShopper - Bootstrap Shop Template</title>
-    
-</head>
-
 <body>
 
 
@@ -45,7 +36,7 @@
                             <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
                             <td class="align-middle">$150</td>
                             <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-minus" >
                                         <i class="fa fa-minus"></i>
@@ -66,7 +57,7 @@
                             <td class="align-middle"><img src="img/product-2.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
                             <td class="align-middle">$150</td>
                             <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-minus" >
                                         <i class="fa fa-minus"></i>
@@ -87,7 +78,7 @@
                             <td class="align-middle"><img src="img/product-3.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
                             <td class="align-middle">$150</td>
                             <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-minus" >
                                         <i class="fa fa-minus"></i>
@@ -108,7 +99,7 @@
                             <td class="align-middle"><img src="img/product-4.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
                             <td class="align-middle">$150</td>
                             <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-minus" >
                                         <i class="fa fa-minus"></i>
@@ -129,7 +120,7 @@
                             <td class="align-middle"><img src="img/product-5.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
                             <td class="align-middle">$150</td>
                             <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-minus" >
                                         <i class="fa fa-minus"></i>
@@ -184,7 +175,21 @@
         </div>
     </div>
     <!-- Cart End -->
-
+	<script>
+	//Product Quantity
+	$('.quantity button').on('click', function () {
+	    var button = $(this);
+	    var oldValue = button.parent().parent().find('input').val();
+	    if (button.hasClass('btn-plus')) {
+	        var newVal = parseFloat(oldValue) + 1;
+	    } else {
+	        if (oldValue > 0) {
+	            var newVal = parseFloat(oldValue) - 1;
+	        } else {
+	            newVal = 0;
+	        }
+	    }
+	    button.parent().parent().find('input').val(newVal);
+	});
+	</script>
 </body>
-
-</html>

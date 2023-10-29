@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.CategoryModel;
 import service.CategoryService;
@@ -27,7 +28,9 @@ public class CartController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
-
+		HttpSession httpSession = req.getSession();
+		Object obj = httpSession.getAttribute("cart");
+		System.out.println(obj);		
 		RequestDispatcher rq = req.getRequestDispatcher("views/cart.jsp");
 		rq.forward(req, resp);
 	}

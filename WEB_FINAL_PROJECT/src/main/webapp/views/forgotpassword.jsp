@@ -58,77 +58,77 @@
 			</div>
 		</div>
 	</div>
-</body>
-<script>
-	$(document).ready(function() {
-		$('#btnChangePassword').click(function(e) {
-			e.preventDefault();
-			var data = {};
-			var formData = $('#formSubmit1').serializeArray();
-			var userName = $('#userName1').val();
-			var password = $('#password1').val();
-			var repeatPassword = $('#repeatPassword1').val();
-			var sdt = $('#sdt1').val();
-			var check = false;
-			$('#passwordError1').text("");	
-			$('#sdtError1').text("");
-			$('#empty1').text("");
-			$('#userNameError1').text("");
-			$('#sdtdangky1').text("");
-			var inputs = $('input[name="name"]');
-
-			$.each(formData, function(i, v) {
-				data["" + v.name + ""] = v.value;
-				if (v.value == "") {
-					$('#empty1').text("Hãy nhập đầy đủ thông tin");
+	<script>
+		$(document).ready(function() {
+			$('#btnChangePassword').click(function(e) {
+				e.preventDefault();
+				var data = {};
+				var formData = $('#formSubmit1').serializeArray();
+				var userName = $('#userName1').val();
+				var password = $('#password1').val();
+				var repeatPassword = $('#repeatPassword1').val();
+				var sdt = $('#sdt1').val();
+				var check = false;
+				$('#passwordError1').text("");	
+				$('#sdtError1').text("");
+				$('#empty1').text("");
+				$('#userNameError1').text("");
+				$('#sdtdangky1').text("");
+				var inputs = $('input[name="name"]');
+	
+				$.each(formData, function(i, v) {
+					data["" + v.name + ""] = v.value;
+					if (v.value == "") {
+						$('#empty1').text("Hãy nhập đầy đủ thông tin");
+						check = true;
+					}
+				});
+				if (check == true) {
+					return;
+				}
+				
+			
+				
+				if (password != repeatPassword) {
+					$('#passwordError1').text("Mật khẩu nhập lại chưa đúng");
 					check = true;
 				}
-			});
-			if (check == true) {
-				return;
-			}
-			
-		
-			
-			if (password != repeatPassword) {
-				$('#passwordError1').text("Mật khẩu nhập lại chưa đúng");
-				check = true;
-			}
-			if (!/^\d+$/.test(sdt)) {
-				$('#sdtError1').text("Phải nhập số");
-				check = true;
-			}
-			$('#success1').text("");
-			if (check == false) {
-				changePassword(data);
+				if (!/^\d+$/.test(sdt)) {
+					$('#sdtError1').text("Phải nhập số");
+					check = true;
+				}
+				$('#success1').text("");
+				if (check == false) {
+					changePassword(data);
+				}
+			})
+			function changePassword(data) {
+				$.ajax({
+					url : '${APIurl}',
+					type : 'PUT',
+					contentType : 'application/json',
+					data : JSON.stringify(data),
+					dataType : 'json',
+					success : function(result) { //result la ket qua tra ve vd : newModel,...
+						$('#Error1').text("");
+						$('#success1').text("Đổi mật khẩu thành công");
+						console.log(result);
+					},
+					error: function(xhr) {
+						$('#success1').text("");
+				        if (xhr.status === 400) {
+				            // Trường hợp lỗi 400 Bad Request
+				            $('#userNameError1').text("Tên người dùng không tồn tại");
+				        } else if(xhr.status === 409){
+				        	$('#sdtError1').text("Số điện thoại không hợp lệ");
+				        }
+				        else {
+				            $('#Error1').text("Lỗi rồi");
+				            console.log(xhr);
+				        }
+				    }
+				});
 			}
 		})
-		function changePassword(data) {
-			$.ajax({
-				url : '${APIurl}',
-				type : 'PUT',
-				contentType : 'application/json',
-				data : JSON.stringify(data),
-				dataType : 'json',
-				success : function(result) { //result la ket qua tra ve vd : newModel,...
-					$('#Error1').text("");
-					$('#success1').text("Đổi mật khẩu thành công");
-					console.log(result);
-				},
-				error: function(xhr) {
-					$('#success1').text("");
-			        if (xhr.status === 400) {
-			            // Trường hợp lỗi 400 Bad Request
-			            $('#userNameError1').text("Tên người dùng không tồn tại");
-			        } else if(xhr.status === 409){
-			        	$('#sdtError1').text("Số điện thoại không hợp lệ");
-			        }
-			        else {
-			            $('#Error1').text("Lỗi rồi");
-			            console.log(xhr);
-			        }
-			    }
-			});
-		}
-	})
-</script>
+	</script>
+</body>

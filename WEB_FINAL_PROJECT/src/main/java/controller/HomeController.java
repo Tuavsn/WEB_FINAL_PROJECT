@@ -39,6 +39,9 @@ public class HomeController extends HttpServlet {
 		List<ProductModel> top8newproduct = productservice.get8NewProduct();
 		req.setAttribute("top8newproduct", top8newproduct);
 		
+		// Current page
+		req.setAttribute("page", "home");
+		
 		RequestDispatcher rq = req.getRequestDispatcher("views/home.jsp");
 		rq.forward(req, resp);
 	}

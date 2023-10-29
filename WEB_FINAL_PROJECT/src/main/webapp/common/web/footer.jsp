@@ -27,7 +27,7 @@
 						<div class="d-flex flex-column justify-content-start">
 							<a class="text-dark mb-2" href="home"><i
 								class="fa fa-angle-right mr-2"></i>Trang chủ</a> <a class="text-dark mb-2"
-								href="shop?page=1&maxPageItem=6"><i class="fa fa-angle-right mr-2"></i>Sản phẩm</a> <a
+								href="shop?page=1&maxPageItem=9"><i class="fa fa-angle-right mr-2"></i>Sản phẩm</a> <a
 								class="text-dark mb-2" href="cart"><i
 								class="fa fa-angle-right mr-2"></i>Giỏ hàng</a> <a
 								class="text-dark mb-2" href="checkout"><i

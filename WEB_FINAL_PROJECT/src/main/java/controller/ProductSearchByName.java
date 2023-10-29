@@ -52,6 +52,9 @@ public class ProductSearchByName extends HttpServlet{
 		}
 		req.setAttribute("model", model);
 		
+		// Current page
+		req.setAttribute("page", "home");
+		
 		RequestDispatcher rq = req.getRequestDispatcher("views/shop.jsp");
 		rq.forward(req, resp);
 	}

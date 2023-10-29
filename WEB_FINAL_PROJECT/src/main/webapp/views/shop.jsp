@@ -23,38 +23,38 @@
 					<h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
 					<form id="price-filter" action="http://localhost:8080/WEB_FINAL_PROJECT/shop" method="get">
 					<div
-							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-999" value="0-0">
+							class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
+							<input type="radio" class="custom-control-input" name='price' id="price-999" value="0-0" checked>
 							<label class="custom-control-label" for="price-999">Tất cả sản phẩm</label>
 						</div>
 						<div
-							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-0" value="0-100000">
+							class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
+							<input type="radio" class="custom-control-input" name='price' id="price-0" value="0-100000">
 							<label class="custom-control-label" for="price-0">0 đ - 100.000 đ</label>
 						</div>
 						<div
-							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-1" value="100000-300000">
+							class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
+							<input type="radio" class="custom-control-input" name='price' id="price-1" value="100000-300000">
 							<label class="custom-control-label" for="price-1">100.000 đ - 300.000 đ</label>
 						</div>
 						<div
-							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-2" value="300000-500000">
+							class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
+							<input type="radio" class="custom-control-input" name='price' id="price-2" value="300000-500000">
 							<label class="custom-control-label" for="price-2">300.000 đ - 500.000 đ</label>
 						</div>
 						<div
-							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-3" value="500000-700000">
+							class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
+							<input type="radio" class="custom-control-input" name='price' id="price-3" value="500000-700000">
 							<label class="custom-control-label" for="price-3">500.000 đ - 700.000 đ</label>
 						</div>
 						<div
-							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-4" value="700000-100000">
+							class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
+							<input type="radio" class="custom-control-input" name='price' id="price-4" value="700000-1000000">
 							<label class="custom-control-label" for="price-4">700.000 đ - 1.000.000 đ</label>
 						</div>
 						<div
-							class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-							<input type="checkbox" class="custom-control-input" id="price-5" value="1000000-2000000">
+							class="custom-control custom-radio d-flex align-items-center justify-content-between mb-3">
+							<input type="radio" class="custom-control-input" name='price' id="price-5" value="1000000-2000000">
 							<label class="custom-control-label" for="price-5">1.000.000 đ - 2.000.000 đ</label>
 						</div>
 						<div>
@@ -172,7 +172,7 @@
 	        let startPrice = 0;
 	        let endPrice = 0;
 	        // Lặp qua tất cả các hộp kiểm để kiểm tra xem hộp kiểm nào được chọn và lấy giá trị value của nó
-	        const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+	        const checkboxes = form.querySelectorAll('input[type="radio"]');
 	        checkboxes.forEach(function(checkbox) {
 	            if (checkbox.checked) {
 	            	selectedPrices.push(checkbox.value);

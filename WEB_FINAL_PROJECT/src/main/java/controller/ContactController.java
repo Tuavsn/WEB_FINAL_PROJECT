@@ -31,6 +31,9 @@ public class ContactController extends HttpServlet {
 
 		RequestDispatcher rq = req.getRequestDispatcher("views/contact.jsp");
 		rq.forward(req, resp);
+		
+		// Current page
+		req.setAttribute("page", "contact");
 	}
 
 	@Override

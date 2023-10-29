@@ -53,7 +53,7 @@
         	<c:forEach items="${allcategory}" var="category">
 	            <div class="col-lg-4 col-md-6 pb-1">
 	                <div class="cat-item d-flex flex-column border mb-4 h-100" style="padding: 30px;">
-	                    <a href="shop?page=1&maxPageItem=6" class="cat-img position-relative overflow-hidden mb-3">
+	                    <a href="shop?page=1&maxPageItem=9" class="cat-img position-relative overflow-hidden mb-3">
 	                        <img class="img-fluid" src="${category.imageLink}" alt="">
 	                    </a>
 	                    <h5 class="font-weight-semi-bold m-0">${category.categoryName}</h5>
@@ -74,7 +74,7 @@
                     <div class="position-relative" style="z-index: 1;">
                         <h5 class="text-uppercase text-primary mb-3">Giảm 10% cho đơn hàng đầu tiên</h5>
                         <h1 class="mb-4 font-weight-semi-bold">Thương hiệu uy tín</h1>
-                        <a href="shop" class="btn btn-outline-primary py-md-2 px-md-3">Mua sắm ngay</a>
+                        <a href="shop?page=1&maxPageItem=9" class="btn btn-outline-primary py-md-2 px-md-3">Mua sắm ngay</a>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                     <div class="position-relative" style="z-index: 1;">
                         <h5 class="text-uppercase text-primary mb-3">Giảm 10% cho đơn hàng đầu tiên</h5>
                         <h1 class="mb-4 font-weight-semi-bold">Giá cả cạnh tranh</h1>
-                        <a href="shop" class="btn btn-outline-primary py-md-2 px-md-3">Deal hời</a>
+                        <a href="shop?page=1&maxPageItem=9" class="btn btn-outline-primary py-md-2 px-md-3">Deal hời</a>
                     </div>
                 </div>
             </div>

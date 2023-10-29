@@ -64,8 +64,8 @@
 			</div>
 		</div>
 	</div>
-</body>
-<script>
+	
+	<script>
 		$('#btnAdd').click(function(e) {
 			e.preventDefault();
 			var data = {};
@@ -137,4 +137,5 @@
 			});
 		}
 	
-</script>
+	</script>
+</body>
