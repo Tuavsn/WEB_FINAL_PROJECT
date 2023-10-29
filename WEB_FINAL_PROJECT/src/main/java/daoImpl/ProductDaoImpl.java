@@ -171,7 +171,29 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 	public ProductModel getOne(Long productID) {
 		String sql = "select * from product where ProductID = ? ";
 		List<ProductModel> products = query(sql, new ProductMapper(), productID);
+		for (ProductModel i : products) {
+			String subquery = "select * from image where ProductID = ?";
+			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
+		}
 		return products.isEmpty() ? null : products.get(0);
+	}
+
+	@Override
+	public void updateProduct(ProductModel productModel) {
+		String sql = "UPDATE product SET  ProductName = ?,Description = ?,Price = ?,CategoryID = ?,Amount = ?,BrandID = ? WHERE ProductID=?";
+		update(sql, productModel.getProductName(),productModel.getDescription(),productModel.getPrice(),productModel.getCategoryID(),productModel.getAmount(),productModel.getBrandID(),productModel.getProductID());
+		String deleteSql = "delete from image where ProductID=?";
+		update(deleteSql, productModel.getProductID());
+		for(String imageName : productModel.getImageNames()) {
+			String sqlImage = "INSERT INTO image (ProductID,ImageLink) VALUES("+productModel.getProductID()+",?)";
+			insert(sqlImage,imageName);
+		}
+	}
+
+	@Override
+	public void deleteProduct(Long id) {
+		String sql = "UPDATE product SET Amount = 0 where ProductID = ?";
+		update(sql, id);
 	}
 
 }

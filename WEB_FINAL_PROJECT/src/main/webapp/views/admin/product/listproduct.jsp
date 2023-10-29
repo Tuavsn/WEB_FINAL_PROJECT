@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:url var="APIurl" value="/api-product"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,13 +35,13 @@
 											<div class="dt-buttons btn-overlap btn-group">
 												<a flag="info"
 												   class="dt-button buttons-colvis btn btn-white btn-primary btn-bold" data-toggle="tooltip"
-												   title='Thêm thể loại' href='<c:url value = '/admin-product-edit'/>'>
+												   title='Thêm sản phẩm' href='<c:url value = '/admin-product-edit'/>'>
 															<span>
 																<i class="fa fa-plus-circle bigger-110 purple"></i>
 															</span>
 												</a>
 												<button id="btnDelete" type="button"
-														class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" data-toggle="tooltip" title='Xóa thể loại'>
+														class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" data-toggle="tooltip" title='Xóa sản phẩm'>
 															<span>
 																<i class="fa fa-trash-o bigger-110 pink"></i>
 															</span>
@@ -68,7 +70,7 @@
 									    <tbody>
 									    <c:forEach var="itemProduct" items="${Allproduct}">
 									      <tr>
-									      		<td class="center112"><input type="checkbox" value="#" id="#"/></td>
+									      		<td class="center112"><input type="checkbox" value="${itemProduct.productID}" id="checkbox_${itemProduct.productID}"/></td>
 										      	<td class="center112">${itemProduct.productName}</td>
 										      	<c:forEach var="img" items="${itemProduct.image}" varStatus="loop">
 										      		 <c:if test="${loop.index == 0}">
@@ -93,7 +95,7 @@
 														<c:param name="productID" value="${itemProduct.productID}"/>
 												</c:url>
 													<a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-													   title="Cập nhật thể loại" href='${editURL}'>
+													   title="Cập nhật sản phẩm" href='${editURL}'>
 													   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 													</a>
 												</td>
@@ -134,6 +136,41 @@ $(function () {
         }
     });
 });
+
+$("#btnDelete").click(function() {
+	var data = {};
+	var ids = $('tbody input[type=checkbox]:checked').map(function () {
+        return $(this).val();
+    }).get();
+	data['ids'] = ids;
+	if (ids.length === 0) {
+	    alert("Vui lòng chọn ít nhất một sản phẩm cần xóa.");
+	    // Hoặc thực hiện các hành động cần thiết khi có lỗi.
+	} else {
+		data['ids'] = ids;
+	    deleteProduct(data);
+	}
+})
+function deleteProduct(data) {
+        $.ajax({
+            url: '${APIurl}',
+            type: 'DELETE',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (result) {
+            		
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-product-list?page="+${model.page}+"&maxPageItem=3";
+            	alert("Xóa thành công.");
+            	
+            },
+            error: function (error) 
+            {
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-product-list?page="+${model.page}+"&maxPageItem=3";
+            	alert("Lỗi rồi");
+            	
+            }
+        });
+	}
 </script>
 </body>
 </html>

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.CategoryModel;
 import model.ProductModel;
+import model.UserModel;
 import service.ProductService;
 import serviceImpl.ProductServiceImpl;
 import utils.HttpUtil;
@@ -34,5 +35,22 @@ public class ProductAPI extends HttpServlet{
 		productModel = productService.insertProduct(productModel);
 		mapper.writeValue(response.getOutputStream(),productModel);
 	}
-
+	@Override
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		ProductModel productModel = HttpUtil.of(request.getReader()).toModel(ProductModel.class);
+		productModel = productService.updateProduct(productModel);
+		mapper.writeValue(response.getOutputStream(), productModel);
+	}
+	@Override
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		request.setCharacterEncoding("UTF-8"); // định form tiếng việt
+		response.setContentType("application/json");
+		ProductModel productModel = HttpUtil.of(request.getReader()).toModel(ProductModel.class);
+		productService.deleteProducts(productModel.getIds());
+		mapper.writeValue(response.getOutputStream(), "{}");
+	}
 }
