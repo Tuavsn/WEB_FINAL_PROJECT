@@ -25,4 +25,6 @@ public interface ProductService {
 	int getTotalItemSearchPrice(String key, String search,Long startPrice, Long endPrice);
 	
 	ProductModel insertProduct(ProductModel productModel);
+	ProductModel updateProduct(ProductModel productModel); 
+	void deleteProducts(long[] ids);
 }

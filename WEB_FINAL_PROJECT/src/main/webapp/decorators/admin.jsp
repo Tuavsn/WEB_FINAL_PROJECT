@@ -39,6 +39,20 @@
       	text-align: center!important;
     	vertical-align: middle!important;
 	}
+	.image-container {
+            display: inline-block;
+            margin: 10px;
+            position: relative;
+        }
+        
+        .delete-icon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 5px;
+            cursor: pointer;
+        }
 </style>
 </head>
 <body class="no-skin">

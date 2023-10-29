@@ -85,8 +85,8 @@ public class Editproduct extends HttpServlet{
 			 e.printStackTrace();
 		}
 		if(model.getProductID()!=null) {
-			model=productService.getOne(model.getProductID());
-			req.setAttribute("imgHienTai",model.getImage());
+			ProductModel image = productService.getOne(model.getProductID());
+			req.setAttribute("imgHienTai",image.getImage());
 		}
 		req.setAttribute("Allbrand", brandService.findAll());
 		req.setAttribute("Allcategory", categoryService.findAll());

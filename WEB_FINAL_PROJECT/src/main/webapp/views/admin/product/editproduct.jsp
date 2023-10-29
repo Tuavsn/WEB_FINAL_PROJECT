@@ -57,11 +57,21 @@
 							</div>
 							<c:if test="${not empty model.productID}">
 								<div class="form-group">
-									<label class="col-sm-3 control-label no-padding-right" for="imageHienTai"> Hình ảnh sản phẩm hiện tại </label>
+									<label class="col-sm-3 control-label no-padding-right" for="imageHienTai"> Hình ảnh sản phẩm </label>
 										<div class="col-sm-9">
 											<div id="imageHienTai">
 												<c:forEach var="item" items="${imgHienTai}">
-														<img alt="" src="<c:url value="/uploads/${item.imageLink}"/>" width="200px" name="${item.imageLink}">
+												<div class="image-container">
+														<img alt="" src="<c:url value="/uploads/${item.imageLink}"/>" width="200px" id="${item.imageID }" name="${item.imageLink}">
+														 <div title="Xóa" class="delete-icon" onclick="deleteImage(this)"><i class="ace-icon glyphicon glyphicon-remove"></i></div>
+												</div>
+												</c:forEach>
+												
+												<c:forEach var="item" items="${imgs}">
+												<div class="image-container">
+														<img alt="" src="<c:url value="/uploads/${item}"/>" width="200px" name="${item}">
+														<div title="Xóa" class="delete-icon" onclick="deleteImage(this)"><i  class="ace-icon glyphicon glyphicon-remove"></i></div>
+												</div>
 												</c:forEach>
 											</div>			
 										</div>					    
@@ -73,14 +83,14 @@
 								<label class="col-sm-3 control-label no-padding-right" for="file"> Chọn hình ảnh </label>
 							</c:if>	
 							<c:if test="${not empty model.productID}">
-								<label class="col-sm-3 control-label no-padding-right" for="file"> Chọn hình ảnh mới </label>
+								<label class="col-sm-3 control-label no-padding-right" for="file"> Thêm hình ảnh </label>
 							</c:if>	
 									<div class="col-sm-9">
 											<input type="file" name="file" id="file" multiple="true" accept="image/*">
 									
 									</div>					    
 							</div>
-							<c:if test="${not empty imgs }">
+							<c:if test="${not empty imgs && empty model.productID}">
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right" for="file"> Hình ảnh được chọn </label>
 										<div class="col-sm-9">
@@ -201,7 +211,7 @@
 								</div>
 							</div>
 							<c:if test="${not empty model.productID}">
-								<input type="hidden" value="${model.productID}" name="productID">
+								<input type="hidden" value="${model.productID}" name="productID" id="productID">
 							</c:if>	
                 	</form>
                 </div>
@@ -214,6 +224,10 @@ jQuery(function($)
 {
 	$('#spinner3').ace_spinner({value:0,min:0,max:1000,step:10, on_sides: true, icon_up:'ace-icon fa fa-plus bigger-110', icon_down:'ace-icon fa fa-minus bigger-110', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
 })
+function deleteImage(deleteButton) {
+            var imageContainer = deleteButton.parentNode;
+            imageContainer.remove();
+        }
 </script>
 <script>
 	var btn = document.getElementById('file');
@@ -227,12 +241,14 @@ jQuery(function($)
     	 $('#imageContainer img').each(function() { 
     		 imageNames.push($(this).attr('name'));
     	 });
+    	
     	var productName = $("#productName").val();
     	var description = $("#description").val();
     	var categoryID = $("#categoryID").val();
     	var amount = $("#spinner3").val();
     	var price = $("#price").val();
     	var brand = $("#brandID").val();
+    	
     	data["productName"] = productName;
     	data["imageNames"] = imageNames;
     	data["description"]= description;
@@ -243,6 +259,48 @@ jQuery(function($)
     	addProduct(data);
     })
     
+     $('#btnUpdate').click(function (e){
+    	 var data = {};
+     	var imageNames = [];
+     	var idImageHienTai = [];
+     	
+     	var productID = $("#productID").val();
+     	$('#imageHienTai img').each(function() { 
+     		idImageHienTai.push($(this).attr('name'));
+    	 });
+     	var productName = $("#productName").val();
+     	var description = $("#description").val();
+     	var categoryID = $("#categoryID").val();
+     	var amount = $("#spinner3").val();
+     	var price = $("#price").val();
+     	var brand = $("#brandID").val();
+     	data["productID"] = productID;
+     	data["productName"] = productName;
+     	data["imageNames"] = idImageHienTai;
+     	data["description"]= description;
+     	data["categoryID"] = categoryID;
+     	data["brandID"] = brand;
+     	data["amount"] = amount;
+     	data["price"] = price;
+     	updateProduct(data);
+     })
+     function updateProduct(data){
+		$.ajax({
+            url: '${APIurl}',
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (result) { //result la ket qua tra ve vd : newModel,...
+            	$('#Error').text("");
+            	$('#success').text("Cập nhập thành công");
+            },
+            error: function (error) {
+            	$('#success').text("");
+            	$('#Error').text("Lỗi rồi");
+            }
+        });
+	}
     function addProduct(data){
 		$.ajax({
             url: '${APIurl}',

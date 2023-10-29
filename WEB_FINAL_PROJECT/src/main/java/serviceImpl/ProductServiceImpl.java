@@ -87,4 +87,18 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.getOne(productID);
 	}
 
+	@Override
+	public ProductModel updateProduct(ProductModel productModel) {
+		productdao.updateProduct(productModel);
+		return productdao.getOne(productModel.getProductID());
+	}
+
+	@Override
+	public void deleteProducts(long[] ids) {
+		for(long id : ids) {
+			productdao.deleteProduct(id);
+		}
+		
+	}
+
 }
