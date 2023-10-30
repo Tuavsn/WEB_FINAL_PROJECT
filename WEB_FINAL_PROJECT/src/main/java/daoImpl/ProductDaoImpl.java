@@ -196,4 +196,29 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 		update(sql, id);
 	}
 
+	@Override
+	public List<ProductModel> findAllSearchAll(Pageble pageble, String key, String search) {
+		StringBuilder query = new StringBuilder("select product.*,CategoryName,brand.BrandName from product INNER JOIN category on product.CategoryID = category.CategoryID left outer JOIN brand on product.BrandID=brand.BrandID");
+		if (key != null && search != null) {
+			query.append(" where " + key + " like ? ");
+		}
+		if (pageble.getOffset() != null && pageble.getLimit() != null) {
+			query.append(" limit " + pageble.getOffset() + "," + pageble.getLimit());
+		}
+		search = "%" + search + "%";
+		List<ProductModel> allProduct = query(query.toString(), new ProductMapper(), search);
+		for (ProductModel i : allProduct) {
+			String subquery = "select * from image where ProductID = ?";
+			i.setImage(query(subquery, new ImageMapper(), i.getProductID()));
+		}
+		return allProduct;
+	}
+
+	@Override
+	public int getTotalItemSearchAll(String key, String search) {
+		String query = "select count(*) from product INNER JOIN category on product.CategoryID = category.CategoryID left outer JOIN brand on product.BrandID=brand.BrandID where " + key + " like ? ";
+		search = "%" + search + "%";
+		return count(query, search);
+	}
+
 }

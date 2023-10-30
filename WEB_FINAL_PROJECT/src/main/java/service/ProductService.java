@@ -18,7 +18,8 @@ public interface ProductService {
 	List<ProductModel> findAllSearch(Pageble pageble,String key,String search);
 	int getTotalItem();
 	int getTotalItemSearch(String key,String search);
-	
+	List<ProductModel> findAllSearchAll(Pageble pageble, String key, String search);
+	int getTotalItemSearchAll(String key, String search);
 	List<ProductModel> findAllPrice(Pageble pageble,Long startPrice, Long endPrice);
 	List<ProductModel> findAllSearchPrice(Pageble pageble, String key, String search,Long startPrice, Long endPrice);
 	int getTotalItemPrice(Long startPrice, Long endPrice);

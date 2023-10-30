@@ -54,5 +54,7 @@ public class BrandAPI extends HttpServlet{
 		BrandModel brandModel = HttpUtil.of(request.getReader()).toModel(BrandModel.class);
 		brandService.deleteBrand(brandModel.getIds());
 		mapper.writeValue(response.getOutputStream(), "{}");
+		
+		
 	}
 }

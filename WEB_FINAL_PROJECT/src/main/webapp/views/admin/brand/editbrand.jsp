@@ -165,6 +165,7 @@ $('#imageLink').change(function(){
 
 $('#btnAdd').click(function (e) {
 	e.preventDefault();
+	check = true;
 	var brandName = $("#brandName").val();
 	var imageLink = $("#imageLink").val();
 	var description = $("#description").val();
@@ -174,7 +175,6 @@ $('#btnAdd').click(function (e) {
 	data["description"]=description;
 	if($('#image').attr('alt') == ""){
 		addBrand(data);
-		console.log(data);
 	}
 	else{
 		$('#LinkError').text("Link hình ảnh không hợp lệ");

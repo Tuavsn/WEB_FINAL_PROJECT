@@ -53,7 +53,7 @@
 					<form class="form-search" action="<c:url value="/admin-user-list"/>" id="formSreach" method="get">
 						<input type="hidden" value="1" name="page">
 						<input type="hidden" value="7" name="maxPageItem">
-						<select id="roleId" name="key" title="Chọn nội dụng tìm kiếm">
+						<select name="key" title="Chọn nội dụng tìm kiếm">
 						<c:if test="${empty model.key }">
 							<c:forEach var="item" items="${dataMap}">
 								<option value="${item.key}">${item.value}</option>
@@ -187,9 +187,11 @@
 						</div>
 	                </div>
 	            </div>
+	            
 	        </div>
+	        </form>
 	    </div>
-	</form>
+	
 </div><!-- /.main-content -->
 <script>
 	var currentPage = ${model.page};

@@ -68,7 +68,13 @@ public class ListUser extends HttpServlet{
 		else 
 		{
 			model.setListResult(userService.findAllSearch(pageble, model.getKey(), model.getSearch()));
-			model.setTotalItem(userService.getTotalItemSearch(model.getKey(), model.getSearch()));
+			if(userService.getTotalItemSearch(model.getKey(), model.getSearch())==0) {
+				model.setTotalItem(1);
+			}
+			else {
+				model.setTotalItem(userService.getTotalItemSearch(model.getKey(), model.getSearch()));
+			}
+			
 			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
 		}
 		request.setAttribute(SystemConstant.MODEL, model);

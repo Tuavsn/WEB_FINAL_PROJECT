@@ -101,4 +101,16 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
+	@Override
+	public List<ProductModel> findAllSearchAll(Pageble pageble, String key, String search) {
+		
+		return productdao.findAllSearchAll(pageble, key, search);
+	}
+
+	@Override
+	public int getTotalItemSearchAll(String key, String search) {
+		// TODO Auto-generated method stub
+		return productdao.getTotalItemSearchAll(key, search);
+	}
+
 }
