@@ -8,8 +8,6 @@
                 <p class="m-0"><a href="">Trang chủ</a></p>
                 <p class="m-0 px-1">/</p>
                 <p class="m-0">Sản phẩm</p>
-                <p class="m-0 px-1">/</p>
-                <p class="m-0">${cid ? "" :allcategory[cid-1].categoryName}</p>
             </div>
         </div>
     </div>
@@ -109,7 +107,7 @@
 									<div
 										class="card-footer d-flex justify-content-between bg-light border">
 										<a href="detail?pid=${product.productID}" class="btn btn-sm text-dark p-0"><i
-											class="fas fa-eye text-primary mr-1"></i>Chi tiết</a> <a href=""
+											class="fas fa-eye text-primary mr-1"></i>Chi tiết</a> <a href="cart/add?pid=${product.productID}&amount=1"
 											class="btn btn-sm text-dark p-0"><i
 											class="fas fa-shopping-cart text-primary mr-1"></i>Thêm sản phẩm</a>
 									</div>

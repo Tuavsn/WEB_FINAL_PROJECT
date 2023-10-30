@@ -28,9 +28,7 @@ public class CartController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		List<CategoryModel> allCategory = categoryservice.findAll();
 		req.setAttribute("allcategory", allCategory);
-		HttpSession httpSession = req.getSession();
-		Object obj = httpSession.getAttribute("cart");
-		System.out.println(obj);		
+		
 		RequestDispatcher rq = req.getRequestDispatcher("views/cart.jsp");
 		rq.forward(req, resp);
 	}

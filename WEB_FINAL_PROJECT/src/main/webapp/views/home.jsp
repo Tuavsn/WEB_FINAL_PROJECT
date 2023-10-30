@@ -70,7 +70,7 @@
         <div class="row px-xl-5">
             <div class="col-md-6 pb-4">
                 <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
-                    <img src="https://laluongbeauty.vn/uploads/my-pham-han-quoc.jpg" alt="">
+                    <img src="https://picare.vn/wp-content/uploads/2018/08/loreal.png" alt="">
                     <div class="position-relative" style="z-index: 1;">
                         <h5 class="text-uppercase text-primary mb-3">Giảm 10% cho đơn hàng đầu tiên</h5>
                         <h1 class="mb-4 font-weight-semi-bold">Thương hiệu uy tín</h1>
@@ -115,7 +115,7 @@
 		                    </div>
 		                    <div class="card-footer d-flex justify-content-between bg-light border">
 		                        <a href="detail?pid=${product.productID}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Chi tiết</a>
-		                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm sản phẩm</a>
+		                        <a href="cart/add?pid=${product.productID}&amount=1" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm sản phẩm</a>
 		                    </div>
 		                </div>
 	                </a>

@@ -2,20 +2,20 @@ package serviceImpl;
 
 import java.util.List;
 
-import dao.CartDao;
-import daoImpl.CartDaoImpl;
-import model.CartModel;
+import dao.OrderItemDao;
+import daoImpl.OrderItemDaoImpl;
+import model.OrderItemModel;
 import service.CartService;
 
 public class CartServiceImpl implements CartService {
-	CartDao cartdao = new CartDaoImpl();
+	OrderItemDao cartdao = new OrderItemDaoImpl();
 	@Override
-	public List<CartModel> findAll() {
+	public List<OrderItemModel> findAll() {
 		return cartdao.findAll();
 	}
 
 	@Override
-	public CartModel getOne() {
+	public OrderItemModel getOne() {
 		return cartdao.getOne();
 	}
 

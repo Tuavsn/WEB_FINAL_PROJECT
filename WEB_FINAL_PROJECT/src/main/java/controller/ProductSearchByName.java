@@ -38,22 +38,43 @@ public class ProductSearchByName extends HttpServlet{
 		req.setAttribute("allcategory", allCategory);
 		//Get Products by name
 		ProductModel model = FormUtil.toModel(ProductModel.class, req);
+		String startPrice = req.getParameter("startPrice");
+		String endPrice = req.getParameter("endPrice");
 		Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem());
-		if(model.getKey() == null && model.getSearch()==null) {
-			model.setListResult(productservice.findAll(pageble));
-			model.setTotalItem(productservice.getTotalItem());
-			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
+		if (model.getKey() == null && model.getSearch() == null) {
+			if (startPrice != null && endPrice != null) {
+				Long start = Long.parseLong(startPrice);
+				Long end = Long.parseLong(endPrice);
+				model.setListResult(productservice.findAllPrice(pageble, start, end));
+				model.setTotalItem(productservice.getTotalItemPrice(start, end));
+				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+			} else {
+				model.setListResult(productservice.findAll(pageble));
+				model.setTotalItem(productservice.getTotalItem());
+				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+			}
+		} else {
+			if (startPrice != null && endPrice != null) {
+				Long start = Long.parseLong(startPrice);
+				Long end = Long.parseLong(endPrice);
+				model.setListResult(
+						productservice.findAllSearchPrice(pageble, model.getKey(), model.getSearch(), start, end));
+				model.setTotalItem(productservice.getTotalItemSearchPrice(model.getKey(), model.getSearch(), start, end));
+				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+			} else {
+				model.setListResult(productservice.findAllSearch(pageble, model.getKey(), model.getSearch()));
+				model.setTotalItem(productservice.getTotalItemSearch(model.getKey(), model.getSearch()));
+				model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+			}
 		}
-		else 
-		{
-			model.setListResult(productservice.findAllSearch(pageble, model.getKey(), model.getSearch()));
-			model.setTotalItem(productservice.getTotalItemSearch(model.getKey(), model.getSearch()));
-			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
-		}
-		req.setAttribute("model", model);
 		
 		// Current page
 		req.setAttribute("page", "home");
+		
+		req.setAttribute("startPrice", startPrice);
+		req.setAttribute("endPrice", endPrice);
+		req.setAttribute("model", model);
+		req.setAttribute("cid", model.getSearch());
 		
 		RequestDispatcher rq = req.getRequestDispatcher("views/shop.jsp");
 		rq.forward(req, resp);

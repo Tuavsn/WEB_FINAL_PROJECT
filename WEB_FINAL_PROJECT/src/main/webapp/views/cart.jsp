@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <body>
 
 
@@ -32,111 +33,43 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle">
-                        <tr>
-                            <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-2.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-3.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-4.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-5.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
+                    	<c:forEach items="${sessionScope.cart}" var="cart">
+	                        <tr>
+	                            <td class="align-middle d-flex justify-content-between align-items-center">
+	                            	<img src="<c:url value = "/uploads/"/>${cart.value.product.image[0].imageLink}" style="width: 120px;">
+	                            	${cart.value.product.productName}
+                            	</td>
+	                            <td class="align-middle">${cart.value.product.price}</td>
+	                            <td class="align-middle">
+	                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
+	                                    <div class="input-group-btn">
+	                                    	<a href="cart/add?pid=${cart.value.product.productID}&amount=-1">
+		                                        <button class="btn btn-sm btn-primary btn-minus" >
+		                                        <i class="fa fa-minus"></i>
+		                                        </button>
+	                                    	</a>
+	                                    </div>
+	                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${cart.value.amount}">
+	                                    <div class="input-group-btn">
+	                                        <a href="cart/add?pid=${cart.value.product.productID}&amount=1">
+	                                        	<button class="btn btn-sm btn-primary btn-plus">
+		                                            <i class="fa fa-plus"></i>
+		                                        </button>
+	                                        </a>
+	                                    </div>
+	                                </div>
+	                            </td>
+	                            <td class="align-middle">
+		                            <fmt:setLocale value="vi_VN" />
+									<fmt:formatNumber value="${ cart.value.product.price * cart.value.amount }" type="currency" />
+	                            </td>
+	                            <td class="align-middle">
+	                            	<a href="cart/add?pid=${cart.value.product.productID}&amount=-99999999">
+	                            		<button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button>
+	                            	</a>
+	                            </td>
+	                        </tr>
+                    	</c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -156,17 +89,35 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Tổng tiền sản phẩm</h6>
-                            <h6 class="font-weight-medium">$150</h6>
+                            <h6 class="font-weight-medium">
+	                            <c:set var="totalItemPrice" value="${0}" />
+								<c:forEach items="${sessionScope.cart}" var="cart">
+										<c:set var="totalCartItemPrice" value="${totalCartItemPrice + cart.value.product.price * cart.value.amount}" />
+								</c:forEach>
+								<fmt:setLocale value="vi_VN" />
+								<fmt:formatNumber value="${ totalCartItemPrice }" type="currency" />
+                            </h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Phí giao hàng</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                            <h6 class="font-weight-medium">
+                            	<c:set var="shippingPrice" value="${20000}" />
+                            	<fmt:setLocale value="vi_VN" />
+								<fmt:formatNumber value="${ shippingPrice}" type="currency" />
+                            </h6>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Tổng tiền</h5>
-                            <h5 class="font-weight-bold">$160</h5>
+                            <h5 class="font-weight-bold">
+                            	<c:set var="totalPrice" value="${0}" />
+								<c:forEach items="${sessionScope.cart}" var="cart">
+										<c:set var="totalPrice" value="${totalPrice + cart.value.product.price * cart.value.amount}" />
+								</c:forEach>
+								<fmt:setLocale value="vi_VN" />
+								<fmt:formatNumber value="${ totalPrice + shippingPrice}" type="currency" />
+                            </h5>
                         </div>
                         <button class="btn btn-block btn-primary my-3 py-3"><a href="checkout" style="color: black; font-weight: bold">Thanh Toán</a></button>
                     </div>

@@ -86,7 +86,7 @@
 									<i class="fa fa-minus"></i>
 								</button>
 							</div>
-							<input type="text" class="form-control bg-secondary text-center"
+							<input type="text" class="form-control bg-secondary text-center" id="quantityInput"
 								value="1">
 							<div class="input-group-btn">
 								<button class="btn btn-primary btn-plus">
@@ -94,8 +94,8 @@
 								</button>
 							</div>
 						</div>
-						<button class="btn btn-primary px-3">
-							<i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+						<button class="btn btn-primary px-3" onclick = "addToCart()">
+							<i class="fa fa-shopping-cart mr-1"></i> Thêm sản phẩm
 						</button>
 					</div>
 					<div class="d-flex pt-2">
@@ -163,7 +163,7 @@
 								<div class="col-md-6">
 									<h4 class="mb-4">1 review for "Colorful Stylish Shirt"</h4>
 									<div class="media mb-4">
-										<img src="img/user.jpg" alt="Image"
+										<img src="<c:url value = "/template/"/>img/user.jpg" alt="Image"
 											class="img-fluid mr-3 mt-1" style="width: 45px;">
 										<div class="media-body">
 											<h6>
@@ -228,13 +228,25 @@
 	    if (button.hasClass('btn-plus')) {
 	        var newVal = parseFloat(oldValue) + 1;
 	    } else {
-	        if (oldValue > 0) {
+	        if (oldValue > 1) {
 	            var newVal = parseFloat(oldValue) - 1;
 	        } else {
-	            newVal = 0;
+	            newVal = 1;
 	        }
 	    }
 	    button.parent().parent().find('input').val(newVal);
 	});
+	//Add to cart
+	function addToCart() {
+        // Lấy giá trị từ input
+        var quantity = document.getElementById('quantityInput').value;
+        // Tạo URL với giá trị quantity được thêm vào
+        var url = new URL(window.location.href);
+        var pid = url.searchParams.get("pid");
+        var url = "cart/add?pid=" + pid + "&amount=" + quantity;
+		console.log(url)
+        // Chuyển hướng đến URL mới
+        window.location.href = url;
+    }
 	</script>
 </body>

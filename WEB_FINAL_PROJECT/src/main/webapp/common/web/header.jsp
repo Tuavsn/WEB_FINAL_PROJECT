@@ -57,7 +57,14 @@
 			</div>
 			<div class="col-lg-3 col-6 text-right">
 				<a href="cart" class="btn border"> <i
-					class="fas fa-shopping-cart text-primary"></i> <span class="badge">0</span>
+					class="fas fa-shopping-cart text-primary"></i> 
+					<span class="badge">
+						<c:set var="totalCartItem" value="${0}" />
+						<c:forEach items="${sessionScope.cart}" var="cart">
+								<c:set var="totalCartItem" value="${totalCartItem + cart.value.amount}" />
+						</c:forEach>
+						${totalCartItem}
+					</span>
 				</a>
 			</div>
 		</div>

@@ -1,11 +1,11 @@
-package service;
+package dao;
 
 import java.util.List;
 
 import model.OrderItemModel;
-import model.CategoryModel;
 
-public interface CartService {
+public interface OrderItemDao {
 	List<OrderItemModel> findAll();
+	
 	OrderItemModel getOne();
 }

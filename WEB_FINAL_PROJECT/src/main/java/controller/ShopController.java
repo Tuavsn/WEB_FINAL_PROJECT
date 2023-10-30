@@ -73,6 +73,7 @@ public class ShopController extends HttpServlet {
 		req.setAttribute("endPrice", endPrice);
 		req.setAttribute("model", model);
 		req.setAttribute("cid", model.getSearch());
+		
 		RequestDispatcher rq = req.getRequestDispatcher("views/shop.jsp");
 		rq.forward(req, resp);
 	}

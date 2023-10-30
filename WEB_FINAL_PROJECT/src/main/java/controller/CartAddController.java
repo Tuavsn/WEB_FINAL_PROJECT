@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.CartModel;
+import model.OrderItemModel;
 import model.ProductModel;
 import service.ProductService;
 import serviceImpl.ProductServiceImpl;
@@ -25,30 +25,38 @@ public class CartAddController extends HttpServlet{
 		Long PID = Long.parseLong(req.getParameter("pid"));
 		int Amount = Integer.parseInt(req.getParameter("amount"));
 		ProductModel product = productService.getOne(PID);
-		CartModel cart = new CartModel();
-		cart.setProductID(PID);
-		cart.setAmount(Amount);
+		OrderItemModel orderItem = new OrderItemModel();
+		orderItem.setProduct(product);
+		orderItem.setAmount(Amount);
 		HttpSession httpSession = req.getSession();
 		Object obj = httpSession.getAttribute("cart");
-		if (obj == null) {
-			Map<Long, CartModel> map = new HashMap<Long, CartModel>();
-			map.put(cart.getProductID(), cart);
+		if (obj == null && Amount > 0) {
+			Map<Long, OrderItemModel> map = new HashMap<Long, OrderItemModel>();
+			map.put(PID, orderItem);
 			httpSession.setAttribute("cart", map);
 		} else {
-			Map<Long, CartModel> map = (Map<Long, CartModel>) obj;
+			Map<Long, OrderItemModel> map = (Map<Long, OrderItemModel>) obj;
 
-			CartModel existedCartItem = map.get(Long.valueOf(PID.toString()));
+			OrderItemModel existedCartItem = map.get(Long.valueOf(PID.toString()));
 
-			if (existedCartItem == null) {
-				map.put(cart.getProductID(), cart);
+			if (existedCartItem == null && Amount > 0) {
+				map.put(PID, orderItem);
 			} else {
-				existedCartItem.setAmount(cart.getAmount() + Amount);
+				existedCartItem.setAmount(existedCartItem.getAmount() + Amount);
+				map.put(PID, existedCartItem);
+				if(existedCartItem.getAmount() <= 0) map.remove(PID);
 			}
 
 			httpSession.setAttribute("cart", map);
 		}
 		
-		resp.sendRedirect(req.getContextPath() + "/cart");
+		String referer = req.getHeader("referer");
+		System.out.println(referer);
+		if (referer != null) {
+	        resp.sendRedirect(referer);
+	    } else {
+	    	resp.sendRedirect(req.getContextPath() + "/cart");
+	    }
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
