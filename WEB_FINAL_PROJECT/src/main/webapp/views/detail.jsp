@@ -94,7 +94,7 @@
 								</button>
 							</div>
 						</div>
-						<button class="btn btn-primary px-3" onclick = "addToCart()">
+						<button class="btn btn-primary px-3 addToCartBtn" onclick = "addToCart()">
 							<i class="fa fa-shopping-cart mr-1"></i> Thêm sản phẩm
 						</button>
 					</div>
@@ -248,5 +248,25 @@
         // Chuyển hướng đến URL mới
         window.location.href = url;
     }
+	//
+	document.addEventListener('DOMContentLoaded', function() {
+	    // Kiểm tra nếu có thông tin Toastify trong Local Storage
+	    const toastMessage = localStorage.getItem('toastMessage');
+	    if (toastMessage) {
+	        const toastLiveExample = document.getElementById('liveToast');
+	        toastLiveExample.classList.add('d-block');
+	        // Hiển thị Toastify
+	        const toast = new bootstrap.Toast(toastLiveExample)
+	        
+        	toast.show()
+        	
+       	 	setTimeout(() => {
+       	 		toastLiveExample.classList.remove('d-block');
+	        },2000)
+
+	        // Xóa thông tin Toastify từ Local Storage sau khi đã hiển thị
+	        localStorage.removeItem('toastMessage');
+	    }
+	});
 	</script>
 </body>

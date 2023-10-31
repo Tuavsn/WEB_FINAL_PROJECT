@@ -42,7 +42,7 @@
 				<form action="search" id="search" method="get">
 					<div class="input-group">
 						<input type="hidden" value="1" name="page">
-						<input type="hidden" value="6" name="maxPageItem">
+						<input type="hidden" value="9" name="maxPageItem">
 						<input type="hidden" name="key" value="ProductName">
 						<input type="text" name="search" class="form-control"
 							placeholder="Tìm kiếm sản phẩm">

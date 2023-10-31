@@ -51,6 +51,7 @@
 		<%@ include file="/views/regist.jsp"%>
 		<%@ include file="/views/login.jsp"%>
 		<%@ include file="/views/forgotpassword.jsp"%>
+		<%@ include file="/views/toast.jsp" %>
 		<!-- Modal -->
 	</div>
 </body>

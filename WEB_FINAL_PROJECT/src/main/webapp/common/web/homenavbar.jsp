@@ -49,7 +49,7 @@
 							<a href="home" class="nav-item nav-link ${page == 'home' ? "active" : ""}">Trang chủ</a> 
 							<a href="shop?page=1&maxPageItem=9" class="nav-item nav-link ${page == 'shop' ? "active" : ""}">Sản phẩm</a>
 							<a href="contact" class="nav-item nav-link ${page == 'contact' ? "active" : ""}">Thông tin liên hệ</a>
-							<a href="brand" class="nav-item nav-link">Thương hiệu</a>
+							<a href="brand?page=1&maxPageItem=12" class="nav-item nav-link ${page == 'brand' ? "active" : ""}">Thương hiệu</a>
 						</div>
 					</div>
 				</nav>

@@ -106,10 +106,10 @@
 									</div>
 									<div
 										class="card-footer d-flex justify-content-between bg-light border">
-										<a href="detail?pid=${product.productID}" class="btn btn-sm text-dark p-0"><i
-											class="fas fa-eye text-primary mr-1"></i>Chi tiết</a> <a href="cart/add?pid=${product.productID}&amount=1"
-											class="btn btn-sm text-dark p-0"><i
-											class="fas fa-shopping-cart text-primary mr-1"></i>Thêm sản phẩm</a>
+										<a href="detail?pid=${product.productID}" class="btn btn-sm text-dark p-0">
+											<i class="fas fa-eye text-primary mr-1"></i>Chi tiết</a> 
+										<a href="cart/add?pid=${product.productID}&amount=1" class="btn btn-sm text-dark p-0 addToCartBtn">
+											<i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm sản phẩm</a>
 									</div>
 								</div>
 							</a>
@@ -182,7 +182,8 @@
         	endPrice = Math.max.apply(Math, selectedPrices);
 	        // Tạo URL mới dựa trên giá trị đã chọn
 	        const currentUrl = window.location.href;
-	        const newUrl = new URL(currentUrl);
+	        var newUrl = new URL(currentUrl);
+ 	        newUrl.searchParams.set('page', 1);
 
 	        if (endPrice != 0) {
 	        	newUrl.searchParams.set('startPrice', startPrice);
@@ -195,6 +196,25 @@
 	        // Sử dụng location.replace để cập nhật URL mà không làm thay đổi lịch sử duyệt
 	        window.location.replace(newUrl.toString());
 	    });
+	});
+	document.addEventListener('DOMContentLoaded', function() {
+	    // Kiểm tra nếu có thông tin Toastify trong Local Storage
+	    const toastMessage = localStorage.getItem('toastMessage');
+	    if (toastMessage) {
+	        const toastLiveExample = document.getElementById('liveToast');
+	        toastLiveExample.classList.add('d-block');
+	        // Hiển thị Toastify
+	        const toast = new bootstrap.Toast(toastLiveExample)
+	        
+        	toast.show()
+        	
+       	 	setTimeout(() => {
+       	 		toastLiveExample.classList.remove('d-block');
+	        },2000)
+
+	        // Xóa thông tin Toastify từ Local Storage sau khi đã hiển thị
+	        localStorage.removeItem('toastMessage');
+	    }
 	});
 </script>
 </body>

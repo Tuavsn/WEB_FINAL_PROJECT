@@ -39,7 +39,10 @@
 	                            	<img src="<c:url value = "/uploads/"/>${cart.value.product.image[0].imageLink}" style="width: 120px;">
 	                            	${cart.value.product.productName}
                             	</td>
-	                            <td class="align-middle">${cart.value.product.price}</td>
+	                            <td class="align-middle">
+	                            <fmt:setLocale value="vi_VN" />
+								<fmt:formatNumber value="${cart.value.product.price}" type="currency" />
+	                            </td>
 	                            <td class="align-middle">
 	                                <div class="input-group quantity mx-auto align-items-center" style="width: 100px;">
 	                                    <div class="input-group-btn">
@@ -103,7 +106,7 @@
                             <h6 class="font-weight-medium">
                             	<c:set var="shippingPrice" value="${20000}" />
                             	<fmt:setLocale value="vi_VN" />
-								<fmt:formatNumber value="${ shippingPrice}" type="currency" />
+								<fmt:formatNumber value="${ shippingPrice }" type="currency" />
                             </h6>
                         </div>
                     </div>
@@ -119,7 +122,9 @@
 								<fmt:formatNumber value="${ totalPrice + shippingPrice}" type="currency" />
                             </h5>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3"><a href="checkout" style="color: black; font-weight: bold">Thanh Toán</a></button>
+                        <a href="checkout" style="color: black; font-weight: bold; text-decoration: none">
+                        	<button class="btn btn-block btn-primary my-3 py-3">Thanh Toán</button>
+                        </a>
                     </div>
                 </div>
             </div>

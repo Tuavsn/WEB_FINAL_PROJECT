@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -93,24 +94,45 @@
                     </div>
                     <div class="card-body">
                         <h5 class="font-weight-medium mb-3">Sản phẩm</h5>
-                        <div class="d-flex justify-content-between">
-                            <p>Colorful Stylish Shirt 1</p>
-                            <p>$150</p>
-                        </div>
+                        <c:forEach items="${ sessionScope.cart }" var="cart">
+	                        <div class="d-flex justify-content-between">
+	                            <p>${ cart.value.product.productName }</p>
+	                            <fmt:setLocale value="vi_VN" />
+								<fmt:formatNumber value="${ cart.value.product.price * cart.value.amount }" type="currency" />
+	                        </div>
+                        </c:forEach>
                         <hr class="mt-0">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Tổng tiền sản phẩm</h6>
-                            <h6 class="font-weight-medium">$150</h6>
+                            <h6 class="font-weight-medium">
+                            	<c:set var="totalItemPrice" value="${0}" />
+								<c:forEach items="${sessionScope.cart}" var="cart">
+										<c:set var="totalCartItemPrice" value="${totalCartItemPrice + cart.value.product.price * cart.value.amount}" />
+								</c:forEach>
+								<fmt:setLocale value="vi_VN" />
+								<fmt:formatNumber value="${ totalCartItemPrice }" type="currency" />
+                            </h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Phí giao hàng</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                            <h6 class="font-weight-medium">
+                            	<c:set var="shippingPrice" value="${20000}" />
+                            	<fmt:setLocale value="vi_VN" />
+								<fmt:formatNumber value="${ shippingPrice}" type="currency" />
+                            </h6>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Tổng tiền</h5>
-                            <h5 class="font-weight-bold">$160</h5>
+                            <h5 class="font-weight-bold">
+                            	<c:set var="totalPrice" value="${0}" />
+								<c:forEach items="${sessionScope.cart}" var="cart">
+										<c:set var="totalPrice" value="${totalPrice + cart.value.product.price * cart.value.amount}" />
+								</c:forEach>
+								<fmt:setLocale value="vi_VN" />
+								<fmt:formatNumber value="${ totalPrice + shippingPrice}" type="currency" />
+                            </h5>
                         </div>
                     </div>
                 </div>
@@ -121,7 +143,7 @@
                     <div class="card-body d-flex justify-content-center">
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="COD">
+                                <input type="radio" class="custom-control-input" name="payment" id="COD" checked>
                                 <label class="custom-control-label" for="COD" style="font-weight: bolder;">COD</label>
                             </div>
                         </div>
