@@ -149,11 +149,10 @@
 <script>
 $('#imageLink').change(function(){
 	var newSrc = $(this).val();
-    $('#image').attr('src', newSrc);
-   
+	$('#image').attr('src', newSrc);
     $('#imageTitle').text("Hình ảnh hiện thị");
     $('#image').on('error', function () {
-    	$('#image').attr('alt', "Link hình ảnh không hợp lệ");
+    	$('#image').attr('alt', "Ảnh không tồn tại");
     	$('#success').text("");
     });
     
@@ -188,6 +187,10 @@ $('#btnUpdate').click(function (e) {
 	var description = $("#description").val();
 	var imageLink = $("#imageLink").val();
 	var brandID = $("#brandID").val();
+	var imageOld = $("#imageOld").attr('src');
+	if(imageLink===""){
+		imageLink=imageOld;
+	}
 	data["brandID"]=brandID;
 	data["brandName"]=brandName;
 	data["imageLink"]=imageLink;
