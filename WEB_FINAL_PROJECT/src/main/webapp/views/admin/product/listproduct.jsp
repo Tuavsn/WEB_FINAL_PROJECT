@@ -101,14 +101,17 @@
 									      <tr>
 									      		<td class="center112"><input type="checkbox" value="${itemProduct.productID}" id="checkbox_${itemProduct.productID}"/></td>
 										      	<td class="center112">${itemProduct.productName}</td>
+										      	
+										      	<td width="200px">
 										      	<c:forEach var="img" items="${itemProduct.image}" varStatus="loop">
 										      		 <c:if test="${loop.index == 0}">
-												      	<td width="200px">
-												      		<img alt="" src="<c:url value = "/uploads/"/>${img.imageLink}" width="200px">
-														</td>
-														<c:set var="loop.break" value="true" />
+												      			<img alt="" src="<c:url value = "/uploads/"/>${img.imageLink}" width="200px">
+												      			<c:set var="loop.break" value="true" />
 													 </c:if>
-												</c:forEach>
+											 	</c:forEach>
+												</td>
+													
+												
 										      	<td class="center112">${itemProduct.description}</td>
 										      	<td class="center112">${itemProduct.brandModel.brandName}</td>
 										      	<td class="center112">${itemProduct.categoryModel.categoryName}</td>
