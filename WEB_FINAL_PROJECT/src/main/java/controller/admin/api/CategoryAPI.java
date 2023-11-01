@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import model.BrandModel;
 import model.CategoryModel;
 import service.CategoryService;
 import serviceImpl.CategoryServiceImpl;
@@ -31,6 +32,15 @@ public class CategoryAPI extends HttpServlet{
 		response.setContentType("application/json");
 		CategoryModel categoryModel = HttpUtil.of(request.getReader()).toModel(CategoryModel.class);
 		categoryModel = categoryService.insertCategory(categoryModel);
+		mapper.writeValue(response.getOutputStream(), categoryModel);
+	}
+	@Override
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		CategoryModel categoryModel = HttpUtil.of(request.getReader()).toModel(CategoryModel.class);
+		categoryModel = categoryService.updateCategory(categoryModel);
 		mapper.writeValue(response.getOutputStream(), categoryModel);
 	}
 }

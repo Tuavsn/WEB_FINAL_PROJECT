@@ -65,7 +65,7 @@
 									    <tbody>
 									      <c:forEach var="item" items="${allcategory}">
 									      <tr>
-										      	<td class="center112"><input type="checkbox" value="#" id="#"/></td>
+										      	<td class="center112"><input type="checkbox" value="${item.categoryID}" id="checkbox_${item.categoryID}"/></td>
 										        <td class="center112">${item.categoryName}</td>
 										        <td class="center112" width="200px"><img src="${item.imageLink}" alt="${item.categoryName}" width="200px"></td>
 										        <td>

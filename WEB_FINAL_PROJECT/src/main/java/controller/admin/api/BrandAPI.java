@@ -35,7 +35,6 @@ public class BrandAPI extends HttpServlet{
 		brandModel = brandService.insertBrand(brandModel);
 		mapper.writeValue(response.getOutputStream(), brandModel);
 	}
-	
 	@Override
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ObjectMapper mapper = new ObjectMapper();

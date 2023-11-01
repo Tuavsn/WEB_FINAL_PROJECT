@@ -11,4 +11,5 @@ public interface CategoryService {
 	int getTotalItem();
 	CategoryModel getOne(Long categoryID);
 	CategoryModel insertCategory(CategoryModel categoryModel);
+	CategoryModel updateCategory(CategoryModel categoryModel);
 }

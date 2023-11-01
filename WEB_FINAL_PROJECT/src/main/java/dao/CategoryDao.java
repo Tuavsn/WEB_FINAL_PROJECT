@@ -11,4 +11,5 @@ public interface CategoryDao {
 	int getTotalItem();
 	CategoryModel getOne(Long CategoryID);
 	Long insertCategory(CategoryModel categoryModel);
+	void updateCategory(CategoryModel categoryModel);
 }

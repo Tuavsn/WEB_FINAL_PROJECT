@@ -45,5 +45,13 @@ public class CategoryServiceImpl implements CategoryService {
 
 
 
+	@Override
+	public CategoryModel updateCategory(CategoryModel categoryModel) {
+		categorydao.updateCategory(categoryModel);
+		return categorydao.getOne(categoryModel.getCategoryID());
+	}
+
+
+
 
 }

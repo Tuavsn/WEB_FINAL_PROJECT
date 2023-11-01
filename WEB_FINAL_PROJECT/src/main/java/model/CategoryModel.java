@@ -9,7 +9,8 @@ public class CategoryModel extends AbstractModel<CategoryModel>{
 	private String Icon;
 	private List<CategoryModel> ChildCategory;
 	private List<String> nameChildCategorys;
-
+	private List<Long> idDeletes;
+	private List<String> CategoryNews;
 	public Long getCategoryID() {
 		return CategoryID;
 	}
@@ -70,6 +71,22 @@ public class CategoryModel extends AbstractModel<CategoryModel>{
 
 	public void setNameChildCategorys(List<String> nameChildCategorys) {
 		this.nameChildCategorys = nameChildCategorys;
+	}
+
+	public List<Long> getIdDeletes() {
+		return idDeletes;
+	}
+
+	public void setIdDeletes(List<Long> idDeletes) {
+		this.idDeletes = idDeletes;
+	}
+
+	public List<String> getCategoryNews() {
+		return CategoryNews;
+	}
+
+	public void setCategoryNews(List<String> categoryNews) {
+		CategoryNews = categoryNews;
 	}
 
 	

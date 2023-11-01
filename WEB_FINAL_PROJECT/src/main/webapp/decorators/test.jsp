@@ -78,6 +78,7 @@
 	var ids = $('#valuechild input').map(function () {
         return $(this).val();
     }).get();
+	
 	data = ids;
 	try{
 		tag_input.tag(
@@ -107,6 +108,71 @@
 	}
 	var tags = document.querySelector('#test .tags');
 	tags.style.width="400px";
+	var idAllCategory = $('#valuechild input').map(function () {
+        return $(this).attr('id');
+    }).get()
+	var allTag = document.querySelectorAll('#test .tags .tag');
+	for(var i =0 ;i<allTag.length;i++){
+		allTag[i].id=idAllCategory[i];
+	}
+	listIdCategoryDelete=[]	
+	var buttonTagAll = document.querySelectorAll('#test .tags .tag button');
+	for (var i = 0; i < buttonTagAll.length; i++) {
+	    buttonTagAll[i].addEventListener("click", (function (index) {
+	        return function () {
+	        	listIdCategoryDelete.push(idAllCategory[index]); // index là vị trí của nút bị click
+	        };
+	    })(i));
+	}
+	//xu ly them Category
+	
+	
+	$("#btnUpdate").click(function (e) {
+		listCategoryNew = [];
+		var categoryName = $("#categoryName").val();
+		var imageLink = $("#imageLink").val();
+		var imageOld = $("#imageOld").attr('src');
+		var categoryID=${model.categoryID};
+		if(imageLink===""){
+			imageLink=imageOld;
+		}
+		var allTag = document.querySelectorAll('#test .tags .tag');
+		for(var i =0 ;i<allTag.length;i++){
+			if(allTag[i].id===""){
+				listCategoryNew.push(allTag[i].textContent.slice(0, -1));
+			}
+		}
+		data ={};
+		data["categoryID"]=categoryID;
+		data["categoryName"]= categoryName;
+		data["imageLink"]=imageLink;
+		data["categoryNews"]=listCategoryNew;
+		data["idDeletes"]=listIdCategoryDelete;
+		if($('#image').attr('alt') == ""){
+			updateCategory(data);
+		}
+		else{
+			$('#LinkError').text("Link hình ảnh không hợp lệ");
+		}
+	})
+	
+	function updateCategory(data){
+		$.ajax({
+            url: '${APIurl}',
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (result) { //result la ket qua tra ve vd : newModel,...
+            	$('#Error').text("");
+            	$('#success').text("Cập nhập thành công");
+            },
+            error: function (error) {
+            	$('#success').text("");
+            	$('#Error').text("Lỗi rồi");
+            }
+        });
+	}
 	</script>
 	
 	<script>
@@ -126,16 +192,7 @@
 	        });
 	    })
 	    
-	    // Hàm kiểm tra giá trị src có hợp lệ
-	    function isValidSrc(src) {
-	        // Thực hiện kiểm tra src ở đây, ví dụ:
-	        // Kiểm tra xem src bắt đầu bằng "http://" hoặc "https://"
-	        // hoặc một cách phức tạp hơn theo nhu cầu của bạn.
-	        // Dưới đây là một ví dụ đơn giản:
-	
-	        return src.startsWith("http://") || src.startsWith("https://");
-	    }
-	    
+	 
 	    $('#btnAdd').click(function (e) {
 	    	e.preventDefault();
 	    	var datas = {};

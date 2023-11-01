@@ -65,4 +65,19 @@ public class CategoryDaoImpl extends AbstractDAO<CategoryModel> implements Categ
 		return id;
 	}
 
+
+	@Override
+	public void updateCategory(CategoryModel categoryModel) {
+		String sql ="UPDATE category SET CategoryName = ?, ImageLink = ? WHERE CategoryID = ?";
+		update(sql, categoryModel.getCategoryName(),categoryModel.getImageLink(),categoryModel.getCategoryID());
+		for(String name : categoryModel.getCategoryNews()) {
+			String sqlInsertCategory = "INSERT INTO category (CategoryName,ParentID) VALUES(?,"+categoryModel.getCategoryID()+")";
+			insert(sqlInsertCategory, name);
+		}
+		for(Long id : categoryModel.getIdDeletes()) {
+			String sqlDeleteCategory = "DELETE FROM category where CategoryID = ?";
+			update(sqlDeleteCategory, id);
+		}
+	}
+
 }
