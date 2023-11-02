@@ -12,4 +12,6 @@ public interface CategoryDao {
 	CategoryModel getOne(Long CategoryID);
 	Long insertCategory(CategoryModel categoryModel);
 	void updateCategory(CategoryModel categoryModel);
+	void deleteCategory(long id);
+	
 }

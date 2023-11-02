@@ -53,5 +53,15 @@ public class CategoryServiceImpl implements CategoryService {
 
 
 
+	@Override
+	public void deleteCategory(long[] ids) {
+		for(long id : ids) {
+			categorydao.deleteCategory(id);
+		}
+		
+	}
+
+
+
 
 }

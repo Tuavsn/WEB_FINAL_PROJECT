@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
+<c:url var="APIurl" value="/api-category"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,6 +125,46 @@ $(function () {
         }
     });
 });
+$("#btnDelete").click(function(e) {
+	e.preventDefault();
+	var data = {};
+	var ids = $('tbody input[type=checkbox]:checked').map(function () {
+        return $(this).val();
+    }).get();
+	data['ids'] = ids;
+	if (ids.length === 0) {
+	    alert("Vui lòng chọn ít nhất một thể loại cần xóa.");
+	    // Hoặc thực hiện các hành động cần thiết khi có lỗi.
+	} else {
+		data['ids'] = ids;
+		deleteCategory(data);
+	}
+})
+
+function deleteCategory(data) {
+        $.ajax({
+            url: '${APIurl}',
+            type: 'DELETE',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (result) {
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-category-list?page="+${model.page}+"&maxPageItem=3";
+            	alert("Xóa thành công.");
+            	
+            },
+            error: function (error) 
+            {
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-category-list?page="+${model.page}+"&maxPageItem=3";
+            	if (error.status === 400) {
+            		alert("Xóa không thành công vì một số thể loại bạn chọn đang dùng cho một số sản phẩm");
+            	}
+            	else{
+            		alert("Lỗi rồi");
+            	}
+            	
+            }
+        });
+	}
 </script>
 </body>
 </html>

@@ -148,7 +148,12 @@ function deleteBrand(data) {
             error: function (error) 
             {
             	window.location.href = "/WEB_FINAL_PROJECT/admin-brand-list?page="+${model.page}+"&maxPageItem=6";
-            	alert("Lỗi rồi");
+            	if (error.status === 400) {
+            		alert("Xóa không thành công vì một số thương hiệu bạn chọn đang dùng cho một số sản phẩm");
+            	}
+            	else{
+            		alert("Lỗi rồi");
+            	}
             	
             }
         });

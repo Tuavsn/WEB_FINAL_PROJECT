@@ -80,4 +80,16 @@ public class CategoryDaoImpl extends AbstractDAO<CategoryModel> implements Categ
 		}
 	}
 
+
+	@Override
+	public void deleteCategory(long id) {
+		String sqlChild = "delete FROM category WHERE ParentID = ?";
+		update(sqlChild, id);
+		String sql = "delete FROM category WHERE CategoryID = ?";
+		update(sql, id);
+	}
+
+
+	
+
 }

@@ -28,4 +28,7 @@ public interface ProductService {
 	ProductModel insertProduct(ProductModel productModel);
 	ProductModel updateProduct(ProductModel productModel); 
 	void deleteProducts(long[] ids);
+	
+	int checkProductByBrandID(Long brandID);
+	int checkProductByCategoryID(Long categoryID);
 }

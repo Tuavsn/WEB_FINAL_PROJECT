@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import dao.ProductDao;
 import model.BrandModel;
 import model.CategoryModel;
 import model.ProductModel;
 import service.IBrandService;
+import service.ProductService;
 import serviceImpl.BrandService;
+import serviceImpl.ProductServiceImpl;
 import utils.HttpUtil;
 
 @WebServlet(urlPatterns = {"/api-brand"})
@@ -26,6 +29,7 @@ public class BrandAPI extends HttpServlet{
 	 */
 	private static final long serialVersionUID = 2950275029344252092L;
 	IBrandService brandService = new BrandService();
+	ProductService productService = new ProductServiceImpl();
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
@@ -51,9 +55,23 @@ public class BrandAPI extends HttpServlet{
 		request.setCharacterEncoding("UTF-8"); // định form tiếng việt
 		response.setContentType("application/json");
 		BrandModel brandModel = HttpUtil.of(request.getReader()).toModel(BrandModel.class);
-		brandService.deleteBrand(brandModel.getIds());
-		mapper.writeValue(response.getOutputStream(), "{}");
-		
-		
+		Boolean check = true;
+		for(long id : brandModel.getIds()) {
+			int SLProductByBrandID = productService.checkProductByBrandID(id);
+			if(SLProductByBrandID>0) 
+			{
+				check=false;
+			}
+		}
+		if(check==true) 
+		{
+			brandService.deleteBrand(brandModel.getIds());
+			mapper.writeValue(response.getOutputStream(), "{}");
+		}
+		else 
+		{
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // Đặt mã trạng thái 400
+		}
+	
 	}
 }

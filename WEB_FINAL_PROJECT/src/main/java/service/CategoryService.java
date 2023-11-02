@@ -12,4 +12,5 @@ public interface CategoryService {
 	CategoryModel getOne(Long categoryID);
 	CategoryModel insertCategory(CategoryModel categoryModel);
 	CategoryModel updateCategory(CategoryModel categoryModel);
+	void deleteCategory(long ids[]);
 }

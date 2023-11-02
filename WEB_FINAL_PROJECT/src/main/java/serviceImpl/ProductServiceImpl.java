@@ -113,4 +113,15 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.getTotalItemSearchAll(key, search);
 	}
 
+	@Override
+	public int checkProductByBrandID(Long brandID) {
+		return productdao.checkProductByBrandID(brandID);
+	}
+
+	@Override
+	public int checkProductByCategoryID(Long categoryID) {
+		// TODO Auto-generated method stub
+		return productdao.checkProductByCategoryID(categoryID);
+	}
+
 }

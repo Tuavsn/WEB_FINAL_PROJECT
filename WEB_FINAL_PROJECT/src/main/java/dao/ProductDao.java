@@ -28,4 +28,7 @@ public interface ProductDao {
 	
 	void updateProduct(ProductModel productModel);
 	void deleteProduct(Long id);
+	
+	int checkProductByBrandID(Long brandID);
+	int checkProductByCategoryID(Long categoryID);
 }

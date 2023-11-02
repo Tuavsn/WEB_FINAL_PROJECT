@@ -2,16 +2,18 @@ package daoImpl;
 
 import java.util.List;
 
+import dao.CategoryDao;
 import dao.ProductDao;
 import mapper.ImageMapper;
 import mapper.ProductMapper;
 import mapper.UserMapper;
+import model.CategoryModel;
 import model.ProductModel;
 import model.UserModel;
 import paging.Pageble;
 
 public class ProductDaoImpl extends AbstractDAO<ProductModel> implements ProductDao {
-
+	CategoryDao categoryDao = new CategoryDaoImpl();
 	@Override
 	public List<ProductModel> findAll() {
 		String query = "select product.*,CategoryName,brand.BrandName from product INNER JOIN category on product.CategoryID = category.CategoryID left outer JOIN brand on product.BrandID=brand.BrandID	";
@@ -220,5 +222,25 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 		search = "%" + search + "%";
 		return count(query, search);
 	}
+
+	@Override
+	public int checkProductByBrandID(Long brandID) {
+		String sql ="SELECT count(*) FROM product where BrandID = ?";
+		return count(sql, brandID);
+	}
+
+	@Override
+	public int checkProductByCategoryID(Long categoryID) {
+		int AllSL = 0;
+		CategoryModel categoryModel = categoryDao.getOne(categoryID);
+		for(CategoryModel categoryModelChild : categoryModel.getChildCategory()) {
+			String sql = "SELECT count(*) FROM product where CategoryID = ?";
+			int SL = count(sql, categoryModelChild.getCategoryID());
+			AllSL = AllSL + SL;
+		}
+		return AllSL;
+	}
+
+	
 
 }
