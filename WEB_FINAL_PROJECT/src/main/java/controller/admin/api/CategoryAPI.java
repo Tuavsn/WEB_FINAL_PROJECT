@@ -44,8 +44,21 @@ public class CategoryAPI extends HttpServlet{
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
 		CategoryModel categoryModel = HttpUtil.of(request.getReader()).toModel(CategoryModel.class);
-		categoryModel = categoryService.updateCategory(categoryModel);
-		mapper.writeValue(response.getOutputStream(), categoryModel);
+		Boolean check = true;
+		for(long id : categoryModel.getIdDeletes()) {
+			int SLProductByBrandID = productService.checkProductByCategoryIDChild(id);
+			if(SLProductByBrandID>0) 
+			{
+				check=false;
+			}
+		}
+		if(check==true) {
+			categoryModel = categoryService.updateCategory(categoryModel);
+			mapper.writeValue(response.getOutputStream(), categoryModel);
+		}
+		else {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // Đặt mã trạng thái 400
+		}
 	}
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

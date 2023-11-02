@@ -31,4 +31,5 @@ public interface ProductDao {
 	
 	int checkProductByBrandID(Long brandID);
 	int checkProductByCategoryID(Long categoryID);
+	int checkProductByCategoryIDChild(Long categoryID);
 }

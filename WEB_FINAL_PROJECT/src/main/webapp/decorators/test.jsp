@@ -164,12 +164,20 @@
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) { //result la ket qua tra ve vd : newModel,...
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-category-edit?categoryID="+${model.categoryID}+"";
             	$('#Error').text("");
-            	$('#success').text("Cập nhập thành công");
+            	alert("Cập nhập thành công");
             },
             error: function (error) {
-            	$('#success').text("");
-            	$('#Error').text("Lỗi rồi");
+            	if (error.status === 400) {
+            		window.location.href = "/WEB_FINAL_PROJECT/admin-category-edit?categoryID="+${model.categoryID}+"";
+            		alert("Lỗi rồi bạn vừa xóa một số thể loại đang còn sử dụng cho một số sản phẩm");
+            	}
+            	else{
+            		$('#success').text("");
+                	$('#Error').text("Lỗi rồi");
+            	}
+            	
             }
         });
 	}

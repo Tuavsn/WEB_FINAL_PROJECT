@@ -124,4 +124,10 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.checkProductByCategoryID(categoryID);
 	}
 
+	@Override
+	public int checkProductByCategoryIDChild(Long categoryID) {
+		// TODO Auto-generated method stub
+		return productdao.checkProductByCategoryIDChild(categoryID);
+	}
+
 }

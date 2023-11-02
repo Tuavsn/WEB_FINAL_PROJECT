@@ -294,8 +294,9 @@ function deleteImage(deleteButton) {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) { //result la ket qua tra ve vd : newModel,...
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-product-edit?productID="+${model.productID}+"";
             	$('#Error').text("");
-            	$('#success').text("Cập nhập thành công");
+            	alert("Cập nhập thành công");
             },
             error: function (error) {
             	$('#success').text("");

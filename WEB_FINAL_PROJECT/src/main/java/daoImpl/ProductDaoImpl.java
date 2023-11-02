@@ -230,7 +230,8 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 	}
 
 	@Override
-	public int checkProductByCategoryID(Long categoryID) {
+	public int checkProductByCategoryID(Long categoryID) 
+	{
 		int AllSL = 0;
 		CategoryModel categoryModel = categoryDao.getOne(categoryID);
 		for(CategoryModel categoryModelChild : categoryModel.getChildCategory()) {
@@ -239,6 +240,12 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 			AllSL = AllSL + SL;
 		}
 		return AllSL;
+	}
+
+	@Override
+	public int checkProductByCategoryIDChild(Long categoryID) {
+		String sql = "SELECT count(*) FROM product where CategoryID = ?";
+		return count(sql, categoryID);
 	}
 
 	
