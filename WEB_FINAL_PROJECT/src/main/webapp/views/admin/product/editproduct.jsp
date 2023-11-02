@@ -147,22 +147,18 @@
 										<c:if test="${model.brandID==null || model.brandID==0}">	
 									 		<option value="#">--Chọn thương hiệu</option>
 									 		<c:forEach var="brand" items="${Allbrand}">
-									 			
 								 				<option value="${brand.brandID}">${brand.brandName}</option>
-									 			
 									 		</c:forEach>
 									 	</c:if>
 									 	
-									 	<c:if test="${model.brandID!=null || model.brandID!=0}">	
+									 	<c:if test="${model.brandID!=null && model.brandID!=0}">	
 									 		<c:forEach var="brand" items="${Allbrand}">
-									 			
 									 			<c:if test="${brand.brandID==model.brandID}">
 									 					<option value="${brand.brandID}" selected="selected">${brand.brandName}</option>
 									 			</c:if>
 									 			<c:if test="${brand.brandID!=model.brandID}">
 									 					<option value="${brand.brandID}">${brand.brandName}</option>
 									 			</c:if>
-									 			
 									 		</c:forEach>
 									 		<option value="#">--Chọn thương hiệu</option>
 									 	</c:if>
@@ -294,7 +290,7 @@ function deleteImage(deleteButton) {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) { //result la ket qua tra ve vd : newModel,...
-            	window.location.href = "/WEB_FINAL_PROJECT/admin-product-edit?productID="+${model.productID}+"";
+            	location.reload();
             	$('#Error').text("");
             	alert("Cập nhập thành công");
             },
