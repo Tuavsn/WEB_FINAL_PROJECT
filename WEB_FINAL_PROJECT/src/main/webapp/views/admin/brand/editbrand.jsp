@@ -211,7 +211,8 @@ function updateBrand(data){
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) { //result la ket qua tra ve vd : newModel,...
-            	location.reload();
+            	//location.reload(); loadlaitrang
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-brand-edit?brandID=${model.brandID}";
             	$('#Error').text("");
             	alert("Cập nhập thành công");
             },

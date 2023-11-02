@@ -151,7 +151,7 @@
 									 		</c:forEach>
 									 	</c:if>
 									 	
-									 	<c:if test="${model.brandID!=null && model.brandID!=0}">	
+									 	<c:if test="${model.brandID!=null &&	 model.brandID!=0}">	
 									 		<c:forEach var="brand" items="${Allbrand}">
 									 			<c:if test="${brand.brandID==model.brandID}">
 									 					<option value="${brand.brandID}" selected="selected">${brand.brandName}</option>
@@ -290,7 +290,7 @@ function deleteImage(deleteButton) {
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) { //result la ket qua tra ve vd : newModel,...
-            	location.reload();
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-product-edit?productID=${model.productID}";
             	$('#Error').text("");
             	alert("Cập nhập thành công");
             },
