@@ -1,6 +1,7 @@
 package daoImpl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,6 +67,8 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 					statement.setTimestamp(index, (Timestamp) parameter);
 				}else if (parameter instanceof Double) {
 					statement.setDouble(index, (Double) parameter);
+				}else if (parameter instanceof Date) {
+					statement.setDate(index, (Date) parameter);
 				}
 				
 			}

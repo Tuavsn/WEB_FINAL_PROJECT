@@ -10,4 +10,6 @@ public interface IPromotionService {
 	List<PromotionModel> findAll(Pageble pageble);
 	int getTotalItem();
 	PromotionModel getOne(Long id);
+	
+	PromotionModel insertPromotion(PromotionModel promotionModel);
 }

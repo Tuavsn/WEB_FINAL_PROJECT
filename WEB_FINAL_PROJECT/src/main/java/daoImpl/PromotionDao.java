@@ -38,4 +38,10 @@ public class PromotionDao extends AbstractDAO<PromotionModel> implements IPromot
 		
 	}
 
+	@Override
+	public Long insertPromotion(PromotionModel promotionModel) {
+		String sql="INSERT INTO promotion (ProductID, StartDate, EndDate,SaleOff) VALUES(?,?,?,?)";
+		return insert(sql, promotionModel.getProductID(),promotionModel.getStartDate(),promotionModel.getEndDate(),promotionModel.getSaleOff());
+	}
+
 }

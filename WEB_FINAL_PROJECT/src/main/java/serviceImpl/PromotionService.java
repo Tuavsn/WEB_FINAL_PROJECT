@@ -31,5 +31,10 @@ public class PromotionService implements IPromotionService{
 		// TODO Auto-generated method stub
 		return promotionDao.getOne(id);
 	}
+	@Override
+	public PromotionModel insertPromotion(PromotionModel promotionModel) {
+		Long id = promotionDao.insertPromotion(promotionModel);
+		return promotionDao.getOne(id);
+	}
 
 }

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="/common/taglib.jsp" %>
-<c:url var="APIurl" value="/api-brand"/>
+<c:url var="APIurl" value="/api-promotion"/>
 
 <html>
 <head>
@@ -103,7 +103,11 @@
 												<i class="fa fa-calendar bigger-110"></i>
 											</span>
 										</div>
-									</div>					    
+									</div>	
+								<div class="col-sm-9 col-sm-offset-3">
+							         <div id="Error" class="text-danger" style="font-size: 14px;font-weight: bold;"></div>
+							         <div id="success" class="text-success" style="font-size: 14px;font-weight: bold;"></div>
+							    </div>						    
 							</div>
 							
 							<div class="clearfix form-actions">
@@ -158,7 +162,7 @@
 <script>
 jQuery(function($) 
 {
-	$('#spinner3').ace_spinner({value:0,min:0,max:100,step:10, on_sides: true, icon_up:'ace-icon fa fa-plus bigger-110', icon_down:'ace-icon fa fa-minus bigger-110', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
+	$('#spinner3').ace_spinner({value:1,min:0,max:100,step:10, on_sides: true, icon_up:'ace-icon fa fa-plus bigger-110', icon_down:'ace-icon fa fa-minus bigger-110', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
 	
 	$('.date-picker').datepicker({
 		autoclose: true,
@@ -191,11 +195,84 @@ $("#productName").change(function (e){
 		 }
 	 }
 })
-
-$('#btnAdd').click(function (e) {
+function reset(){
+	$('#Error').text("");
+}
+$('#btnAdd').click(function (e) 
+{	
+	e.preventDefault();
+	reset();
 	var productID = $("#productName").val();
-	console.log(productID);
+	var saleOff = $("#spinner3").val();
+	var startDate = $("#startDate").val();
+	var endDate = $("#endDate").val();
+	data = {};
+	data["productID"]=productID;
+	data["saleOff"]=saleOff;
+	data["startDate"]=startDate;
+	data["endDate"]=endDate;
+	var firstDate = new Date(data["startDate"]);
+	var secondDate = new Date(data["endDate"])
+	var timeDiff = secondDate - firstDate;
+	var daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+	console.log(daysDiff);
+	if(daysDiff < 0){
+		$('#Error').text("Ngày kết thúc không thể nhỏ hơn ngày bắt đầu");
+	}
+	else{
+		addPromotion(data);
+	}
 })
+
+function addPromotion(data){
+	$.ajax({
+           url: '${APIurl}',
+           type: 'POST',
+           contentType: 'application/json',
+           data: JSON.stringify(data),
+           dataType: 'json',	
+           success : function(result) 
+           { //result la ket qua tra ve vd : newModel,...
+        	window.location.href = "/WEB_FINAL_PROJECT/admin-promotion-edit";
+           	$('#Error').text("");
+           	alert("Thêm thành công");
+		},
+		error: function(error) 
+		{
+			$('#success').text("");
+           	$('#Error').text("Lỗi rồi");
+	    }
+       });
+}
+
+$('#btnUpdate').click(function (e) {
+	e.preventDefault();
+	reset();
+	var promotionID = ${model.promotionID};
+	var productID = $("#productName").val();
+	var saleOff = $("#spinner3").val();
+	var startDate = $("#startDate").val();
+	var endDate = $("#endDate").val();
+	
+	data = {};
+	data["promotionID"]=promotionID;
+	data["productID"]=productID;
+	data["saleOff"]=saleOff;
+	data["startDate"]=startDate;
+	data["endDate"]=endDate;
+	var firstDate = new Date(data["startDate"]);
+	var secondDate = new Date(data["endDate"])
+	var timeDiff = secondDate - firstDate;
+	var daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+	console.log(daysDiff);
+	if(daysDiff < 0){
+		$('#Error').text("Ngày kết thúc không thể nhỏ hơn ngày bắt đầu");
+	}
+	else{
+		console.log(data);
+	}
+});
+
 </script>
 </body>
 </html>

@@ -10,4 +10,6 @@ public interface IPromotionDao {
 	List<PromotionModel> findAll(Pageble pageble);
 	int getTotalItem();
 	PromotionModel getOne(Long id);
+	
+	Long insertPromotion(PromotionModel promotionModel);
 }
