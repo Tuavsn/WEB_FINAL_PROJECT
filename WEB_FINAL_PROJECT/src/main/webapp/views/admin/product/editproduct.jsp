@@ -167,7 +167,7 @@
 									</div>					    
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right" for="amount"> Số lượng </label>
+								<label class="col-sm-3 control-label no-padding-right" for="spinner3"> Số lượng </label>
 									<div class="col-sm-9">
 										<input type="text" id="spinner3" value="${model.amount}" name="amount"/>
 									</div>					    

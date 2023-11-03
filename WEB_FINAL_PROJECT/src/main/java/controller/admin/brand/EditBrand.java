@@ -29,7 +29,8 @@ public class EditBrand extends HttpServlet{
 		resp.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		BrandModel model = FormUtil.toModel(BrandModel.class, req);
-		if(model.getBrandID() != null) {
+		if(model.getBrandID() != null) 
+		{
 			model = brandDao.getOne(model.getBrandID());
 		}
 		req.setAttribute("model",model);

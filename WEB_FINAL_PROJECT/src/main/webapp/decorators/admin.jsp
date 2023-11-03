@@ -9,6 +9,7 @@
 <title><dec:title default="Trang chủ" /></title>
 
 <link rel="stylesheet" href="<c:url value='/template/admin/assets/css/bootstrap.min.css' />" />
+<link rel="stylesheet" href="<c:url value='/template/admin/assets/css/chosen.min.css' />" />
 
 <link rel="stylesheet" href="<c:url value='/template/admin/font-awesome/4.5.0/css/font-awesome.min.css' />" />
 
@@ -85,8 +86,10 @@
 	<script src="<c:url value='/template/admin/assets/js/jquery.flot.pie.min.js' />"></script>
 	<script src="<c:url value='/template/admin/assets/js/jquery.flot.resize.min.js' />"></script>
 	
-	<script src="<c:url value='/template/admin/assets/js/fuelux.spinner.min.js'/>"></script>
 	<script src="<c:url value='/template/admin/assets/js/chosen.jquery.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/assets/js/fuelux.spinner.min.js'/>"></script>
+	<script src="<c:url value='/template/admin/assets/js/bootstrap-datepicker.min.js'/>"></script>
+	
 	<script src="<c:url value='/template/admin/assets/js/jquery.autosize.min.js'/>"></script>
 	<script src="<c:url value='/template/admin/assets/js/jquery.maskedinput.min.js'/>"></script>
 	<script src="<c:url value='/template/admin/assets/js/jquery.inputlimiter.1.3.1.min.js' />"></script>

@@ -103,8 +103,8 @@
 			<b class="arrow"></b>
 		</li>
 		<li class="">
-			<a href="<c:url value = 'admin-promotion-list'/>">
-				<i class="menu-icon fa fa-gift yellow"></i>
+			<a href="<c:url value = 'admin-promotion-list?page=1&maxPageItem=10'/>">
+				<i class="menu-icon fa fa-gift red"></i>
 				<span class="menu-text">Sản phẩm khuyến mãi</span>
 			</a>
 			<b class="arrow"></b>
