@@ -93,11 +93,22 @@
 	                    </a>
 	                    <b class="arrow"></b>
 	               	</li>
-				</ul>
-		
-				
-				
+				</ul>	
         </li>
+        <li class="">
+			<a href="<c:url value = '#'/>">
+				<i class="menu-icon fa fa-pencil-square-o black"></i>
+				<span class="menu-text">Thông tin đơn hàng</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
+		<li class="">
+			<a href="<c:url value = 'admin-promotion-list'/>">
+				<i class="menu-icon fa fa-gift yellow"></i>
+				<span class="menu-text">Sản phẩm khuyến mãi</span>
+			</a>
+			<b class="arrow"></b>
+		</li>
     </ul>
     <div class="sidebar-toggle sidebar-collapse">
         <i class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
