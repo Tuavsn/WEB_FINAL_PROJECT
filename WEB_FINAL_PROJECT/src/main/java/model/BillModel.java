@@ -1,9 +1,8 @@
 package model;
 
-import java.sql.Date;
 import java.util.List;
 
-public class BillModel {
+public class BillModel extends AbstractModel<BillModel>{
 	private Long BillID;
 	private Long UserID;
 	private String Date;
@@ -11,6 +10,7 @@ public class BillModel {
 	private String ShippingAddress;
 	private String Note;
 	private List<OrderItemModel> OrderItem;
+	private UserModel userModel = new UserModel();
 	private int Status;
 
 	public Long getBillID() {
@@ -91,6 +91,14 @@ public class BillModel {
 		ShippingAddress = shippingAddress;
 		Note = note;
 		Status = status;
+	}
+
+	public UserModel getUserModel() {
+		return userModel;
+	}
+
+	public void setUserModel(UserModel userModel) {
+		this.userModel = userModel;
 	}
 
 }

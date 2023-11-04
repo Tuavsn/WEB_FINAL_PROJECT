@@ -12,7 +12,7 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 
 	@Override
 	public List<BillModel> findAll() {
-		String query = "select * from bill";
+		String query = "select bill.*,fullname,sdt from bill inner join user on bill.UserID = user.id";
 		List<BillModel> allBill = query(query, new BillMapper());
 		for (BillModel i : allBill) {
 			String subquery = "select * from orderitem where BillID = ?";
@@ -24,7 +24,7 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 	@Override
 	public List<BillModel> findAll(Pageble pageble) {
 		StringBuilder query = new StringBuilder(
-				"select * from bill");
+				"select bill.*,fullname,sdt from bill inner join user on bill.UserID = user.id");
 		if (pageble.getOffset() != null && pageble.getLimit() != null) {
 			query.append(" limit " + pageble.getOffset() + "," + pageble.getLimit());
 		}

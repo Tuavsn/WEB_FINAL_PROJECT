@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import model.BillModel;
 import model.OrderItemModel;
+import model.UserModel;
 
 public class BillMapper implements RowMapper<BillModel>{
 
@@ -18,6 +19,16 @@ public class BillMapper implements RowMapper<BillModel>{
 			bill.setShippingAddress(rs.getString("ShippingAddress"));
 			bill.setNote(rs.getString("Note"));
 			bill.setTotalPrice(rs.getDouble("TotalPrice"));
+			bill.setStatus(rs.getInt("Status"));
+			try {
+				UserModel userModel = new UserModel();
+				userModel.setFullName(rs.getString("fullname"));
+				userModel.setSdt(rs.getString("sdt"));
+				bill.setUserModel(userModel);
+			}
+			catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 			return bill;
 		} catch (SQLException e) {
 			return null;

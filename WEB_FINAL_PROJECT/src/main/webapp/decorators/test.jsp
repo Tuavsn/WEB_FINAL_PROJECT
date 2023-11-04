@@ -170,7 +170,7 @@
             },
             error: function (error) {
             	if (error.status === 400) {
-            		window.location.href = "/WEB_FINAL_PROJECT/admin-category-edit?categoryID={model.categoryID}";
+            		window.location.href = "/WEB_FINAL_PROJECT/admin-category-edit?categoryID=${model.categoryID}";
             		alert("Lỗi rồi bạn vừa xóa một số thể loại đang còn sử dụng cho một số sản phẩm");
             	}
             	else{

@@ -61,7 +61,7 @@
 									        <th class="center112">Khuyễn mãi(%)</th>
 									        <th class="center112">Ngày bắt đầu </th>
 									        <th class="center112">Ngày kết thúc</th>
-									        <th>Thao tác</th>
+									        <th class="center112">Thao tác</th>
 									      </tr>
 									    </thead>
 									    <tbody>
@@ -72,7 +72,7 @@
 										        <td class="center112">${item.saleOff}</td>
 										        <td class="center112">${item.startDate}</td>
 										        <td class="center112">${item.endDate}</td>
-										        <td class="">
+										        <td class="center112">
 										        	<c:url var="editURL" value="/admin-promotion-edit">
 										        		<c:param name="promotionID" value="${item.promotionID}"/>													
 													</c:url>

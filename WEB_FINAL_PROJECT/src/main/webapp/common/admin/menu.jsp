@@ -96,7 +96,7 @@
 				</ul>	
         </li>
         <li class="">
-			<a href="<c:url value = '#'/>">
+			<a href="<c:url value = '/admin-bill-list?page=1&maxPageItem=9'/>">
 				<i class="menu-icon fa fa-pencil-square-o black"></i>
 				<span class="menu-text">Thông tin đơn hàng</span>
 			</a>

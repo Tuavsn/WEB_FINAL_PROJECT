@@ -125,8 +125,8 @@
 									        <th>Họ tên</th>
 									        <th>Số điện thoại</th>
 									        <th>Quyền</th>
-									        <th>Trạng thái</th>
-									        <th>Cập nhập</th>
+									        <th class="center112">Trạng thái</th>
+									        <th class="center112">Cập nhập</th>
 									      </tr>
 									    </thead>
 									    <tbody>
@@ -143,15 +143,15 @@
 										        <td>${item.fullName}</td>
 										        <td>${item.sdt}</td>
 										        <td>${item.role.name}</td>
-										        <td>
+										        <td class="center112">
 										        	<c:if test="${item.status==1}">
-										        		<span class="label label-sm label-success" style="border-radius: 5px;padding: 4px">Đang hoạt động</span>
+										        		<span class="label label-sm label-success" style="border-radius: 5px;padding: 4px;width: 80px">Đang hoạt động</span>
 										        	</c:if>
 										        	<c:if test="${item.status!=1}">
-										        		<span class="label label-sm label-danger" style="border-radius: 5px;padding: 4px">Hết hiệu lực</span>
+										        		<span class="label label-sm label-danger" style="border-radius: 5px;padding: 4px;width: 80px">Hết hiệu lực</span>
 										        	</c:if>
 										        </td>
-										        <td>
+										        <td class="center112">
 											        <c:url var="editURL" value="/admin-user-edit">
 														<c:param name="id" value="${item.id}"/>
 													</c:url>

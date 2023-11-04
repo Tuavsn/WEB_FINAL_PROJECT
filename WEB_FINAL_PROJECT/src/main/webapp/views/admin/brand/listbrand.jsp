@@ -61,7 +61,7 @@
 									        <th>Tên thuơng hiệu</th>
 									        <th>Hình ảnh </th>
 									        <th>Mô tả</th>
-									        <th>Thao tác </th>
+									        <th class="center112">Thao tác </th>
 									      </tr>
 									    </thead>
 									    <tbody>
@@ -73,7 +73,7 @@
 										        	<img alt="" src="${item.imageLink}" width="300px">
 										        </td>
 										        <td>${item.description}</td>
-										        <td class="">
+										        <td class="center112">
 										        	<c:url var="editURL" value="/admin-brand-edit">
 														<c:param name="brandID" value="${item.brandID}"/>
 													</c:url>
