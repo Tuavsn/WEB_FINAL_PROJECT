@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
-<c:url var="APIurl" value="/api-brand"/>
+<c:url var="APIurl" value="/api-promotion"/>
 
 <!DOCTYPE html>
 <html>
@@ -67,7 +67,7 @@
 									    <tbody>
 										    <c:forEach var="item" items="${model.listResult}">
 										      <tr>
-										      	<td class=""><input type="checkbox"value="#" id="#"/></td>
+										      	<td class=""><input type="checkbox" value="${item.promotionID}" id="checkbox_${item.promotionID}"/></td>
 										        <td>${item.productModel.productName}</td>										     
 										        <td class="center112">${item.saleOff}</td>
 										        <td class="center112">${item.startDate}</td>
@@ -118,6 +118,39 @@ $(function () {
         }
     });
 });
+$("#btnDelete").click(function(e) {
+	e.preventDefault();
+	var data = {};
+	var ids = $('tbody input[type=checkbox]:checked').map(function () {
+        return $(this).val();
+    }).get();
+	data['ids'] = ids;
+	if (ids.length === 0) {
+	    alert("Vui lòng chọn ít nhất một sản phẩm khuyến mãi cần xóa");
+	    // Hoặc thực hiện các hành động cần thiết khi có lỗi.
+	} else {
+		data['ids'] = ids;
+	    deletePromotion(data);
+	}
+})
+function deletePromotion(data) {
+        $.ajax({
+            url: '${APIurl}',
+            type: 'DELETE',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (result) {
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-promotion-list?page="+${model.page}+"&maxPageItem=10";
+            	alert("Xóa thành công.");
+            },
+            error: function (error) 
+            {
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-promotion-list?page="+${model.page}+"&maxPageItem=10";
+            	alert("Lỗi rồi");
+            	
+            }
+        })
+       }
 </script>
 </body>
 </html>

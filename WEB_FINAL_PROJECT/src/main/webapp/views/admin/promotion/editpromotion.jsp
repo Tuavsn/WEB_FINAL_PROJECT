@@ -162,7 +162,7 @@
 <script>
 jQuery(function($) 
 {
-	$('#spinner3').ace_spinner({value:1,min:0,max:100,step:10, on_sides: true, icon_up:'ace-icon fa fa-plus bigger-110', icon_down:'ace-icon fa fa-minus bigger-110', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
+	$('#spinner3').ace_spinner({value:0,min:0,max:100,step:10, on_sides: true, icon_up:'ace-icon fa fa-plus bigger-110', icon_down:'ace-icon fa fa-minus bigger-110', btn_up_class:'btn-success' , btn_down_class:'btn-danger'});
 	
 	$('.date-picker').datepicker({
 		autoclose: true,
@@ -248,7 +248,7 @@ function addPromotion(data){
 $('#btnUpdate').click(function (e) {
 	e.preventDefault();
 	reset();
-	var promotionID = ${model.promotionID};
+	var promotionID = $("#promotionID").val();
 	var productID = $("#productName").val();
 	var saleOff = $("#spinner3").val();
 	var startDate = $("#startDate").val();
@@ -256,7 +256,6 @@ $('#btnUpdate').click(function (e) {
 	
 	data = {};
 	data["promotionID"]=promotionID;
-	data["productID"]=productID;
 	data["saleOff"]=saleOff;
 	data["startDate"]=startDate;
 	data["endDate"]=endDate;
@@ -269,10 +268,28 @@ $('#btnUpdate').click(function (e) {
 		$('#Error').text("Ngày kết thúc không thể nhỏ hơn ngày bắt đầu");
 	}
 	else{
-		console.log(data);
+		updatePromotion(data);
 	}
 });
-
+function updatePromotion(data){
+	$.ajax({
+        url: '${APIurl}',
+        type: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (result) { //result la ket qua tra ve vd : newModel,...
+        	//location.reload(); loadlaitrang
+        	window.location.href = "/WEB_FINAL_PROJECT/admin-promotion-edit?promotionID=${model.promotionID}";
+        	$('#Error').text("");
+        	alert("Cập nhập thành công");
+        },
+        error: function (error) {
+        	$('#success').text("");
+        	$('#Error').text("Lỗi rồi");
+        }
+    });
+}
 </script>
 </body>
 </html>

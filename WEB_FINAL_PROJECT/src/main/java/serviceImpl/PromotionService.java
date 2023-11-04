@@ -36,5 +36,17 @@ public class PromotionService implements IPromotionService{
 		Long id = promotionDao.insertPromotion(promotionModel);
 		return promotionDao.getOne(id);
 	}
+	@Override
+	public PromotionModel updatePromotion(PromotionModel promotionModel) {
+		promotionDao.updatePromotion(promotionModel);
+		return getOne(promotionModel.getPromotionID());
+	}
+	@Override
+	public void deletePromotion(long[] ids) {
+		for(long id : ids) {
+			promotionDao.deletePromotion(id);
+		}
+		
+	}
 
 }

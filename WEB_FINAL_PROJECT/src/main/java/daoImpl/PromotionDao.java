@@ -44,4 +44,17 @@ public class PromotionDao extends AbstractDAO<PromotionModel> implements IPromot
 		return insert(sql, promotionModel.getProductID(),promotionModel.getStartDate(),promotionModel.getEndDate(),promotionModel.getSaleOff());
 	}
 
+	@Override
+	public void updatePromotion(PromotionModel promotionModel) {
+		String sql = "UPDATE promotion SET  StartDate = ?,EndDate = ?,SaleOff = ? WHERE PromotionID = ?";
+		update(sql, promotionModel.getStartDate(),promotionModel.getEndDate(),promotionModel.getSaleOff(),promotionModel.getPromotionID());	
+	}
+
+	@Override
+	public void deletePromotion(long id) {
+		// TODO Auto-generated method stub
+		String sql = "delete FROM promotion WHERE PromotionID = ?";
+		update(sql, id);
+	}
+
 }

@@ -12,4 +12,6 @@ public interface IPromotionService {
 	PromotionModel getOne(Long id);
 	
 	PromotionModel insertPromotion(PromotionModel promotionModel);
+	PromotionModel updatePromotion(PromotionModel promotionModel);
+	void deletePromotion(long[] ids);
 }

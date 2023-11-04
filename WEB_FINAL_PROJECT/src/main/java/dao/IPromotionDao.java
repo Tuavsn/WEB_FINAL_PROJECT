@@ -12,4 +12,6 @@ public interface IPromotionDao {
 	PromotionModel getOne(Long id);
 	
 	Long insertPromotion(PromotionModel promotionModel);
+	void updatePromotion(PromotionModel promotionModel);
+	void deletePromotion(long id);
 }
