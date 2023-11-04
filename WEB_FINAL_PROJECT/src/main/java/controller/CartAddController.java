@@ -51,7 +51,6 @@ public class CartAddController extends HttpServlet{
 		}
 		
 		String referer = req.getHeader("referer");
-		System.out.println(referer);
 		if (referer != null) {
 	        resp.sendRedirect(referer);
 	    } else {

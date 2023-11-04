@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `image`;
 CREATE TABLE `image` (
   `ImageID` bigint NOT NULL AUTO_INCREMENT,
   `ProductID` bigint NOT NULL,
-  `ImageLink` varchar(1000) CHARACTER SET utf8mb3 DEFAULT NULL,
+  `ImageLink` varchar(1000) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`ImageID`),
   KEY `ProductID_idx` (`ProductID`),
   CONSTRAINT `fk_image_productid` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`)
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-26  8:25:50
+-- Dump completed on 2023-11-05  0:16:12

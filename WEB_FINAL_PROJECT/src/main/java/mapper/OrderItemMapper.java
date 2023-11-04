@@ -6,16 +6,16 @@ import java.sql.SQLException;
 import model.OrderItemModel;
 import model.ProductModel;
 
-public class OderItemMapper implements RowMapper<OrderItemModel>{
+public class OrderItemMapper implements RowMapper<OrderItemModel>{
 
 	@Override
 	public OrderItemModel mapRow(ResultSet rs) {
 		try {
 			OrderItemModel orderItem = new OrderItemModel();
-			orderItem.setCartID(rs.getLong("CartID"));
+			orderItem.setOrderItemID(rs.getLong("OrderItemID"));
 			orderItem.setAmount(rs.getInt("Amount"));
 			orderItem.setTotalPrice(rs.getDouble("TotalPrice"));
-			orderItem.setOrderID(rs.getLong("OrderID"));
+			orderItem.setBillID(rs.getLong("BillID"));
 			return orderItem;
 		} catch (SQLException e) {
 			return null;

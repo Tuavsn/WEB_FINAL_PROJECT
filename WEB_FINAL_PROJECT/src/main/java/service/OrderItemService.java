@@ -1,12 +1,12 @@
-package dao;
+package service;
 
 import java.util.List;
 
 import model.OrderItemModel;
+import model.CategoryModel;
 
-public interface OrderItemDao {
+public interface OrderItemService {
 	List<OrderItemModel> findAll();
-	
 	OrderItemModel getOne();
 	
 	Long insertOrderItem(OrderItemModel orderitem);

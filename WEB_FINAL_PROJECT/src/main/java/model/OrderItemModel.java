@@ -1,18 +1,18 @@
 package model;
 
 public class OrderItemModel extends AbstractModel<OrderItemModel> {
-	private long CartID;
+	private long OrderItemID;
 	private ProductModel product;
 	private int Amount;
 	private double TotalPrice;
-	private long OrderID;
+	private long BillID;
 
-	public long getCartID() {
-		return CartID;
+	public long getOrderItemID() {
+		return OrderItemID;
 	}
 
-	public void setCartID(long cartID) {
-		CartID = cartID;
+	public void setOrderItemID(long orderItemID) {
+		OrderItemID = orderItemID;
 	}
 
 	public ProductModel getProduct() {
@@ -39,21 +39,21 @@ public class OrderItemModel extends AbstractModel<OrderItemModel> {
 		TotalPrice = totalPrice;
 	}
 
-	public long getOrderID() {
-		return OrderID;
+	public long getBillID() {
+		return BillID;
 	}
 
-	public void setOrderID(long orderID) {
-		OrderID = orderID;
+	public void setBillID(long orderID) {
+		BillID = orderID;
 	}
 
-	public OrderItemModel(long cartID, ProductModel product, int amount, double totalPrice, long orderID) {
+	public OrderItemModel(long orderItemID, ProductModel product, int amount, double totalPrice, long orderID) {
 		super();
-		CartID = cartID;
+		OrderItemID = orderItemID;
 		this.product = product;
 		Amount = amount;
 		TotalPrice = totalPrice;
-		OrderID = orderID;
+		BillID = orderID;
 	}
 
 	public OrderItemModel() {

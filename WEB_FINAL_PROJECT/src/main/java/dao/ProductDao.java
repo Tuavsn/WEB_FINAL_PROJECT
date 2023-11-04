@@ -25,7 +25,6 @@ public interface ProductDao {
 	int getTotalItemSearchPrice(String key, String search,Long startPrice, Long endPrice);
 	
 	Long insertProduct(ProductModel productModel);
-	
 	void updateProduct(ProductModel productModel);
 	void deleteProduct(Long id);
 	

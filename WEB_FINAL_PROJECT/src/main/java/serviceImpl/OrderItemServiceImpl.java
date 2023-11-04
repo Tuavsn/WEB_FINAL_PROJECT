@@ -1,29 +1,27 @@
-package daoImpl;
+package serviceImpl;
 
 import java.util.List;
 
 import dao.OrderItemDao;
-import mapper.OrderItemMapper;
+import daoImpl.OrderItemDaoImpl;
 import model.OrderItemModel;
+import service.OrderItemService;
 
-public class OrderItemDaoImpl extends AbstractDAO<OrderItemModel> implements OrderItemDao {
-
+public class OrderItemServiceImpl implements OrderItemService {
+	OrderItemDao orderitemdao = new OrderItemDaoImpl();
 	@Override
 	public List<OrderItemModel> findAll() {
-		String query = "select * from oderitem";
-		return query(query, new OrderItemMapper());
+		return orderitemdao.findAll();
 	}
 
 	@Override
 	public OrderItemModel getOne() {
-		// TODO Auto-generated method stub
-		return null;
+		return orderitemdao.getOne();
 	}
 
 	@Override
 	public Long insertOrderItem(OrderItemModel orderitem) {
-		String query = "insert into orderitem (BillID, ProductID, Quantity) values(?,?,?)";
-		Long id = insert(query, orderitem.getBillID(), orderitem.getProduct().getProductID(), orderitem.getAmount());
+		Long id = orderitemdao.insertOrderItem(orderitem);
 		return id;
 	}
 

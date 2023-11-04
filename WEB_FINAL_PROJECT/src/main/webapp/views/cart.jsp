@@ -77,14 +77,6 @@
                 </table>
             </div>
             <div class="col-lg-4">
-                <form class="mb-5" action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control p-4" placeholder="Mã coupon">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary">Áp dụng coupon</button>
-                        </div>
-                    </div>
-                </form>
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
                         <h4 class="font-weight-semi-bold m-0">Giỏ hàng</h4>
@@ -122,9 +114,18 @@
 								<fmt:formatNumber value="${ totalPrice + shippingPrice}" type="currency" />
                             </h5>
                         </div>
-                        <a href="checkout" style="color: black; font-weight: bold; text-decoration: none">
-                        	<button class="btn btn-block btn-primary my-3 py-3">Thanh Toán</button>
-                        </a>
+                        
+                        <c:if test="${not empty sessionScope.cart }">
+							<a href="checkout" style="color: black; font-weight: bold; text-decoration: none">
+	                        	<button class="btn btn-block btn-primary my-3 py-3">Thanh Toán</button>
+	                        </a>
+						</c:if>
+						<c:if test="${ empty sessionScope.cart }">
+							<a href="checkout" style="color: black; font-weight: bold; text-decoration: none">
+	                        	<button class="btn btn-block btn-primary my-3 py-3" disabled>Thanh Toán</button>
+	                        </a>
+                	        <div class="text-danger" style="font-size: 14px; font-weight: bold;">Vui lòng thêm sản phẩm</div>
+						</c:if>
                     </div>
                 </div>
             </div>

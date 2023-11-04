@@ -27,10 +27,13 @@ CREATE TABLE `bill` (
   `UserID` bigint NOT NULL,
   `Date` datetime NOT NULL,
   `TotalPrice` float NOT NULL,
+  `ShippingAddress` varchar(500) NOT NULL,
+  `Note` varchar(500) DEFAULT NULL,
+  `Status` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`BillID`),
   KEY `fk_bill_userid_idx` (`UserID`),
   CONSTRAINT `fk_bill_userid` FOREIGN KEY (`UserID`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +42,7 @@ CREATE TABLE `bill` (
 
 LOCK TABLES `bill` WRITE;
 /*!40000 ALTER TABLE `bill` DISABLE KEYS */;
-INSERT INTO `bill` VALUES (1,1,'2023-10-16 00:00:00',539000),(2,2,'2023-10-16 00:00:00',194000);
+INSERT INTO `bill` VALUES (1,1,'2023-10-16 00:00:00',539000,'Số 1 Võ Văn Ngân',NULL,0),(2,2,'2023-10-16 00:00:00',194000,'55/1 Hoàng Diệu 2',NULL,0),(8,5,'2023-11-05 00:00:00',1152000,'','',0);
 /*!40000 ALTER TABLE `bill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-26  8:25:50
+-- Dump completed on 2023-11-05  0:16:13
