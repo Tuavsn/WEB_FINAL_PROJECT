@@ -53,4 +53,30 @@ public class BillServiceImpl implements BillService{
 		
 	}
 
+	@Override
+	public BillModel getOne(Long id) 
+	{
+		return bill.getOne(id);
+	}
+
+	@Override
+	public BillModel ThanhToanBill(Long id) {
+		bill.ThanhToanBill(id);
+		return bill.getOne(id);
+	}
+
+	@Override
+	public BillModel HuyThanhToanBill(Long id) {
+		bill.HuyThanhToanBill(id);
+		return bill.getOne(id);
+	}
+
+	@Override
+	public void HuyDonHang(long[] ids) {
+		for(long id : ids) {
+			bill.HuyDonHang(id);
+		}
+		
+	}
+
 }

@@ -56,7 +56,7 @@
 									<table class="table table-bordered">
 									    <thead>
 									      <tr>
-									      	<th><input type="checkbox" value="" id="checkAll"/></th>
+									      	<th><input type="checkbox" value="" id=""/></th>
 									        <th>Tên sản phẩm</th>
 									        <th class="center112">Khuyễn mãi(%)</th>
 									        <th class="center112">Ngày bắt đầu </th>

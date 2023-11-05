@@ -1,4 +1,4 @@
-package daoImpl;
+		package daoImpl;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import mapper.OrderItemMapper;
 import mapper.ProductMapper;
 import model.BillModel;
 import model.OrderItemModel;
-import model.ProductModel;
 import paging.Pageble;
 
 public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
@@ -94,6 +93,43 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 	@Override
 	public void deleteBill(Long id) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BillModel getOne(Long id) {
+		String sql ="select bill.*,fullname,sdt from bill inner join user on bill.UserID = user.id where BillID = ?";
+		List<BillModel> billModels = query(sql, new BillMapper(), id);
+		for (BillModel i : billModels) {
+			String subquery = "select  orderitem.*,ProductName,product.Description,Price,CategoryName,brand.BrandName from orderitem inner join product on orderitem.ProductID = product.ProductID INNER JOIN category on product.CategoryID = category.CategoryID left outer JOIN brand on product.BrandID=brand.BrandID where BillID = ?";
+			List<OrderItemModel> orderItemModels = query(subquery, new OrderItemMapper(), id);
+			for(OrderItemModel itemModel : orderItemModels) {
+				String subquery1 = "select * from image where ProductID = ?";
+				itemModel.getProductModel().setImage(query(subquery1, new ImageMapper(), itemModel.getProductID()));
+			}
+			i.setOrderItem(orderItemModels);
+		}
+		return billModels.isEmpty() ? null : billModels.get(0); 
+	}
+
+	@Override
+	public void ThanhToanBill(Long id) {
+		String sql ="UPDATE bill SET Status = 1 WHERE BillID = ?";
+		update(sql, id);
+		
+	}
+
+	@Override
+	public void HuyThanhToanBill(Long id) {
+		String sql ="UPDATE bill SET Status = 0 WHERE BillID = ?";
+		update(sql, id);
+		
+	}
+
+	@Override
+	public void HuyDonHang(Long id) {
+		String sql ="UPDATE bill SET Status = 2 WHERE BillID = ?";
+		update(sql, id);
 		
 	}
 

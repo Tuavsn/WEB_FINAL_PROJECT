@@ -57,7 +57,7 @@
 									<table class="table table-bordered">
 									    <thead>
 									      <tr>
-									      	<th><input type="checkbox" value="" id="checkAll"/></th>
+									      	<th><input type="checkbox" value="" id=""/></th>
 									        <th>Tên thuơng hiệu</th>
 									        <th>Hình ảnh </th>
 									        <th>Mô tả</th>

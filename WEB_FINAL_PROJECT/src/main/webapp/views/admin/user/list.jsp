@@ -119,7 +119,7 @@
 									<table class="table table-bordered">
 									    <thead>
 									      <tr>
-									      	<th><input type="checkbox" value="" id="checkAll" value=""/></th>
+									      	<th><input type="checkbox" value="" id="" value=""/></th>
 									        <th>UserName</th>
 									        <th>Password</th>
 									        <th>Họ tên</th>

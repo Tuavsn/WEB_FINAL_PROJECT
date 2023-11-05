@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:url var="APIurl" value="/api-brand"/>
+<c:url var="APIurl" value="/api-bill"/>
 
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,12 @@
 									<div class="table-btn-controls">
 										<div class="pull-right tableTools-container">
 											<div class="dt-buttons btn-overlap btn-group">
-												
+												<button id="btnDelete" type="button"
+														class="dt-button buttons-html5 btn btn-white btn-primary btn-bold" data-toggle="tooltip" title='Hủy đơn hàng'>
+																<span>
+																	<i class="fa fa-trash-o bigger-110 pink"></i>
+																</span>
+												</button>
 											</div>
 										</div>
 									</div>
@@ -45,11 +50,12 @@
 									<table class="table table-bordered">
 									    <thead>
 									      <tr>
+									      	<th class="center112"><input type="checkbox" value="" id=""/></th>
 									        <th>Tên khách hàng</th>
 									        <th>Số điện thoại</th>
 									        <th class="center112">Ngày đặt hàng</th>
 									        <th>Địa chỉ</th>
-									        <th class="center112">Tông giá(VNĐ)</th>
+									        <th class="center112">Tổng giá(VNĐ)</th>
 									        <th>Ghi chú</th>
 									        <th class="center112">Trạng thái</th>
 									        <th class="center112">Thao tác</th>
@@ -58,6 +64,15 @@
 									    <tbody>
 									    <c:forEach var="item" items="${model.listResult}">
 										      <tr>
+										      		<td class="center112 ">
+										      		<c:if test="${item.status!=2}">
+										      			<input type="checkbox"value="${item.billID}" id="checkbox_${item.billID}"/>
+										      		</c:if>
+										      		
+										      		<c:if test="${item.status==2}">
+										      			<input type="checkbox"value="${item.billID}" id="checkbox_${item.billID}" disabled="disabled"/>
+										      		</c:if>
+										      		</td>
 											        <td>${item.userModel.fullName}</td>
 											        <td>${item.userModel.sdt}</td>
 											        <td class="center112">${item.date}</td>
@@ -68,7 +83,7 @@
 											        </td>
 											        <td>${item.note}</td>
 											        <td class="center112">
-												        <c:if test="${item.status==0	}">
+												        <c:if test="${item.status==0}">
 											        		<span class="label label-sm label-warning" style="border-radius: 5px;padding: 4px;width: 80px">Chưa thanh toán</span>
 											        	</c:if>
 											        	<c:if test="${item.status==1}">
@@ -81,7 +96,7 @@
 										        <td class="center112">
 											        	
 														<c:if test="${item.status==0}">
-															<button class="btn btn-sm btn-success btn-edit" data-toggle="tooltip"
+															<button class="btn btn-sm btn-success btn-edit" id="${item.billID}" data-toggle="tooltip"
 															   title="Thanh toán" type="button">
 															   <i class="fa fa-credit-card" aria-hidden="true"></i>
 															</button>
@@ -90,6 +105,19 @@
 															<button class="btn btn-sm btn-success btn-edit disabled" data-toggle="tooltip"
 															   title="Thanh toán" type="button">
 															   <i class="fa fa-credit-card" aria-hidden="true"></i>
+															</button>
+														</c:if>
+														
+														<c:if test="${item.status==0}">
+															<button class="btn btn-sm btn-warning btn-edit disabled"   data-toggle="tooltip"
+															   title="Hủy thanh toán" type="button">
+															   <i class="fa fa-undo bigger" aria-hidden="true"></i>
+															</button>
+														</c:if>
+														<c:if test="${item.status!=0}">
+															<button class="btn btn-sm btn-warning btn-edit "  value="${item.billID}" data-toggle="tooltip"
+															   title="Đặt lại trạng thái thanh toán" type="button">
+															   <i class="fa fa-undo bigger" aria-hidden="true"></i>
 															</button>
 														</c:if>
 														<c:url var="editURL" value="/admin-bill-detail">
@@ -140,6 +168,98 @@ $(function () {
         }
     });
 });
+
+$(".btn-success").click(function(e) 
+{
+	data={};
+	billID=$(this).attr("id");
+	data["billID"]=billID;
+	if (confirm("Bạn muốn thanh toán hóa đơn hàng này")) {
+		ThanhToanBill(data);
+	}
+})
+
+function ThanhToanBill(data){
+	$.ajax({
+        url: '${APIurl}',
+        type: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (result) { //result la ket qua tra ve vd : newModel,...
+        	//location.reload(); loadlaitrang
+        	window.location.href = "/WEB_FINAL_PROJECT/admin-bill-list?page=${model.page}&maxPageItem=9";
+        	alert("Thanh toán thành công");
+        },
+        error: function (error) {
+        	alert("Lỗi rồi");
+        }
+    });
+}
+
+$(".btn-warning	").click(function(e) 
+{
+	data={};
+	billID=$(this).val();
+	data["billID"]=billID;
+	if (confirm("Bạn muốn đặt lại trạng thái chưa thanh toán cho đơn này")) {
+		HuyThanhToanBill(data);
+	}
+})
+		
+function HuyThanhToanBill(data){
+	$.ajax({
+        url: '${APIurl}',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (result) { //result la ket qua tra ve vd : newModel,...
+        	//location.reload(); loadlaitrang
+        	window.location.href = "/WEB_FINAL_PROJECT/admin-bill-list?page=${model.page}&maxPageItem=9";
+        	alert("Đã đặt lại trạng thái thanh toán");
+        },
+        error: function (error) {
+        	alert("Lỗi rồi");
+        }
+    });
+}	
+
+$("#btnDelete").click(function(e) {
+	e.preventDefault();
+	var data = {};
+	var ids = $('tbody input[type=checkbox]:checked').map(function () {
+        return $(this).val();
+    }).get();
+	data['ids'] = ids;
+	if (ids.length === 0) {
+	    alert("Vui lòng chọn ít nhất một đơn hàng cần hủy.");
+	    // Hoặc thực hiện các hành động cần thiết khi có lỗi.
+	} else {
+		if (confirm("Bạn có muốn hủy những đơn hàng đang chọn")) {
+			data['ids'] = ids;
+		    HuyDonHang(data);
+		}
+	}
+})
+function HuyDonHang(data) {
+        $.ajax({
+            url: '${APIurl}',
+            type: 'DELETE',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (result) {
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-bill-list?page=${model.page}&maxPageItem=9";
+            	alert("Đã hủy đơn hàng.");
+            },
+            error: function (error) 
+            {
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-bill-list?page=${model.page}&maxPageItem=9";
+            	alert("Lỗi rồi");
+            	
+            }
+        })
+       }
 </script>
 </body>
 </html>

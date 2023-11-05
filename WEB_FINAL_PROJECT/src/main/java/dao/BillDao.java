@@ -11,8 +11,11 @@ public interface BillDao {
 	List<BillModel> findAllSearch(Pageble pageble, String key, String search);
 	int getTotalItem();
 	int getTotalItemSearch(String key, String search);
-	
+	BillModel getOne(Long id);
 	Long insertBill(BillModel bill);
 	void updateBill(BillModel bill);
 	void deleteBill(Long id);
+	void ThanhToanBill(Long id);
+	void HuyThanhToanBill(Long id);
+	void HuyDonHang(Long id);
 }

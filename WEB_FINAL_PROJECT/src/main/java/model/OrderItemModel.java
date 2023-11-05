@@ -5,7 +5,8 @@ public class OrderItemModel extends AbstractModel<OrderItemModel> {
 	private ProductModel product;
 	private long ProductID;
 	private int Amount;
-	private long BillID;
+	private long BillID;	
+	private ProductModel productModel = new ProductModel();
 
 	public long getOrderItemID() {
 		return OrderItemID;
@@ -58,6 +59,14 @@ public class OrderItemModel extends AbstractModel<OrderItemModel> {
 		ProductID = productID;
 		Amount = amount;
 		BillID = billID;
+	}
+
+	public ProductModel getProductModel() {
+		return productModel;
+	}
+
+	public void setProductModel(ProductModel productModel) {
+		this.productModel = productModel;
 	}
 
 }
