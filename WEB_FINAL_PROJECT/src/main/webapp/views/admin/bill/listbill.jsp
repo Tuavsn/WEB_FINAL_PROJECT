@@ -47,7 +47,7 @@
 									      <tr>
 									        <th>Tên khách hàng</th>
 									        <th>Số điện thoại</th>
-									        <th>Ngày đặt hàng</th>
+									        <th class="center112">Ngày đặt hàng</th>
 									        <th>Địa chỉ</th>
 									        <th class="center112">Tông giá(VNĐ)</th>
 									        <th>Ghi chú</th>
@@ -60,7 +60,7 @@
 										      <tr>
 											        <td>${item.userModel.fullName}</td>
 											        <td>${item.userModel.sdt}</td>
-											        <td>${item.date}</td>
+											        <td class="center112">${item.date}</td>
 											        <td>${item.shippingAddress}</td>
 											        <td class="center112">
 												        <fmt:setLocale value="vi_VN" />
