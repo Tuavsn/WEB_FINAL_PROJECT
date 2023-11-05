@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:url var="APIurl" value="/api-brand"/>
 
 <!DOCTYPE html>
@@ -61,7 +62,10 @@
 											        <td>${item.userModel.sdt}</td>
 											        <td>${item.date}</td>
 											        <td>${item.shippingAddress}</td>
-											        <td class="center112">${item.totalPrice}</td>
+											        <td class="center112">
+												        <fmt:setLocale value="vi_VN" />
+														<fmt:formatNumber value="${item.totalPrice}" type="currency" />
+											        </td>
 											        <td>${item.note}</td>
 											        <td class="center112">
 												        <c:if test="${item.status==0	}">

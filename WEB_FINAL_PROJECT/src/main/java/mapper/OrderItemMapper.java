@@ -13,8 +13,8 @@ public class OrderItemMapper implements RowMapper<OrderItemModel>{
 		try {
 			OrderItemModel orderItem = new OrderItemModel();
 			orderItem.setOrderItemID(rs.getLong("OrderItemID"));
-			orderItem.setAmount(rs.getInt("Amount"));
-			orderItem.setTotalPrice(rs.getDouble("TotalPrice"));
+			orderItem.setAmount(rs.getInt("Quantity"));
+			orderItem.setProductID(rs.getLong("ProductID"));
 			orderItem.setBillID(rs.getLong("BillID"));
 			return orderItem;
 		} catch (SQLException e) {

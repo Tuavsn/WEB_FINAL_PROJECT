@@ -91,5 +91,6 @@ public class CheckoutController extends HttpServlet {
 		out.println("alert('Đặt hàng thành công');");  
 		out.print("location='"+req.getContextPath()+"/home'");
 		out.println("</script>");
+	
 	}
 }

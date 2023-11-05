@@ -12,7 +12,7 @@
 				<div class="d-inline-flex align-items-center">
 	
 					<c:if test="${not empty USERMODEL }">
-						<a class="text-dark px-2" href=""> <a href="#"
+						<a class="text-dark px-2" href=""> <a href="userprofile?page=1&maxPageItem=9"
 							class="mx-2 text-body">${USERMODEL.fullName}</a> <a
 							href="<c:url value = 'thoat?action=loguot'/>"
 							class="mx-2 text-body">Thoát</a>

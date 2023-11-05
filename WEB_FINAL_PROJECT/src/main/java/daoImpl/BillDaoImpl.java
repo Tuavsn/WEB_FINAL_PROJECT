@@ -4,8 +4,12 @@ import java.util.List;
 
 import dao.BillDao;
 import mapper.BillMapper;
+import mapper.ImageMapper;
 import mapper.OrderItemMapper;
+import mapper.ProductMapper;
 import model.BillModel;
+import model.OrderItemModel;
+import model.ProductModel;
 import paging.Pageble;
 
 public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
@@ -38,7 +42,7 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 
 	@Override
 	public List<BillModel> findAllSearch(Pageble pageble, String key, String search) {
-		StringBuilder query = new StringBuilder("select * from bill");
+		StringBuilder query = new StringBuilder("select bill.*,id,fullname,sdt from bill inner join user on bill.UserID = user.id");
 		if (key != null && search != null) {
 			query.append(" where " + key + " like ? ");
 		}
@@ -50,7 +54,14 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 		for (BillModel i : allBill) {
 			String subquery = "select * from orderitem where BillID = ?";
 			i.setOrderItem(query(subquery, new OrderItemMapper(), i.getBillID()));
+			for(OrderItemModel j : i.getOrderItem()) {
+				String subquery2 = "select product.*, OrderItemID from product inner join orderitem on product.ProductID = orderitem.ProductID where OrderItemID = ?";
+				j.setProduct((query(subquery2, new ProductMapper(), j.getOrderItemID())).get(0));
+				String subquery3 = "select * from image where ProductID = ?";
+				j.getProduct().setImage(query(subquery3, new ImageMapper(), j.getProduct().getProductID()));
+			}
 		}
+		
 		return allBill;
 	}
 

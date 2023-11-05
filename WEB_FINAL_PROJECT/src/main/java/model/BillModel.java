@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class BillModel extends AbstractModel<BillModel>{
+public class BillModel extends AbstractModel<BillModel> {
 	private Long BillID;
 	private Long UserID;
 	private String Date;
@@ -58,15 +58,7 @@ public class BillModel extends AbstractModel<BillModel>{
 	}
 
 	public void setNote(String note) {
-		this.Note = note;
-	}
-
-	public int getStatus() {
-		return Status;
-	}
-
-	public void setStatus(int status) {
-		Status = status;
+		Note = note;
 	}
 
 	public List<OrderItemModel> getOrderItem() {
@@ -77,12 +69,28 @@ public class BillModel extends AbstractModel<BillModel>{
 		OrderItem = orderItem;
 	}
 
+	public UserModel getUserModel() {
+		return userModel;
+	}
+
+	public void setUserModel(UserModel userModel) {
+		this.userModel = userModel;
+	}
+
+	public int getStatus() {
+		return Status;
+	}
+
+	public void setStatus(int status) {
+		Status = status;
+	}
+
 	public BillModel() {
 		super();
 	}
 
-	public BillModel(Long billID, Long userID, String date, Double totalPrice, String shippingAddress,
-			String note, int status) {
+	public BillModel(Long billID, Long userID, String date, Double totalPrice, String shippingAddress, String note,
+			List<OrderItemModel> orderItem, UserModel userModel, int status) {
 		super();
 		BillID = billID;
 		UserID = userID;
@@ -90,15 +98,9 @@ public class BillModel extends AbstractModel<BillModel>{
 		TotalPrice = totalPrice;
 		ShippingAddress = shippingAddress;
 		Note = note;
-		Status = status;
-	}
-
-	public UserModel getUserModel() {
-		return userModel;
-	}
-
-	public void setUserModel(UserModel userModel) {
+		OrderItem = orderItem;
 		this.userModel = userModel;
+		Status = status;
 	}
 
 }
