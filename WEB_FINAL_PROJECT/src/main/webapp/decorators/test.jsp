@@ -128,6 +128,7 @@
 	
 	
 	$("#btnUpdate").click(function (e) {
+		var check=true;
 		listCategoryNew = [];
 		var categoryName = $("#categoryName").val();
 		var imageLink = $("#imageLink").val();
@@ -149,7 +150,8 @@
 		data["categoryNews"]=listCategoryNew;
 		data["idDeletes"]=listIdCategoryDelete;
 		if($('#image').attr('alt') == ""){
-			updateCategory(data);
+				updateCategory(data);
+			
 		}
 		else{
 			$('#LinkError').text("Link hình ảnh không hợp lệ");
@@ -219,7 +221,6 @@
 	    	console.log(datas);
 	    	if($('#image').attr('alt') == ""){
 	    		addCategory(datas);
-	    		console.log('ok');
 	    	}
 	    	else{
 	    		$('#LinkError').text("Link hình ảnh không hợp lệ");

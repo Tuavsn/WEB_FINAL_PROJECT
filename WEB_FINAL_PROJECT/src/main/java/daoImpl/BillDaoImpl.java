@@ -12,7 +12,6 @@ import model.OrderItemModel;
 import paging.Pageble;
 
 public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
-
 	@Override
 	public List<BillModel> findAll() {
 		String query = "select bill.*,fullname,sdt from bill inner join user on bill.UserID = user.id";
@@ -123,6 +122,11 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 	public void HuyThanhToanBill(Long id) {
 		String sql ="UPDATE bill SET Status = 0 WHERE BillID = ?";
 		update(sql, id);
+		BillModel billModels = getOne(id);
+		for(OrderItemModel itemModel : billModels.getOrderItem()) {
+			String UpdateSql="call updateAmountWhenRevertStatus(?,?)";
+			update(UpdateSql,itemModel.getProductID(),itemModel.getAmount());
+		}
 		
 	}
 
@@ -130,6 +134,12 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 	public void HuyDonHang(Long id) {
 		String sql ="UPDATE bill SET Status = 2 WHERE BillID = ?";
 		update(sql, id);
+		BillModel billModels = getOne(id);
+		for(OrderItemModel itemModel : billModels.getOrderItem()) {
+			String UpdateSql="call updateAmount(?,?)";
+			update(UpdateSql,itemModel.getProductID(),itemModel.getAmount());
+		}
+		
 		
 	}
 

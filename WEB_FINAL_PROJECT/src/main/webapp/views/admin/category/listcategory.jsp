@@ -148,13 +148,13 @@ function deleteCategory(data) {
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function (result) {
-            	location.reload();
-            	alert("Xóa thành công.");
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-category-list?page="+${model.page}+"&maxPageItem=3";
+            	alert("Xóa thành công ${model.totalItem}.");
             	
             },
             error: function (error) 
             {
-            	location.reload();
+            	window.location.href = "/WEB_FINAL_PROJECT/admin-category-list?page="+${model.page}+"&maxPageItem=3";
             	if (error.status === 400) {
             		alert("Xóa không thành công vì một số thể loại bạn chọn đang dùng cho một số sản phẩm");
             	}

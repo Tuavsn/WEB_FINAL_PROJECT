@@ -192,7 +192,6 @@ function deleteProduct(data) {
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function (result) {
-            		
             	window.location.href = "/WEB_FINAL_PROJECT/admin-product-list?page="+${model.page}+"&maxPageItem=3";
             	alert("Xóa thành công.");
             	
