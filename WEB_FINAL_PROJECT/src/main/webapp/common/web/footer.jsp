@@ -14,10 +14,10 @@
 					<i class="fa fa-map-marker-alt text-primary mr-3"></i>Số 1, Võ Văn Ngân, TP.Thủ Đức
 				</p>
 				<p class="mb-2">
-					<i class="fa fa-envelope text-primary mr-3"></i>info@example.com
+					<i class="fa fa-envelope text-primary mr-3"></i>orishop@gmail.com
 				</p>
 				<p class="mb-0">
-					<i class="fa fa-phone-alt text-primary mr-3"></i>+012 1212 121212
+					<i class="fa fa-phone-alt text-primary mr-3"></i>+012-1212-121212
 				</p>
 			</div>
 			<div class="col-lg-8 col-md-12">

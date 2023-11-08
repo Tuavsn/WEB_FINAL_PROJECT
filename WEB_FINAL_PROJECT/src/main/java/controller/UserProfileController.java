@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
 
 import model.BillModel;
 import model.OrderItemModel;
@@ -37,6 +40,7 @@ public class UserProfileController extends HttpServlet {
 		model.setListResult(billService.findAllSearch(pageble, "id", objUser.getId().toString()));
 		model.setTotalItem(billService.getTotalItemSearch("id", objUser.getId().toString()));
 		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
+		Collections.reverse(model.getListResult());
 		req.setAttribute("model", model);
 
 		RequestDispatcher rq = req.getRequestDispatcher("views/userprofile.jsp");

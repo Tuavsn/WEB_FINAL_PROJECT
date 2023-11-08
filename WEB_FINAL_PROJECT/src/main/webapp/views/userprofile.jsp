@@ -3,9 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <body>
-  
-
-
     <!-- Page Header Start -->
     <div class="mb-1">
 		<div
@@ -50,6 +47,7 @@
                             <th>Ngày đặt</th>
                             <th>Tổng tiền</th>
                             <th>Danh sách sản phẩm</th>
+                            <th>Trạng thái</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle">
@@ -75,7 +73,7 @@
 	                                			<th>Hình ảnh</th>
 					                            <th>Tên sản phẩm</th>
 					                            <th>Giá</th>
-					                            <th>Số lượng</th>
+					                            <th>SL</th>
 	                                		</tr>
                                 		</thead>
                                 		<tbody>
@@ -100,6 +98,17 @@
 		                                	</c:forEach>
                                 		</tbody>
                                 	</table>
+	                            </td>
+	                            <td>
+                               		<c:if test="${bill.status==0}">
+						        		<span class="badge badge-warning" style="border-radius: 7px; font-size: .8rem">Chưa thanh toán</span>
+						        	</c:if>
+						        	<c:if test="${bill.status==1}">
+						        		<span class="badge badge-success" style="border-radius: 7px; font-size: .8rem">Đã thanh toán</span>
+						        	</c:if>
+						        	<c:if test="${bill.status==2}">
+						        		<span class="badge badge-danger" style="border-radius: 7px; font-size: .8rem">Đã bị hủy</span>
+						        	</c:if>   
 	                            </td>
 	                        </tr>
                     	</c:forEach>
