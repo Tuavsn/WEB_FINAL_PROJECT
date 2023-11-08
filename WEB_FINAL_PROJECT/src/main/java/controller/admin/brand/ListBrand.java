@@ -35,10 +35,24 @@ public class ListBrand extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		BrandModel model = FormUtil.toModel(BrandModel.class, req);
 		Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem());
-		List<BrandModel> allBrand =  brandService.findAll(pageble);
-		model.setTotalItem(brandService.getTotalItem());
-		model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
-		req.setAttribute("Allbrand", allBrand);
+		if(model.getSearch()==null) {
+			List<BrandModel> allBrand =  brandService.findAll(pageble);
+			model.setTotalItem(brandService.getTotalItem());
+			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
+			req.setAttribute("Allbrand", allBrand);
+		}
+		else {
+			List<BrandModel> allBrand =  brandService.findAllSearch(pageble,model.getSearch());
+			if(brandService.getTotalItemSearch(model.getSearch())==0) {
+				model.setTotalItem(1);
+			}
+			else 
+			{
+				model.setTotalItem(brandService.getTotalItemSearch(model.getSearch()));
+			}
+			model.setTotalPage((int) Math.ceil((double) model.getTotalItem()/ model.getMaxPageItem()));
+			req.setAttribute("Allbrand", allBrand);
+		}
 		req.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rq = req.getRequestDispatcher("views/admin/brand/listbrand.jsp");
 		rq.forward(req, resp);

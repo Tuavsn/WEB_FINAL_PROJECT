@@ -72,7 +72,7 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 
 	@Override
 	public int getTotalItemSearch(String key, String search) {
-		String query = "select count(*) from bill where " + key + " like ? ";
+		String query = "select count(*) from bill inner join user on bill.UserID = user.id where " + key + " like ? ";
 		search = "%" + search + "%";
 		return count(query, search);
 	}

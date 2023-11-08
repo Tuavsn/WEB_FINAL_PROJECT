@@ -13,7 +13,6 @@
 </head>
 <body>
 <div class="main-content">
-	<form action="<c:url value="/admin-promotion-list"/>" id="formSubmitPromition" method="get"> <!-- khi submit thi nhay vao url admin-new voi method get  -->
 	    <div class="main-content-inner">
 	        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
 	            <ul class="breadcrumb">
@@ -25,7 +24,36 @@
 	                	<a href="<c:url value = '/admin-promotion-list?page=1&maxPageItem=10'/>">Sản phẩm khuyến mãi</a>
 	                </li>
 	            </ul><!-- /.breadcrumb -->
+	            <div class="nav-search" id="nav-search">
+					<form class="form-search" action="<c:url value="/admin-promotion-list"/>" id="formSreach" method="get">
+						<input type="hidden" value="1" name="page">
+						<input type="hidden" value="${model.maxPageItem}" name="maxPageItem">
+						<select name="key" title="Chọn nội dụng tìm kiếm">
+						<c:if test="${empty model.key }">
+							<c:forEach var="item" items="${dataMap}">
+								<option value="${item.key}">${item.value}</option>
+							</c:forEach>
+						</c:if>
+						<c:if test="${not empty model.key }">
+							<c:forEach var="item" items="${dataMap}">
+							<c:if test="${item.key==model.key }">
+								<option value="${item.key}" selected="selected">${item.value}</option>
+							</c:if>
+							<c:if test="${item.key!=model.key }">
+								<option value="${item.key}">${item.value}</option>
+							</c:if>
+								
+							</c:forEach>
+						</c:if>
+						</select>
+						<span class="input-icon">
+							<input type="text" placeholder="Nhập gì đó ..." value="${model.search}" name="search" class="nav-search-input" id="nav-search-input" autocomplete="off" style="padding-left: 12px!important;"/>
+							<button type="submit" id="btnSerach" title="Tìm kiếm"><i class="ace-icon fa fa-search nav-search-icon"></i></button>
+						</span>
+					</form>
+				</div><!-- /.nav-search -->
 	        </div>
+	      <form action="<c:url value="/admin-promotion-list"/>" id="formSubmitPromition" method="get"> <!-- khi submit thi nhay vao url admin-new voi method get  -->
 	        <div class="page-content">
 	            <div class="row" >
 	                <div class="col-xs-12">
@@ -94,8 +122,9 @@
 	                </div>
 	            </div>
 	        </div>
+	        </form>
 	    </div>
-	</form>
+	
 </div><!-- /.main-content -->
 <script type="text/javascript">
 var currentPage = ${model.page};

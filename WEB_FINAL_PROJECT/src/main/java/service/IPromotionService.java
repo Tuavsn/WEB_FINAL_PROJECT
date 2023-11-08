@@ -14,4 +14,6 @@ public interface IPromotionService {
 	PromotionModel insertPromotion(PromotionModel promotionModel);
 	PromotionModel updatePromotion(PromotionModel promotionModel);
 	void deletePromotion(long[] ids);
+	List<PromotionModel> findAllSearch(Pageble pageble,String key,String Search);
+	int getTotalItemSearch(String key,String Search);
 }

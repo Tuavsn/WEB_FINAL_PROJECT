@@ -57,4 +57,24 @@ public class BrandDao extends AbstractDAO<BrandModel> implements IBrandDao {
 		
 	}
 
+	@Override
+	public List<BrandModel> findAllSearch(Pageble pageble, String Search) {
+		StringBuilder sql= new StringBuilder("select * from brand");
+		if (Search != null) {
+			sql.append(" where BrandName like ? ");
+		}
+		Search = "%" +  Search + "%";
+		if(pageble.getOffset() !=null && pageble.getLimit() !=null) {
+			sql.append(" LIMIT "+pageble.getOffset()+","+pageble.getLimit()+"");
+		}
+		return query(sql.toString(), new BrandMapper(),Search);
+	}
+
+	@Override
+	public int getTotalItemSearch(String Search) {
+		String sql = "SELECT count(*) from brand where BrandName like ?";
+		Search = "%" + Search + "%";
+		return count(sql,Search);
+	}
+
 }

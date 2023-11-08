@@ -13,4 +13,6 @@ public interface IBrandService {
 	BrandModel insertBrand(BrandModel brandModel);
 	BrandModel updateBrand(BrandModel brandModel);
 	void deleteBrand(long[] ids);
+	List<BrandModel> findAllSearch(Pageble pageble,String Search);
+	int getTotalItemSearch(String Search);
 }

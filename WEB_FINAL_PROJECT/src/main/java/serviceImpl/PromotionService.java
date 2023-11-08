@@ -48,5 +48,15 @@ public class PromotionService implements IPromotionService{
 		}
 		
 	}
+	@Override
+	public List<PromotionModel> findAllSearch(Pageble pageble, String key, String Search) {
+		// TODO Auto-generated method stub
+		return promotionDao.findAllSearch(pageble, key, Search);
+	}
+	@Override
+	public int getTotalItemSearch(String key, String Search) {
+		// TODO Auto-generated method stub
+		return promotionDao.getTotalItemSearch(key, Search);
+	}
 
 }

@@ -9,6 +9,8 @@ public interface IBrandDao {
 	List<BrandModel> findAll();
 	List<BrandModel> findAll(Pageble pageble);
 	int getTotalItem();
+	List<BrandModel> findAllSearch(Pageble pageble,String Search);
+	int getTotalItemSearch(String Search);
 	BrandModel getOne(Long id);
 	Long insertBrand(BrandModel brandModel);
 	void updateBrand(BrandModel brandModel);

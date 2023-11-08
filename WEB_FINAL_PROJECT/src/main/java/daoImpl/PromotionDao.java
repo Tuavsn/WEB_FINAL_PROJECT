@@ -57,4 +57,24 @@ public class PromotionDao extends AbstractDAO<PromotionModel> implements IPromot
 		update(sql, id);
 	}
 
+	@Override
+	public List<PromotionModel> findAllSearch(Pageble pageble, String key, String Search) {
+		StringBuilder sql= new StringBuilder("SELECT promotion.*,ProductName FROM promotion inner join product on promotion.productID = product.productID");
+		if (key != null && Search != null) {
+			sql.append(" where " + key + " like ? ");
+		}
+		 Search = "%" +  Search + "%";
+		if(pageble.getOffset() !=null && pageble.getLimit() !=null) {
+			sql.append(" LIMIT "+pageble.getOffset()+","+pageble.getLimit()+"");
+		}
+		return query(sql.toString(), new PromotionMapper(),Search);
+	}
+
+	@Override
+	public int getTotalItemSearch(String key, String Search) {
+		String sql = "SELECT count(*) FROM promotion inner join product on promotion.productID = product.productID where " + key + " like ?;";
+		Search = "%" + Search + "%";
+		return count(sql,Search);
+	}
+
 }

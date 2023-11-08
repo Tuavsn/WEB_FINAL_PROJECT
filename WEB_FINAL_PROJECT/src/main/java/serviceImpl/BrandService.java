@@ -55,4 +55,16 @@ public class BrandService implements IBrandService
 		
 	}
 
+	@Override
+	public List<BrandModel> findAllSearch(Pageble pageble, String Search) {
+		// TODO Auto-generated method stub
+		return brandDao.findAllSearch(pageble, Search);
+	}
+
+	@Override
+	public int getTotalItemSearch(String Search) {
+		// TODO Auto-generated method stub
+		return brandDao.getTotalItemSearch(Search);
+	}
+
 }

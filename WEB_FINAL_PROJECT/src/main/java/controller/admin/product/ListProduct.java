@@ -52,7 +52,8 @@ public class ListProduct extends HttpServlet {
 			if(productService.getTotalItemSearchAll(model.getKey(), model.getSearch())==0) {
 				model.setTotalItem(1);
 			}
-			else {
+			else 
+			{
 				model.setTotalItem(productService.getTotalItemSearchAll(model.getKey(), model.getSearch()));
 			}
 			
