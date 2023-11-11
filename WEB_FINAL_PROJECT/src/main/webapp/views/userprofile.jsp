@@ -42,23 +42,16 @@
                   <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary">
                         <tr>
-                            <th>Đơn hàng</th>
-                            <th>Địa chỉ</th>
                             <th>Ngày đặt</th>
                             <th>Tổng tiền</th>
-                            <th>Danh sách sản phẩm</th>
                             <th>Trạng thái</th>
+                            <th>Địa chỉ</th>
+                            <th>Danh sách sản phẩm</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle">
                     	<c:forEach items="${model.listResult}" var="bill">
 	                        <tr>
-	                            <td class="">
-	                            	<p>${bill.billID}</p>
-                            	</td>
-                            	<td class="">
-	                            	<p>${bill.shippingAddress}</p>
-                            	</td>
                             	<td class="">
 	                            	<p>${bill.date}</p>
                             	</td>
@@ -66,6 +59,20 @@
 		                            <fmt:setLocale value="vi_VN" />
 									<fmt:formatNumber value="${bill.totalPrice}" type="currency" />
 	                            </td>
+	                            <td>
+                               		<c:if test="${bill.status==0}">
+						        		<span class="badge badge-warning" style="border-radius: 7px; font-size: .8rem">Chưa thanh toán</span>
+						        	</c:if>
+						        	<c:if test="${bill.status==1}">
+						        		<span class="badge badge-success" style="border-radius: 7px; font-size: .8rem">Đã thanh toán</span>
+						        	</c:if>
+						        	<c:if test="${bill.status==2}">
+						        		<span class="badge badge-danger" style="border-radius: 7px; font-size: .8rem">Đã bị hủy</span>
+						        	</c:if>   
+	                            </td>
+                            	<td class="">
+	                            	<p>${bill.shippingAddress}</p>
+                            	</td>
 	                            <td style="padding: 0">
                                 	<table style="width: 100%">
                                 		<thead>
@@ -98,17 +105,6 @@
 		                                	</c:forEach>
                                 		</tbody>
                                 	</table>
-	                            </td>
-	                            <td>
-                               		<c:if test="${bill.status==0}">
-						        		<span class="badge badge-warning" style="border-radius: 7px; font-size: .8rem">Chưa thanh toán</span>
-						        	</c:if>
-						        	<c:if test="${bill.status==1}">
-						        		<span class="badge badge-success" style="border-radius: 7px; font-size: .8rem">Đã thanh toán</span>
-						        	</c:if>
-						        	<c:if test="${bill.status==2}">
-						        		<span class="badge badge-danger" style="border-radius: 7px; font-size: .8rem">Đã bị hủy</span>
-						        	</c:if>   
 	                            </td>
 	                        </tr>
                     	</c:forEach>
