@@ -12,4 +12,6 @@ public interface GenericDAO<T> {
 	Long insert(String sql, Object... patameters);
 
 	int count(String sql, Object... patameters);
+	
+	double getPrice(String sql, Object... patameters);
 }

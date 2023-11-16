@@ -18,4 +18,9 @@ public interface BillDao {
 	void ThanhToanBill(Long id);
 	void HuyThanhToanBill(Long id);
 	void HuyDonHang(Long id);
+	double GetTotalPrice();
+	int billToday();
+	int getTotalItemDaThanhToan();
+	int getTotalItemChuaThanhToan();
+	int getTotalItemDaBiHuy();
 }

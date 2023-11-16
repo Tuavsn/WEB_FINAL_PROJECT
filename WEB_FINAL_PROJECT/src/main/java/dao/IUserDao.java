@@ -21,4 +21,5 @@ public interface IUserDao extends GenericDAO<UserModel> {
 	List<UserModel> findAllSearch(Pageble pageble,String key,String search);
 	int getTotalItem();
 	int getTotalItemSearch(String key,String search);
+	int getTotalUser();
 }

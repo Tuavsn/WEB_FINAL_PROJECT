@@ -182,4 +182,36 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 			}
 		}
 	}
+
+	@Override
+	public double getPrice(String sql, Object... patameters) {
+		try {
+			double price = 0;
+			conn = new DBConnect().getConnection();
+			ps = conn.prepareStatement(sql);
+			// set parameter()
+			setParameter(ps, patameters);
+			rs = ps.executeQuery(); // thực thi câu sql
+			while (rs.next()) {
+				price = rs.getDouble(1); // 1 là vi tri dau tien
+			}
+			return price;
+		} catch (Exception e) {
+			return 0;
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				return 0;
+			}
+		}
+	}
 }

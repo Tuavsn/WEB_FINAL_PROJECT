@@ -143,6 +143,36 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 		
 	}
 
+	@Override
+	public double GetTotalPrice() {
+		String sql ="select sum(TotalPrice) from bill where Status = 1";
+		return getPrice(sql);
+	}
+
+	@Override
+	public int billToday() {
+		String query = "SELECT count(*) FROM webfinalproject.bill WHERE DATE(Date) = CURDATE()";
+		return count(query);
+	}
+
+	@Override
+	public int getTotalItemDaThanhToan() {
+		String query = "select count(*) from bill where status = 1";
+		return count(query);
+	}
+
+	@Override
+	public int getTotalItemChuaThanhToan() {
+		String query = "select count(*) from bill where status = 0";
+		return count(query);
+	}
+
+	@Override
+	public int getTotalItemDaBiHuy() {
+		String query = "select count(*) from bill where status = 2";
+		return count(query);
+	}
+
 
 
 }

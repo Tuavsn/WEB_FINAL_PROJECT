@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -48,13 +49,17 @@
 						<div class="space-6"></div>
 
 						<div class="col-sm-7 infobox-container">
-							<div class="infobox infobox-orange2	">
+							<div class="infobox infobox-green	">
 								<div class="infobox-chart">
 									<span class="sparkline" data-values="196,128,202,177,154,94,100,170,224"></span>
 								</div>
 
 								<div class="infobox-data">
-									<span class="infobox-data-number">32</span>
+									<span class="infobox-data-number">
+									
+										<fmt:setLocale value="vi_VN" />
+										<fmt:formatNumber value="${TotalPrice}" type="currency" />
+									</span>
 									<div class="infobox-content">Tổng danh thu</div>
 								</div>
 
@@ -66,7 +71,7 @@
 								</div>
 
 								<div class="infobox-data">
-									<span class="infobox-data-number">11</span>
+									<span class="infobox-data-number">${TotalUser}</span>
 									<div class="infobox-content">Khách hàng</div>
 								</div>
 
@@ -79,7 +84,7 @@
 								</div>
 
 								<div class="infobox-data">
-									<span class="infobox-data-number">8</span>
+									<span class="infobox-data-number">${BillToday}</span>
 									<div class="infobox-content">Đơn hàng hôm nay</div>
 								</div>
 							</div>
@@ -90,18 +95,18 @@
 								</div>
 
 								<div class="infobox-data">
-									<span class="infobox-data-number">7</span>
+									<span class="infobox-data-number">${TotalProduct}</span>
 									<div class="infobox-content">Sản phẩm</div>
 								</div>
 							</div>
 
-							<div class="infobox infobox-orange2">
+							<div class="infobox infobox-blue2">
 								<div class="infobox-icon">
-									<i class="ace-icon fa fa-flask"></i>
+									<i class="ace-icon fa fa-list-alt"></i>
 								</div>
 
 								<div class="infobox-data">
-									<span class="infobox-data-number">6,251</span>
+									<span class="infobox-data-number">${TotalCategory}</span>
 									<div class="infobox-content">Thể loại</div>
 								</div>
 
@@ -114,7 +119,7 @@
 								</div>
 
 								<div class="infobox-data">
-									<span class="infobox-data-number">6,251</span>
+									<span class="infobox-data-number">${TotalBrand }</span>
 									<div class="infobox-content">Thương hiệu</div>
 								</div>
 
@@ -145,28 +150,25 @@
 										<div class="hr hr8 hr-double"></div>
 
 										<div class="clearfix">
-											<div class="grid3">
+											<div class="grid3" style="display: flex;justify-content: space-between;align-items: center;">
 												<span class="grey">
-													<i class="ace-icon fa fa-facebook-square fa-2x blue"></i>
-													&nbsp; likes
+													Đã thanh toán
 												</span>
-												<h4 class="bigger pull-right">1,255</h4>
+												<h4 class="bigger pull-right">${TotalItemDaThanhToan }</h4> 
 											</div>
 
-											<div class="grid3">
+											<div class="grid3" style="display: flex;justify-content: space-between;align-items: center;">
 												<span class="grey">
-													<i class="ace-icon fa fa-twitter-square fa-2x purple"></i>
-													&nbsp; tweets
+													Chưa thanh toán
 												</span>
-												<h4 class="bigger pull-right">941</h4>
+												<h4 class="bigger pull-right">${TotalItemChuaThanhToan}</h4>
 											</div>
 
-											<div class="grid3">
+											<div class="grid3" style="display: flex;justify-content: space-between;align-items: center;">
 												<span class="grey">
-													<i class="ace-icon fa fa-pinterest-square fa-2x red"></i>
-													&nbsp; pins
+													Đã bi hủy
 												</span>
-												<h4 class="bigger pull-right">1,050</h4>
+												<h4 class="bigger pull-right">${TotalItemDaBiHuy}</h4>
 											</div>
 										</div>
 									</div><!-- /.widget-main -->
@@ -261,15 +263,15 @@
 													<thead class="thin-border-bottom">
 														<tr>
 															<th>
-																<i class="ace-icon fa fa-caret-right blue"></i>name
+																Tên sản phẩm
 															</th>
 	
 															<th>
-																<i class="ace-icon fa fa-caret-right blue"></i>price
+																Giá
 															</th>
 	
 															<th class="hidden-480">
-																<i class="ace-icon fa fa-caret-right blue"></i>status
+																Đã bán
 															</th>
 														</tr>
 													</thead>
@@ -392,7 +394,7 @@
 							<div class="widget-header">
 								<h4 class="widget-title lighter smaller">
 									<i class="ace-icon fa fa-comment blue"></i>
-									Hàng tồn kho
+									Sản phẩm tồn kho
 								</h4>
 							</div>
 
@@ -405,15 +407,15 @@
 													<thead class="thin-border-bottom">
 														<tr>
 															<th>
-																<i class="ace-icon fa fa-caret-right blue"></i>name
+																Tên sản phẩm
 															</th>
 
 															<th>
-																<i class="ace-icon fa fa-caret-right blue"></i>price
+																Số lượng
 															</th>
-
-															<th class="hidden-480">
-																<i class="ace-icon fa fa-caret-right blue"></i>status
+														
+															<th>
+																Thao tác
 															</th>
 														</tr>
 													</thead>
@@ -432,93 +434,10 @@
 															<td class="hidden-480">
 																<span class="label label-info arrowed-right arrowed-in">on sale</span>
 															</td>
+															
 														</tr>
 
-														<tr>
-															<td>online.com</td>
-
-															<td>
-																<b class="blue">$16.45</b>
-															</td>
-
-															<td class="hidden-480">
-																<span class="label label-success arrowed-in arrowed-in-right">approved</span>
-															</td>
-														</tr>
-
-														<tr>
-															<td>newnet.com</td>
-
-															<td>
-																<b class="blue">$15.00</b>
-															</td>
-
-															<td class="hidden-480">
-																<span class="label label-danger arrowed">pending</span>
-															</td>
-														</tr>
-
-														<tr>
-															<td>web.com</td>
-
-															<td>
-																<small>
-																	<s class="red">$24.99</s>
-																</small>
-																<b class="green">$19.95</b>
-															</td>
-
-															<td class="hidden-480">
-																<span class="label arrowed">
-																	<s>out of stock</s>
-																</span>
-															</td>
-														</tr>
-
-														<tr>
-															<td>domain.com</td>
-
-															<td>
-																<b class="blue">$12.00</b>
-															</td>
-
-															<td class="hidden-480">
-																<span class="label label-warning arrowed arrowed-right">SOLD</span>
-															</td>
-														</tr>
-														<tr>
-															<td>domain.com</td>
-
-															<td>
-																<b class="blue">$12.00</b>
-															</td>
-
-															<td class="hidden-480">
-																<span class="label label-warning arrowed arrowed-right">SOLD</span>
-															</td>
-														</tr>
-														<tr>
-															<td>domain.com</td>
-
-															<td>
-																<b class="blue">$12.00</b>
-															</td>
-
-															<td class="hidden-480">
-																<span class="label label-warning arrowed arrowed-right">SOLD</span>
-															</td>
-														</tr>
-														<tr>
-															<td>domain.com</td>
-
-															<td>
-																<b class="blue">$12.00</b>
-															</td>
-
-															<td class="hidden-480">
-																<span class="label label-warning arrowed arrowed-right">SOLD</span>
-															</td>
-														</tr>
+														
 														
 													</tbody>
 												</table>
@@ -570,12 +489,14 @@
 			  //flot chart resize plugin, somehow manipulates default browser resize event to optimize it!
 			  //but sometimes it brings up errors with normal resize event handlers
 			  $.resize.throttleWindow = false;
-			
+			  var DaThanhToan = ${TotalItemDaThanhToan}/${TotalBill};
+			  var ChuaThanhToan = ${TotalItemChuaThanhToan}/${TotalBill};
+			  var DaBiHuy = ${TotalItemDaBiHuy}/${TotalBill};
 			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
 			  var data = [
-				{ label: "Đã thanh toán",  data: 57.3, color: "#68BC31"},
-				{ label: "Chưa thanh toán",  data: 24.5, color: "#FEE074"},	
-				{ label: "Đã bị hủy",  data: 18.2, color: "#DA5430"},
+				{ label: "Đã thanh toán",  data: (DaThanhToan*100).toFixed(1), color: "#68BC31"},
+				{ label: "Chưa thanh toán",  data: (ChuaThanhToan*100).toFixed(1), color: "#FEE074"},	
+				{ label: "Đã bị hủy",  data: (DaBiHuy*100).toFixed(1), color: "#DA5430"},
 			  ]
 			  function drawPieChart(placeholder, data, position) {
 			 	  $.plot(placeholder, data, {
@@ -653,7 +574,7 @@
 			
 				var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'320px'});
 				$.plot("#sales-charts", [
-					{ label: "Domains", data: d1 },
+					{ label: "Doanh thu (VNĐ)", data: d1 },
 				], {
 					hoverable: true,
 					shadowSize: 0,

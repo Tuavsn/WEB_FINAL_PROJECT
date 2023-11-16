@@ -124,4 +124,10 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 		return query(sql.toString(), new UserMapper(),search);
 	}
 
+	@Override
+	public int getTotalUser() {
+		String sql = "SELECT count(*) from user where roleid= 2 and status = 1";
+		return count(sql);
+	}
+
 }

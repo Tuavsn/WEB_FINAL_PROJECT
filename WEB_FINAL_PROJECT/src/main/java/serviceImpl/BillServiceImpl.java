@@ -79,4 +79,34 @@ public class BillServiceImpl implements BillService{
 		
 	}
 
+	@Override
+	public double GetTotalPrice() {
+		
+		return bill.GetTotalPrice();
+	}
+
+	@Override
+	public int billToday() {
+		// TODO Auto-generated method stub
+		return bill.billToday();
+	}
+
+	@Override
+	public int getTotalItemDaThanhToan() {
+		// TODO Auto-generated method stub
+		return bill.getTotalItemDaThanhToan();
+	}
+
+	@Override
+	public int getTotalItemChuaThanhToan() {
+		// TODO Auto-generated method stub
+		return bill.getTotalItemChuaThanhToan();
+	}
+
+	@Override
+	public int getTotalItemDaBiHuy() {
+		// TODO Auto-generated method stub
+		return bill.getTotalItemDaBiHuy();
+	}
+
 }

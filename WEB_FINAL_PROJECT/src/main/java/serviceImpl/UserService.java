@@ -78,6 +78,12 @@ public class UserService implements IUserService{
 	public List<UserModel> findAllSearch(Pageble pageble, String key, String search) {
 		return userDAO.findAllSearch(pageble, key, search);
 	}
+
+	@Override
+	public int getTotalUser() {
+		// TODO Auto-generated method stub
+		return userDAO.getTotalUser();
+	}
 	
 
 }

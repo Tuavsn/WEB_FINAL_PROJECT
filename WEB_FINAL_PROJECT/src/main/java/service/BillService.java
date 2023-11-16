@@ -18,4 +18,9 @@ public interface BillService {
 	BillModel ThanhToanBill(Long id);
 	BillModel HuyThanhToanBill(Long id);
 	void HuyDonHang(long ids[]);
+	double GetTotalPrice();
+	int billToday();
+	int getTotalItemDaThanhToan();
+	int getTotalItemChuaThanhToan();
+	int getTotalItemDaBiHuy();
 }
