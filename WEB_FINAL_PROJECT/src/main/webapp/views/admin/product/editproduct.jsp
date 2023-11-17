@@ -137,7 +137,10 @@
 									 	</c:if>
 										</select> 
 										
-									</div>					    
+									</div>
+									<div class="col-sm-9 col-sm-offset-3">
+							       		<div id="categoryError" class="text-danger" style="font-size: 14px;font-weight: bold;" ></div>
+							    	</div>						    
 							</div>
 							
 							<div class="form-group">
@@ -164,7 +167,10 @@
 									 	</c:if>
 										</select> 
 										
-									</div>					    
+									</div>		
+									<div class="col-sm-9 col-sm-offset-3">
+							       		<div id="brandError" class="text-danger" style="font-size: 14px;font-weight: bold;" ></div>
+							    	</div>			    
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="spinner3"> Số lượng </label>
@@ -238,14 +244,14 @@ function deleteImage(deleteButton) {
     	 $('#imageContainer img').each(function() { 
     		 imageNames.push($(this).attr('name'));
     	 });
-    	
+   	 	$("#categoryError").text("");
+   	 	$("#brandError").text("");
     	var productName = $("#productName").val();
     	var description = $("#description").val();
     	var categoryID = $("#categoryID").val();
     	var amount = $("#spinner3").val();
     	var price = $("#price").val();
     	var brand = $("#brandID").val();
-    	
     	data["productName"] = productName;
     	data["imageNames"] = imageNames;
     	data["description"]= description;
@@ -253,7 +259,18 @@ function deleteImage(deleteButton) {
     	data["brandID"] = brand;
     	data["amount"] = amount;
     	data["price"] = price;
-    	addProduct(data);
+    	var check=true;
+    	if(data["categoryID"]==="#"){
+    		check=false;
+    		$("#categoryError").text("Hãy chọn thể loại cho sản phẩm");
+    	}
+    	if(data["brandID"]==="#"){
+    		check=false;
+    		$("#brandError").text("Hãy chọn thương hiệu cho sản phẩm");
+    	}
+    	if(check){
+    		addProduct(data);
+    	}
     })
     
      $('#btnUpdate').click(function (e){
@@ -261,7 +278,8 @@ function deleteImage(deleteButton) {
     	 var data = {};
      	var imageNames = [];
      	var idImageHienTai = [];
-     	
+     	$("#categoryError").text("");
+   	 	$("#brandError").text("");
      	var productID = $("#productID").val();
      	$('#imageHienTai img').each(function() { 
      		idImageHienTai.push($(this).attr('name'));
@@ -280,7 +298,18 @@ function deleteImage(deleteButton) {
      	data["brandID"] = brand;
      	data["amount"] = amount;
      	data["price"] = price;
-     	updateProduct(data);
+     	var check=true;
+    	if(data["categoryID"]==="#"){
+    		check=false;
+    		$("#categoryError").text("Hãy chọn thể loại cho sản phẩm");
+    	}
+    	if(data["brandID"]==="#"){
+    		check=false;
+    		$("#brandError").text("Hãy chọn thương hiệu cho sản phẩm");
+    	}
+    	if(check){
+     		updateProduct(data);
+    	}
      })
      function updateProduct(data){
 		$.ajax({

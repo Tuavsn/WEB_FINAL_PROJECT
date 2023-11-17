@@ -54,7 +54,7 @@
 									<c:if test="${empty model.promotionID }">
 										<select class="chosen-select form-control" id="productName" name="productName" data-placeholder="Chọn sản phẩm...">
 											
-											<option value="">  </option>
+											<option value="#">  </option>
 												<c:forEach var="item" items="${allProduct}">
 													<option value="${item.productID}">${item.productName}</option>
 												</c:forEach>
@@ -63,7 +63,7 @@
 										
 										<c:if test="${not empty model.promotionID }">
 										<select class="chosen-select form-control" id="productName" name="productName" data-placeholder="Chọn sản phẩm..." disabled="disabled">
-											<option value="">  </option>
+											<option value="#">  </option>
 												<c:forEach var="item" items="${allProduct}">
 														<c:if test="${item.productID==model.productID}">
 									 					<option value="${item.productID}" selected="selected">${item.productName}</option>
@@ -74,7 +74,10 @@
 												</c:forEach>
 											</select>
 											</c:if>
-									</div>					    
+									</div>			
+									<div class="col-sm-9 col-sm-offset-3">
+							        	<div id="productError" class="text-danger" style="font-size: 14px;font-weight: bold;" ></div>
+							    	</div>		    
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="spinner3"> Khuyễn mãi(%) </label>
@@ -197,6 +200,7 @@ $("#productName").change(function (e){
 })
 function reset(){
 	$('#Error').text("");
+	$('#productError').text("");
 }
 $('#btnAdd').click(function (e) 
 {	
@@ -215,12 +219,18 @@ $('#btnAdd').click(function (e)
 	var secondDate = new Date(data["endDate"])
 	var timeDiff = secondDate - firstDate;
 	var daysDiff = timeDiff / (1000 * 60 * 60 * 24);
-	console.log(daysDiff);
+	var check=true;
+	if(data["productID"]==="#"){
+		check=false;
+		$("#productError").text("Hãy chọn sản phẩm cần giảm giá");
+	}
 	if(daysDiff < 0){
 		$('#Error').text("Ngày kết thúc không thể nhỏ hơn ngày bắt đầu");
 	}
 	else{
-		addPromotion(data);
+		if(check){
+			addPromotion(data);
+		}
 	}
 })
 
@@ -264,6 +274,7 @@ $('#btnUpdate').click(function (e) {
 	var timeDiff = secondDate - firstDate;
 	var daysDiff = timeDiff / (1000 * 60 * 60 * 24);
 	console.log(daysDiff);
+	
 	if(daysDiff < 0){
 		$('#Error').text("Ngày kết thúc không thể nhỏ hơn ngày bắt đầu");
 	}
