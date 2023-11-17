@@ -21,6 +21,8 @@ public class UpdateUserAPI extends HttpServlet {
 	IUserService userService = new UserService();
 	private static final long serialVersionUID = 8705980353891812140L;
 	
+	
+	
 	@Override
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
@@ -30,6 +32,15 @@ public class UpdateUserAPI extends HttpServlet {
 		userModel = userService.updateUser(userModel);
 		mapper.writeValue(response.getOutputStream(), userModel);
 		
+	}
+	@Override
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		UserModel userModel = HttpUtil.of(request.getReader()).toModel(UserModel.class);
+		userModel = userService.updateStatusUser(userModel.getId());
+		mapper.writeValue(response.getOutputStream(), userModel);
 	}
 	
 }

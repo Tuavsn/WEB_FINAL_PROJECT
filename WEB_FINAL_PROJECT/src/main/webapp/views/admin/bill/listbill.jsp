@@ -78,13 +78,13 @@
 									<table class="table table-bordered">
 									    <thead>
 									      <tr>
-									      	<th class="center112"><input type="checkbox" value="" id=""/></th>
-									        <th>Tên khách hàng</th>
-									        <th>Số điện thoại</th>
+									      	<th class="center112"><input type="checkbox" value="" id="CheckAll"/></th>
+									        <th class="center112">Tên khách hàng</th>
+									        <th class="center112">Số điện thoại</th>
 									        <th class="center112">Ngày đặt hàng</th>
-									        <th>Địa chỉ</th>
+									        <th class="center112">Địa chỉ</th>
 									        <th class="center112">Tổng giá(VNĐ)</th>
-									        <th>Ghi chú</th>
+									        <th class="center112">Ghi chú</th>
 									        <th class="center112">Trạng thái</th>
 									        <th class="center112">Thao tác</th>
 									      </tr>
@@ -98,18 +98,18 @@
 										      		</c:if>
 										      		
 										      		<c:if test="${item.status==2}">
-										      			<input type="checkbox"value="${item.billID}" id="checkbox_${item.billID}" disabled="disabled"/>
+										      			<input type="checkbox"value="${item.billID}" id="checkbox_${item.billID}" disabled="disabled"	/>
 										      		</c:if>
 										      		</td>
-											        <td>${item.userModel.fullName}</td>
-											        <td>${item.userModel.sdt}</td>
+											        <td class="center112">${item.userModel.fullName}</td>
+											        <td class="center112">${item.userModel.sdt}</td>
 											        <td class="center112">${item.date}</td>
-											        <td>${item.shippingAddress}</td>
+											        <td class="center112">${item.shippingAddress}</td>
 											        <td class="center112">
 												        <fmt:setLocale value="vi_VN" />
 														<fmt:formatNumber value="${item.totalPrice}" type="currency" />
 											        </td>
-											        <td>${item.note}</td>
+											        <td class="center112">${item.note}</td>
 											        <td class="center112">
 												        <c:if test="${item.status==0}">
 											        		<span class="label label-sm label-warning" style="border-radius: 5px;padding: 4px;width: 80px">Chưa thanh toán</span>
@@ -205,6 +205,15 @@ $(".btn-success").click(function(e)
 	data["billID"]=billID;
 	if (confirm("Bạn muốn thanh toán hóa đơn hàng này")) {
 		ThanhToanBill(data);
+	}
+})
+
+$("#CheckAll").click(function(e){
+	if(this.checked){
+		 $('tbody input[type=checkbox]:not(:disabled)').prop('checked', true);
+	}
+	else{
+		$('tbody input[type=checkbox]:not(:disabled)').prop('checked', false);
 	}
 })
 

@@ -5,6 +5,7 @@
 <%@page import="java.util.Hashtable"%>
 <%@include file="/common/taglib.jsp" %>
 <c:url var="APIurl" value="/api-web-rigist"/>
+<c:url var="APIurlUpdateUser" value="/api-admin-updateuser"/>
 <c:url var ="NewURL" value="/admin-user-edit"/>
 
 
@@ -119,12 +120,12 @@
 									<table class="table table-bordered">
 									    <thead>
 									      <tr>
-									      	<th><input type="checkbox" value="" id="" value=""/></th>
-									        <th>UserName</th>
-									        <th>Password</th>
-									        <th>Họ tên</th>
-									        <th>Số điện thoại</th>
-									        <th>Quyền</th>
+									      	<th class="center112"><input type="checkbox" value="" id="CheckAll" /></th>
+									        <th class="center112">UserName</th>
+									        <th class="center112">Password</th>
+									        <th class="center112">Họ tên</th>
+									        <th class="center112">Số điện thoại</th>
+									        <th class="center112">Quyền</th>
 									        <th class="center112">Trạng thái</th>
 									        <th class="center112">Cập nhập</th>
 									      </tr>
@@ -133,16 +134,16 @@
 									    <c:forEach var ="item" items="${model.listResult}">
 										      <tr>
 										      	<c:if test="${item.status==0 || item.userName==USERMODEL.userName || item.roleId=='1'}">
-										      		<td><input type="checkbox" value="${item.id}" id="checkbox_${item.id}" disabled /></td>
+										      		<td class="center112"><input type="checkbox" value="${item.id}" id="checkbox_${item.id}" disabled /></td>
 										      	</c:if>
 										      	<c:if test="${item.status==1 && item.userName!=USERMODEL.userName && item.roleId!='1'}">
-										      		<td><input type="checkbox" value="${item.id}" id="checkbox_${item.id}" /></td>
+										      		<td class="center112"><input type="checkbox" value="${item.id}" id="checkbox_${item.id}" /></td>
 										      	</c:if>
-										        <td>${item.userName}</td>
-										        <td>${item.password}</td> 	
-										        <td>${item.fullName}</td>
-										        <td>${item.sdt}</td>
-										        <td>${item.role.name}</td>
+										        <td class="center112">${item.userName}</td>
+										        <td class="center112">${item.password}</td> 	
+										        <td class="center112">${item.fullName}</td>
+										        <td class="center112">${item.sdt}</td>
+										        <td class="center112">${item.role.name}</td>
 										        <td class="center112">
 										        	<c:if test="${item.status==1}">
 										        		<span class="label label-sm label-success" style="border-radius: 5px;padding: 4px;width: 80px">Đang hoạt động</span>
@@ -160,6 +161,12 @@
 													   title="Cập nhật thông tin user" href='${editURL}'  >
 													   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 													</a>
+													<c:if test="${item.roleId!='1' }">
+														<button class="btn btn-sm btn-warning btn-edit  "  value="${item.id}" data-toggle="tooltip"
+														   title="Đặt lại trạng thái tài khoản" type="button">
+														   <i class="fa fa-undo bigger" aria-hidden="true"></i>
+														</button>
+													</c:if>
 												</c:if>
 												
 												<c:if test="${item.status==1 && item.roleId!='1'}">
@@ -167,6 +174,10 @@
 													   title="Cập nhật thông tin user" href='${editURL}'>
 													   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 													</a>
+													<button class="btn btn-sm btn-warning btn-edit disabled "  value="${item.id}" data-toggle="tooltip"
+														   title="Đặt lại trạng thái tài khoản" type="button">
+														   <i class="fa fa-undo bigger" aria-hidden="true"></i>
+													</button>
 												</c:if>
 												</td>
 										      </tr>
@@ -214,6 +225,41 @@
 	        }
 	    });
 	});
+	$("#CheckAll").click(function(e){
+		if(this.checked){
+			 $('tbody input[type=checkbox]:not(:disabled)').prop('checked', true);
+		}
+		else{
+			$('tbody input[type=checkbox]:not(:disabled)').prop('checked', false);
+		}
+	})
+	$(".btn-warning").click(function(e) 
+	{
+		data={};
+		userID=$(this).val();
+		data["id"]=userID;
+		if (confirm("Bạn muốn đặt lại trạng thái hoạt động cho tài khoản này")) {
+			CapNhapTrangThaiUser(data);
+		}
+	})
+	
+	function CapNhapTrangThaiUser(data){
+	$.ajax({
+        url: '${APIurlUpdateUser}',
+        type: 'DELETE',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function (result) { //result la ket qua tra ve vd : newModel,...
+        	//location.reload(); loadlaitrang
+        	window.location.href = "/WEB_FINAL_PROJECT/admin-user-list?page=${model.page}&maxPageItem=7";
+        	alert("Đã đặt lại trạng thái tài khoản");
+        },
+        error: function (error) {
+        	alert("Lỗi rồi");
+        }
+    });
+}	
 	
 	$("#btnDelete").click(function() {
 		var data = {};

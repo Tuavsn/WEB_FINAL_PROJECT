@@ -22,4 +22,5 @@ public interface IUserService {
 	List<UserModel> findAll(Pageble pageble);
 	List<UserModel> findAllSearch(Pageble pageble,String key,String search);
 	int getTotalUser();
+	UserModel updateStatusUser(Long id);
 }

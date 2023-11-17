@@ -85,15 +85,15 @@
 									<table class="table table-bordered">
 									    <thead>
 									      <tr>
-									      	<th class=""><input type="checkbox" value="" id=""/></th>
-									        <th>Tên sản phẩm</th>
-									        <th>Hình ảnh</th>
-									        <th>Mô tả </th>
-									        <th>Thương hiệu </th>
-									        <th>Thể loại </th>
-									        <th>Số lượng </th>
-									        <th>Giá </th>
-									        <th>Thao tác</th>
+									      	<th class=""><input type="checkbox" value="" id="CheckAll"/></th>
+									        <th class="center112">Tên sản phẩm</th>
+									        <th class="center112">Hình ảnh</th>
+									        <th class="center112">Mô tả </th>
+									        <th class="center112">Thương hiệu </th>
+									        <th class="center112">Thể loại </th>
+									        <th class="center112">Số lượng </th>
+									        <th class="center112">Giá </th>
+									        <th class="center112">Thao tác</th>
 									      </tr>
 									    </thead>
 									    <tbody>
@@ -169,6 +169,14 @@ $(function () {
         }
     });
 });
+$("#CheckAll").click(function(e){
+	if(this.checked){
+		 $('tbody input[type=checkbox]:not(:disabled)').prop('checked', true);
+	}
+	else{
+		$('tbody input[type=checkbox]:not(:disabled)').prop('checked', false);
+	}
+})
 
 $("#btnDelete").click(function(e) {
 	e.preventDefault();

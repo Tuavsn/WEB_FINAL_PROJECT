@@ -84,6 +84,13 @@ public class UserService implements IUserService{
 		// TODO Auto-generated method stub
 		return userDAO.getTotalUser();
 	}
+
+	@Override
+	public UserModel updateStatusUser(Long id) {
+		userDAO.updateStatusUser(id);
+		return userDAO.findOne(id);
+		
+	}
 	
 
 }

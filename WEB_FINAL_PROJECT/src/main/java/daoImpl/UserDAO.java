@@ -130,4 +130,11 @@ public class UserDAO extends AbstractDAO<UserModel> implements IUserDao{
 		return count(sql);
 	}
 
+	@Override
+	public void updateStatusUser(Long id) {
+		String sql = "UPDATE user SET status = 1 where id = ?";
+		update(sql,id);
+		
+	}
+
 }

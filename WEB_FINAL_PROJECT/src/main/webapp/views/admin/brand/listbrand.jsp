@@ -67,22 +67,22 @@
 									<table class="table table-bordered">
 									    <thead>
 									      <tr>
-									      	<th><input type="checkbox" value="" id=""/></th>
-									        <th>Tên thuơng hiệu</th>
-									        <th>Hình ảnh </th>
-									        <th>Mô tả</th>
+									      	<th class="center112"><input type="checkbox" value="" id="CheckAll"/></th>
+									        <th class="center112">Tên thuơng hiệu</th>
+									        <th class="center112">Hình ảnh </th>
+									        <th class="center112">Mô tả</th>
 									        <th class="center112">Thao tác </th>
 									      </tr>
 									    </thead>
 									    <tbody>
 									    <c:forEach var="item" items="${Allbrand}">
 									      <tr>
-										      	<td class=""><input type="checkbox"value="${item.brandID}" id="checkbox_${item.brandID}"/></td>
-										        <td>${item.brandName}</td>
-										        <td width="300px">
+										      	<td class="center112"><input type="checkbox"value="${item.brandID}" id="checkbox_${item.brandID}"/></td>
+										        <td class="center112">${item.brandName}</td>
+										        <td width="300px" class="center112">
 										        	<img alt="" src="${item.imageLink}" width="300px">
 										        </td>
-										        <td>${item.description}</td>
+										        <td class="center112">${item.description}</td>
 										        <td class="center112">
 										        	<c:url var="editURL" value="/admin-brand-edit">
 														<c:param name="brandID" value="${item.brandID}"/>
@@ -130,6 +130,15 @@ $(function () {
         }
     });
 });
+$("#CheckAll").click(function(e){
+	if(this.checked){
+		 $('tbody input[type=checkbox]:not(:disabled)').prop('checked', true);
+	}
+	else{
+		$('tbody input[type=checkbox]:not(:disabled)').prop('checked', false);
+	}
+})
+
 $("#btnDelete").click(function(e) {
 	e.preventDefault();
 	var data = {};

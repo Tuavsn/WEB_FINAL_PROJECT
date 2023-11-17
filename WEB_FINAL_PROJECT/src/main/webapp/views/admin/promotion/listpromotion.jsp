@@ -84,7 +84,7 @@
 									<table class="table table-bordered">
 									    <thead>
 									      <tr>
-									      	<th><input type="checkbox" value="" id=""/></th>
+									      	<th><input type="checkbox" value="" id="CheckAll"/></th>
 									        <th>Tên sản phẩm</th>
 									        <th class="center112">Khuyễn mãi(%)</th>
 									        <th class="center112">Ngày bắt đầu </th>
@@ -147,6 +147,15 @@ $(function () {
         }
     });
 });
+$("#CheckAll").click(function(e){
+	if(this.checked){
+		 $('tbody input[type=checkbox]:not(:disabled)').prop('checked', true);
+	}
+	else{
+		$('tbody input[type=checkbox]:not(:disabled)').prop('checked', false);
+	}
+})
+
 $("#btnDelete").click(function(e) {
 	e.preventDefault();
 	var data = {};

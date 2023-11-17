@@ -50,6 +50,7 @@ public class AdminHome extends HttpServlet{
 		req.setAttribute("TotalItemChuaThanhToan", billService.getTotalItemChuaThanhToan());
 		req.setAttribute("TotalItemDaThanhToan", billService.getTotalItemDaThanhToan());
 		req.setAttribute("TotalItemDaBiHuy", billService.getTotalItemDaBiHuy());
+		req.setAttribute("TotalProductSell", productService.getTotalProductSell());
 		RequestDispatcher rq = req.getRequestDispatcher("views/admin/home.jsp");
 		rq.forward(req, resp);
 	}

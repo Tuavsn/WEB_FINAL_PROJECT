@@ -266,117 +266,53 @@
 																Tên sản phẩm
 															</th>
 	
-															<th>
+															<th class="center112">
 																Giá
 															</th>
 	
-															<th class="hidden-480">
+															<th class="hidden-480 center112">
 																Đã bán
 															</th>
 														</tr>
 													</thead>
 	
 													<tbody>
+													<c:forEach var="item" items="${TotalProductSell}">
+														<c:if test="${not empty item.amount}">
+														
 														<tr>
-															<td>internet.com</td>
+															<td width="400px"><a href="<c:url value = '/admin-product-edit?productID=${item.productID}'/>" style="color: black;" target="_blank">${item.productName}</a></td>
 	
-															<td>
-																<small>
-																	<s class="red">$29.99</s>
-																</small>
-																<b class="green">$19.99</b>
+															<td class="center112">
+																
+																<b class="green">																
+																	<fmt:setLocale value="vi_VN" />
+																	<fmt:formatNumber value="${item.price}" type="currency" />
+																</b>
 															</td>
 	
-															<td class="hidden-480">
-																<span class="label label-info arrowed-right arrowed-in">on sale</span>
+															<td class="hidden-480 center112">
+																${item.amount} sản phẩm
 															</td>
 														</tr>
+														</c:if>
+														<c:if test="${empty item.amount}">
+															<tr>
+															<td width="400px"><a href="<c:url value = '/admin-product-edit?productID=${item.productID}'/>" style="color: black;" target="_blank">${item.productName}</a></td>
 	
-														<tr>
-															<td>online.com</td>
-	
-															<td>
-																<b class="blue">$16.45</b>
+															<td class="center112">
+																
+																<b class="green">
+																	<fmt:setLocale value="vi_VN" />
+																	<fmt:formatNumber value="${item.price}" type="currency" />
+																</b>
 															</td>
 	
-															<td class="hidden-480">
-																<span class="label label-success arrowed-in arrowed-in-right">approved</span>
+															<td class="hidden-480 center112">
+																0 sản phẩm
 															</td>
-														</tr>
-	
-														<tr>
-															<td>newnet.com</td>
-	
-															<td>
-																<b class="blue">$15.00</b>
-															</td>
-	
-															<td class="hidden-480">
-																<span class="label label-danger arrowed">pending</span>
-															</td>
-														</tr>
-	
-														<tr>
-															<td>web.com</td>
-	
-															<td>
-																<small>
-																	<s class="red">$24.99</s>
-																</small>
-																<b class="green">$19.95</b>
-															</td>
-	
-															<td class="hidden-480">
-																<span class="label arrowed">
-																	<s>out of stock</s>
-																</span>
-															</td>
-														</tr>
-	
-														<tr>
-															<td>domain.com</td>
-	
-															<td>
-																<b class="blue">$12.00</b>
-															</td>
-	
-															<td class="hidden-480">
-																<span class="label label-warning arrowed arrowed-right">SOLD</span>
-															</td>
-														</tr>
-														<tr>
-															<td>domain.com</td>
-	
-															<td>
-																<b class="blue">$12.00</b>
-															</td>
-	
-															<td class="hidden-480">
-																<span class="label label-warning arrowed arrowed-right">SOLD</span>
-															</td>
-														</tr>
-														<tr>
-															<td>domain.com</td>
-	
-															<td>
-																<b class="blue">$12.00</b>
-															</td>
-	
-															<td class="hidden-480">
-																<span class="label label-warning arrowed arrowed-right">SOLD</span>
-															</td>
-														</tr>
-														<tr>
-															<td>domain.com</td>
-	
-															<td>
-																<b class="blue">$12.00</b>
-															</td>
-	
-															<td class="hidden-480">
-																<span class="label label-warning arrowed arrowed-right">SOLD</span>
-															</td>
-														</tr>
+														</c:if>
+													</c:forEach>
 														
 													</tbody>
 												</table>

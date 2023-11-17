@@ -57,11 +57,11 @@
 									<table class="table table-bordered">
 									    <thead>
 									      <tr>
-									      	<th class="center112"><input type="checkbox" value="" id=""/></th>
-									        <th>Tên thể loại</th>
-									        <th>Hình ảnh </th>
-									        <th>Tên thể loại con </th>
-									        <th>Thao tác </th>
+									      	<th class="center112"><input type="checkbox" value="" id="CheckAll"/></th>
+									        <th class="center112">Tên thể loại</th>
+									        <th class="center112">Hình ảnh </th>
+									        <th class="center112">Tên thể loại con </th>
+									        <th class="center112">Thao tác </th>
 									      </tr>
 									    </thead>
 									    <tbody>
@@ -125,6 +125,15 @@ $(function () {
         }
     });
 });
+$("#CheckAll").click(function(e){
+	if(this.checked){
+		 $('tbody input[type=checkbox]:not(:disabled)').prop('checked', true);
+	}
+	else{
+		$('tbody input[type=checkbox]:not(:disabled)').prop('checked', false);
+	}
+})
+
 $("#btnDelete").click(function(e) {
 	e.preventDefault();
 	var data = {};

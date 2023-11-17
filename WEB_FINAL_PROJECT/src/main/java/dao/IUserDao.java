@@ -22,4 +22,5 @@ public interface IUserDao extends GenericDAO<UserModel> {
 	int getTotalItem();
 	int getTotalItemSearch(String key,String search);
 	int getTotalUser();
+	void updateStatusUser(Long id);
 }

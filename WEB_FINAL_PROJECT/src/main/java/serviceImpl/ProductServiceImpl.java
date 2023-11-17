@@ -130,4 +130,10 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.checkProductByCategoryIDChild(categoryID);
 	}
 
+	@Override
+	public List<ProductModel> getTotalProductSell() {
+		// TODO Auto-generated method stub
+		return productdao.getTotalProductSell();
+	}
+
 }
