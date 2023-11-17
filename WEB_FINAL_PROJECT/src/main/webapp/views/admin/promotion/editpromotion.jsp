@@ -227,7 +227,8 @@ $('#btnAdd').click(function (e)
 	if(daysDiff < 0){
 		$('#Error').text("Ngày kết thúc không thể nhỏ hơn ngày bắt đầu");
 	}
-	else{
+	else
+	{
 		if(check)
 		{
 			addPromotion(data);
