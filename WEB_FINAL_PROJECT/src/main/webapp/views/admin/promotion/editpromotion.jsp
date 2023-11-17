@@ -228,7 +228,8 @@ $('#btnAdd').click(function (e)
 		$('#Error').text("Ngày kết thúc không thể nhỏ hơn ngày bắt đầu");
 	}
 	else{
-		if(check){
+		if(check)
+		{
 			addPromotion(data);
 		}
 	}
