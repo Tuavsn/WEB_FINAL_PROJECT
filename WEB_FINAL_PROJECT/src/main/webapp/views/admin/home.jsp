@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.time.LocalDate" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -60,7 +61,7 @@
 										<fmt:setLocale value="vi_VN" />
 										<fmt:formatNumber value="${TotalPrice}" type="currency" />
 									</span>
-									<div class="infobox-content">Tổng danh thu</div>
+									<div class="infobox-content"><a href="<c:url value = '/admin-bill-list?page=1&maxPageItem=9&key=bill.Status&search=1'/>" style="color: black" target="_blank">Tổng doang thu</a></div>
 								</div>
 
 							</div>
@@ -72,7 +73,7 @@
 
 								<div class="infobox-data">
 									<span class="infobox-data-number">${TotalUser}</span>
-									<div class="infobox-content">Khách hàng</div>
+									<div class="infobox-content"><a href="<c:url value = '/admin-user-list?page=1&maxPageItem=7'/>" style="color: black;" target="_blank">Khách hàng</a></div>
 								</div>
 
 								
@@ -85,7 +86,7 @@
 
 								<div class="infobox-data">
 									<span class="infobox-data-number">${BillToday}</span>
-									<div class="infobox-content">Đơn hàng hôm nay</div>
+									<div class="infobox-content"><a href="<c:url value = '/admin-bill-list?page=1&maxPageItem=9&key=Date&search=${LocalDate.now()}'/>" style="color: black"  target="_blank">Đơn hàng hôm nay</a></div>
 								</div>
 							</div>
 
@@ -96,7 +97,7 @@
 
 								<div class="infobox-data">
 									<span class="infobox-data-number">${TotalProduct}</span>
-									<div class="infobox-content">Sản phẩm</div>
+									<div class="infobox-content"><a href="<c:url value = '/admin-product-list?page=1&maxPageItem=10'/>" style="color: black" target="_blank">Sản phẩm</a></div>
 								</div>
 							</div>
 
@@ -107,7 +108,7 @@
 
 								<div class="infobox-data">
 									<span class="infobox-data-number">${TotalCategory}</span>
-									<div class="infobox-content">Thể loại</div>
+									<div class="infobox-content"><a href="<c:url value = '/admin-category-list?page=1&maxPageItem=3'/>" style="color: black" target="_blank">Thể loại</a></div>
 								</div>
 
 								
@@ -120,7 +121,7 @@
 
 								<div class="infobox-data">
 									<span class="infobox-data-number">${TotalBrand }</span>
-									<div class="infobox-content">Thương hiệu</div>
+									<div class="infobox-content"><a href="<c:url value = '/admin-brand-list?page=1&maxPageItem=6'/>" style="color: black" target="_blank">Thương hiệu</a></div>
 								</div>
 
 								
@@ -152,21 +153,21 @@
 										<div class="clearfix">
 											<div class="grid3" style="display: flex;justify-content: space-between;align-items: center;">
 												<span class="grey">
-													Đã thanh toán
+													<a href="<c:url value = '/admin-bill-list?page=1&maxPageItem=9&key=bill.Status&search=1'/>" style="color: black" target="_blank">Đã thanh toán</a>
 												</span>
 												<h4 class="bigger pull-right">${TotalItemDaThanhToan }</h4> 
 											</div>
 
 											<div class="grid3" style="display: flex;justify-content: space-between;align-items: center;">
 												<span class="grey">
-													Chưa thanh toán
+													<a href="<c:url value = '/admin-bill-list?page=1&maxPageItem=9&key=bill.Status&search=0'/>" style="color: black" target="_blank">Chưa thanh toán</a>
 												</span>
 												<h4 class="bigger pull-right">${TotalItemChuaThanhToan}</h4>
 											</div>
 
 											<div class="grid3" style="display: flex;justify-content: space-between;align-items: center;">
 												<span class="grey">
-													Đã bi hủy
+													<a href="<c:url value = '/admin-bill-list?page=1&maxPageItem=9&key=bill.Status&search=2'/>" style="color: black" target="_blank">Đã bị hủy</a>
 												</span>
 												<h4 class="bigger pull-right">${TotalItemDaBiHuy}</h4>
 											</div>
@@ -250,7 +251,7 @@
 							<div class="widget-header">
 								<h4 class="widget-title lighter smaller">
 									<i class="ace-icon fa fa-star blue"></i>
-									Sản phẩm bán chạy
+									Doanh số sản phẩm
 								</h4>
 							</div>
 	
@@ -430,8 +431,8 @@
 			  var DaBiHuy = ${TotalItemDaBiHuy}/${TotalBill};
 			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
 			  var data = [
+				{ label: "Chưa thanh toán",  data: (ChuaThanhToan*100).toFixed(1), color: "#FEE074"},
 				{ label: "Đã thanh toán",  data: (DaThanhToan*100).toFixed(1), color: "#68BC31"},
-				{ label: "Chưa thanh toán",  data: (ChuaThanhToan*100).toFixed(1), color: "#FEE074"},	
 				{ label: "Đã bị hủy",  data: (DaBiHuy*100).toFixed(1), color: "#DA5430"},
 			  ]
 			  function drawPieChart(placeholder, data, position) {
@@ -500,8 +501,8 @@
 			
 			
 			
-				var d1 = [[1,2],[2,3],[3,1],[4,5],[5,4],[6,3],[7,2],[8,3],[9,1],[10,5],[11,4],[12,3]];
-				
+				var d1 = [[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[11,0],[12,0]];
+				console.log(d1[7-1][1]);
 			
 				
 			

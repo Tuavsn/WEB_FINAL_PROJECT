@@ -48,6 +48,7 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 			query.append(" limit " + pageble.getOffset() + "," + pageble.getLimit());
 		}
 		search = "%" + search + "%";
+		
 		List<BillModel> allBill = query(query.toString(), new BillMapper(), search);
 		for (BillModel i : allBill) {
 			String subquery = "select * from orderitem where BillID = ?";
