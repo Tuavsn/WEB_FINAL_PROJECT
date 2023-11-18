@@ -23,4 +23,5 @@ public interface BillDao {
 	int getTotalItemDaThanhToan();
 	int getTotalItemChuaThanhToan();
 	int getTotalItemDaBiHuy();
+	List<BillModel> revenueYear(String year);
 }

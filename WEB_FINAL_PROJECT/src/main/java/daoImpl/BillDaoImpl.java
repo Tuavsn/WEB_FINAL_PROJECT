@@ -7,6 +7,7 @@ import mapper.BillMapper;
 import mapper.ImageMapper;
 import mapper.OrderItemMapper;
 import mapper.ProductMapper;
+import mapper.revenueYearMapper;
 import model.BillModel;
 import model.OrderItemModel;
 import paging.Pageble;
@@ -172,6 +173,15 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 	public int getTotalItemDaBiHuy() {
 		String query = "select count(*) from bill where status = 2";
 		return count(query);
+	}
+
+	@Override
+	public List<BillModel> revenueYear(String year) {
+		String sql = "SELECT MONTH(Date) AS Date, SUM(TotalPrice) AS TotalPrice "
+				+ "FROM bill "
+				+ "WHERE Status = '1' AND YEAR(Date) = ? "
+				+ "GROUP BY MONTH(Date)";
+		return query(sql, new revenueYearMapper(), year);
 	}
 
 

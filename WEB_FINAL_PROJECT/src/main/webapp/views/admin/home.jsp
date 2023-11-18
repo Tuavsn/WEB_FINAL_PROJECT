@@ -2,6 +2,9 @@
 <%@include file="/common/taglib.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.time.LocalDate" %>
+<%@ page import="java.util.Calendar" %>
+<jsp:useBean id="currentDateBean" class="java.util.Date" />
+<c:set var="currentYear" value="${currentDateBean.year + 1900}" />
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -188,7 +191,12 @@
 								<div class="widget-header widget-header-flat">
 									<h4 class="widget-title lighter">
 										<i class="ace-icon fa fa-signal"></i>
-										Doanh thu trong năm
+										<c:if test="${empty selectYear }">	
+											Doanh thu trong năm ${currentYear}
+										</c:if>
+										<c:if test="${not empty selectYear }">	
+											Doanh thu trong năm ${selectYear}
+										</c:if>
 									</h4>
 										
 									<div class="widget-toolbar">
@@ -196,41 +204,62 @@
 												<i class="ace-icon fa fa-chevron-up"></i>
 										</a>
 									</div>
+									
 									<div class="widget-toolbar no-border">
 										<div class="inline dropdown-hover">
 											<button class="btn btn-minier btn-primary">
-												This Week
+												<c:if test="${empty selectYear }">	
+													${currentYear}
+												</c:if>
+												<c:if test="${not empty selectYear }">	
+													${selectYear}
+												</c:if>
 												<i class="ace-icon fa fa-angle-down icon-on-right bigger-110"></i>
 											</button>
 
 											<ul class="dropdown-menu dropdown-menu-right dropdown-125 dropdown-lighter dropdown-close dropdown-caret">
-												<li class="active">
-													<a href="#" class="blue">
-														<i class="ace-icon fa fa-caret-right bigger-110">&nbsp;</i>
-														This Week
-													</a>
-												</li>
-
-												<li>
-													<a href="#">
-														<i class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
-														Last Week
-													</a>
-												</li>
-
-												<li>
-													<a href="#">
-														<i class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
-														This Month
-													</a>
-												</li>
-
-												<li>
-													<a href="#">
-														<i class="ace-icon fa fa-caret-right bigger-110 invisible">&nbsp;</i>
-														Last Month
-													</a>
-												</li>
+												
+												<c:if test="${empty selectYear}">	
+												<c:forEach var="item" items="${years}">
+													<c:if test="${item==currentYear}">
+														<li class="active">
+															<a href="<c:url value = '/admin-home?selectYear=${item}'/>" class="blue">
+																<i class="ace-icon fa fa-caret-right bigger-110">&nbsp;</i>
+																${item}
+															</a>
+														</li>
+													</c:if>
+													<c:if test="${item!=currentYear}">
+														<li class="">
+															<a href="<c:url value = '/admin-home?selectYear=${item}'/>" class="">
+																<i class="ace-icon fa fa-caret-right bigger-110">&nbsp;</i>
+																${item}
+															</a>
+														</li>
+													</c:if>
+												</c:forEach>
+												</c:if>
+												
+												<c:if test="${not empty selectYear}">	
+												<c:forEach var="item" items="${years}">
+													<c:if test="${item==selectYear}">
+														<li class="active">
+															<a href="<c:url value = '/admin-home?selectYear=${item}'/>" class="blue">
+																<i class="ace-icon fa fa-caret-right bigger-110">&nbsp;</i>
+																${item}
+															</a>
+														</li>
+													</c:if>
+													<c:if test="${item!=selectYear}">
+														<li class="">
+															<a href="<c:url value = '/admin-home?selectYear=${item}'/>" class="">
+																<i class="ace-icon fa fa-caret-right bigger-110">&nbsp;</i>
+																${item}
+															</a>
+														</li>
+													</c:if>
+												</c:forEach>
+												</c:if>
 											</ul>
 										</div>
 									</div>
@@ -500,9 +529,21 @@
 			
 			
 			
-			
+				var months = [];
+				var totalPrices = [];
 				var d1 = [[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[11,0],[12,0]];
 				console.log(d1[7-1][1]);
+				 <c:forEach items="${revenueYear}" var="item">
+					 months.push(${item.date});
+					 totalPrices.push(${item.totalPrice});
+				 </c:forEach>
+				 console.log(months);
+				 console.log(totalPrices);
+				 months.map((item,index) => 
+				 {
+					 d1[item-1][1]=totalPrices[index];
+					 console.log(item,index)
+				 });
 			
 				
 			
@@ -525,7 +566,7 @@
 					yaxis: {
 						ticks: 10,
 						min: 0,
-						max: 6,
+						max: ${TotalPrice},
 						tickDecimals: 3
 					},
 					grid: {

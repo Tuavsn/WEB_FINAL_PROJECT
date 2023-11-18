@@ -1,6 +1,8 @@
 package controller.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -38,8 +40,19 @@ public class AdminHome extends HttpServlet{
 		resp.setContentType("text/html");
 		resp.setCharacterEncoding("UTF-8");
 		req.setCharacterEncoding("UTF-8");
-
-		
+		List<Integer> years = new ArrayList<Integer>();
+		years.add(2022);
+		years.add(2023);
+		years.add(2024);
+		String selectYear = req.getParameter("selectYear");
+		req.setAttribute("selectYear", selectYear);
+		req.setAttribute("years", years);
+		if(selectYear==null) {
+			req.setAttribute("revenueYear", billService.revenueYear("2023"));
+		}
+		else {
+			req.setAttribute("revenueYear", billService.revenueYear(selectYear));
+		}
 		req.setAttribute("TotalPrice", billService.GetTotalPrice());
 		req.setAttribute("TotalProduct", productService.getTotalItem());
 		req.setAttribute("TotalCategory", categoryService.getTotalItem());

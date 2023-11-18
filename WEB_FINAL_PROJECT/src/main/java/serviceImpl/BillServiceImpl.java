@@ -109,4 +109,10 @@ public class BillServiceImpl implements BillService{
 		return bill.getTotalItemDaBiHuy();
 	}
 
+	@Override
+	public List<BillModel> revenueYear(String year) {
+		// TODO Auto-generated method stub
+		return bill.revenueYear(year);
+	}
+
 }
