@@ -54,6 +54,13 @@
             padding: 5px;
             cursor: pointer;
         }
+     .paging{
+     	    display: flex;
+		    flex-direction: column;
+		    justify-content: space-between;
+		    align-items: self-start;
+		    min-height: 520px;
+     }
 </style>
 </head>
 <body class="no-skin">

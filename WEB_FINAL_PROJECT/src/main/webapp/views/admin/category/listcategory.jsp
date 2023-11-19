@@ -53,7 +53,7 @@
 								</div>
 						<div class="row">
 							<div class="col-xs-12">
-								<div class="table-responsive">
+								<div class="table-responsive paging">
 									<table class="table table-bordered">
 									    <thead>
 									      <tr>
