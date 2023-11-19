@@ -136,4 +136,10 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.getTotalProductSell();
 	}
 
+	@Override
+	public List<ProductModel> findAllOderByAmount() {
+		// TODO Auto-generated method stub
+		return productdao.findAllOderByAmount();
+	}
+
 }

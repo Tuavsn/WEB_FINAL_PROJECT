@@ -376,32 +376,47 @@
 																Tên sản phẩm
 															</th>
 
-															<th>
-																Số lượng
+															<th class="center112">
+																Giá
 															</th>
 														
-															<th>
-																Thao tác
+															<th class="center112" style="width: 70px!important;">
+																Số lượng
+															</th>
+															<th class="center112">
+																Tình trạng
 															</th>
 														</tr>
 													</thead>
 
 													<tbody>
+													<c:forEach items="${TotalProductOrderByAmont}" var="item">
 														<tr>
-															<td>internet.com</td>
+															<td><a href="<c:url value = '/admin-product-edit?productID=${item.productID}'/>" style="color: black;" target="_blank">${item.productName}</a></td>
 
-															<td>
-																<small>
-																	<s class="red">$29.99</s>
-																</small>
-																<b class="green">$19.99</b>
+															<td class="center112">
+																<b class="green">
+																	<fmt:setLocale value="vi_VN" />
+																	<fmt:formatNumber value="${item.price}" type="currency" />
+																</b>
 															</td>
 
-															<td class="hidden-480">
-																<span class="label label-info arrowed-right arrowed-in">on sale</span>
+															<td class="center112">
+																${item.amount}
 															</td>
-															
+															<td class="hidden-480 center112">
+															<c:if test="${item.amount==0 }">
+																<span class="label label-danger arrowed arrowed" style="width: 80px">Hết hàng</span>
+															</c:if>
+															<c:if test="${item.amount<=50 && item.amount!=0 }">
+																<span class="label label-warning arrowed arrowed" style="width: 80px">Sắp hết hàng</span>
+															</c:if>
+															<c:if test="${item.amount>50 }">
+																<span class="label label-success arrowed arrowed" style="width: 80px">Ổn định</span>
+															</c:if>
+															</td>															
 														</tr>
+													</c:forEach>
 
 														
 														
@@ -567,7 +582,7 @@
 						ticks: 10,
 						min: 0,
 						max: ${TotalPrice},
-						tickDecimals: 3
+						tickDecimals: 0
 					},
 					grid: {
 						backgroundColor: { colors: [ "#fff", "#fff" ] },

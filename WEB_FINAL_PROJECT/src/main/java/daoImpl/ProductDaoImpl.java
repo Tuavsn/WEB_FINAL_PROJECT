@@ -263,6 +263,12 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 		return query(sql, new ProductMapper());
 	}
 
+	@Override
+	public List<ProductModel> findAllOderByAmount() {
+		String sql = "select * from product order by Amount";
+		return query(sql, new ProductMapper());
+	}
+
 	
 
 }
