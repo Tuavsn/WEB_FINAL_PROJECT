@@ -133,7 +133,7 @@
 		var categoryName = $("#categoryName").val();
 		var imageLink = $("#imageLink").val();
 		var imageOld = $("#imageOld").attr('src');
-		var categoryID=${model.categoryID};
+		var categoryID=$("#categoryID").val();
 		if(imageLink===""){
 			imageLink=imageOld;
 		}

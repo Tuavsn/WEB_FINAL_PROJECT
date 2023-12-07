@@ -146,6 +146,9 @@
 	                			<input type="hidden" id="${item.categoryID}" value="${item.categoryName}" />
 	                	</c:forEach>
                 	</div>
+                	<c:if test="${not empty model.categoryID	 }">
+                		<input type="hidden" id="categoryID" value="${model.categoryID}">
+                	</c:if>
                 </div>
             </div>
         </div>

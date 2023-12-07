@@ -158,7 +158,7 @@ function deleteCategory(data) {
             data: JSON.stringify(data),
             success: function (result) {
             	window.location.href = "/WEB_FINAL_PROJECT/admin-category-list?page="+${model.page}+"&maxPageItem=3";
-            	alert("Xóa thành công ${model.totalItem}.");
+            	alert("Xóa thành công");
             	
             },
             error: function (error) 
