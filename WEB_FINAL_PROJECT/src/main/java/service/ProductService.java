@@ -27,6 +27,7 @@ public interface ProductService {
 	
 	ProductModel insertProduct(ProductModel productModel);
 	ProductModel updateProduct(ProductModel productModel); 
+	void updateProductAmount(Long productID, int amount);
 	void deleteProducts(long[] ids);
 	
 	int checkProductByBrandID(Long brandID);

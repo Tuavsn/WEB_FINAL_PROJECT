@@ -91,6 +91,9 @@
 								<div class="card product-item border-0 mb-4">
 									<div
 										class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+										<c:if test="${product.amount == 0}">
+											<div style="position: absolute; right: 0; padding: 2px 8px; background-color: gray; border-radius: 5px; color: white;">Hết hàng</div>
+										</c:if>
 										<img class="img-fluid w-100"
 											src="<c:url value = "/uploads/"/>${product.image[0].imageLink}" alt="">
 									</div>
@@ -108,8 +111,15 @@
 										class="card-footer d-flex justify-content-between bg-light border">
 										<a href="detail?pid=${product.productID}" class="btn btn-sm text-dark p-0">
 											<i class="fas fa-eye text-primary mr-1"></i>Chi tiết</a> 
-										<a href="cart/add?pid=${product.productID}&amount=1" class="btn btn-sm text-dark p-0 addToCartBtn">
-											<i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm sản phẩm</a>
+											
+										<c:if test="${product.amount == 0}">
+											<a href="#" class="btn btn-sm text-dark p-0">
+												<i class="fas fa-shopping-cart text-primary mr-1"></i>Hết hàng</a>										
+										</c:if>
+										<c:if test="${product.amount > 0}">
+											<a href="cart/add?pid=${product.productID}&amount=1" class="btn btn-sm text-dark p-0 addToCartBtn">
+												<i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm sản phẩm</a>										
+										</c:if>
 									</div>
 								</div>
 							</a>

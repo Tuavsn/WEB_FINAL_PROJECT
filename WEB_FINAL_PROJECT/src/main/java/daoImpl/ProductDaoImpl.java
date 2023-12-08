@@ -191,6 +191,12 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 			insert(sqlImage,imageName);
 		}
 	}
+	
+	@Override
+	public void updateProductAmount(Long productID, int amount) {
+		String sql = "UPDATE product SET  Amount = ? WHERE ProductID=?";
+		update(sql, amount, productID);
+	}
 
 	@Override
 	public void deleteProduct(Long id) {

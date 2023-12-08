@@ -33,4 +33,5 @@ public interface ProductDao {
 	int checkProductByCategoryIDChild(Long categoryID);
 	List<ProductModel> getTotalProductSell();
 	List<ProductModel> findAllOderByAmount();
+	void updateProductAmount(Long productID, int amount);
 }

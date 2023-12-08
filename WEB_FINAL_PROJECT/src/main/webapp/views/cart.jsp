@@ -52,7 +52,7 @@
 		                                        </button>
 	                                    	</a>
 	                                    </div>
-	                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${cart.value.amount}">
+	                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${cart.value.amount}" data-product-id="${cart.value.product.productID}">
 	                                    <div class="input-group-btn">
 	                                        <a href="cart/add?pid=${cart.value.product.productID}&amount=1">
 	                                        	<button class="btn btn-sm btn-primary btn-plus">
@@ -147,6 +147,16 @@
 	        }
 	    }
 	    button.parent().parent().find('input').val(newVal);
+	});
+	$('.quantity input').on('change', function () {
+	    var newValue = $(this).val();
+	    var productId = $(this).data('product-id');
+	    if (newValue > 0) {
+		    window.location.href = "cart/add?pid="+productId+"&amount=-99999999"
+		    window.location.href = "cart/add?pid="+productId+"&amount="+newValue	    	
+	    } else {
+	    	window.location.href = ""
+	    }
 	});
 	</script>
 </body>

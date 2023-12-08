@@ -142,4 +142,10 @@ public class ProductServiceImpl implements ProductService {
 		return productdao.findAllOderByAmount();
 	}
 
+	@Override
+	public void updateProductAmount(Long productID, int amount) {
+		// TODO Auto-generated method stub
+		productdao.updateProductAmount(productID, amount);
+	}
+
 }

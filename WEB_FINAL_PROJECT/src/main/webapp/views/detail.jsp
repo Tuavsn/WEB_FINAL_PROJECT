@@ -30,7 +30,9 @@
 					<!-- Product's images -->
 					<div id="product-carousel" class="carousel slide" data-ride="carousel">
 						<div class="carousel-inner border">
-			
+							<c:if test="${product.amount == 0}">
+								<div style="position: absolute; right: 0; z-index: 2; padding: 2px 8px; background-color: gray; border-radius: 5px; color: white;">Hết hàng</div>
+							</c:if>
 							<div class="carousel-item active">
 								<img class="w-100 h-100" src="<c:url value = "/uploads/"/>${product.image[0].imageLink}" alt="Image">
 							</div>
@@ -73,6 +75,7 @@
 								class="fas fa-star-half-alt"></small> <small class="far fa-star"></small>
 						</div>
 						<small class="pt-1">(50 Reviews)</small>
+						<small class="pt-1 pl-2">(${product.amount} sản phẩm)</small>
 					</div>
 					<h3 class="font-weight-semi-bold mb-4">
 						<fmt:setLocale value="vi_VN" />
@@ -94,9 +97,18 @@
 								</button>
 							</div>
 						</div>
-						<button class="btn btn-primary px-3 addToCartBtn" onclick = "addToCart()">
-							<i class="fa fa-shopping-cart mr-1"></i> Thêm sản phẩm
-						</button>
+						<!-- Còn hàng -->
+						<c:if test="${product.amount > 0}">
+							<button class="btn btn-primary px-3 addToCartBtn" onclick = "addToCart()">
+								<i class="fa fa-shopping-cart mr-1"></i> Thêm sản phẩm
+							</button>
+						</c:if>
+						<!-- Hết hàng -->
+						<c:if test="${product.amount == 0}">
+							<button class="btn btn-primary px-3 addToCartBtn" disabled>
+								<i class="fa fa-shopping-cart mr-1"></i> Tạm hết hàng
+							</button>
+						</c:if>
 					</div>
 					<div class="d-flex pt-2">
 						<p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>

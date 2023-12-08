@@ -21,15 +21,18 @@ import model.UserModel;
 import service.BillService;
 import service.CategoryService;
 import service.OrderItemService;
+import service.ProductService;
 import serviceImpl.BillServiceImpl;
 import serviceImpl.CategoryServiceImpl;
 import serviceImpl.OrderItemServiceImpl;
+import serviceImpl.ProductServiceImpl;
 
 @WebServlet(urlPatterns = { "/checkout" })
 public class CheckoutController extends HttpServlet {
 	CategoryService categoryservice = new CategoryServiceImpl();
 	BillService billservice = new BillServiceImpl();
 	OrderItemService orderitemservice = new OrderItemServiceImpl();
+	ProductService productservice = new ProductServiceImpl();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html");
@@ -58,6 +61,15 @@ public class CheckoutController extends HttpServlet {
 			Map<Long, OrderItemModel> map = (Map<Long, OrderItemModel>) objCart;
 			for (OrderItemModel orderitem : map.values()) {
 				totalprice += orderitem.getProduct().getPrice() * orderitem.getAmount();
+				if(orderitem.getAmount() > orderitem.getProduct().getAmount()) {
+					System.out.println("Lỗi");
+					PrintWriter out = resp.getWriter();  
+					resp.setContentType("text/html");  
+					out.println("<script type=\"text/javascript\">");  
+					out.println("alert('Đặt hàng không thành công do sản phẩm không đủ hàng');");  
+					out.println("</script>");	
+					return ;
+				}
 			}
 		}
 		//Phí ship
@@ -80,6 +92,7 @@ public class CheckoutController extends HttpServlet {
 			for (OrderItemModel orderitem : map.values()) {
 				orderitem.setBillID(BillID);
 				orderitemservice.insertOrderItem(orderitem);
+				productservice.updateProductAmount(orderitem.getProduct().getProductID(), orderitem.getProduct().getAmount()-orderitem.getAmount());
 			}
 		}
 		
@@ -89,7 +102,7 @@ public class CheckoutController extends HttpServlet {
 		resp.setContentType("text/html");  
 		out.println("<script type=\"text/javascript\">");  
 		out.println("alert('Đặt hàng thành công');");  
-		out.print("location='"+req.getContextPath()+"/home'");
+		out.print("location='"+req.getContextPath()+"/userprofile?page=1&maxPageItem=9'");
 		out.println("</script>");
 	
 	}
