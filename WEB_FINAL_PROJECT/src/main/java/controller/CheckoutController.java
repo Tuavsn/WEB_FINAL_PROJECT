@@ -17,6 +17,7 @@ import java.util.Map;
 import model.BillModel;
 import model.CategoryModel;
 import model.OrderItemModel;
+import model.ProductModel;
 import model.UserModel;
 import service.BillService;
 import service.CategoryService;
@@ -61,7 +62,7 @@ public class CheckoutController extends HttpServlet {
 			Map<Long, OrderItemModel> map = (Map<Long, OrderItemModel>) objCart;
 			for (OrderItemModel orderitem : map.values()) {
 				totalprice += orderitem.getProduct().getPrice() * orderitem.getAmount();
-				if(orderitem.getAmount() > orderitem.getProduct().getAmount()) {
+				if(orderitem.getAmount() > productservice.getOne(orderitem.getProduct().getProductID()).getAmount()) {
 					System.out.println("Lỗi");
 					PrintWriter out = resp.getWriter();  
 					resp.setContentType("text/html");  
