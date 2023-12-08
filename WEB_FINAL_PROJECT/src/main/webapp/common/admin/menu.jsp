@@ -102,13 +102,13 @@
 			</a>
 			<b class="arrow"></b>
 		</li>
-		<li class="">
+		<%-- <li class="">
 			<a href="<c:url value = 'admin-promotion-list?page=1&maxPageItem=10'/>">
 				<i class="menu-icon fa fa-gift red"></i>
 				<span class="menu-text">Sản phẩm khuyến mãi</span>
 			</a>
 			<b class="arrow"></b>
-		</li>
+		</li> --%>
     </ul>
     <div class="sidebar-toggle sidebar-collapse">
         <i class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
