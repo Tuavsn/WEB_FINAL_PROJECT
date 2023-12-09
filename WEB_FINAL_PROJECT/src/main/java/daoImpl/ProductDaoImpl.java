@@ -265,7 +265,7 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 				+ "    WHERE bill.status = 1 "
 				+ ") Q "
 				+ "right outer JOIN product ON Q.ProductID = product.ProductID "
-				+ "GROUP BY product.ProductID, product.Price,product.ProductName";
+				+ "GROUP BY product.ProductID, product.Price,product.ProductName ORDER BY Amount DESC";
 		return query(sql, new ProductMapper());
 	}
 
