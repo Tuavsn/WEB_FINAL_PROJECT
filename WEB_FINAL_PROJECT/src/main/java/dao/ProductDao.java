@@ -34,4 +34,6 @@ public interface ProductDao {
 	List<ProductModel> getTotalProductSell();
 	List<ProductModel> findAllOderByAmount();
 	void updateProductAmount(Long productID, int amount);
+	
+	int checkAmountProductAfterResetStatus(Long id,int SL);
 }

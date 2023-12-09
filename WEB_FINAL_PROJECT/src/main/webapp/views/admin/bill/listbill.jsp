@@ -258,7 +258,13 @@ function HuyThanhToanBill(data){
         	alert("Đã đặt lại trạng thái thanh toán");
         },
         error: function (error) {
-        	alert("Lỗi rồi");
+        	
+        	if (error.status === 400) {
+        		alert("Có một số sản phẩm đã hết hàng trong đơn này vui lòng bỏ sung thêm số lượng sản phẩm");
+        	}
+        	else{
+        		alert("Lỗi rồi");
+        	}
         }
     });
 }	

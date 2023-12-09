@@ -148,4 +148,9 @@ public class ProductServiceImpl implements ProductService {
 		productdao.updateProductAmount(productID, amount);
 	}
 
+	@Override
+	public int checkAmountProductAfterResetStatus(Long id,int SL) {
+		return productdao.checkAmountProductAfterResetStatus(id,SL);
+	}
+
 }

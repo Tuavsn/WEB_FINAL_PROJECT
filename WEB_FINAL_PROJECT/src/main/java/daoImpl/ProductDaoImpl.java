@@ -275,6 +275,12 @@ public class ProductDaoImpl extends AbstractDAO<ProductModel> implements Product
 		return query(sql, new ProductMapper());
 	}
 
+	@Override
+	public int checkAmountProductAfterResetStatus(Long id,int SL) {
+		String query = "select TinhSLSP(?,?) as Amount";
+		return count(query,id,SL);
+	}
+
 	
 
 }

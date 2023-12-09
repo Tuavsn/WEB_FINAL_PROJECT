@@ -35,4 +35,6 @@ public interface ProductService {
 	int checkProductByCategoryIDChild(Long categoryID);
 	List<ProductModel> getTotalProductSell();
 	List<ProductModel> findAllOderByAmount();
+	
+	int checkAmountProductAfterResetStatus(Long id,int SL);
 }
