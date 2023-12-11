@@ -19,7 +19,9 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 		List<BillModel> allBill = query(query, new BillMapper());
 		for (BillModel i : allBill) {
 			String subquery = "select * from orderitem where BillID = ?";
-			i.setOrderItem(query(subquery, new OrderItemMapper(), i.getBillID()));
+			if(i.getBillID() != null) {
+				i.setOrderItem(query(subquery, new OrderItemMapper(), i.getBillID()));
+			}
 		}
 		return allBill;
 	}
@@ -34,7 +36,10 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 		List<BillModel> allBill = query(query.toString(), new BillMapper());
 		for (BillModel i : allBill) {
 			String subquery = "select * from orderitem where BillID = ?";
-			i.setOrderItem(query(subquery, new OrderItemMapper(), i.getBillID()));
+			if(i.getBillID() != null) {
+				i.setOrderItem(query(subquery, new OrderItemMapper(), i.getBillID()));
+			}
+			
 		}
 		return allBill;
 	}
@@ -53,7 +58,11 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 		List<BillModel> allBill = query(query.toString(), new BillMapper(), search);
 		for (BillModel i : allBill) {
 			String subquery = "select * from orderitem where BillID = ?";
-			i.setOrderItem(query(subquery, new OrderItemMapper(), i.getBillID()));
+			if(i.getBillID() != null)
+			{
+				i.setOrderItem(query(subquery, new OrderItemMapper(), i.getBillID()));
+			}
+
 			for(OrderItemModel j : i.getOrderItem()) {
 				String subquery2 = "select product.*, OrderItemID from product inner join orderitem on product.ProductID = orderitem.ProductID where OrderItemID = ?";
 				j.setProduct((query(subquery2, new ProductMapper(), j.getOrderItemID())).get(0));
