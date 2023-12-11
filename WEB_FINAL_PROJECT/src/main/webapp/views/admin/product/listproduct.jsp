@@ -136,8 +136,12 @@
 									    </tbody>
 									  </table>
 									  <ul class="pagination" id="pagination"></ul>	
-									  <input type="hidden" value =" " id = "page" name="page">	<!-- name phai giong trong model -->
+									 <input type="hidden" value =" " id = "page" name="page">	<!-- name phai giong trong model -->
 									 <input type="hidden" value =" " id = "maxPageItem" name="maxPageItem">	<!-- khi bao name de mapping len url -->
+									 <c:if test="${not empty model.key }">
+									 	<input type="hidden" value ="${model.key}" id = "key" name="key">	<!-- name phai giong trong model -->
+									 	<input type="hidden" value ="${model.search}" id = "search" name="search">	<!-- khi bao name de mapping len url -->
+									 </c:if>
 								</div>
 							</div>
 						</div>

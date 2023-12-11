@@ -62,7 +62,6 @@ public class BillDaoImpl extends AbstractDAO<BillModel> implements BillDao{
 			{
 				i.setOrderItem(query(subquery, new OrderItemMapper(), i.getBillID()));
 			}
-
 			for(OrderItemModel j : i.getOrderItem()) {
 				String subquery2 = "select product.*, OrderItemID from product inner join orderitem on product.ProductID = orderitem.ProductID where OrderItemID = ?";
 				j.setProduct((query(subquery2, new ProductMapper(), j.getOrderItemID())).get(0));
